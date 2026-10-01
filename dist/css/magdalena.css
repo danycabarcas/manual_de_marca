@@ -1,0 +1,369 @@
+/*! Gobernación del Magdalena · Identidad Visual 2026 · v1.0.0
+   Generado desde tools/tokens.py — NO editar a mano. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+:root {
+  /* Paleta oficial */
+  --mg-primary: #0071BB;
+  --mg-primary-rgb: 0, 113, 187;
+  --mg-cyan: #00B7D9;
+  --mg-cyan-rgb: 0, 183, 217;
+  --mg-sky: #9FD7E5;
+  --mg-sky-rgb: 159, 215, 229;
+  --mg-red: #F7003C;
+  --mg-red-rgb: 247, 0, 60;
+  --mg-yellow: #FEC800;
+  --mg-yellow-rgb: 254, 200, 0;
+  --mg-green: #69B75E;
+  --mg-green-rgb: 105, 183, 94;
+  --mg-olive: #A28034;
+  --mg-olive-rgb: 162, 128, 52;
+  --mg-purple: #5618BA;
+  --mg-purple-rgb: 86, 24, 186;
+  --mg-ink: #1D1D1B;
+  --mg-ink-rgb: 29, 29, 27;
+  --mg-gray: #606060;
+  --mg-gray-rgb: 96, 96, 96;
+  --mg-surface: #F6F5F5;
+  --mg-surface-rgb: 246, 245, 245;
+  --mg-white: #FFFFFF;
+  --mg-white-rgb: 255, 255, 255;
+  /* Escalas tonales (500 = color oficial) */
+  --mg-primary-50: #EBF4FA;
+  --mg-primary-100: #D6E8F4;
+  --mg-primary-200: #ADD2E9;
+  --mg-primary-300: #80B8DD;
+  --mg-primary-400: #4094CC;
+  --mg-primary-500: #0071BB;
+  --mg-primary-600: #0061A1;
+  --mg-primary-700: #004F83;
+  --mg-primary-800: #003D65;
+  --mg-primary-900: #002B47;
+  --mg-primary-950: #001B2D;
+  --mg-cyan-50: #EBF9FC;
+  --mg-cyan-100: #D6F3F9;
+  --mg-cyan-200: #ADE8F3;
+  --mg-cyan-300: #80DBEC;
+  --mg-cyan-400: #40C9E2;
+  --mg-cyan-500: #00B7D9;
+  --mg-cyan-600: #009DBB;
+  --mg-cyan-700: #008098;
+  --mg-cyan-800: #006375;
+  --mg-cyan-900: #004652;
+  --mg-cyan-950: #002C34;
+  --mg-sky-50: #F7FCFD;
+  --mg-sky-100: #F0F9FB;
+  --mg-sky-200: #E0F2F7;
+  --mg-sky-300: #CFEBF2;
+  --mg-sky-400: #B7E1EC;
+  --mg-sky-500: #9FD7E5;
+  --mg-sky-600: #89B9C5;
+  --mg-sky-700: #6F96A0;
+  --mg-sky-800: #56747C;
+  --mg-sky-900: #3C5257;
+  --mg-sky-950: #263437;
+  --mg-red-50: #FEEBEF;
+  --mg-red-100: #FED6E0;
+  --mg-red-200: #FCADC1;
+  --mg-red-300: #FB809E;
+  --mg-red-400: #F9406D;
+  --mg-red-500: #F7003C;
+  --mg-red-600: #D40034;
+  --mg-red-700: #AD002A;
+  --mg-red-800: #850020;
+  --mg-red-900: #5E0017;
+  --mg-red-950: #3B000E;
+  --mg-yellow-50: #FFFBEB;
+  --mg-yellow-100: #FFF6D6;
+  --mg-yellow-200: #FFEDAD;
+  --mg-yellow-300: #FEE480;
+  --mg-yellow-400: #FED640;
+  --mg-yellow-500: #FEC800;
+  --mg-yellow-600: #DAAC00;
+  --mg-yellow-700: #B28C00;
+  --mg-yellow-800: #896C00;
+  --mg-yellow-900: #614C00;
+  --mg-yellow-950: #3D3000;
+  --mg-green-50: #F3F9F2;
+  --mg-green-100: #E7F3E5;
+  --mg-green-200: #CFE8CB;
+  --mg-green-300: #B4DBAE;
+  --mg-green-400: #8EC986;
+  --mg-green-500: #69B75E;
+  --mg-green-600: #5A9D51;
+  --mg-green-700: #4A8042;
+  --mg-green-800: #396333;
+  --mg-green-900: #284624;
+  --mg-green-950: #192C17;
+  --mg-olive-50: #F8F5EF;
+  --mg-olive-100: #F0EBDF;
+  --mg-olive-200: #E1D6BE;
+  --mg-olive-300: #D0C09A;
+  --mg-olive-400: #B9A067;
+  --mg-olive-500: #A28034;
+  --mg-olive-600: #8B6E2D;
+  --mg-olive-700: #715A24;
+  --mg-olive-800: #57451C;
+  --mg-olive-900: #3E3114;
+  --mg-olive-950: #271F0C;
+  --mg-purple-50: #F1EDF9;
+  --mg-purple-100: #E4DAF4;
+  --mg-purple-200: #C9B5E9;
+  --mg-purple-300: #AA8CDC;
+  --mg-purple-400: #8052CB;
+  --mg-purple-500: #5618BA;
+  --mg-purple-600: #4A15A0;
+  --mg-purple-700: #3C1182;
+  --mg-purple-800: #2E0D64;
+  --mg-purple-900: #210947;
+  --mg-purple-950: #15062D;
+  --mg-gray-50: #FAFAFA;
+  --mg-gray-100: #F6F5F5;
+  --mg-gray-200: #ECEBEB;
+  --mg-gray-300: #DDDCDC;
+  --mg-gray-400: #B9B8B8;
+  --mg-gray-500: #8C8B8B;
+  --mg-gray-600: #606060;
+  --mg-gray-700: #4A4A4A;
+  --mg-gray-800: #333332;
+  --mg-gray-900: #1D1D1B;
+  --mg-gray-950: #0F0F0E;
+  /* Degradados */
+  --mg-gradient-primary: linear-gradient(135deg, #0071BB 0%, #00B7D9 100%);
+  --mg-gradient-primary-h: linear-gradient(90deg, #0071BB 0%, #00B7D9 100%);
+  --mg-gradient-primary-v: linear-gradient(180deg, #0071BB 0%, #00B7D9 100%);
+  --mg-gradient-sky: linear-gradient(135deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%);
+  --mg-gradient-sky-h: linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%);
+  --mg-gradient-aqua: linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%);
+  --mg-gradient-mist: linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%);
+  --mg-gradient-deep: linear-gradient(160deg, #002B47 0%, #004F83 55%, #0071BB 100%);
+  --mg-gradient-action: linear-gradient(135deg, #0071BB 0%, #00A1CF 100%);
+  --mg-gradient-action-aa: linear-gradient(135deg, #0071BB 0%, #007CC0 100%);
+  --mg-gradient-tropical: linear-gradient(135deg, #00B7D9 0%, #69B75E 100%);
+  --mg-gradient-sun: linear-gradient(135deg, #FEC800 0%, #DAAC00 100%);
+  --mg-gradient-heat: linear-gradient(135deg, #F7003C 0%, #AD002A 100%);
+  --mg-gradient-earth: linear-gradient(135deg, #A28034 0%, #715A24 100%);
+  --mg-gradient-violet: linear-gradient(135deg, #5618BA 0%, #0071BB 100%);
+  --mg-gradient-stripe: linear-gradient(90deg, #5618BA 0.0% 11.111%, #A28034 11.111% 22.222%, #FEC800 22.222% 33.333%, #F7003C 33.333% 44.444%, #0071BB 44.444% 55.556%, #00B7D9 55.556% 66.667%, #9FD7E5 66.667% 77.778%, #69B75E 77.778% 88.889%, #5618BA 88.889% 100.0%);
+  --mg-gradient-stripe-v: linear-gradient(180deg, #5618BA 0.0% 11.111%, #A28034 11.111% 22.222%, #FEC800 22.222% 33.333%, #F7003C 33.333% 44.444%, #0071BB 44.444% 55.556%, #00B7D9 55.556% 66.667%, #9FD7E5 66.667% 77.778%, #69B75E 77.778% 88.889%, #5618BA 88.889% 100.0%);
+  --mg-gradient-stripe-flow: linear-gradient(90deg, #5618BA, #A28034, #FEC800, #F7003C, #0071BB, #00B7D9, #9FD7E5, #69B75E, #5618BA);
+  /* Semánticos de interfaz */
+  --mg-bg: #ffffff;
+  --mg-surface-card: #ffffff;
+  --mg-text: #1D1D1B;
+  --mg-heading: #606060;
+  --mg-border: #ECEBEB;
+  --mg-border-strong: #DDDCDC;
+  --mg-color-primary: #0071BB;
+  --mg-on-primary: #FFFFFF;
+  --mg-color-secondary: #606060;
+  --mg-on-secondary: #FFFFFF;
+  --mg-color-info: #00B7D9;
+  --mg-on-info: #1D1D1B;
+  --mg-color-success: #69B75E;
+  --mg-on-success: #1D1D1B;
+  --mg-color-warning: #FEC800;
+  --mg-on-warning: #1D1D1B;
+  --mg-color-danger: #F7003C;
+  --mg-on-danger: #FFFFFF;
+  /* Tipografía, radios y sombras */
+  --mg-font-sans: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --mg-font-display: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --mg-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mg-radius-sm: 6px;
+  --mg-radius-md: 10px;
+  --mg-radius-lg: 16px;
+  --mg-radius-xl: 24px;
+  --mg-radius-pill: 999px;
+  --mg-shadow-sm: 0 1px 2px rgba(0,56,94,.08), 0 1px 3px rgba(0,56,94,.06);
+  --mg-shadow-md: 0 4px 10px rgba(0,56,94,.10), 0 2px 4px rgba(0,56,94,.06);
+  --mg-shadow-lg: 0 14px 30px rgba(0,56,94,.14), 0 4px 10px rgba(0,56,94,.08);
+  --mg-shadow-glow: 0 8px 24px rgba(0,183,217,.35);
+}
+
+/* ==========================================================================
+   COMPONENTES Y UTILIDADES  ·  prefijo mg-  ·  independiente de framework
+   Usa únicamente variables --mg-* definidas en el bloque de tokens.
+   ========================================================================== */
+
+/* ---------- Base (opt-in con la clase .mg-base en <body> o <html>) ---------- */
+.mg-base, .mg-base body { font-family: var(--mg-font-sans); color: var(--mg-text); background: var(--mg-bg); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.mg-base *, .mg-base *::before, .mg-base *::after { box-sizing: border-box; }
+.mg-base h1, .mg-base h2, .mg-base h3, .mg-base h4, .mg-h1, .mg-h2, .mg-h3, .mg-h4 { font-family: var(--mg-font-display); color: var(--mg-heading); line-height: 1.15; letter-spacing: -.01em; margin: 0 0 .5em; }
+.mg-base h1, .mg-h1 { font-weight: 900; font-size: clamp(2rem, 4vw + 1rem, 3.25rem); }
+.mg-base h2, .mg-h2 { font-weight: 800; font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem); }
+.mg-base h3, .mg-h3 { font-weight: 800; font-size: 1.375rem; }
+.mg-base h4, .mg-h4 { font-weight: 700; font-size: 1.125rem; }
+.mg-base a, .mg-link { color: var(--mg-primary); text-decoration-thickness: .08em; text-underline-offset: .18em; }
+.mg-base a:hover, .mg-link:hover { color: var(--mg-primary-700); }
+.mg-base :focus-visible, .mg-focusable:focus-visible { outline: 3px solid var(--mg-cyan); outline-offset: 2px; }
+.mg-base ::selection { background: var(--mg-sky); color: var(--mg-ink); }
+
+/* Número de sección del manual: "01." en amarillo + título en gris */
+.mg-eyebrow { font-family: var(--mg-font-display); font-weight: 900; color: var(--mg-yellow); font-size: 2.5rem; line-height: 1; letter-spacing: -.02em; }
+.mg-title-underline { position: relative; padding-bottom: .5em; }
+.mg-title-underline::after { content: ""; position: absolute; left: 0; bottom: 0; width: 3.5rem; height: 5px; border-radius: 3px; background: var(--mg-yellow); }
+
+/* ---------- Utilidades: fondos degradados ---------- */
+.mg-bg-primary    { background: var(--mg-gradient-primary); color: #fff; }
+.mg-bg-primary-h  { background: var(--mg-gradient-primary-h); color: #fff; }
+.mg-bg-primary-v  { background: var(--mg-gradient-primary-v); color: #fff; }
+.mg-bg-sky        { background: var(--mg-gradient-sky); color: #fff; }
+.mg-bg-sky-h      { background: var(--mg-gradient-sky-h); color: #fff; }
+.mg-bg-aqua       { background: var(--mg-gradient-aqua); color: var(--mg-ink); }
+.mg-bg-mist       { background: var(--mg-gradient-mist); color: var(--mg-ink); }
+.mg-bg-deep       { background: var(--mg-gradient-deep); color: #fff; }
+.mg-bg-action     { background: var(--mg-gradient-action); color: #fff; }
+.mg-bg-tropical   { background: var(--mg-gradient-tropical); color: var(--mg-ink); }
+.mg-bg-sun        { background: var(--mg-gradient-sun); color: var(--mg-ink); }
+.mg-bg-heat       { background: var(--mg-gradient-heat); color: #fff; }
+.mg-bg-earth      { background: var(--mg-gradient-earth); color: #fff; }
+.mg-bg-violet     { background: var(--mg-gradient-violet); color: #fff; }
+.mg-bg-stripe     { background: var(--mg-gradient-stripe); }
+.mg-bg-surface    { background: var(--mg-surface); }
+/* Texto con degradado (títulos grandes) */
+.mg-text-gradient, .mg-text-gradient-sky { background: var(--mg-gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.mg-text-gradient-sky { background-image: var(--mg-gradient-sky-h); }
+/* Colores de texto / fondo plano */
+.mg-text-primary { color: var(--mg-primary); } .mg-text-cyan { color: var(--mg-cyan-700); } .mg-text-red { color: var(--mg-red); }
+.mg-text-yellow { color: var(--mg-yellow-700); } .mg-text-green { color: var(--mg-green-700); } .mg-text-gray { color: var(--mg-gray); } .mg-text-ink { color: var(--mg-ink); }
+.mg-bg-flat-primary { background: var(--mg-primary); color: #fff; } .mg-bg-flat-cyan { background: var(--mg-cyan); color: var(--mg-ink); }
+.mg-bg-flat-sky { background: var(--mg-sky); color: var(--mg-ink); } .mg-bg-flat-red { background: var(--mg-red); color: #fff; }
+.mg-bg-flat-yellow { background: var(--mg-yellow); color: var(--mg-ink); } .mg-bg-flat-green { background: var(--mg-green); color: var(--mg-ink); }
+.mg-bg-flat-olive { background: var(--mg-olive); color: #fff; } .mg-bg-flat-purple { background: var(--mg-purple); color: #fff; }
+
+/* ---------- LA LÍNEA (franja multicolor del logotipo) ---------- */
+.mg-stripe { display: block; height: var(--mg-stripe-h, 6px); width: 100%; background: var(--mg-gradient-stripe); border: 0; margin: 0; }
+.mg-stripe--thin { --mg-stripe-h: 3px; } .mg-stripe--thick { --mg-stripe-h: 10px; } .mg-stripe--xl { --mg-stripe-h: 16px; }
+.mg-stripe--v { width: var(--mg-stripe-h, 6px); height: 100%; background: var(--mg-gradient-stripe-v); }
+.mg-stripe--flow { background: var(--mg-gradient-stripe-flow); }
+/* Borde superior / inferior con la línea en cualquier contenedor */
+.mg-stripe-top, .mg-stripe-bottom { position: relative; }
+.mg-stripe-top::before, .mg-stripe-bottom::after { content: ""; position: absolute; left: 0; right: 0; height: var(--mg-stripe-h, 6px); background: var(--mg-gradient-stripe); pointer-events: none; }
+.mg-stripe-top::before { top: 0; border-radius: inherit; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.mg-stripe-bottom::after { bottom: 0; border-radius: inherit; border-top-left-radius: 0; border-top-right-radius: 0; }
+/* Borde con degradado (marco): usa la propiedad --mg-frame-gradient */
+.mg-frame { --mg-frame-w: 3px; --mg-frame-gradient: var(--mg-gradient-primary); position: relative; border: var(--mg-frame-w) solid transparent; border-radius: var(--mg-radius-md); background: linear-gradient(var(--mg-surface-card), var(--mg-surface-card)) padding-box, var(--mg-frame-gradient) border-box; }
+.mg-frame--sky { --mg-frame-gradient: var(--mg-gradient-sky); } .mg-frame--stripe { --mg-frame-gradient: var(--mg-gradient-stripe-flow); }
+.mg-frame--thick { --mg-frame-w: 5px; }
+/* Divisor con línea corta amarilla */
+.mg-divider { height: 4px; width: 3.5rem; border-radius: 2px; background: var(--mg-yellow); border: 0; margin: 1rem 0; }
+.mg-divider--stripe { width: 100%; height: 4px; background: var(--mg-gradient-stripe); border-radius: 0; }
+
+/* ---------- Formas decorativas (diagonales translúcidas de post/valla) ---------- */
+.mg-shapes { position: relative; overflow: hidden; isolation: isolate; }
+.mg-shapes::before, .mg-shapes::after { content: ""; position: absolute; z-index: -1; background: rgba(255,255,255,.55); transform: skewX(-18deg); pointer-events: none; }
+.mg-shapes::before { width: 22%; height: 140%; top: -20%; left: 8%; }
+.mg-shapes::after  { width: 10%; height: 140%; top: -20%; right: 6%; background: rgba(0,113,187,.06); }
+.mg-shapes--dark::before { background: rgba(255,255,255,.08); } .mg-shapes--dark::after { background: rgba(255,255,255,.05); }
+.mg-circle-deco { position: absolute; border-radius: 50%; background: var(--mg-gradient-aqua); opacity: .35; pointer-events: none; }
+/* Cápsula blanca del logo (pie de post/valla) */
+.mg-logo-pill { display: inline-flex; align-items: center; gap: .75rem; background: var(--mg-surface-card); padding: .6rem 1.25rem; border-radius: var(--mg-radius-pill); box-shadow: var(--mg-shadow-md); }
+.mg-logo-pill img { height: 2.25rem; width: auto; display: block; }
+
+/* ---------- Botones ---------- */
+.mg-btn { --_bg: var(--mg-gradient-action); --_fg: #fff; --_bd: transparent; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font: 700 .9375rem/1.2 var(--mg-font-sans); padding: .7rem 1.4rem; border-radius: var(--mg-radius-pill); border: 2px solid var(--_bd); background: var(--_bg); color: var(--_fg); cursor: pointer; text-decoration: none; transition: transform .15s ease, box-shadow .2s ease, filter .2s ease; box-shadow: var(--mg-shadow-sm); }
+.mg-btn:hover { transform: translateY(-1px); box-shadow: var(--mg-shadow-md); filter: brightness(1.06); color: var(--_fg); }
+.mg-btn:active { transform: translateY(0); filter: brightness(.96); }
+.mg-btn:focus-visible { outline: 3px solid var(--mg-cyan); outline-offset: 2px; }
+.mg-btn[disabled], .mg-btn.is-disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; filter: grayscale(.4); }
+.mg-btn--primary { --_bg: var(--mg-gradient-action); } .mg-btn--aa { --_bg: var(--mg-gradient-action-aa); }
+.mg-btn--flat { --_bg: var(--mg-primary); }
+.mg-btn--cyan { --_bg: var(--mg-cyan); --_fg: var(--mg-ink); } .mg-btn--sky { --_bg: var(--mg-sky); --_fg: var(--mg-ink); }
+.mg-btn--danger { --_bg: var(--mg-red); } .mg-btn--accent { --_bg: var(--mg-yellow); --_fg: var(--mg-ink); }
+.mg-btn--success { --_bg: var(--mg-green); --_fg: var(--mg-ink); }
+.mg-btn--outline { --_bg: transparent; --_fg: var(--mg-primary); --_bd: var(--mg-primary); box-shadow: none; }
+.mg-btn--outline:hover { --_bg: var(--mg-primary-50); filter: none; }
+.mg-btn--ghost { --_bg: transparent; --_fg: var(--mg-primary); box-shadow: none; }
+.mg-btn--ghost:hover { --_bg: var(--mg-primary-50); filter: none; }
+.mg-btn--sm { padding: .4rem .9rem; font-size: .8125rem; } .mg-btn--lg { padding: .95rem 2rem; font-size: 1.0625rem; }
+.mg-btn--block { display: flex; width: 100%; } .mg-btn--square { border-radius: var(--mg-radius-md); }
+
+/* ---------- Tarjetas ---------- */
+.mg-card { position: relative; background: var(--mg-surface-card); border: 1px solid var(--mg-border); border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-sm); overflow: hidden; }
+.mg-card__body { padding: 1.25rem 1.5rem; } .mg-card__footer { padding: .9rem 1.5rem; border-top: 1px solid var(--mg-border); background: var(--mg-surface); }
+.mg-card__header { padding: 1rem 1.5rem; font-weight: 800; font-family: var(--mg-font-display); }
+.mg-card__header--gradient { background: var(--mg-gradient-primary); color: #fff; }
+.mg-card__header--sky { background: var(--mg-gradient-sky); color: #fff; }
+.mg-card--stripe-top { border-top: 0; } .mg-card--stripe-top::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
+.mg-card--stripe-bottom::after { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
+.mg-card--accent { border-left: 6px solid var(--mg-primary); } .mg-card--accent-cyan { border-left: 6px solid var(--mg-cyan); }
+.mg-card--accent-red { border-left: 6px solid var(--mg-red); } .mg-card--accent-yellow { border-left: 6px solid var(--mg-yellow); } .mg-card--accent-green { border-left: 6px solid var(--mg-green); }
+.mg-card--gradient { background: var(--mg-gradient-primary); color: #fff; border: 0; } .mg-card--hover { transition: transform .2s ease, box-shadow .2s ease; } .mg-card--hover:hover { transform: translateY(-3px); box-shadow: var(--mg-shadow-lg); }
+.mg-card--flat { box-shadow: none; }
+
+/* Tarjeta de indicador (KPI / small-box) */
+.mg-stat { position: relative; display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-radius: var(--mg-radius-lg); background: var(--mg-gradient-primary); color: #fff; overflow: hidden; box-shadow: var(--mg-shadow-md); }
+.mg-stat::after { content: ""; position: absolute; right: -1.5rem; top: -1.5rem; width: 7rem; height: 7rem; border-radius: 50%; background: rgba(255,255,255,.14); }
+.mg-stat__value { font: 900 2rem/1 var(--mg-font-display); } .mg-stat__label { font-weight: 600; opacity: .92; }
+.mg-stat--aqua { background: var(--mg-gradient-aqua); color: var(--mg-ink); } .mg-stat--sky { background: var(--mg-gradient-sky); }
+.mg-stat--deep { background: var(--mg-gradient-deep); } .mg-stat--heat { background: var(--mg-gradient-heat); } .mg-stat--sun { background: var(--mg-gradient-sun); color: var(--mg-ink); } .mg-stat--tropical { background: var(--mg-gradient-tropical); color: var(--mg-ink); }
+.mg-stat--aqua::after, .mg-stat--sun::after, .mg-stat--tropical::after { background: rgba(255,255,255,.3); }
+
+/* ---------- Insignias / etiquetas ---------- */
+.mg-badge { display: inline-flex; align-items: center; gap: .35rem; font: 700 .75rem/1 var(--mg-font-sans); padding: .35rem .7rem; border-radius: var(--mg-radius-pill); background: var(--mg-primary-50); color: var(--mg-primary-700); border: 1px solid var(--mg-primary-200); }
+.mg-badge--solid { background: var(--mg-primary); color: #fff; border-color: transparent; } .mg-badge--gradient { background: var(--mg-gradient-primary); color: #fff; border-color: transparent; }
+.mg-badge--cyan { background: var(--mg-cyan-50); color: var(--mg-cyan-800); border-color: var(--mg-cyan-200); } .mg-badge--red { background: var(--mg-red-50); color: var(--mg-red-700); border-color: var(--mg-red-200); }
+.mg-badge--yellow { background: var(--mg-yellow-50); color: var(--mg-yellow-800); border-color: var(--mg-yellow-200); } .mg-badge--green { background: var(--mg-green-50); color: var(--mg-green-800); border-color: var(--mg-green-200); }
+.mg-badge--purple { background: var(--mg-purple-50); color: var(--mg-purple-700); border-color: var(--mg-purple-200); }
+
+/* ---------- Alertas ---------- */
+.mg-alert { --_c: var(--mg-primary); display: flex; gap: .85rem; padding: .95rem 1.1rem; border-radius: var(--mg-radius-md); border: 1px solid color-mix(in srgb, var(--_c) 30%, transparent); border-left: 6px solid var(--_c); background: color-mix(in srgb, var(--_c) 9%, #fff); color: var(--mg-ink); }
+.mg-alert--info { --_c: var(--mg-cyan); } .mg-alert--success { --_c: var(--mg-green); } .mg-alert--warning { --_c: var(--mg-yellow); } .mg-alert--danger { --_c: var(--mg-red); }
+.mg-alert__title { font-weight: 800; margin: 0 0 .15rem; }
+
+/* ---------- Formularios ---------- */
+.mg-label { display: block; font-weight: 700; font-size: .875rem; color: var(--mg-heading); margin-bottom: .35rem; }
+.mg-input, .mg-select, .mg-textarea { width: 100%; font: 500 1rem/1.4 var(--mg-font-sans); color: var(--mg-text); background: var(--mg-surface-card); border: 1.5px solid var(--mg-border-strong); border-radius: var(--mg-radius-md); padding: .65rem .9rem; transition: border-color .15s, box-shadow .15s; }
+.mg-input:focus, .mg-select:focus, .mg-textarea:focus { outline: 0; border-color: var(--mg-primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--mg-cyan) 28%, transparent); }
+.mg-input.is-invalid { border-color: var(--mg-red); } .mg-input.is-valid { border-color: var(--mg-green); }
+.mg-help { font-size: .8125rem; color: var(--mg-gray); margin-top: .3rem; }
+.mg-check { accent-color: var(--mg-primary); width: 1.1rem; height: 1.1rem; }
+
+/* ---------- Tabla ---------- */
+.mg-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--mg-surface-card); border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); overflow: hidden; font-size: .9375rem; }
+.mg-table thead th { background: var(--mg-gradient-primary-h); color: #fff; text-align: left; font-weight: 700; padding: .8rem 1rem; }
+.mg-table td { padding: .75rem 1rem; border-top: 1px solid var(--mg-border); } .mg-table tbody tr:nth-child(even) { background: var(--mg-surface); } .mg-table tbody tr:hover { background: var(--mg-primary-50); }
+
+/* ---------- Navegación ---------- */
+.mg-navbar { display: flex; align-items: center; gap: 1.25rem; padding: .75rem 1.5rem; background: var(--mg-surface-card); box-shadow: var(--mg-shadow-sm); position: relative; }
+.mg-navbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.mg-navbar--gradient { background: var(--mg-gradient-primary-h); color: #fff; } .mg-navbar__brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; color: inherit; } .mg-navbar__brand img { height: 2.5rem; width: auto; }
+.mg-nav-link { color: var(--mg-gray); font-weight: 700; text-decoration: none; padding: .45rem .8rem; border-radius: var(--mg-radius-pill); } .mg-nav-link:hover { background: var(--mg-primary-50); color: var(--mg-primary); }
+.mg-nav-link.is-active { background: var(--mg-gradient-action); color: #fff; }
+.mg-tabs { display: flex; gap: .25rem; border-bottom: 2px solid var(--mg-border); } .mg-tab { padding: .7rem 1.1rem; font-weight: 700; color: var(--mg-gray); border: 0; background: none; cursor: pointer; border-bottom: 4px solid transparent; margin-bottom: -2px; } .mg-tab:hover { color: var(--mg-primary); } .mg-tab.is-active { color: var(--mg-primary); border-image: var(--mg-gradient-primary-h) 1; }
+.mg-sidebar { background: var(--mg-gradient-deep); color: #fff; min-height: 100%; padding: 1rem; } .mg-sidebar a { display: flex; gap: .7rem; align-items: center; color: rgba(255,255,255,.85); text-decoration: none; padding: .65rem .9rem; border-radius: var(--mg-radius-md); font-weight: 600; } .mg-sidebar a:hover { background: rgba(255,255,255,.1); color: #fff; } .mg-sidebar a.is-active { background: var(--mg-gradient-primary); color: #fff; box-shadow: var(--mg-shadow-glow); }
+.mg-breadcrumb { display: flex; gap: .5rem; list-style: none; padding: 0; margin: 0; font-size: .875rem; color: var(--mg-gray); } .mg-breadcrumb li + li::before { content: "›"; margin-right: .5rem; color: var(--mg-cyan); font-weight: 900; }
+
+/* ---------- Hero / secciones ---------- */
+.mg-hero { position: relative; padding: clamp(2.5rem, 6vw, 5rem) 1.5rem; background: var(--mg-gradient-sky); color: #fff; overflow: hidden; isolation: isolate; }
+.mg-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: var(--mg-gradient-stripe); }
+.mg-hero--light { background: var(--mg-surface); color: var(--mg-text); }
+.mg-hero h1, .mg-hero h2 { color: inherit; }
+.mg-footer { background: var(--mg-ink); color: #d5d5d5; padding: 2rem 1.5rem 1.5rem; position: relative; } .mg-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--mg-gradient-stripe); } .mg-footer a { color: var(--mg-sky); }
+
+/* ---------- Progreso / avatares / chips ---------- */
+.mg-progress { height: .65rem; background: var(--mg-primary-100); border-radius: var(--mg-radius-pill); overflow: hidden; } .mg-progress > span { display: block; height: 100%; width: var(--value, 50%); background: var(--mg-gradient-primary-h); border-radius: inherit; }
+.mg-avatar { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--mg-gradient-primary); color: #fff; font-weight: 800; border: 3px solid #fff; box-shadow: var(--mg-shadow-sm); }
+.mg-chip { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .8rem; border-radius: var(--mg-radius-pill); background: var(--mg-surface); border: 1px solid var(--mg-border-strong); font-weight: 600; font-size: .8125rem; }
+.mg-tag-date { display: inline-flex; flex-direction: column; align-items: center; background: var(--mg-ink); color: #fff; border-radius: var(--mg-radius-md); padding: .4rem .9rem; line-height: 1; } .mg-tag-date strong { color: var(--mg-yellow); font: 900 2rem/1 var(--mg-font-display); }
+
+/* ---------- Piezas del manual ---------- */
+/* Carnet (vertical 54×86 mm aprox.) */
+.mg-id-card { width: 18rem; min-height: 28.6rem; background: var(--mg-surface-card); border-radius: var(--mg-radius-xl); box-shadow: var(--mg-shadow-lg); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 2.2rem 1.5rem 2rem; text-align: center; }
+.mg-id-card::before, .mg-id-card::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; background: var(--mg-gradient-stripe); } .mg-id-card::before { top: 0; } .mg-id-card::after { bottom: 0; }
+.mg-id-card__photo { width: 62%; aspect-ratio: 1/1.15; border-radius: var(--mg-radius-lg); background: var(--mg-gray); margin: 1.25rem 0; object-fit: cover; } .mg-id-card__name { font-weight: 900; text-transform: uppercase; font-size: 1rem; }
+/* Tarjeta de presentación (90×50 mm) */
+.mg-business-card { aspect-ratio: 90/50; background: var(--mg-surface-card); border: 1px solid var(--mg-border); box-shadow: var(--mg-shadow-md); position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 1rem; padding: 1.2rem; max-width: 28rem; } .mg-business-card::before { content: ""; position: absolute; top: 0; left: 0; width: 55%; height: 6px; background: var(--mg-gradient-stripe-flow); } .mg-business-card__name { font-weight: 800; color: var(--mg-yellow-700); font-size: 1.1rem; }
+/* Post de redes (1:1) */
+.mg-post { position: relative; aspect-ratio: 1/1; background: var(--mg-surface); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 7%; text-align: center; isolation: isolate; } .mg-post h2 { font-weight: 900; text-transform: uppercase; font-size: 1rem; line-height: 1.1; margin: 0; } .mg-post h2 strong { display: block; font-size: 1.75em; }
+.mg-post .mg-logo-pill img { height: 1.7rem; } .mg-post p { margin: 0; font-size: .8rem; }
+
+/* ---------- Utilidades de layout mínimas ---------- */
+.mg-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.25rem; }
+.mg-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(var(--mg-col, 16rem), 1fr)); }
+.mg-stack > * + * { margin-top: var(--mg-gap, 1rem); } .mg-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.mg-shadow-sm { box-shadow: var(--mg-shadow-sm); } .mg-shadow-md { box-shadow: var(--mg-shadow-md); } .mg-shadow-lg { box-shadow: var(--mg-shadow-lg); } .mg-shadow-glow { box-shadow: var(--mg-shadow-glow); }
+.mg-rounded { border-radius: var(--mg-radius-md); } .mg-rounded-lg { border-radius: var(--mg-radius-lg); } .mg-rounded-pill { border-radius: var(--mg-radius-pill); }
+.mg-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) { .mg-btn, .mg-card--hover { transition: none; } .mg-btn:hover, .mg-card--hover:hover { transform: none; } }

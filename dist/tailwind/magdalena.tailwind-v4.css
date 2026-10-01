@@ -1,0 +1,160 @@
+/* Tailwind CSS v4 — en tu CSS principal:
+   @import "tailwindcss";
+   @import "./magdalena.tailwind-v4.css";
+   Clases: bg-mg-primary-600 text-mg-cyan-700 bg-mg-grad-primary bg-mg-grad-stripe shadow-mg-md rounded-mg-lg */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+@theme {
+  --color-mg-primary-50: #EBF4FA;
+  --color-mg-primary-100: #D6E8F4;
+  --color-mg-primary-200: #ADD2E9;
+  --color-mg-primary-300: #80B8DD;
+  --color-mg-primary-400: #4094CC;
+  --color-mg-primary-500: #0071BB;
+  --color-mg-primary-600: #0061A1;
+  --color-mg-primary-700: #004F83;
+  --color-mg-primary-800: #003D65;
+  --color-mg-primary-900: #002B47;
+  --color-mg-primary-950: #001B2D;
+  --color-mg-primary: #0071BB;
+  --color-mg-cyan-50: #EBF9FC;
+  --color-mg-cyan-100: #D6F3F9;
+  --color-mg-cyan-200: #ADE8F3;
+  --color-mg-cyan-300: #80DBEC;
+  --color-mg-cyan-400: #40C9E2;
+  --color-mg-cyan-500: #00B7D9;
+  --color-mg-cyan-600: #009DBB;
+  --color-mg-cyan-700: #008098;
+  --color-mg-cyan-800: #006375;
+  --color-mg-cyan-900: #004652;
+  --color-mg-cyan-950: #002C34;
+  --color-mg-cyan: #00B7D9;
+  --color-mg-sky-50: #F7FCFD;
+  --color-mg-sky-100: #F0F9FB;
+  --color-mg-sky-200: #E0F2F7;
+  --color-mg-sky-300: #CFEBF2;
+  --color-mg-sky-400: #B7E1EC;
+  --color-mg-sky-500: #9FD7E5;
+  --color-mg-sky-600: #89B9C5;
+  --color-mg-sky-700: #6F96A0;
+  --color-mg-sky-800: #56747C;
+  --color-mg-sky-900: #3C5257;
+  --color-mg-sky-950: #263437;
+  --color-mg-sky: #9FD7E5;
+  --color-mg-red-50: #FEEBEF;
+  --color-mg-red-100: #FED6E0;
+  --color-mg-red-200: #FCADC1;
+  --color-mg-red-300: #FB809E;
+  --color-mg-red-400: #F9406D;
+  --color-mg-red-500: #F7003C;
+  --color-mg-red-600: #D40034;
+  --color-mg-red-700: #AD002A;
+  --color-mg-red-800: #850020;
+  --color-mg-red-900: #5E0017;
+  --color-mg-red-950: #3B000E;
+  --color-mg-red: #F7003C;
+  --color-mg-yellow-50: #FFFBEB;
+  --color-mg-yellow-100: #FFF6D6;
+  --color-mg-yellow-200: #FFEDAD;
+  --color-mg-yellow-300: #FEE480;
+  --color-mg-yellow-400: #FED640;
+  --color-mg-yellow-500: #FEC800;
+  --color-mg-yellow-600: #DAAC00;
+  --color-mg-yellow-700: #B28C00;
+  --color-mg-yellow-800: #896C00;
+  --color-mg-yellow-900: #614C00;
+  --color-mg-yellow-950: #3D3000;
+  --color-mg-yellow: #FEC800;
+  --color-mg-green-50: #F3F9F2;
+  --color-mg-green-100: #E7F3E5;
+  --color-mg-green-200: #CFE8CB;
+  --color-mg-green-300: #B4DBAE;
+  --color-mg-green-400: #8EC986;
+  --color-mg-green-500: #69B75E;
+  --color-mg-green-600: #5A9D51;
+  --color-mg-green-700: #4A8042;
+  --color-mg-green-800: #396333;
+  --color-mg-green-900: #284624;
+  --color-mg-green-950: #192C17;
+  --color-mg-green: #69B75E;
+  --color-mg-olive-50: #F8F5EF;
+  --color-mg-olive-100: #F0EBDF;
+  --color-mg-olive-200: #E1D6BE;
+  --color-mg-olive-300: #D0C09A;
+  --color-mg-olive-400: #B9A067;
+  --color-mg-olive-500: #A28034;
+  --color-mg-olive-600: #8B6E2D;
+  --color-mg-olive-700: #715A24;
+  --color-mg-olive-800: #57451C;
+  --color-mg-olive-900: #3E3114;
+  --color-mg-olive-950: #271F0C;
+  --color-mg-olive: #A28034;
+  --color-mg-purple-50: #F1EDF9;
+  --color-mg-purple-100: #E4DAF4;
+  --color-mg-purple-200: #C9B5E9;
+  --color-mg-purple-300: #AA8CDC;
+  --color-mg-purple-400: #8052CB;
+  --color-mg-purple-500: #5618BA;
+  --color-mg-purple-600: #4A15A0;
+  --color-mg-purple-700: #3C1182;
+  --color-mg-purple-800: #2E0D64;
+  --color-mg-purple-900: #210947;
+  --color-mg-purple-950: #15062D;
+  --color-mg-purple: #5618BA;
+  --color-mg-gray-50: #FAFAFA;
+  --color-mg-gray-100: #F6F5F5;
+  --color-mg-gray-200: #ECEBEB;
+  --color-mg-gray-300: #DDDCDC;
+  --color-mg-gray-400: #B9B8B8;
+  --color-mg-gray-500: #8C8B8B;
+  --color-mg-gray-600: #606060;
+  --color-mg-gray-700: #4A4A4A;
+  --color-mg-gray-800: #333332;
+  --color-mg-gray-900: #1D1D1B;
+  --color-mg-gray-950: #0F0F0E;
+  --color-mg-gray: #606060;
+  --color-mg-ink: #1D1D1B;
+  --color-mg-surface: #F6F5F5;
+  --color-primary-50: #EBF4FA;
+  --color-primary-100: #D6E8F4;
+  --color-primary-200: #ADD2E9;
+  --color-primary-300: #80B8DD;
+  --color-primary-400: #4094CC;
+  --color-primary-500: #0071BB;
+  --color-primary-600: #0061A1;
+  --color-primary-700: #004F83;
+  --color-primary-800: #003D65;
+  --color-primary-900: #002B47;
+  --color-primary-950: #001B2D;
+  --color-primary: #0071BB;
+  --color-accent: #00B7D9;
+  --font-sans: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --radius-mg-sm: 6px;
+  --radius-mg-md: 10px;
+  --radius-mg-lg: 16px;
+  --radius-mg-xl: 24px;
+  --radius-mg-pill: 999px;
+  --shadow-mg-sm: 0 1px 2px rgba(0,56,94,.08), 0 1px 3px rgba(0,56,94,.06);
+  --shadow-mg-md: 0 4px 10px rgba(0,56,94,.10), 0 2px 4px rgba(0,56,94,.06);
+  --shadow-mg-lg: 0 14px 30px rgba(0,56,94,.14), 0 4px 10px rgba(0,56,94,.08);
+  --shadow-mg-glow: 0 8px 24px rgba(0,183,217,.35);
+}
+@utility bg-mg-grad-primary { background-image: linear-gradient(135deg, #0071BB 0%, #00B7D9 100%); }
+@utility bg-mg-grad-primary-h { background-image: linear-gradient(90deg, #0071BB 0%, #00B7D9 100%); }
+@utility bg-mg-grad-primary-v { background-image: linear-gradient(180deg, #0071BB 0%, #00B7D9 100%); }
+@utility bg-mg-grad-sky { background-image: linear-gradient(135deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%); }
+@utility bg-mg-grad-sky-h { background-image: linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%); }
+@utility bg-mg-grad-aqua { background-image: linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%); }
+@utility bg-mg-grad-mist { background-image: linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%); }
+@utility bg-mg-grad-deep { background-image: linear-gradient(160deg, #002B47 0%, #004F83 55%, #0071BB 100%); }
+@utility bg-mg-grad-action { background-image: linear-gradient(135deg, #0071BB 0%, #00A1CF 100%); }
+@utility bg-mg-grad-action-aa { background-image: linear-gradient(135deg, #0071BB 0%, #007CC0 100%); }
+@utility bg-mg-grad-tropical { background-image: linear-gradient(135deg, #00B7D9 0%, #69B75E 100%); }
+@utility bg-mg-grad-sun { background-image: linear-gradient(135deg, #FEC800 0%, #DAAC00 100%); }
+@utility bg-mg-grad-heat { background-image: linear-gradient(135deg, #F7003C 0%, #AD002A 100%); }
+@utility bg-mg-grad-earth { background-image: linear-gradient(135deg, #A28034 0%, #715A24 100%); }
+@utility bg-mg-grad-violet { background-image: linear-gradient(135deg, #5618BA 0%, #0071BB 100%); }
+@utility bg-mg-grad-stripe { background-image: linear-gradient(90deg, #5618BA 0.0% 11.111%, #A28034 11.111% 22.222%, #FEC800 22.222% 33.333%, #F7003C 33.333% 44.444%, #0071BB 44.444% 55.556%, #00B7D9 55.556% 66.667%, #9FD7E5 66.667% 77.778%, #69B75E 77.778% 88.889%, #5618BA 88.889% 100.0%); }
+@utility bg-mg-grad-stripe-v { background-image: linear-gradient(180deg, #5618BA 0.0% 11.111%, #A28034 11.111% 22.222%, #FEC800 22.222% 33.333%, #F7003C 33.333% 44.444%, #0071BB 44.444% 55.556%, #00B7D9 55.556% 66.667%, #9FD7E5 66.667% 77.778%, #69B75E 77.778% 88.889%, #5618BA 88.889% 100.0%); }
+@utility bg-mg-grad-stripe-flow { background-image: linear-gradient(90deg, #5618BA, #A28034, #FEC800, #F7003C, #0071BB, #00B7D9, #9FD7E5, #69B75E, #5618BA); }
+@utility mg-text-gradient { background-image: linear-gradient(135deg, #0071BB 0%, #00B7D9 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Componentes y utilidades · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Botones, tarjetas, formularios, navegación y las piezas del manual (carnet, tarjeta, post) listos para copiar y pegar.">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="dist/css/magdalena.css">
+<link rel="stylesheet" href="site/portal.css">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="index.html"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="colores.html">Colores y degradados</a><a href="logos.html">Logos y descargas</a><a href="componentes.html" aria-current="page">Componentes</a><a href="integracion.html">Integración</a><a href="aplicaciones.html">Aplicaciones</a><a href="demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Componentes y utilidades</h1><p>Botones, tarjetas, formularios, navegación y las piezas del manual (carnet, tarjeta, post) listos para copiar y pegar.</p></div></section>
+<main class="pt-main">
+<p class="pt-lead">Todo se renderiza con <code class="inline">dist/css/magdalena.css</code>. Prefijo <code class="inline">mg-</code>; sin dependencias; compatible con cualquier framework.</p><section class="pt-section" id="c1"><h2><span class="n">01.</span> Botones</h2><p class="pt-lead">Degradado de marca (acción principal), plano, de acento, contorno y fantasma. Tamaños sm/lg.</p>
+<div class="demo"><div class="demo__view demo__view--white"><div class="mg-row">
+  <button class="mg-btn">Principal</button>
+  <button class="mg-btn mg-btn--flat">Plano</button>
+  <button class="mg-btn mg-btn--cyan">Cian</button>
+  <button class="mg-btn mg-btn--accent">Acento</button>
+  <button class="mg-btn mg-btn--danger">Peligro</button>
+  <button class="mg-btn mg-btn--success">Éxito</button>
+  <button class="mg-btn mg-btn--outline">Contorno</button>
+  <button class="mg-btn mg-btn--ghost">Fantasma</button>
+  <button class="mg-btn" disabled>Deshabilitado</button>
+</div>
+<div class="mg-row" style="margin-top:1rem"><button class="mg-btn mg-btn--sm">Pequeño</button><button class="mg-btn mg-btn--lg">Grande</button><button class="mg-btn mg-btn--square">Cuadrado</button></div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn&quot;&gt;Principal&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--flat&quot;&gt;Plano&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--cyan&quot;&gt;Cian&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--accent&quot;&gt;Acento&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--danger&quot;&gt;Peligro&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--success&quot;&gt;Éxito&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--outline&quot;&gt;Contorno&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--ghost&quot;&gt;Fantasma&lt;/button&gt;
+  &lt;button class=&quot;mg-btn&quot; disabled&gt;Deshabilitado&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class=&quot;mg-row&quot; style=&quot;margin-top:1rem&quot;&gt;&lt;button class=&quot;mg-btn mg-btn--sm&quot;&gt;Pequeño&lt;/button&gt;&lt;button class=&quot;mg-btn mg-btn--lg&quot;&gt;Grande&lt;/button&gt;&lt;button class=&quot;mg-btn mg-btn--square&quot;&gt;Cuadrado&lt;/button&gt;&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c2"><h2><span class="n">02.</span> Tarjetas</h2><p class="pt-lead">Con la línea multicolor, con cabecera degradada, con borde de acento y con degradado completo.</p>
+<div class="demo"><div class="demo__view"><div class="mg-grid" style="--mg-col:15rem">
+  <div class="mg-card mg-card--stripe-top"><div class="mg-card__body"><h4 class="mg-h4">Con la línea</h4><p>.mg-card--stripe-top</p></div></div>
+  <div class="mg-card"><div class="mg-card__header mg-card__header--gradient">Cabecera degradada</div><div class="mg-card__body">.mg-card__header--gradient</div><div class="mg-card__footer">Pie</div></div>
+  <div class="mg-card mg-card--accent-cyan mg-card--hover"><div class="mg-card__body"><h4 class="mg-h4">Borde de acento</h4><p>.mg-card--accent-cyan</p></div></div>
+  <div class="mg-card mg-card--gradient"><div class="mg-card__body"><h4 class="mg-h4" style="color:#fff">Degradado</h4><p>.mg-card--gradient</p></div></div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-grid&quot; style=&quot;--mg-col:15rem&quot;&gt;
+  &lt;div class=&quot;mg-card mg-card--stripe-top&quot;&gt;&lt;div class=&quot;mg-card__body&quot;&gt;&lt;h4 class=&quot;mg-h4&quot;&gt;Con la línea&lt;/h4&gt;&lt;p&gt;.mg-card--stripe-top&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-card&quot;&gt;&lt;div class=&quot;mg-card__header mg-card__header--gradient&quot;&gt;Cabecera degradada&lt;/div&gt;&lt;div class=&quot;mg-card__body&quot;&gt;.mg-card__header--gradient&lt;/div&gt;&lt;div class=&quot;mg-card__footer&quot;&gt;Pie&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-card mg-card--accent-cyan mg-card--hover&quot;&gt;&lt;div class=&quot;mg-card__body&quot;&gt;&lt;h4 class=&quot;mg-h4&quot;&gt;Borde de acento&lt;/h4&gt;&lt;p&gt;.mg-card--accent-cyan&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-card mg-card--gradient&quot;&gt;&lt;div class=&quot;mg-card__body&quot;&gt;&lt;h4 class=&quot;mg-h4&quot; style=&quot;color:#fff&quot;&gt;Degradado&lt;/h4&gt;&lt;p&gt;.mg-card--gradient&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c3"><h2><span class="n">03.</span> Indicadores (KPI / small-box)</h2><p class="pt-lead">Cajas de datos con el degradado de marca.</p>
+<div class="demo"><div class="demo__view"><div class="mg-grid" style="--mg-col:14rem">
+  <div class="mg-stat"><div><div class="mg-stat__value">1.284</div><div class="mg-stat__label">Trámites</div></div></div>
+  <div class="mg-stat mg-stat--aqua"><div><div class="mg-stat__value">87%</div><div class="mg-stat__label">Atendidos</div></div></div>
+  <div class="mg-stat mg-stat--deep"><div><div class="mg-stat__value">45</div><div class="mg-stat__label">Municipios</div></div></div>
+  <div class="mg-stat mg-stat--sun"><div><div class="mg-stat__value">12</div><div class="mg-stat__label">Pendientes</div></div></div>
+  <div class="mg-stat mg-stat--tropical"><div><div class="mg-stat__value">98</div><div class="mg-stat__label">Satisfacción</div></div></div>
+  <div class="mg-stat mg-stat--heat"><div><div class="mg-stat__value">3</div><div class="mg-stat__label">Alertas</div></div></div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-grid&quot; style=&quot;--mg-col:14rem&quot;&gt;
+  &lt;div class=&quot;mg-stat&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;1.284&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Trámites&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-stat mg-stat--aqua&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;87%&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Atendidos&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-stat mg-stat--deep&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Municipios&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-stat mg-stat--sun&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Pendientes&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-stat mg-stat--tropical&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;98&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Satisfacción&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-stat mg-stat--heat&quot;&gt;&lt;div&gt;&lt;div class=&quot;mg-stat__value&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;mg-stat__label&quot;&gt;Alertas&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c4"><h2><span class="n">04.</span> Insignias y chips</h2>
+<div class="demo"><div class="demo__view demo__view--white"><div class="mg-row">
+  <span class="mg-badge">Primaria</span><span class="mg-badge mg-badge--solid">Sólida</span><span class="mg-badge mg-badge--gradient">Degradado</span>
+  <span class="mg-badge mg-badge--cyan">Info</span><span class="mg-badge mg-badge--green">Aprobado</span><span class="mg-badge mg-badge--yellow">Pendiente</span>
+  <span class="mg-badge mg-badge--red">Rechazado</span><span class="mg-badge mg-badge--purple">Especial</span>
+  <span class="mg-chip">📍 Santa Marta</span><span class="mg-avatar">DC</span>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;span class=&quot;mg-badge&quot;&gt;Primaria&lt;/span&gt;&lt;span class=&quot;mg-badge mg-badge--solid&quot;&gt;Sólida&lt;/span&gt;&lt;span class=&quot;mg-badge mg-badge--gradient&quot;&gt;Degradado&lt;/span&gt;
+  &lt;span class=&quot;mg-badge mg-badge--cyan&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;mg-badge mg-badge--green&quot;&gt;Aprobado&lt;/span&gt;&lt;span class=&quot;mg-badge mg-badge--yellow&quot;&gt;Pendiente&lt;/span&gt;
+  &lt;span class=&quot;mg-badge mg-badge--red&quot;&gt;Rechazado&lt;/span&gt;&lt;span class=&quot;mg-badge mg-badge--purple&quot;&gt;Especial&lt;/span&gt;
+  &lt;span class=&quot;mg-chip&quot;&gt;📍 Santa Marta&lt;/span&gt;&lt;span class=&quot;mg-avatar&quot;&gt;DC&lt;/span&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c5"><h2><span class="n">05.</span> Alertas</h2>
+<div class="demo"><div class="demo__view"><div class="mg-stack">
+  <div class="mg-alert"><div><p class="mg-alert__title">Información</p>Su solicitud fue radicada.</div></div>
+  <div class="mg-alert mg-alert--info"><div><p class="mg-alert__title">Nota</p>Recuerde adjuntar los soportes.</div></div>
+  <div class="mg-alert mg-alert--success"><div><p class="mg-alert__title">Listo</p>Documento firmado correctamente.</div></div>
+  <div class="mg-alert mg-alert--warning"><div><p class="mg-alert__title">Atención</p>Su sesión expira en 2 minutos.</div></div>
+  <div class="mg-alert mg-alert--danger"><div><p class="mg-alert__title">Error</p>No fue posible enviar el formulario.</div></div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-stack&quot;&gt;
+  &lt;div class=&quot;mg-alert&quot;&gt;&lt;div&gt;&lt;p class=&quot;mg-alert__title&quot;&gt;Información&lt;/p&gt;Su solicitud fue radicada.&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-alert mg-alert--info&quot;&gt;&lt;div&gt;&lt;p class=&quot;mg-alert__title&quot;&gt;Nota&lt;/p&gt;Recuerde adjuntar los soportes.&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-alert mg-alert--success&quot;&gt;&lt;div&gt;&lt;p class=&quot;mg-alert__title&quot;&gt;Listo&lt;/p&gt;Documento firmado correctamente.&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-alert mg-alert--warning&quot;&gt;&lt;div&gt;&lt;p class=&quot;mg-alert__title&quot;&gt;Atención&lt;/p&gt;Su sesión expira en 2 minutos.&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-alert mg-alert--danger&quot;&gt;&lt;div&gt;&lt;p class=&quot;mg-alert__title&quot;&gt;Error&lt;/p&gt;No fue posible enviar el formulario.&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c6"><h2><span class="n">06.</span> Formularios</h2>
+<div class="demo"><div class="demo__view demo__view--white"><div class="mg-grid" style="--mg-col:16rem">
+  <div><label class="mg-label" for="n">Nombre</label><input class="mg-input" id="n" placeholder="Escriba su nombre"><p class="mg-help">Como aparece en su documento.</p></div>
+  <div><label class="mg-label" for="e">Correo</label><input class="mg-input is-invalid" id="e" value="correo@"><p class="mg-help" style="color:var(--mg-red)">Correo no válido</p></div>
+  <div><label class="mg-label" for="m">Municipio</label><select class="mg-select" id="m"><option>Santa Marta</option><option>Ciénaga</option></select></div>
+  <div><label class="mg-label">Opciones</label><label><input class="mg-check" type="checkbox" checked> Acepto términos</label></div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-grid&quot; style=&quot;--mg-col:16rem&quot;&gt;
+  &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;n&quot;&gt;Nombre&lt;/label&gt;&lt;input class=&quot;mg-input&quot; id=&quot;n&quot; placeholder=&quot;Escriba su nombre&quot;&gt;&lt;p class=&quot;mg-help&quot;&gt;Como aparece en su documento.&lt;/p&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;e&quot;&gt;Correo&lt;/label&gt;&lt;input class=&quot;mg-input is-invalid&quot; id=&quot;e&quot; value=&quot;correo@&quot;&gt;&lt;p class=&quot;mg-help&quot; style=&quot;color:var(--mg-red)&quot;&gt;Correo no válido&lt;/p&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;m&quot;&gt;Municipio&lt;/label&gt;&lt;select class=&quot;mg-select&quot; id=&quot;m&quot;&gt;&lt;option&gt;Santa Marta&lt;/option&gt;&lt;option&gt;Ciénaga&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;label class=&quot;mg-label&quot;&gt;Opciones&lt;/label&gt;&lt;label&gt;&lt;input class=&quot;mg-check&quot; type=&quot;checkbox&quot; checked&gt; Acepto términos&lt;/label&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c7"><h2><span class="n">07.</span> Tabla</h2>
+<div class="demo"><div class="demo__view"><table class="mg-table"><thead><tr><th>Radicado</th><th>Asunto</th><th>Estado</th></tr></thead><tbody>
+<tr><td>2026-00123</td><td>Certificación laboral</td><td><span class="mg-badge mg-badge--green">Resuelto</span></td></tr>
+<tr><td>2026-00124</td><td>Derecho de petición</td><td><span class="mg-badge mg-badge--yellow">En trámite</span></td></tr>
+<tr><td>2026-00125</td><td>Queja</td><td><span class="mg-badge mg-badge--red">Vencido</span></td></tr></tbody></table></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;table class=&quot;mg-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Radicado&lt;/th&gt;&lt;th&gt;Asunto&lt;/th&gt;&lt;th&gt;Estado&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;2026-00123&lt;/td&gt;&lt;td&gt;Certificación laboral&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mg-badge mg-badge--green&quot;&gt;Resuelto&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2026-00124&lt;/td&gt;&lt;td&gt;Derecho de petición&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mg-badge mg-badge--yellow&quot;&gt;En trámite&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2026-00125&lt;/td&gt;&lt;td&gt;Queja&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;mg-badge mg-badge--red&quot;&gt;Vencido&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</code></pre></div></details></div></section><section class="pt-section" id="c8"><h2><span class="n">08.</span> Navegación</h2><p class="pt-lead">Navbar con la línea, pestañas, migas y sidebar degradado.</p>
+<div class="demo"><div class="demo__view"><header class="mg-navbar" style="margin-bottom:1rem">
+  <a class="mg-navbar__brand" href="#"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <nav class="mg-row" style="margin-left:auto"><a class="mg-nav-link is-active" href="#">Inicio</a><a class="mg-nav-link" href="#">Trámites</a><a class="mg-nav-link" href="#">Contacto</a></nav>
+</header>
+<ul class="mg-breadcrumb" style="margin-bottom:1rem"><li>Inicio</li><li>Servicios</li><li>Trámites</li></ul>
+<div class="mg-tabs" style="margin-bottom:1rem"><button class="mg-tab is-active">General</button><button class="mg-tab">Documentos</button><button class="mg-tab">Historial</button></div>
+<div class="mg-sidebar" style="max-width:260px;border-radius:16px"><a class="is-active" href="#">📊 Panel</a><a href="#">📁 Expedientes</a><a href="#">⚙ Ajustes</a></div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;header class=&quot;mg-navbar&quot; style=&quot;margin-bottom:1rem&quot;&gt;
+  &lt;a class=&quot;mg-navbar__brand&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;assets/logos/svg/logo-horizontal-color.svg&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;&lt;/a&gt;
+  &lt;nav class=&quot;mg-row&quot; style=&quot;margin-left:auto&quot;&gt;&lt;a class=&quot;mg-nav-link is-active&quot; href=&quot;#&quot;&gt;Inicio&lt;/a&gt;&lt;a class=&quot;mg-nav-link&quot; href=&quot;#&quot;&gt;Trámites&lt;/a&gt;&lt;a class=&quot;mg-nav-link&quot; href=&quot;#&quot;&gt;Contacto&lt;/a&gt;&lt;/nav&gt;
+&lt;/header&gt;
+&lt;ul class=&quot;mg-breadcrumb&quot; style=&quot;margin-bottom:1rem&quot;&gt;&lt;li&gt;Inicio&lt;/li&gt;&lt;li&gt;Servicios&lt;/li&gt;&lt;li&gt;Trámites&lt;/li&gt;&lt;/ul&gt;
+&lt;div class=&quot;mg-tabs&quot; style=&quot;margin-bottom:1rem&quot;&gt;&lt;button class=&quot;mg-tab is-active&quot;&gt;General&lt;/button&gt;&lt;button class=&quot;mg-tab&quot;&gt;Documentos&lt;/button&gt;&lt;button class=&quot;mg-tab&quot;&gt;Historial&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;mg-sidebar&quot; style=&quot;max-width:260px;border-radius:16px&quot;&gt;&lt;a class=&quot;is-active&quot; href=&quot;#&quot;&gt;📊 Panel&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;📁 Expedientes&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;⚙ Ajustes&lt;/a&gt;&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c9"><h2><span class="n">09.</span> Progreso, fechas y marcos</h2>
+<div class="demo"><div class="demo__view demo__view--white"><div class="mg-grid" style="--mg-col:16rem">
+  <div><div class="mg-label">Avance 70%</div><div class="mg-progress" style="--value:70%"><span></span></div></div>
+  <div class="mg-frame" style="padding:1rem">.mg-frame — borde degradado azul</div>
+  <div class="mg-frame mg-frame--stripe mg-frame--thick" style="padding:1rem">.mg-frame--stripe — borde con la línea</div>
+  <div><span class="mg-tag-date"><small>MARTES</small><strong>21</strong><small>DE JULIO</small></span></div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-grid&quot; style=&quot;--mg-col:16rem&quot;&gt;
+  &lt;div&gt;&lt;div class=&quot;mg-label&quot;&gt;Avance 70%&lt;/div&gt;&lt;div class=&quot;mg-progress&quot; style=&quot;--value:70%&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;mg-frame&quot; style=&quot;padding:1rem&quot;&gt;.mg-frame — borde degradado azul&lt;/div&gt;
+  &lt;div class=&quot;mg-frame mg-frame--stripe mg-frame--thick&quot; style=&quot;padding:1rem&quot;&gt;.mg-frame--stripe — borde con la línea&lt;/div&gt;
+  &lt;div&gt;&lt;span class=&quot;mg-tag-date&quot;&gt;&lt;small&gt;MARTES&lt;/small&gt;&lt;strong&gt;21&lt;/strong&gt;&lt;small&gt;DE JULIO&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c10"><h2><span class="n">10.</span> Hero y pie de página</h2><p class="pt-lead">Cabecera con degradado + línea, y pie con la línea.</p>
+<div class="demo"><div class="demo__view"><section class="mg-hero mg-shapes" style="border-radius:16px 16px 0 0">
+  <h1 class="mg-h1" style="color:#fff">Gobierno cerca de su gente</h1>
+  <p style="max-width:50ch">Servicios, trámites e información de la Gobernación del Magdalena.</p>
+  <a class="mg-btn mg-btn--accent mg-btn--lg" href="#">Ver trámites</a>
+</section>
+<footer class="mg-footer" style="border-radius:0 0 16px 16px">Carrera 1C N° 16-15 Palacio Tayrona · Santa Marta · <a href="#">gobernaciondelmagdalena.gov.co</a></footer></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;section class=&quot;mg-hero mg-shapes&quot; style=&quot;border-radius:16px 16px 0 0&quot;&gt;
+  &lt;h1 class=&quot;mg-h1&quot; style=&quot;color:#fff&quot;&gt;Gobierno cerca de su gente&lt;/h1&gt;
+  &lt;p style=&quot;max-width:50ch&quot;&gt;Servicios, trámites e información de la Gobernación del Magdalena.&lt;/p&gt;
+  &lt;a class=&quot;mg-btn mg-btn--accent mg-btn--lg&quot; href=&quot;#&quot;&gt;Ver trámites&lt;/a&gt;
+&lt;/section&gt;
+&lt;footer class=&quot;mg-footer&quot; style=&quot;border-radius:0 0 16px 16px&quot;&gt;Carrera 1C N° 16-15 Palacio Tayrona · Santa Marta · &lt;a href=&quot;#&quot;&gt;gobernaciondelmagdalena.gov.co&lt;/a&gt;&lt;/footer&gt;</code></pre></div></details></div></section><section class="pt-section" id="c11"><h2><span class="n">11.</span> Piezas del manual: carnet, tarjeta y post</h2><p class="pt-lead">Réplicas HTML de las piezas institucionales para usarlas en carnetización, firmas y redes.</p>
+<div class="demo"><div class="demo__view"><div class="mg-row" style="align-items:flex-start;gap:2rem">
+  <div class="mg-id-card"><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:80%"><div class="mg-id-card__photo"></div><div class="mg-id-card__name">Nombre y Apellido</div><div style="font-weight:700;color:var(--mg-gray)">Identificación</div><div style="font-weight:700;color:var(--mg-gray)">Área de trabajo</div></div>
+  <div style="flex:1;min-width:280px;display:grid;gap:1.25rem">
+    <div class="mg-business-card"><div><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:100%"></div><div style="text-align:right"><div class="mg-business-card__name">Margarita Guerra</div><div style="font-size:.85rem">Gobernadora</div><small style="color:var(--mg-gray)">Santa Marta · Magdalena<br>Colombia</small></div></div>
+    <div class="mg-post" style="max-width:360px"><div class="mg-shapes" style="position:absolute;inset:0;z-index:-1"></div><h2>Gobernación del<strong>Magdalena</strong></h2><div class="mg-divider mg-divider--stripe"></div><p>Te invita a la jornada de <b>reactivación del Corredor Turístico Tayrona</b></p><span class="mg-tag-date"><small>MARTES</small><strong>21</strong><small>DE JULIO</small></span><span class="mg-logo-pill"><img src="assets/logos/svg/logo-horizontal-color.svg" alt=""></span></div>
+  </div>
+</div></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-row&quot; style=&quot;align-items:flex-start;gap:2rem&quot;&gt;
+  &lt;div class=&quot;mg-id-card&quot;&gt;&lt;img src=&quot;assets/logos/svg/logo-vertical-color.svg&quot; alt=&quot;&quot; style=&quot;width:80%&quot;&gt;&lt;div class=&quot;mg-id-card__photo&quot;&gt;&lt;/div&gt;&lt;div class=&quot;mg-id-card__name&quot;&gt;Nombre y Apellido&lt;/div&gt;&lt;div style=&quot;font-weight:700;color:var(--mg-gray)&quot;&gt;Identificación&lt;/div&gt;&lt;div style=&quot;font-weight:700;color:var(--mg-gray)&quot;&gt;Área de trabajo&lt;/div&gt;&lt;/div&gt;
+  &lt;div style=&quot;flex:1;min-width:280px;display:grid;gap:1.25rem&quot;&gt;
+    &lt;div class=&quot;mg-business-card&quot;&gt;&lt;div&gt;&lt;img src=&quot;assets/logos/svg/logo-vertical-color.svg&quot; alt=&quot;&quot; style=&quot;width:100%&quot;&gt;&lt;/div&gt;&lt;div style=&quot;text-align:right&quot;&gt;&lt;div class=&quot;mg-business-card__name&quot;&gt;Margarita Guerra&lt;/div&gt;&lt;div style=&quot;font-size:.85rem&quot;&gt;Gobernadora&lt;/div&gt;&lt;small style=&quot;color:var(--mg-gray)&quot;&gt;Santa Marta · Magdalena&lt;br&gt;Colombia&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mg-post&quot; style=&quot;max-width:360px&quot;&gt;&lt;div class=&quot;mg-shapes&quot; style=&quot;position:absolute;inset:0;z-index:-1&quot;&gt;&lt;/div&gt;&lt;h2&gt;Gobernación del&lt;strong&gt;Magdalena&lt;/strong&gt;&lt;/h2&gt;&lt;div class=&quot;mg-divider mg-divider--stripe&quot;&gt;&lt;/div&gt;&lt;p&gt;Te invita a la jornada de &lt;b&gt;reactivación del Corredor Turístico Tayrona&lt;/b&gt;&lt;/p&gt;&lt;span class=&quot;mg-tag-date&quot;&gt;&lt;small&gt;MARTES&lt;/small&gt;&lt;strong&gt;21&lt;/strong&gt;&lt;small&gt;DE JULIO&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;mg-logo-pill&quot;&gt;&lt;img src=&quot;assets/logos/svg/logo-horizontal-color.svg&quot; alt=&quot;&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div></details></div></section><section class="pt-section" id="c12"><h2><span class="n">12.</span> Utilidades de fondo, texto y formas</h2>
+<div class="demo"><div class="demo__view"><div class="mg-grid" style="--mg-col:12rem">
+  <div class="mg-bg-primary mg-rounded-lg" style="padding:1.25rem">.mg-bg-primary</div><div class="mg-bg-sky mg-rounded-lg" style="padding:1.25rem">.mg-bg-sky</div>
+  <div class="mg-bg-aqua mg-rounded-lg" style="padding:1.25rem">.mg-bg-aqua</div><div class="mg-bg-deep mg-rounded-lg" style="padding:1.25rem">.mg-bg-deep</div>
+  <div class="mg-bg-tropical mg-rounded-lg" style="padding:1.25rem">.mg-bg-tropical</div><div class="mg-bg-sun mg-rounded-lg" style="padding:1.25rem">.mg-bg-sun</div>
+  <div class="mg-bg-heat mg-rounded-lg" style="padding:1.25rem">.mg-bg-heat</div><div class="mg-bg-violet mg-rounded-lg" style="padding:1.25rem">.mg-bg-violet</div>
+</div>
+<p class="mg-text-gradient" style="font:900 3rem/1.1 var(--mg-font-display);margin:1.25rem 0 0">Texto con degradado</p>
+<div class="mg-eyebrow" style="margin-top:1rem">01.</div><h3 class="mg-h2 mg-title-underline">Título como en el manual</h3></div>
+<details><summary>Ver código HTML</summary><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-grid&quot; style=&quot;--mg-col:12rem&quot;&gt;
+  &lt;div class=&quot;mg-bg-primary mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-primary&lt;/div&gt;&lt;div class=&quot;mg-bg-sky mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-sky&lt;/div&gt;
+  &lt;div class=&quot;mg-bg-aqua mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-aqua&lt;/div&gt;&lt;div class=&quot;mg-bg-deep mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-deep&lt;/div&gt;
+  &lt;div class=&quot;mg-bg-tropical mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-tropical&lt;/div&gt;&lt;div class=&quot;mg-bg-sun mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-sun&lt;/div&gt;
+  &lt;div class=&quot;mg-bg-heat mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-heat&lt;/div&gt;&lt;div class=&quot;mg-bg-violet mg-rounded-lg&quot; style=&quot;padding:1.25rem&quot;&gt;.mg-bg-violet&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;mg-text-gradient&quot; style=&quot;font:900 3rem/1.1 var(--mg-font-display);margin:1.25rem 0 0&quot;&gt;Texto con degradado&lt;/p&gt;
+&lt;div class=&quot;mg-eyebrow&quot; style=&quot;margin-top:1rem&quot;&gt;01.&lt;/div&gt;&lt;h3 class=&quot;mg-h2 mg-title-underline&quot;&gt;Título como en el manual&lt;/h3&gt;</code></pre></div></details></div></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div></footer>
+<script src="site/portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* ==========================================================================
+   ADMINLTE 3.x (Bootstrap 4)  ·  Cargar DESPUÉS de adminlte.min.css
+   ========================================================================== */
+.content-wrapper, .content-wrapper > .content { background: var(--mg-surface); }
+
+/* Sidebar oscuro con degradado de marca */
+.main-sidebar, .main-sidebar.sidebar-dark-primary, .main-sidebar.sidebar-dark-info, .main-sidebar.sidebar-dark-blue { background: var(--mg-gradient-deep); }
+.sidebar-dark-primary .brand-link, .sidebar-dark-info .brand-link { background: rgba(0, 0, 0, .12); border-bottom: 0; color: #fff; position: relative; font-weight: 800; }
+.sidebar-dark-primary .brand-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-info .nav-sidebar > .nav-item > .nav-link.active, .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview > .nav-item > .nav-link.active { background: var(--mg-gradient-primary); color: #fff; box-shadow: var(--mg-shadow-glow); }
+.nav-sidebar .nav-link { border-radius: var(--mg-radius-md); } .nav-sidebar .nav-header { color: var(--mg-sky); font-weight: 800; letter-spacing: .06em; }
+.sidebar-dark-primary .nav-sidebar > .nav-item:hover > .nav-link { background: rgba(255, 255, 255, .1); color: #fff; }
+
+/* Navbar, footer */
+.main-header.navbar-white, .main-header.navbar-light { background: var(--mg-surface-card); border-bottom: 0; box-shadow: var(--mg-shadow-sm); position: relative; }
+.main-header.navbar-white::after, .main-header.navbar-light::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.navbar-primary { background: var(--mg-gradient-primary-h) !important; } .navbar-info { background: var(--mg-gradient-aqua) !important; }
+.main-footer { background: var(--mg-surface-card); border-top: 0; position: relative; } .main-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.content-header h1 { font-weight: 900; color: var(--mg-gray); }
+
+/* Tarjetas */
+.card-primary:not(.card-outline) > .card-header { background: var(--mg-gradient-primary); }
+.card-info:not(.card-outline) > .card-header { background: var(--mg-gradient-aqua); color: var(--mg-ink); }
+.card-success:not(.card-outline) > .card-header { background: var(--mg-gradient-tropical); color: var(--mg-ink); }
+.card-warning:not(.card-outline) > .card-header { background: var(--mg-gradient-sun); color: var(--mg-ink); }
+.card-danger:not(.card-outline) > .card-header { background: var(--mg-gradient-heat); }
+.card-primary.card-outline { border-top: 3px solid var(--mg-primary); } .card-info.card-outline { border-top: 3px solid var(--mg-cyan); }
+.card-success.card-outline { border-top: 3px solid var(--mg-green); } .card-warning.card-outline { border-top: 3px solid var(--mg-yellow); } .card-danger.card-outline { border-top: 3px solid var(--mg-red); }
+.card-primary.card-outline-tabs > .card-header a.active { border-top: 3px solid var(--mg-primary); }
+.card { box-shadow: var(--mg-shadow-sm); border: 1px solid var(--mg-border); }
+.card-primary > .card-header .btn-tool, .card-info > .card-header .btn-tool { color: rgba(255, 255, 255, .85); }
+
+/* Cajas de información */
+.small-box { border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-md); overflow: hidden; }
+.small-box.bg-info { background: var(--mg-gradient-aqua) !important; color: var(--mg-ink) !important; } .small-box.bg-info .icon > i, .small-box.bg-info .small-box-footer, .small-box.bg-info h3, .small-box.bg-info p { color: var(--mg-ink) !important; }
+.small-box.bg-primary { background: var(--mg-gradient-primary) !important; } .small-box.bg-success { background: var(--mg-gradient-tropical) !important; color: var(--mg-ink) !important; }
+.small-box.bg-success h3, .small-box.bg-success p, .small-box.bg-success .small-box-footer { color: var(--mg-ink) !important; } .small-box.bg-warning { background: var(--mg-gradient-sun) !important; } .small-box.bg-danger { background: var(--mg-gradient-heat) !important; }
+.info-box { border-radius: var(--mg-radius-lg); } .info-box .info-box-icon { border-radius: var(--mg-radius-lg); }
+.info-box .info-box-icon.bg-primary { background: var(--mg-gradient-primary) !important; } .info-box .info-box-icon.bg-info { background: var(--mg-gradient-aqua) !important; }
+.callout.callout-info { border-left-color: var(--mg-cyan); } .callout.callout-primary { border-left-color: var(--mg-primary); } .callout.callout-danger { border-left-color: var(--mg-red); }
+.callout.callout-warning { border-left-color: var(--mg-yellow); } .callout.callout-success { border-left-color: var(--mg-green); }
+.timeline > div > .fa, .timeline > div > .fas { background-color: var(--mg-primary); }
+.login-box .card, .register-box .card { border-top: 0; } .login-box .card::before, .register-box .card::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
+.login-logo a, .register-logo a { color: var(--mg-gray); font-weight: 900; }

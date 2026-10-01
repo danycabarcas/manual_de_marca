@@ -1,0 +1,5 @@
+_work/
+__pycache__/
+*.pyc
+*.crdownload
+node_modules/

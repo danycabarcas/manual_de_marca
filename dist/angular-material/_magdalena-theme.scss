@@ -1,0 +1,135 @@
+// ==========================================================================
+// Angular Material · Tema Gobernación del Magdalena 2026   (v1.0.0)
+// Compatible con Angular Material 17.2+ / 18 / 19 / 20.  Copiar a src/ y usar en styles.scss
+// ==========================================================================
+@use '@angular/material' as mat;
+
+// ---------- Paletas Material 3 (tonos generados desde los colores oficiales) ----------
+$mg-primary-palette: (
+  0: #000000,
+  10: #001D37,
+  20: #003258,
+  25: #003E6A,
+  30: #00497D,
+  35: #005590,
+  40: #0071BB,
+  50: #187BC6,
+  60: #3B96E3,
+  70: #5AB2FF,
+  80: #97CCFF,
+  90: #CCE6FF,
+  95: #E6F3FF,
+  98: #F5FAFF,
+  99: #FAFDFF,
+  100: #FFFFFF,
+  secondary: (0: #000000, 10: #001E32, 20: #003450, 25: #06405F, 30: #164C6B, 35: #245878, 40: #316485, 50: #4A7D9F, 60: #6497BB, 70: #7EB2D7, 80: #99CEF3, 90: #C7E8FF, 95: #E3F3FF, 98: #F4FAFF, 99: #F9FDFF, 100: #FFFFFF),
+  neutral: (0: #000000, 10: #171C21, 20: #2C3136, 25: #373C42, 30: #42474D, 35: #4D5359, 40: #595F65, 50: #72787E, 60: #8B9298, 70: #A5ACB3, 80: #C1C7CE, 90: #DCE3EA, 95: #EBF2F9, 98: #F5FAFF, 99: #FAFDFF, 100: #FFFFFF),
+  neutral-variant: (0: #000000, 10: #141C25, 20: #29313A, 25: #333D46, 30: #3E4851, 35: #4A545D, 40: #566069, 50: #6E7883, 60: #87929D, 70: #A2ADB8, 80: #BDC8D3, 90: #D8E4F0, 95: #E7F2FE, 98: #F5FAFF, 99: #FAFDFF, 100: #FFFFFF),
+  error: (0: #000000, 10: #3D0006, 20: #610011, 25: #750016, 30: #89001C, 35: #9D0022, 40: #B20028, 50: #D32D3F, 60: #F24E58, 70: #FF7E7F, 80: #FFAEAB, 90: #FFD8D6, 95: #FFECEA, 98: #FFF7F7, 99: #FFFBFB, 100: #FFFFFF)
+);
+$mg-tertiary-palette: (
+  0: #000000,
+  10: #002028,
+  20: #003743,
+  25: #004351,
+  30: #005060,
+  35: #005D6F,
+  40: #006A7F,
+  50: #00859E,
+  60: #00A1C0,
+  70: #1BBEE0,
+  80: #4ADAFD,
+  90: #B2EEFF,
+  95: #DAF7FF,
+  98: #F0FCFF,
+  99: #F8FDFF,
+  100: #FFFFFF,
+  secondary: (0: #000000, 10: #002026, 20: #003840, 25: #00444E, 30: #00505C, 35: #005D6A, 40: #046A79, 50: #2E8493, 60: #4C9EAE, 70: #68BAC9, 80: #83D5E5, 90: #A7F1FF, 95: #D5F8FF, 98: #EFFCFF, 99: #F7FEFF, 100: #FFFFFF),
+  neutral: (0: #000000, 10: #171C21, 20: #2C3136, 25: #373C42, 30: #42474D, 35: #4D5359, 40: #595F65, 50: #72787E, 60: #8B9298, 70: #A5ACB3, 80: #C1C7CE, 90: #DCE3EA, 95: #EBF2F9, 98: #F5FAFF, 99: #FAFDFF, 100: #FFFFFF),
+  neutral-variant: (0: #000000, 10: #141C25, 20: #29313A, 25: #333D46, 30: #3E4851, 35: #4A545D, 40: #566069, 50: #6E7883, 60: #87929D, 70: #A2ADB8, 80: #BDC8D3, 90: #D8E4F0, 95: #E7F2FE, 98: #F5FAFF, 99: #FAFDFF, 100: #FFFFFF),
+  error: (0: #000000, 10: #3D0006, 20: #610011, 25: #750016, 30: #89001C, 35: #9D0022, 40: #B20028, 50: #D32D3F, 60: #F24E58, 70: #FF7E7F, 80: #FFAEAB, 90: #FFD8D6, 95: #FFECEA, 98: #FFF7F7, 99: #FFFBFB, 100: #FFFFFF)
+);
+
+// ---------- Paletas Material 2 (clásico) ----------
+$mg-m2-primary: (
+  50: #EBF4FA,
+  100: #D6E8F4,
+  200: #ADD2E9,
+  300: #80B8DD,
+  400: #4094CC,
+  500: #0071BB,
+  600: #0061A1,
+  700: #004F83,
+  800: #003D65,
+  900: #002B47,
+  A100: #80B8DD,
+  A200: #4094CC,
+  A400: #0071BB,
+  A700: #0061A1,
+  contrast: (50: #1D1D1B, 100: #1D1D1B, 200: #1D1D1B, 300: #1D1D1B, 400: #1D1D1B, 500: #FFFFFF, 600: #FFFFFF, 700: #FFFFFF, 800: #FFFFFF, 900: #FFFFFF, A100: #1D1D1B, A200: #1D1D1B, A400: #FFFFFF, A700: #FFFFFF)
+);
+$mg-m2-accent:  (
+  50: #EBF9FC,
+  100: #D6F3F9,
+  200: #ADE8F3,
+  300: #80DBEC,
+  400: #40C9E2,
+  500: #00B7D9,
+  600: #009DBB,
+  700: #008098,
+  800: #006375,
+  900: #004652,
+  A100: #80DBEC,
+  A200: #40C9E2,
+  A400: #00B7D9,
+  A700: #009DBB,
+  contrast: (50: #1D1D1B, 100: #1D1D1B, 200: #1D1D1B, 300: #1D1D1B, 400: #1D1D1B, 500: #1D1D1B, 600: #1D1D1B, 700: #FFFFFF, 800: #FFFFFF, 900: #FFFFFF, A100: #1D1D1B, A200: #1D1D1B, A400: #1D1D1B, A700: #1D1D1B)
+);
+$mg-m2-warn:    (
+  50: #FEEBEF,
+  100: #FED6E0,
+  200: #FCADC1,
+  300: #FB809E,
+  400: #F9406D,
+  500: #F7003C,
+  600: #D40034,
+  700: #AD002A,
+  800: #850020,
+  900: #5E0017,
+  A100: #FB809E,
+  A200: #F9406D,
+  A400: #F7003C,
+  A700: #D40034,
+  contrast: (50: #1D1D1B, 100: #1D1D1B, 200: #1D1D1B, 300: #1D1D1B, 400: #1D1D1B, 500: #FFFFFF, 600: #FFFFFF, 700: #FFFFFF, 800: #FFFFFF, 900: #FFFFFF, A100: #1D1D1B, A200: #1D1D1B, A400: #FFFFFF, A700: #FFFFFF)
+);
+
+// =========================================================================
+// OPCIÓN A · Material 3  (recomendada, Angular Material 19+)
+//   @use './magdalena-theme' as mg;   y en styles.scss:   @include mg.magdalena-m3();
+// =========================================================================
+@mixin magdalena-m3($density: 0) {
+  html {
+    @include mat.theme((
+      color: (theme-type: light, primary: $mg-primary-palette, tertiary: $mg-tertiary-palette),
+      typography: (plain-family: ('Montserrat', 'Gotham', 'Segoe UI', sans-serif), brand-family: ('Montserrat', 'Gotham', sans-serif), bold-weight: 800, medium-weight: 600, regular-weight: 500),
+      density: $density,
+    ));
+  }
+}
+
+// =========================================================================
+// OPCIÓN B · Material 2 (Angular Material 15 – 18, API clásica)
+//   @include mg.magdalena-m2();
+// =========================================================================
+@mixin magdalena-m2() {
+  $theme: mat.m2-define-light-theme((
+    color: (
+      primary: mat.m2-define-palette($mg-m2-primary, 500, 300, 700),
+      accent:  mat.m2-define-palette($mg-m2-accent, 500, 300, 700),
+      warn:    mat.m2-define-palette($mg-m2-warn, 500, 300, 700),
+    ),
+    typography: mat.m2-define-typography-config($font-family: "'Montserrat', 'Gotham', 'Segoe UI', sans-serif"),
+    density: 0,
+  ));
+  @include mat.all-component-themes($theme);
+}

@@ -1,0 +1,21 @@
+/* Variables PrimeNG/PrimeVue 4 (v18+) — alternativa CSS pura al preset */
+:root {
+  --p-primary-50: #EBF4FA;
+  --p-primary-100: #D6E8F4;
+  --p-primary-200: #ADD2E9;
+  --p-primary-300: #80B8DD;
+  --p-primary-400: #4094CC;
+  --p-primary-500: #0071BB;
+  --p-primary-600: #0061A1;
+  --p-primary-700: #004F83;
+  --p-primary-800: #003D65;
+  --p-primary-900: #002B47;
+  --p-primary-950: #001B2D;
+  --p-primary-color: var(--p-primary-500);
+  --p-primary-contrast-color: #ffffff;
+  --p-primary-hover-color: var(--p-primary-600);
+  --p-primary-active-color: var(--p-primary-700);
+  --p-highlight-background: var(--p-primary-50);
+  --p-highlight-color: var(--p-primary-800);
+  --p-focus-ring-color: #00B7D9;
+}

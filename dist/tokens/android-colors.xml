@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mg_primary">#0071BB</color>
+    <color name="mg_cyan">#00B7D9</color>
+    <color name="mg_sky">#9FD7E5</color>
+    <color name="mg_red">#F7003C</color>
+    <color name="mg_yellow">#FEC800</color>
+    <color name="mg_green">#69B75E</color>
+    <color name="mg_olive">#A28034</color>
+    <color name="mg_purple">#5618BA</color>
+    <color name="mg_ink">#1D1D1B</color>
+    <color name="mg_gray">#606060</color>
+    <color name="mg_surface">#F6F5F5</color>
+    <color name="mg_white">#FFFFFF</color>
+</resources>

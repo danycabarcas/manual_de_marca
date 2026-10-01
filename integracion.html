@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integración por tecnología · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel, Node, Java, WordPress y móvil: cómo aplicar la marca en cada uno.">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="dist/css/magdalena.css">
+<link rel="stylesheet" href="site/portal.css">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="index.html"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="colores.html">Colores y degradados</a><a href="logos.html">Logos y descargas</a><a href="componentes.html">Componentes</a><a href="integracion.html" aria-current="page">Integración</a><a href="aplicaciones.html">Aplicaciones</a><a href="demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Integración por tecnología</h1><p>AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel, Node, Java, WordPress y móvil: cómo aplicar la marca en cada uno.</p></div></section>
+<main class="pt-main">
+
+<div class="baseurl"><b>URL base de este sitio:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button>
+<span class="mg-help" style="width:100%;margin:0">Todos los ejemplos de código y la tabla usan esta URL. Si el sitio se publica en otro dominio, escríbalo aquí y copie.</span></div>
+<section class="pt-section" id="urls"><h2><span class="n">01.</span> URLs directas de cada archivo</h2>
+<p class="pt-lead">Basta con un <code class="inline">&lt;link&gt;</code> a la URL del CSS para usar la marca. Cada archivo es autosuficiente (incluye sus variables).</p>
+<div class="tablewrap"><table class="urls"><thead><tr><th>Para</th><th>URL</th><th></th></tr></thead><tbody><tr><td>Todo en uno (tokens + degradados + la línea + componentes)</td><td><code data-url="dist/css/magdalena.min.css">dist/css/magdalena.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/css/magdalena.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/css/magdalena.min.css" download>⬇</a></td></tr><tr><td>Solo variables CSS (--mg-*)</td><td><code data-url="dist/css/magdalena-tokens.min.css">dist/css/magdalena-tokens.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/css/magdalena-tokens.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/css/magdalena-tokens.min.css" download>⬇</a></td></tr><tr><td>AdminLTE 4 / Bootstrap 5.3</td><td><code data-url="dist/adminlte/magdalena-adminlte4.min.css">dist/adminlte/magdalena-adminlte4.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/adminlte/magdalena-adminlte4.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/adminlte/magdalena-adminlte4.min.css" download>⬇</a></td></tr><tr><td>AdminLTE 3 / Bootstrap 4</td><td><code data-url="dist/adminlte/magdalena-adminlte3.min.css">dist/adminlte/magdalena-adminlte3.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/adminlte/magdalena-adminlte3.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/adminlte/magdalena-adminlte3.min.css" download>⬇</a></td></tr><tr><td>Bootstrap 5.3 (CSS)</td><td><code data-url="dist/bootstrap/magdalena-bootstrap5.min.css">dist/bootstrap/magdalena-bootstrap5.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/bootstrap/magdalena-bootstrap5.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/bootstrap/magdalena-bootstrap5.min.css" download>⬇</a></td></tr><tr><td>Bootstrap 4 (CSS)</td><td><code data-url="dist/bootstrap/magdalena-bootstrap4.min.css">dist/bootstrap/magdalena-bootstrap4.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/bootstrap/magdalena-bootstrap4.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/bootstrap/magdalena-bootstrap4.min.css" download>⬇</a></td></tr><tr><td>Bootstrap 5 (variables Sass)</td><td><code data-url="dist/bootstrap/_magdalena-bootstrap-variables.scss">dist/bootstrap/_magdalena-bootstrap-variables.scss</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/bootstrap/_magdalena-bootstrap-variables.scss">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/bootstrap/_magdalena-bootstrap-variables.scss" download>⬇</a></td></tr><tr><td>Tailwind v3 (preset)</td><td><code data-url="dist/tailwind/magdalena.tailwind.preset.cjs">dist/tailwind/magdalena.tailwind.preset.cjs</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/tailwind/magdalena.tailwind.preset.cjs">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/tailwind/magdalena.tailwind.preset.cjs" download>⬇</a></td></tr><tr><td>Tailwind v4 (@theme)</td><td><code data-url="dist/tailwind/magdalena.tailwind-v4.css">dist/tailwind/magdalena.tailwind-v4.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/tailwind/magdalena.tailwind-v4.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/tailwind/magdalena.tailwind-v4.css" download>⬇</a></td></tr><tr><td>Angular Material M2 + M3 (SCSS)</td><td><code data-url="dist/angular-material/_magdalena-theme.scss">dist/angular-material/_magdalena-theme.scss</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/angular-material/_magdalena-theme.scss">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/angular-material/_magdalena-theme.scss" download>⬇</a></td></tr><tr><td>Angular Material (degradados y la línea)</td><td><code data-url="dist/angular-material/magdalena-material-extras.min.css">dist/angular-material/magdalena-material-extras.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/angular-material/magdalena-material-extras.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/angular-material/magdalena-material-extras.min.css" download>⬇</a></td></tr><tr><td>PrimeNG 18+ / PrimeVue 4 (preset)</td><td><code data-url="dist/primeng/magdalena-preset.ts">dist/primeng/magdalena-preset.ts</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/primeng/magdalena-preset.ts">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/primeng/magdalena-preset.ts" download>⬇</a></td></tr><tr><td>PrimeNG (degradados, ≤17 compatible)</td><td><code data-url="dist/primeng/magdalena-primeng.min.css">dist/primeng/magdalena-primeng.min.css</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/primeng/magdalena-primeng.min.css">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/primeng/magdalena-primeng.min.css" download>⬇</a></td></tr><tr><td>MUI (React)</td><td><code data-url="dist/mui/magdalena-mui-theme.mjs">dist/mui/magdalena-mui-theme.mjs</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/mui/magdalena-mui-theme.mjs">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/mui/magdalena-mui-theme.mjs" download>⬇</a></td></tr><tr><td>Vuetify 3</td><td><code data-url="dist/vuetify/magdalena-vuetify.mjs">dist/vuetify/magdalena-vuetify.mjs</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/vuetify/magdalena-vuetify.mjs">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/vuetify/magdalena-vuetify.mjs" download>⬇</a></td></tr><tr><td>Variables SCSS</td><td><code data-url="dist/scss/_magdalena-tokens.scss">dist/scss/_magdalena-tokens.scss</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/scss/_magdalena-tokens.scss">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/scss/_magdalena-tokens.scss" download>⬇</a></td></tr><tr><td>Variables Less</td><td><code data-url="dist/less/magdalena-tokens.less">dist/less/magdalena-tokens.less</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/less/magdalena-tokens.less">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/less/magdalena-tokens.less" download>⬇</a></td></tr><tr><td>Tokens JSON (hex, rgb, cmyk, degradados)</td><td><code data-url="dist/tokens/magdalena-tokens.json">dist/tokens/magdalena-tokens.json</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="dist/tokens/magdalena-tokens.json">Copiar URL</button> <a class="copy" style="text-decoration:none" href="dist/tokens/magdalena-tokens.json" download>⬇</a></td></tr></tbody></table></div></section>
+<section class="pt-section" id="guias"><h2><span class="n">02.</span> Guías por tecnología</h2>
+<div class="int"><nav class="int__nav" aria-label="Tecnologías"><h4>Base</h4><a href="#html">HTML / CSS puro</a><h4>Plantillas admin</h4><a href="#adminlte4">AdminLTE 4 (Bootstrap 5)</a><a href="#adminlte3">AdminLTE 3 (Bootstrap 4)</a><h4>Frameworks CSS</h4><a href="#bootstrap">Bootstrap 5 y 4</a><a href="#tailwind">Tailwind CSS (v3 y v4)</a><h4>Angular</h4><a href="#angular-material">Angular Material</a><a href="#primeng">PrimeNG / PrimeVue</a><a href="#angular">Angular (general)</a><h4>JavaScript</h4><a href="#react">React / Next.js</a><a href="#vue">Vue / Nuxt</a><a href="#node">Node.js / Express / bundlers</a><h4>PHP</h4><a href="#laravel">Laravel (Blade, Vite, Livewire)</a><a href="#wordpress">WordPress</a><h4>Java / .NET</h4><a href="#java">Java (Spring, Thymeleaf, JSF/PrimeFaces, Vaadin)</a><h4>Móvil</h4><a href="#movil">Móvil (Android / Flutter / iOS)</a></nav><div><article class="int__guide" id="html"><h3>HTML / CSS puro</h3><p class="pt-lead" style="margin-bottom:.5rem">Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, degradados, la línea y componentes.</p><h5>1. Enlazar el CSS (una sola URL)</h5><div class="code"><div class="code__bar"><span>index.html</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;!-- Todo en uno: tokens + degradados + la línea + componentes (incluye la tipografía Montserrat) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/css/magdalena.min.css&quot;&gt;
+
+&lt;!-- Solo variables CSS (si usted ya tiene sus propios componentes) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/css/magdalena-tokens.min.css&quot;&gt;">&lt;!-- Todo en uno: tokens + degradados + la línea + componentes (incluye la tipografía Montserrat) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/css/magdalena.min.css&quot;&gt;
+
+&lt;!-- Solo variables CSS (si usted ya tiene sus propios componentes) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/css/magdalena-tokens.min.css&quot;&gt;</code></pre></div><h5>2. Activar estilos base y usar clases mg-*</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;body class=&quot;mg-base&quot;&gt;
+  &lt;header class=&quot;mg-navbar&quot;&gt;           &lt;!-- navbar con la línea de colores abajo --&gt;
+    &lt;a class=&quot;mg-navbar__brand&quot; href=&quot;/&quot;&gt;&lt;img src=&quot;__BASE__/assets/logos/svg/logo-horizontal-color.svg&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;&lt;/a&gt;
+  &lt;/header&gt;
+
+  &lt;section class=&quot;mg-hero&quot;&gt;            &lt;!-- degradado azul → cian → celeste --&gt;
+    &lt;h1&gt;Servicios digitales&lt;/h1&gt;
+    &lt;a class=&quot;mg-btn mg-btn--accent&quot; href=&quot;#&quot;&gt;Ingresar&lt;/a&gt;
+  &lt;/section&gt;
+
+  &lt;div class=&quot;mg-card mg-card--stripe-top&quot;&gt;&lt;div class=&quot;mg-card__body&quot;&gt;Tarjeta con la línea&lt;/div&gt;&lt;/div&gt;
+  &lt;hr class=&quot;mg-stripe&quot;&gt;               &lt;!-- La línea multicolor del logotipo --&gt;
+&lt;/body&gt;">&lt;body class=&quot;mg-base&quot;&gt;
+  &lt;header class=&quot;mg-navbar&quot;&gt;           &lt;!-- navbar con la línea de colores abajo --&gt;
+    &lt;a class=&quot;mg-navbar__brand&quot; href=&quot;/&quot;&gt;&lt;img src=&quot;https://TU-HOST/manual_de_marca/assets/logos/svg/logo-horizontal-color.svg&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;&lt;/a&gt;
+  &lt;/header&gt;
+
+  &lt;section class=&quot;mg-hero&quot;&gt;            &lt;!-- degradado azul → cian → celeste --&gt;
+    &lt;h1&gt;Servicios digitales&lt;/h1&gt;
+    &lt;a class=&quot;mg-btn mg-btn--accent&quot; href=&quot;#&quot;&gt;Ingresar&lt;/a&gt;
+  &lt;/section&gt;
+
+  &lt;div class=&quot;mg-card mg-card--stripe-top&quot;&gt;&lt;div class=&quot;mg-card__body&quot;&gt;Tarjeta con la línea&lt;/div&gt;&lt;/div&gt;
+  &lt;hr class=&quot;mg-stripe&quot;&gt;               &lt;!-- La línea multicolor del logotipo --&gt;
+&lt;/body&gt;</code></pre></div><h5>3. Usar las variables en su propio CSS</h5><div class="code"><div class="code__bar"><span>app.css</span><button data-codecopy>Copiar</button></div><pre><code>.mi-banner {
+  background: var(--mg-gradient-sky);       /* degradado de la gama azul */
+  color: #fff;
+  border-radius: var(--mg-radius-lg);
+  box-shadow: var(--mg-shadow-md);
+}
+.mi-boton { background: var(--mg-gradient-action); }
+.mi-titulo { color: var(--mg-primary-700); }   /* escalas 50…950 de cada color */
+.mi-linea  { height: 6px; background: var(--mg-gradient-stripe); }</code></pre></div><div class="mg-alert mg-alert--info"><div>Para no depender de internet (intranet), descargue dist/ y sirva los archivos desde su propio servidor; la tipografía Montserrat se puede alojar localmente (ver README).</div></div><p style="margin:.75rem 0 0"><a href="docs/html.md">Ver en Markdown →</a></p></article><article class="int__guide" id="adminlte4"><h3>AdminLTE 4 (Bootstrap 5)</h3><p class="pt-lead" style="margin-bottom:.5rem">Reemplaza el azul de Bootstrap por la marca, sidebar con degradado, línea multicolor en cabecera/pie, small-boxes con degradados.</p><h5>1. Cargar los CSS en este orden</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/css/adminlte.min.css&quot;&gt;
+&lt;!-- Marca Magdalena: SIEMPRE después de AdminLTE --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/adminlte/magdalena-adminlte4.min.css&quot;&gt;">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/css/adminlte.min.css&quot;&gt;
+&lt;!-- Marca Magdalena: SIEMPRE después de AdminLTE --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/adminlte/magdalena-adminlte4.min.css&quot;&gt;</code></pre></div><h5>2. Marcado recomendado</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;aside class=&quot;app-sidebar shadow&quot; data-bs-theme=&quot;dark&quot;&gt;
+  &lt;div class=&quot;sidebar-brand&quot;&gt;
+    &lt;a href=&quot;/&quot; class=&quot;brand-link&quot;&gt;&lt;img src=&quot;__BASE__/assets/logos/svg/logo-horizontal-blanco.svg&quot; height=&quot;34&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  ...
+&lt;/aside&gt;
+
+&lt;div class=&quot;small-box text-bg-primary&quot;&gt;...&lt;/div&gt;   &lt;!-- degradado azul --&gt;
+&lt;div class=&quot;small-box text-bg-info&quot;&gt;...&lt;/div&gt;      &lt;!-- degradado cian → celeste --&gt;
+&lt;div class=&quot;card card-primary card-outline&quot;&gt;...&lt;/div&gt;">&lt;aside class=&quot;app-sidebar shadow&quot; data-bs-theme=&quot;dark&quot;&gt;
+  &lt;div class=&quot;sidebar-brand&quot;&gt;
+    &lt;a href=&quot;/&quot; class=&quot;brand-link&quot;&gt;&lt;img src=&quot;https://TU-HOST/manual_de_marca/assets/logos/svg/logo-horizontal-blanco.svg&quot; height=&quot;34&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  ...
+&lt;/aside&gt;
+
+&lt;div class=&quot;small-box text-bg-primary&quot;&gt;...&lt;/div&gt;   &lt;!-- degradado azul --&gt;
+&lt;div class=&quot;small-box text-bg-info&quot;&gt;...&lt;/div&gt;      &lt;!-- degradado cian → celeste --&gt;
+&lt;div class=&quot;card card-primary card-outline&quot;&gt;...&lt;/div&gt;</code></pre></div><div class="mg-alert mg-alert--info"><div>Con npm: npm i admin-lte@4 y luego importe magdalena-adminlte4.css después del CSS de AdminLTE.</div></div><p style="margin:.75rem 0 0"><a href="docs/adminlte4.md">Ver en Markdown →</a></p></article><article class="int__guide" id="adminlte3"><h3>AdminLTE 3 (Bootstrap 4)</h3><p class="pt-lead" style="margin-bottom:.5rem">Para proyectos AdminLTE 3.x (incluye los paquetes Laravel/PHP basados en AdminLTE 3, como jeroennoten/laravel-adminlte).</p><h5>1. Cargar los CSS en este orden</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/adminlte/magdalena-adminlte3.min.css&quot;&gt;">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/adminlte/magdalena-adminlte3.min.css&quot;&gt;</code></pre></div><h5>2. Clases AdminLTE que quedan con la marca</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;aside class=&quot;main-sidebar sidebar-dark-primary elevation-4&quot;&gt;...&lt;/aside&gt;   &lt;!-- degradado azul profundo --&gt;
+&lt;nav class=&quot;main-header navbar navbar-expand navbar-white navbar-light&quot;&gt;...&lt;/nav&gt; &lt;!-- línea multicolor abajo --&gt;
+&lt;div class=&quot;card card-primary&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;small-box bg-info&quot;&gt;...&lt;/div&gt;
+&lt;button class=&quot;btn btn-primary&quot;&gt;Guardar&lt;/button&gt;</code></pre></div><div class="mg-alert mg-alert--info"><div>AdminLTE 3 usa Bootstrap 4, que NO tiene variables CSS: por eso este archivo sobrescribe clases (.btn-primary, .bg-primary, etc.).</div></div><p style="margin:.75rem 0 0"><a href="docs/adminlte3.md">Ver en Markdown →</a></p></article><article class="int__guide" id="bootstrap"><h3>Bootstrap 5 y 4</h3><p class="pt-lead" style="margin-bottom:.5rem">Dos caminos: CSS precompilado (rápido) o Sass (recomendado si compilan Bootstrap).</p><h5>A. CSS precompilado (Bootstrap 5.3)</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;__BASE__/dist/bootstrap/magdalena-bootstrap5.min.css&quot; rel=&quot;stylesheet&quot;&gt;">&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;https://TU-HOST/manual_de_marca/dist/bootstrap/magdalena-bootstrap5.min.css&quot; rel=&quot;stylesheet&quot;&gt;</code></pre></div><h5>B. Bootstrap 4</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;__BASE__/dist/bootstrap/magdalena-bootstrap4.min.css&quot; rel=&quot;stylesheet&quot;&gt;">&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;https://TU-HOST/manual_de_marca/dist/bootstrap/magdalena-bootstrap4.min.css&quot; rel=&quot;stylesheet&quot;&gt;</code></pre></div><h5>C. Sass (Bootstrap 5): variables antes de importar</h5><div class="code"><div class="code__bar"><span>custom.scss</span><button data-codecopy>Copiar</button></div><pre><code>// copie dist/scss/_magdalena-tokens.scss y dist/bootstrap/_magdalena-bootstrap-variables.scss
+@import &quot;magdalena-bootstrap-variables&quot;;   // define $primary, $info, fuentes, radios…
+@import &quot;bootstrap/scss/bootstrap&quot;;
+
+.btn-primary { background-image: $mg-gradient-action; }</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/bootstrap.md">Ver en Markdown →</a></p></article><article class="int__guide" id="tailwind"><h3>Tailwind CSS (v3 y v4)</h3><p class="pt-lead" style="margin-bottom:.5rem">Colores `mg-*` con escala 50–950, alias `primary`, degradados como utilidades `bg-mg-grad-*`, sombras y radios de marca.</p><h5>Tailwind v3 — preset</h5><div class="code"><div class="code__bar"><span>tailwind.config.js</span><button data-codecopy>Copiar</button></div><pre><code>module.exports = {
+  presets: [require(&#x27;./magdalena.tailwind.preset.cjs&#x27;)],   // copie dist/tailwind/magdalena.tailwind.preset.cjs
+  content: [&#x27;./src/**/*.{html,js,ts,jsx,tsx,vue}&#x27;],
+};</code></pre></div><h5>Tailwind v4 — tema CSS</h5><div class="code"><div class="code__bar"><span>app.css</span><button data-codecopy>Copiar</button></div><pre><code>@import &quot;tailwindcss&quot;;
+@import &quot;./magdalena.tailwind-v4.css&quot;;   /* copie dist/tailwind/magdalena.tailwind-v4.css */</code></pre></div><h5>Clases disponibles</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;button class=&quot;bg-mg-grad-action text-white font-bold px-6 py-3 rounded-full shadow-mg-md&quot;&gt;Ingresar&lt;/button&gt;
+&lt;div class=&quot;bg-mg-grad-sky text-white rounded-mg-lg p-8&quot;&gt;Hero con degradado&lt;/div&gt;
+&lt;div class=&quot;h-1.5 bg-mg-grad-stripe&quot;&gt;&lt;/div&gt;          &lt;!-- la línea multicolor --&gt;
+&lt;h1 class=&quot;text-mg-primary-700 font-display font-black&quot;&gt;Título&lt;/h1&gt;
+&lt;span class=&quot;bg-mg-cyan-100 text-mg-cyan-800 rounded-full px-3&quot;&gt;Etiqueta&lt;/span&gt;
+&lt;p class=&quot;mg-text-gradient text-5xl font-black&quot;&gt;Texto con degradado&lt;/p&gt;</code></pre></div><div class="mg-alert mg-alert--info"><div>Opcional: use también magdalena.min.css para tener componentes mg-card, mg-btn, etc. junto a Tailwind.</div></div><p style="margin:.75rem 0 0"><a href="docs/tailwind.md">Ver en Markdown →</a></p></article><article class="int__guide" id="angular-material"><h3>Angular Material</h3><p class="pt-lead" style="margin-bottom:.5rem">Tema Material 3 (v19+) y Material 2 (v15–18) con las paletas oficiales, probado compilando contra la librería real.</p><h5>1. Copiar el tema</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code># copie dist/angular-material/_magdalena-theme.scss  →  src/styles/_magdalena-theme.scss
+# copie dist/angular-material/magdalena-material-extras.css  →  src/styles/magdalena-extras.css (opcional)
+# copie dist/css/magdalena-tokens.css → src/styles/ (variables --mg-*)</code></pre></div><h5>2. styles.scss — Material 3 (Angular Material 19+)</h5><div class="code"><div class="code__bar"><span>src/styles.scss</span><button data-codecopy>Copiar</button></div><pre><code>@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;./styles/magdalena-theme&#x27; as mg;
+
+html { @include mg.magdalena-m3(); }          // define --mat-sys-* con la marca
+@import &#x27;./styles/magdalena-tokens.css&#x27;;        // --mg-* para degradados y la línea
+@import &#x27;./styles/magdalena-extras.css&#x27;;        // opcional
+
+body { font-family: var(--mg-font-sans); margin: 0; }</code></pre></div><h5>2b. styles.scss — Material 2 (Angular Material 15–18)</h5><div class="code"><div class="code__bar"><span>src/styles.scss</span><button data-codecopy>Copiar</button></div><pre><code>@use &#x27;@angular/material&#x27; as mat;
+@use &#x27;./styles/magdalena-theme&#x27; as mg;
+
+@include mat.core();
+@include mg.magdalena-m2();</code></pre></div><h5>3. index.html — fuente</h5><div class="code"><div class="code__bar"><span>src/index.html</span><button data-codecopy>Copiar</button></div><pre><code>&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;</code></pre></div><h5>4. Usar degradados y la línea con componentes Material</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;mat-toolbar color=&quot;primary&quot; class=&quot;mg-toolbar-gradient mg-toolbar-stripe&quot;&gt;Gobernación del Magdalena&lt;/mat-toolbar&gt;
+&lt;button mat-flat-button class=&quot;mg-btn-gradient&quot;&gt;Guardar&lt;/button&gt;
+&lt;mat-card class=&quot;mg-card-stripe&quot;&gt;...&lt;/mat-card&gt;
+&lt;mat-sidenav class=&quot;mg-sidenav-deep&quot;&gt;...&lt;/mat-sidenav&gt;</code></pre></div><div class="mg-alert mg-alert--info"><div>Los logos van en src/assets/ (o public/ en Angular 18+): copie assets/logos/svg/*.</div></div><p style="margin:.75rem 0 0"><a href="docs/angular-material.md">Ver en Markdown →</a></p></article><article class="int__guide" id="primeng"><h3>PrimeNG / PrimeVue</h3><p class="pt-lead" style="margin-bottom:.5rem">Preset de tema para PrimeNG 18+ y PrimeVue 4 (mismo preset). Incluye variante CSS pura y compatibilidad con PrimeNG ≤ 17.</p><h5>1. PrimeNG 20+ (Angular) — app.config.ts</h5><div class="code"><div class="code__bar"><span>src/app/app.config.ts</span><button data-codecopy>Copiar</button></div><pre><code>import { ApplicationConfig } from &#x27;@angular/core&#x27;;
+import { provideAnimationsAsync } from &#x27;@angular/platform-browser/animations/async&#x27;;
+import { providePrimeNG } from &#x27;primeng/config&#x27;;
+import { MagdalenaPreset } from &#x27;./magdalena-preset&#x27;;   // copie dist/primeng/magdalena-preset.ts
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAnimationsAsync(),
+    providePrimeNG({ theme: { preset: MagdalenaPreset, options: { darkModeSelector: false } } }),
+  ],
+};</code></pre></div><h5>1b. PrimeNG 18/19</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code>npm i @primeng/themes
+# en magdalena-preset.ts cambie los imports a &#x27;@primeng/themes&#x27; y &#x27;@primeng/themes/aura&#x27; (hay un comentario en el archivo)</code></pre></div><h5>2. PrimeVue 4</h5><div class="code"><div class="code__bar"><span>main.js</span><button data-codecopy>Copiar</button></div><pre><code>import PrimeVue from &#x27;primevue/config&#x27;;
+import { MagdalenaPreset } from &#x27;./magdalena-preset.mjs&#x27;;
+
+app.use(PrimeVue, { theme: { preset: MagdalenaPreset, options: { darkModeSelector: false } } });</code></pre></div><h5>3. Degradados y la línea (CSS opcional)</h5><div class="code"><div class="code__bar"><span>src/styles.scss</span><button data-codecopy>Copiar</button></div><pre><code>@import &#x27;./styles/magdalena-tokens.css&#x27;;
+@import &#x27;./styles/magdalena-primeng.css&#x27;;   // botones con degradado, tabla con cabecera de marca, menubar con la línea</code></pre></div><h5>PrimeNG ≤ 17 (temas CSS clásicos)</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;!-- cargue su tema (p. ej. lara-light-blue) y luego: --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/primeng/magdalena-primeng.min.css&quot;&gt;   &lt;!-- pisa --primary-color y agrega degradados --&gt;">&lt;!-- cargue su tema (p. ej. lara-light-blue) y luego: --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/primeng/magdalena-primeng.min.css&quot;&gt;   &lt;!-- pisa --primary-color y agrega degradados --&gt;</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/primeng.md">Ver en Markdown →</a></p></article><article class="int__guide" id="angular"><h3>Angular (general)</h3><p class="pt-lead" style="margin-bottom:.5rem">Sin librería de componentes: tokens + utilidades en `styles.scss`, o por URL en `index.html`.</p><h5>Opción 1 — por URL (más simple)</h5><div class="code"><div class="code__bar"><span>src/index.html</span><button data-codecopy>Copiar</button></div><pre><code data-tpl="&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/dist/css/magdalena.min.css&quot;&gt;">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/dist/css/magdalena.min.css&quot;&gt;</code></pre></div><h5>Opción 2 — dentro del proyecto</h5><div class="code"><div class="code__bar"><span>angular.json</span><button data-codecopy>Copiar</button></div><pre><code>&quot;styles&quot;: [
+  &quot;src/styles/magdalena.css&quot;,      // copiado de dist/css/magdalena.css
+  &quot;src/styles.scss&quot;
+]</code></pre></div><h5>Uso en plantillas</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;div class=&quot;mg-card mg-card--stripe-top&quot;&gt;
+  &lt;div class=&quot;mg-card__header mg-card__header--gradient&quot;&gt;Trámites&lt;/div&gt;
+  &lt;div class=&quot;mg-card__body&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;button class=&quot;mg-btn&quot; (click)=&quot;guardar()&quot;&gt;Guardar&lt;/button&gt;</code></pre></div><h5>Tokens en TypeScript</h5><div class="code"><div class="code__bar"><span>TS</span><button data-codecopy>Copiar</button></div><pre><code>import tokens from &#x27;./magdalena-tokens.json&#x27;;   // dist/tokens/magdalena-tokens.json  (activar resolveJsonModule)
+const azul = tokens.colors.primary.hex;     // &quot;#0071BB&quot;
+const degradado = tokens.gradients.sky;     // &quot;linear-gradient(135deg, ...)&quot;</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/angular.md">Ver en Markdown →</a></p></article><article class="int__guide" id="react"><h3>React / Next.js</h3><p class="pt-lead" style="margin-bottom:.5rem">CSS directo, MUI o Tailwind. Los tokens están disponibles como JSON/ESM tipado.</p><h5>CSS global</h5><div class="code"><div class="code__bar"><span>src/main.jsx</span><button data-codecopy>Copiar</button></div><pre><code>import &#x27;./styles/magdalena.min.css&#x27;;     // copiado de dist/css/
+
+export default function Hero() {
+  return &lt;section className=&quot;mg-hero&quot;&gt;&lt;h1&gt;Bienvenido&lt;/h1&gt;&lt;button className=&quot;mg-btn mg-btn--accent&quot;&gt;Ingresar&lt;/button&gt;&lt;/section&gt;;
+}</code></pre></div><h5>Material UI (MUI)</h5><div class="code"><div class="code__bar"><span>src/theme.jsx</span><button data-codecopy>Copiar</button></div><pre><code>import { ThemeProvider, CssBaseline } from &#x27;@mui/material&#x27;;
+import magdalenaTheme from &#x27;./magdalena-mui-theme.mjs&#x27;;   // dist/mui/ (incluye magdalena-tokens.mjs)
+
+&lt;ThemeProvider theme={magdalenaTheme}&gt;&lt;CssBaseline /&gt;&lt;App /&gt;&lt;/ThemeProvider&gt;</code></pre></div><h5>Next.js (app router)</h5><div class="code"><div class="code__bar"><span>app/layout.tsx</span><button data-codecopy>Copiar</button></div><pre><code>import &#x27;../styles/magdalena.min.css&#x27;;
+export default function RootLayout({ children }) { return &lt;html lang=&quot;es&quot;&gt;&lt;body className=&quot;mg-base&quot;&gt;{children}&lt;/body&gt;&lt;/html&gt;; }</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/react.md">Ver en Markdown →</a></p></article><article class="int__guide" id="vue"><h3>Vue / Nuxt</h3><p class="pt-lead" style="margin-bottom:.5rem">CSS directo, Vuetify 3 o PrimeVue.</p><h5>CSS global</h5><div class="code"><div class="code__bar"><span>src/main.js</span><button data-codecopy>Copiar</button></div><pre><code>import &#x27;./assets/magdalena.min.css&#x27;;   // copiado de dist/css/</code></pre></div><h5>Vuetify 3</h5><div class="code"><div class="code__bar"><span>src/plugins/vuetify.js</span><button data-codecopy>Copiar</button></div><pre><code>import &#x27;vuetify/styles&#x27;;
+import vuetify from &#x27;./magdalena-vuetify.mjs&#x27;;    // dist/vuetify/ (incluye magdalena-tokens.mjs)
+app.use(vuetify);</code></pre></div><h5>Nuxt</h5><div class="code"><div class="code__bar"><span>nuxt.config.ts</span><button data-codecopy>Copiar</button></div><pre><code>export default defineNuxtConfig({
+  css: [&#x27;~/assets/css/magdalena.min.css&#x27;],
+  app: { head: { link: [{ rel: &#x27;stylesheet&#x27;, href: &#x27;https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&amp;display=swap&#x27; }] } },
+});</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/vue.md">Ver en Markdown →</a></p></article><article class="int__guide" id="laravel"><h3>Laravel (Blade, Vite, Livewire)</h3><p class="pt-lead" style="margin-bottom:.5rem">Copie los archivos a `public/brand` o impórtelos con Vite. Compatible con Breeze/Jetstream (Tailwind) y con AdminLTE.</p><h5>A. Archivos estáticos en public/</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code>mkdir -p public/brand
+cp -r dist/css assets/logos public/brand/</code></pre></div><div class="code"><div class="code__bar"><span>resources/views/layouts/app.blade.php</span><button data-codecopy>Copiar</button></div><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ asset(&#x27;brand/css/magdalena.min.css&#x27;) }}&quot;&gt;
+&lt;body class=&quot;mg-base&quot;&gt;
+  &lt;img src=&quot;{{ asset(&#x27;brand/logos/svg/logo-horizontal-color.svg&#x27;) }}&quot; alt=&quot;Gobernación del Magdalena&quot; height=&quot;48&quot;&gt;
+  &lt;hr class=&quot;mg-stripe&quot;&gt;</code></pre></div><h5>B. Vite (resources/css/app.css)</h5><div class="code"><div class="code__bar"><span>resources/css/app.css</span><button data-codecopy>Copiar</button></div><pre><code>@import &quot;./magdalena.css&quot;;          /* copiado de dist/css/magdalena.css */
+/* Con Tailwind v4 (Laravel 12): */
+@import &quot;tailwindcss&quot;;
+@import &quot;./magdalena.tailwind-v4.css&quot;;</code></pre></div><h5>C. Tailwind v3 (Breeze clásico)</h5><div class="code"><div class="code__bar"><span>tailwind.config.js</span><button data-codecopy>Copiar</button></div><pre><code>presets: [require(&#x27;./magdalena.tailwind.preset.cjs&#x27;)],</code></pre></div><h5>D. AdminLTE 3 (jeroennoten/laravel-adminlte)</h5><div class="code"><div class="code__bar"><span>resources/views/page.blade.php</span><button data-codecopy>Copiar</button></div><pre><code>@push(&#x27;css&#x27;)
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ asset(&#x27;brand/adminlte/magdalena-adminlte3.min.css&#x27;) }}&quot;&gt;
+@endpush</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/laravel.md">Ver en Markdown →</a></p></article><article class="int__guide" id="node"><h3>Node.js / Express / bundlers</h3><p class="pt-lead" style="margin-bottom:.5rem">Servir los estáticos, importar en Vite/Webpack, o consumir los tokens como módulo.</p><h5>Express</h5><div class="code"><div class="code__bar"><span>server.js</span><button data-codecopy>Copiar</button></div><pre><code>import express from &#x27;express&#x27;;
+const app = express();
+app.use(&#x27;/brand&#x27;, express.static(&#x27;manual_de_marca&#x27;));   // /brand/dist/css/magdalena.min.css
+app.listen(3000);</code></pre></div><h5>Vite / Webpack / esbuild</h5><div class="code"><div class="code__bar"><span>src/main.js</span><button data-codecopy>Copiar</button></div><pre><code>import &#x27;./styles/magdalena.min.css&#x27;;
+import tokens from &#x27;./magdalena-tokens.mjs&#x27;;
+console.log(tokens.colors.primary.hex);</code></pre></div><h5>Handlebars / EJS / Pug</h5><div class="code"><div class="code__bar"><span>HTML</span><button data-codecopy>Copiar</button></div><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/brand/dist/css/magdalena.min.css&quot;&gt;</code></pre></div><h5>Sass / Less</h5><div class="code"><div class="code__bar"><span>SCSS</span><button data-codecopy>Copiar</button></div><pre><code>@use &#x27;magdalena-tokens&#x27; as *;   // dist/scss/_magdalena-tokens.scss
+.hero { background: $mg-gradient-sky; @include mg-stripe(6px); }
+// Less: @import &quot;magdalena-tokens.less&quot;;  .x { color: @mg-primary-700; }</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/node.md">Ver en Markdown →</a></p></article><article class="int__guide" id="java"><h3>Java (Spring, Thymeleaf, JSF/PrimeFaces, Vaadin)</h3><p class="pt-lead" style="margin-bottom:.5rem">Los CSS son estáticos: no dependen de la tecnología de servidor.</p><h5>Spring Boot + Thymeleaf</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code># copie dist/css y assets/logos a  src/main/resources/static/brand/</code></pre></div><div class="code"><div class="code__bar"><span>templates/layout.html</span><button data-codecopy>Copiar</button></div><pre><code>&lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/brand/css/magdalena.min.css}&quot;&gt;
+&lt;img th:src=&quot;@{/brand/logos/svg/logo-horizontal-color.svg}&quot; alt=&quot;Gobernación del Magdalena&quot; height=&quot;48&quot;&gt;</code></pre></div><h5>JSF / PrimeFaces</h5><div class="code"><div class="code__bar"><span>template.xhtml</span><button data-codecopy>Copiar</button></div><pre><code>&lt;h:outputStylesheet name=&quot;brand/css/magdalena.min.css&quot; /&gt;
+&lt;!-- PrimeFaces usa variables de tema: sobrescriba el color primario en su theme.css con #0071BB --&gt;</code></pre></div><h5>Vaadin (Lumo)</h5><div class="code"><div class="code__bar"><span>frontend/themes/mi-app/styles.css</span><button data-codecopy>Copiar</button></div><pre><code>@import url(&#x27;./magdalena-tokens.css&#x27;);
+html {
+  --lumo-primary-color: #0071BB;
+  --lumo-primary-text-color: #0071BB;
+  --lumo-primary-color-50pct: rgba(0, 113, 187, .5);
+  --lumo-primary-color-10pct: rgba(0, 113, 187, .1);
+  --lumo-primary-contrast-color: #fff;
+  --lumo-font-family: &#x27;Montserrat&#x27;, sans-serif;
+}</code></pre></div><h5>ASP.NET / Razor / Blazor</h5><div class="code"><div class="code__bar"><span>_Layout.cshtml</span><button data-codecopy>Copiar</button></div><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;~/brand/css/magdalena.min.css&quot; asp-append-version=&quot;true&quot; /&gt;</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/java.md">Ver en Markdown →</a></p></article><article class="int__guide" id="wordpress"><h3>WordPress</h3><p class="pt-lead" style="margin-bottom:.5rem">Encolar el CSS y declarar la paleta en theme.json para que aparezca en el editor de bloques.</p><h5>functions.php</h5><div class="code"><div class="code__bar"><span>functions.php</span><button data-codecopy>Copiar</button></div><pre><code>add_action(&#x27;wp_enqueue_scripts&#x27;, function () {
+    wp_enqueue_style(&#x27;magdalena&#x27;, get_template_directory_uri() . &#x27;/brand/css/magdalena.min.css&#x27;, [], &#x27;1.0.0&#x27;);
+});</code></pre></div><h5>theme.json (paleta en el editor)</h5><div class="code"><div class="code__bar"><span>theme.json</span><button data-codecopy>Copiar</button></div><pre><code>{
+  &quot;version&quot;: 3,
+  &quot;settings&quot;: { &quot;color&quot;: { &quot;palette&quot;: [
+    { &quot;slug&quot;: &quot;primario&quot;, &quot;color&quot;: &quot;#0071BB&quot;, &quot;name&quot;: &quot;Azul institucional&quot; },
+    { &quot;slug&quot;: &quot;cian&quot;,     &quot;color&quot;: &quot;#00B7D9&quot;, &quot;name&quot;: &quot;Cian&quot; },
+    { &quot;slug&quot;: &quot;celeste&quot;,  &quot;color&quot;: &quot;#9FD7E5&quot;, &quot;name&quot;: &quot;Celeste&quot; },
+    { &quot;slug&quot;: &quot;rojo&quot;,     &quot;color&quot;: &quot;#F7003C&quot;, &quot;name&quot;: &quot;Rojo&quot; },
+    { &quot;slug&quot;: &quot;amarillo&quot;, &quot;color&quot;: &quot;#FEC800&quot;, &quot;name&quot;: &quot;Amarillo&quot; },
+    { &quot;slug&quot;: &quot;verde&quot;,    &quot;color&quot;: &quot;#69B75E&quot;, &quot;name&quot;: &quot;Verde&quot; }
+  ] } }
+}</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/wordpress.md">Ver en Markdown →</a></p></article><article class="int__guide" id="movil"><h3>Móvil (Android / Flutter / iOS)</h3><p class="pt-lead" style="margin-bottom:.5rem">Archivos de colores listos para pegar en el proyecto.</p><h5>Android (res/values/colors.xml)</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code>cp dist/tokens/android-colors.xml app/src/main/res/values/magdalena_colors.xml</code></pre></div><h5>Flutter</h5><div class="code"><div class="code__bar"><span>DART</span><button data-codecopy>Copiar</button></div><pre><code>// copie dist/tokens/flutter_magdalena_colors.dart a lib/theme/
+import &#x27;theme/flutter_magdalena_colors.dart&#x27;;
+ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: MagdalenaColors.primary), fontFamily: &#x27;Montserrat&#x27;);</code></pre></div><h5>iOS / otros</h5><div class="code"><div class="code__bar"><span>BASH</span><button data-codecopy>Copiar</button></div><pre><code># use dist/tokens/magdalena-tokens.json (hex, rgb, cmyk) para generar su asset catalog</code></pre></div><p style="margin:.75rem 0 0"><a href="docs/movil.md">Ver en Markdown →</a></p></article></div></div></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div></footer>
+<script src="site/portal.js"></script>
+</body>
+</html>

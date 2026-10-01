@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Angular Material  ·  extras visuales (degradados y la línea). Opt-in por clase.
+   Requiere magdalena-tokens.css o magdalena.css.
+   ========================================================================== */
+.mat-toolbar.mg-toolbar-gradient { background: var(--mg-gradient-primary-h); color: #fff; }
+.mat-toolbar.mg-toolbar-stripe { position: relative; } .mat-toolbar.mg-toolbar-stripe::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.mat-mdc-unelevated-button.mg-btn-gradient, .mat-mdc-raised-button.mg-btn-gradient { background: var(--mg-gradient-action) !important; color: #fff !important; font-weight: 700; --mdc-filled-button-container-color: transparent; --mdc-protected-button-container-color: transparent; --mdc-filled-button-label-text-color: #fff; --mdc-protected-button-label-text-color: #fff; }
+.mat-mdc-unelevated-button.mg-btn-gradient:hover, .mat-mdc-raised-button.mg-btn-gradient:hover { filter: brightness(1.08); }
+.mat-mdc-card.mg-card-stripe { position: relative; overflow: hidden; } .mat-mdc-card.mg-card-stripe::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
+.mat-mdc-card.mg-card-gradient { background: var(--mg-gradient-primary); color: #fff; --mat-card-title-text-color: #fff; --mat-card-subtitle-text-color: rgba(255,255,255,.85); }
+.mat-sidenav.mg-sidenav-deep { background: var(--mg-gradient-deep); color: #fff; --mat-sidenav-container-text-color: #fff; --mat-list-list-item-label-text-color: #fff; --mat-list-list-item-leading-icon-color: var(--mg-sky); }
+.mat-mdc-progress-bar.mg-progress-gradient .mdc-linear-progress__bar-inner { border-color: transparent; background: var(--mg-gradient-primary-h); }
+.mat-mdc-table .mat-mdc-header-row.mg-header-gradient { background: var(--mg-gradient-primary-h); } .mat-mdc-table .mat-mdc-header-row.mg-header-gradient .mat-mdc-header-cell { color: #fff; }

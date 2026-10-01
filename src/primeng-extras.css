@@ -1,0 +1,22 @@
+/* ==========================================================================
+   PrimeNG / PrimeVue / PrimeReact  ·  extras visuales (degradados y la línea)
+   Complementa al preset (magdalena-preset.*). Requiere magdalena-tokens.css o magdalena.css.
+   ========================================================================== */
+.p-button:not(.p-button-outlined):not(.p-button-text):not(.p-button-link):not(.p-button-secondary):not(.p-button-success):not(.p-button-info):not(.p-button-warn):not(.p-button-warning):not(.p-button-help):not(.p-button-danger):not(.p-button-contrast):not(:disabled) {
+  background: var(--mg-gradient-action); border-color: transparent; color: #fff; font-weight: 700; }
+.p-button:not(.p-button-outlined):not(.p-button-text):not(.p-button-link):not(.p-button-secondary):not(.p-button-success):not(.p-button-info):not(.p-button-warn):not(.p-button-warning):not(.p-button-help):not(.p-button-danger):not(.p-button-contrast):not(:disabled):hover { filter: brightness(1.08); }
+.p-button.p-button-info:not(.p-button-outlined):not(.p-button-text) { background: var(--mg-cyan); border-color: var(--mg-cyan); color: var(--mg-ink); }
+.p-button.p-button-success:not(.p-button-outlined):not(.p-button-text) { background: var(--mg-green); border-color: var(--mg-green); color: var(--mg-ink); }
+.p-button.p-button-warn:not(.p-button-outlined):not(.p-button-text), .p-button.p-button-warning:not(.p-button-outlined):not(.p-button-text) { background: var(--mg-yellow); border-color: var(--mg-yellow); color: var(--mg-ink); }
+.p-button.p-button-danger:not(.p-button-outlined):not(.p-button-text) { background: var(--mg-red); border-color: var(--mg-red); color: #fff; }
+.p-card { border-radius: var(--mg-radius-lg); overflow: hidden; position: relative; }
+.p-card.mg-card-stripe::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
+.p-datatable .p-datatable-thead > tr > th, .p-datatable-thead > tr > th { background: var(--mg-gradient-primary-h); color: #fff; border-color: transparent; }
+.p-datatable .p-datatable-thead > tr > th .p-datatable-column-title, .p-datatable .p-datatable-thead > tr > th .p-icon, .p-datatable .p-datatable-thead > tr > th .p-datatable-sort-icon { color: #fff; }
+.p-progressbar .p-progressbar-value { background: var(--mg-gradient-primary-h); }
+.p-menubar, .p-toolbar.mg-toolbar { position: relative; border-bottom: 0; }
+.p-menubar::after, .p-toolbar.mg-toolbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+.p-dialog .p-dialog-header { background: var(--mg-gradient-primary-h); color: #fff; } .p-dialog .p-dialog-title, .p-dialog .p-dialog-header-icon { color: #fff; }
+.p-tag:not(.p-tag-secondary):not(.p-tag-success):not(.p-tag-info):not(.p-tag-warn):not(.p-tag-warning):not(.p-tag-danger):not(.p-tag-contrast) { background: var(--mg-gradient-primary); }
+/* PrimeNG ≤ 17 (temas clásicos lara-light-blue): variables heredadas */
+:root { --primary-color: var(--mg-primary); --primary-color-text: #ffffff; --highlight-bg: var(--mg-primary-50); --highlight-text-color: var(--mg-primary-800); --focus-ring: 0 0 0 .2rem rgba(0, 183, 217, .35); --font-family: var(--mg-font-sans); --border-radius: var(--mg-radius-md); }
