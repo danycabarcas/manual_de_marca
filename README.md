@@ -107,3 +107,6 @@ El manual usa **Gotham** (Black/Ultra/Book) y Montserrat (tarjeta de presentaci�
 ## Accesibilidad
 
 Contraste calculado en `colores.html`: texto **blanco** sobre azul `#0071BB` (5.2:1) y rojo; texto **oscuro** (`#1D1D1B`) sobre cian, celeste, amarillo y verde. El botón principal usa el azul `#0071BB` con un leve brillo tonal (`--mg-gradient-steel`): contraste 5:1 con texto blanco.
+
+---
+<sub>Dev. Ing. Daniel Cabarcas · 2026</sub>

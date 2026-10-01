@@ -114,3 +114,5 @@ code.inline { font-family: var(--mg-font-mono); background: var(--mg-surface); p
 .k h3 { margin: .9rem 0 .3rem; font-size: 1.05rem; } .k p { margin: 0; color: var(--mg-gray); font-size: .9rem; } .k .ic { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: var(--mg-radius-md); background: var(--mg-primary-50); color: var(--mg-primary); } .k .ic svg { width: 1.3rem; height: 1.3rem; }
 .toast-ok {  position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--mg-ink); color: #fff; padding: .6rem 1.2rem; border-radius: 999px; font-weight: 700; font-size: .85rem; opacity: 0; transition: .25s; z-index: 99; pointer-events: none; }
 .toast-ok.show { opacity: 1; transform: translateX(-50%); }
+
+.pt-credit { max-width: 1280px; margin: 1.5rem auto 0; padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.08); text-align: center; font-size: .68rem; letter-spacing: .08em; color: rgba(255,255,255,.38); }

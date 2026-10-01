@@ -8,7 +8,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
 VERSION = '1.0.0'
 BANNER = (f'/*! Gobernación del Magdalena · Identidad Visual 2026 · v{VERSION}\n'
-          f'   Generado desde tools/tokens.py — NO editar a mano. */\n')
+          f'   Generado desde tools/tokens.py — NO editar a mano.\n'
+          f'   Dev. Ing. Daniel Cabarcas · 2026 */\n')
 
 
 def w(path, content):

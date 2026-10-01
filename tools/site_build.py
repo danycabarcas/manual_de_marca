@@ -42,7 +42,9 @@ def page(root, fname, title, lead, body, hero=False, active=None):
   <img src="{up}assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
   <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
   <div><a href="{up}dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
-</div></footer>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
 <script src="{up}site/portal.js"></script>
 </body>
 </html>
