@@ -100,18 +100,24 @@
   --color-mg-purple-900: #210947;
   --color-mg-purple-950: #15062D;
   --color-mg-purple: #5618BA;
-  --color-mg-gray-50: #FAFAFA;
-  --color-mg-gray-100: #F6F5F5;
-  --color-mg-gray-200: #ECEBEB;
-  --color-mg-gray-300: #DDDCDC;
-  --color-mg-gray-400: #B9B8B8;
-  --color-mg-gray-500: #8C8B8B;
-  --color-mg-gray-600: #606060;
-  --color-mg-gray-700: #4A4A4A;
-  --color-mg-gray-800: #333332;
-  --color-mg-gray-900: #1D1D1B;
-  --color-mg-gray-950: #0F0F0E;
+  --color-mg-gray-50: #F8FAFC;
+  --color-mg-gray-100: #F1F4F8;
+  --color-mg-gray-200: #E3E8EF;
+  --color-mg-gray-300: #CBD2DC;
+  --color-mg-gray-400: #97A1B0;
+  --color-mg-gray-500: #6B7482;
+  --color-mg-gray-600: #4F5866;
+  --color-mg-gray-700: #3A424F;
+  --color-mg-gray-800: #252B36;
+  --color-mg-gray-900: #161A22;
+  --color-mg-gray-950: #0C0F14;
   --color-mg-gray: #606060;
+  --color-mg-navy-600: #12395C;
+  --color-mg-navy-700: #0E2D49;
+  --color-mg-navy-800: #0B2239;
+  --color-mg-navy-900: #081A2C;
+  --color-mg-navy-950: #051220;
+  --color-mg-navy: #081A2C;
   --color-mg-ink: #1D1D1B;
   --color-mg-surface: #F6F5F5;
   --color-primary-50: #EBF4FA;
@@ -129,15 +135,15 @@
   --color-accent: #00B7D9;
   --font-sans: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --font-display: 'Montserrat', 'Gotham', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  --radius-mg-sm: 6px;
-  --radius-mg-md: 10px;
-  --radius-mg-lg: 16px;
-  --radius-mg-xl: 24px;
+  --radius-mg-sm: 4px;
+  --radius-mg-md: 8px;
+  --radius-mg-lg: 12px;
+  --radius-mg-xl: 16px;
   --radius-mg-pill: 999px;
-  --shadow-mg-sm: 0 1px 2px rgba(0,56,94,.08), 0 1px 3px rgba(0,56,94,.06);
-  --shadow-mg-md: 0 4px 10px rgba(0,56,94,.10), 0 2px 4px rgba(0,56,94,.06);
-  --shadow-mg-lg: 0 14px 30px rgba(0,56,94,.14), 0 4px 10px rgba(0,56,94,.08);
-  --shadow-mg-glow: 0 8px 24px rgba(0,183,217,.35);
+  --shadow-mg-sm: 0 1px 2px rgba(8,26,44,.06);
+  --shadow-mg-md: 0 2px 6px rgba(8,26,44,.08), 0 1px 2px rgba(8,26,44,.05);
+  --shadow-mg-lg: 0 12px 28px rgba(8,26,44,.14), 0 2px 6px rgba(8,26,44,.06);
+  --shadow-mg-glow: 0 0 0 3px rgba(0,113,187,.22);
 }
 @utility bg-mg-grad-primary { background-image: linear-gradient(135deg, #0071BB 0%, #00B7D9 100%); }
 @utility bg-mg-grad-primary-h { background-image: linear-gradient(90deg, #0071BB 0%, #00B7D9 100%); }
@@ -146,9 +152,11 @@
 @utility bg-mg-grad-sky-h { background-image: linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%); }
 @utility bg-mg-grad-aqua { background-image: linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%); }
 @utility bg-mg-grad-mist { background-image: linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%); }
-@utility bg-mg-grad-deep { background-image: linear-gradient(160deg, #002B47 0%, #004F83 55%, #0071BB 100%); }
-@utility bg-mg-grad-action { background-image: linear-gradient(135deg, #0071BB 0%, #00A1CF 100%); }
-@utility bg-mg-grad-action-aa { background-image: linear-gradient(135deg, #0071BB 0%, #007CC0 100%); }
+@utility bg-mg-grad-deep { background-image: linear-gradient(180deg, #081A2C 0%, #051220 100%); }
+@utility bg-mg-grad-night { background-image: linear-gradient(135deg, #0B2239 0%, #051220 100%); }
+@utility bg-mg-grad-steel { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
+@utility bg-mg-grad-action { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
+@utility bg-mg-grad-action-aa { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
 @utility bg-mg-grad-tropical { background-image: linear-gradient(135deg, #00B7D9 0%, #69B75E 100%); }
 @utility bg-mg-grad-sun { background-image: linear-gradient(135deg, #FEC800 0%, #DAAC00 100%); }
 @utility bg-mg-grad-heat { background-image: linear-gradient(135deg, #F7003C 0%, #AD002A 100%); }

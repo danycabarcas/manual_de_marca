@@ -1,6 +1,6 @@
 # HTML / CSS puro
 
-Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, degradados, la línea y componentes.
+Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, estilo sobrio (superficies blancas y azul-noche), cristal, la línea y componentes.
 
 ## 1. Enlazar el CSS (una sola URL)
 
@@ -18,16 +18,16 @@ Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un 
 
 ```html
 <body class="mg-base">
-  <header class="mg-navbar">           <!-- navbar con la línea de colores abajo -->
+  <header class="mg-navbar">           <!-- barra superior de cristal -->
     <a class="mg-navbar__brand" href="/"><img src="https://TU-HOST/manual_de_marca/assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
   </header>
 
-  <section class="mg-hero">            <!-- degradado azul → cian → celeste -->
+  <section class="mg-hero">            <!-- azul-noche con brillo cian discreto -->
     <h1>Servicios digitales</h1>
-    <a class="mg-btn mg-btn--accent" href="#">Ingresar</a>
+    <a class="mg-btn" href="#">Ingresar</a>
   </section>
 
-  <div class="mg-card mg-card--stripe-top"><div class="mg-card__body">Tarjeta con la línea</div></div>
+  <div class="mg-card mg-card--accent-top"><div class="mg-card__body">Tarjeta con filete azul</div></div>
   <hr class="mg-stripe">               <!-- La línea multicolor del logotipo -->
 </body>
 ```

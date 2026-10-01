@@ -53,8 +53,12 @@ def tokens_css(root_sel=':root'):
     for k, g in GRADIENTS.items():
         L.append(f'  --mg-gradient-{k}: {g};')
     L.append('  /* Semánticos de interfaz */')
-    L += ['  --mg-bg: #ffffff;', '  --mg-surface-card: #ffffff;', f'  --mg-text: {NEUTRALS["ink"]};',
-          f'  --mg-heading: {NEUTRALS["gray"]};', f'  --mg-border: {NEUTRAL_UI[200]};', f'  --mg-border-strong: {NEUTRAL_UI[300]};']
+    L += ['  --mg-bg: #ffffff;', f'  --mg-bg-app: {NEUTRAL_UI[100]};', '  --mg-surface-card: #ffffff;', f'  --mg-text: {NEUTRAL_UI[800]};',
+          f'  --mg-text-muted: {NEUTRAL_UI[500]};', f'  --mg-heading: {NEUTRAL_UI[900]};', f'  --mg-border: {NEUTRAL_UI[200]};', f'  --mg-border-strong: {NEUTRAL_UI[300]};']
+    L += ['  /* Cristal (glassmorphism sobrio) */', '  --mg-glass-bg: rgba(255, 255, 255, .72);', '  --mg-glass-bg-dark: rgba(8, 26, 44, .62);',
+          '  --mg-glass-border: rgba(255, 255, 255, .45);', '  --mg-glass-border-dark: rgba(255, 255, 255, .10);', '  --mg-glass-blur: blur(14px) saturate(160%);',
+          '  /* Sidebar oscuro */', '  --mg-sidebar-bg: var(--mg-gradient-deep);', '  --mg-sidebar-text: rgba(255, 255, 255, .68);', '  --mg-sidebar-text-active: #ffffff;',
+          '  --mg-sidebar-hover: rgba(255, 255, 255, .06);', '  --mg-sidebar-active: rgba(0, 183, 217, .14);', '  --mg-sidebar-accent: var(--mg-cyan);']
     for k, v in SEMANTIC.items():
         L.append(f'  --mg-color-{k}: {v};')
         L.append(f'  --mg-on-{k}: {on_color(v)};')
@@ -143,10 +147,10 @@ def build_scss_less():
          '$primary: $mg-primary;', '$secondary: $mg-gray;', '$success: $mg-green;', '$info: $mg-cyan;',
          '$warning: $mg-yellow;', '$danger: $mg-red;', '$light: $mg-surface;', '$dark: $mg-ink;',
          '$font-family-sans-serif: $mg-font-sans;', '$headings-font-family: $mg-font-display;', '$headings-font-weight: 800;',
-         '$headings-color: $mg-gray;', '$body-color: $mg-ink;', '$link-color: $mg-primary;',
-         '$border-radius: 10px;', '$border-radius-sm: 6px;', '$border-radius-lg: 16px;', '$border-radius-pill: 999px;',
+         '$headings-color: $mg-gray-900;', '$body-color: $mg-gray-800;', '$link-color: $mg-primary;',
+         '$border-radius: 8px;', '$border-radius-sm: 4px;', '$border-radius-lg: 12px;', '$border-radius-xl: 16px;', '$border-radius-pill: 999px;',
          '$min-contrast-ratio: 3;  // permite texto blanco sobre azul/rojo de marca; negro sobre cian/verde/amarillo se calcula solo',
-         '$btn-font-weight: 700;', '$enable-gradients: false;']
+         '$btn-font-weight: 600;', '$enable-gradients: false;']
     w('bootstrap/_magdalena-bootstrap-variables.scss', '\n'.join(B) + '\n')
 
 
@@ -208,21 +212,20 @@ export const magdalenaTheme = createTheme({{
     text:      {{ primary: m.neutrals.ink, secondary: m.neutrals.gray }},
     background: {{ default: m.neutrals.surface, paper: '#fff' }},
   }},
-  shape: {{ borderRadius: 10 }},
+  shape: {{ borderRadius: 8 }},
   typography: {{
     fontFamily: m.fonts.sans,
-    h1: {{ fontWeight: 900 }}, h2: {{ fontWeight: 800 }}, h3: {{ fontWeight: 800 }}, h4: {{ fontWeight: 800 }}, button: {{ fontWeight: 700, textTransform: 'none' }},
+    h1: {{ fontWeight: 800 }}, h2: {{ fontWeight: 700 }}, h3: {{ fontWeight: 700 }}, h4: {{ fontWeight: 700 }}, button: {{ fontWeight: 600, textTransform: 'none' }},
   }},
   components: {{
     MuiButton: {{
       styleOverrides: {{
-        root: {{ borderRadius: 999 }},
+        root: {{ borderRadius: 8 }},
         containedPrimary: {{ backgroundImage: m.gradients.action, '&:hover': {{ backgroundImage: m.gradients.action, filter: 'brightness(1.08)' }} }},
       }},
     }},
-    MuiAppBar: {{ styleOverrides: {{ colorPrimary: {{ backgroundImage: m.gradients['primary-h'] }} }} }},
+    MuiAppBar: {{ styleOverrides: {{ colorPrimary: {{ backgroundImage: m.gradients.night }} }} }},
     MuiCard: {{ styleOverrides: {{ root: {{ borderRadius: 16 }} }} }},
-    MuiLinearProgress: {{ styleOverrides: {{ barColorPrimary: {{ backgroundImage: m.gradients['primary-h'] }} }} }},
   }},
 }});
 export default magdalenaTheme;
@@ -248,8 +251,8 @@ export const magdalenaVuetifyTheme = {{
 export default createVuetify({{
   theme: {{ defaultTheme: 'magdalena', themes: {{ magdalena: magdalenaVuetifyTheme }} }},
   defaults: {{
-    VBtn: {{ rounded: 'pill', class: 'text-none font-weight-bold' }},
-    VCard: {{ rounded: 'lg' }},
+    VBtn: {{ rounded: 'lg', class: 'text-none font-weight-semibold' }},
+    VCard: {{ rounded: 'lg', elevation: 1 }},
   }},
 }});
 """
@@ -260,10 +263,10 @@ export default createVuetify({{
 # ------------------------------------------------------------------ Tailwind
 def build_tailwind():
     colors = {}
-    for name in ['primary', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple', 'gray']:
+    for name in ['primary', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple', 'gray', 'navy']:
         sc = SCALES[name]
         colors[f'mg-{name}'] = {str(s): h for s, h in sc.items()}
-        colors[f'mg-{name}']['DEFAULT'] = sc[500] if name != 'gray' else NEUTRALS['gray']
+        colors[f'mg-{name}']['DEFAULT'] = NEUTRALS['gray'] if name == 'gray' else (sc[900] if name == 'navy' else sc[500])
     colors['mg-ink'] = NEUTRALS['ink']
     colors['mg-surface'] = NEUTRALS['surface']
     # alias semánticos (shadcn/ui, plantillas Tailwind UI, etc.)
@@ -292,7 +295,7 @@ module.exports = {{
         '.mg-text-gradient': {{ backgroundImage: {json.dumps(GRADIENTS['primary'])}, '-webkit-background-clip': 'text', backgroundClip: 'text', color: 'transparent' }},
       }});
       addComponents({{
-        '.mg-btn': {{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', padding: '.7rem 1.4rem', borderRadius: '999px', fontWeight: '700', color: '#fff', backgroundImage: {json.dumps(GRADIENTS['action'])}, transition: 'filter .2s, transform .15s', '&:hover': {{ filter: 'brightness(1.08)', transform: 'translateY(-1px)' }} }},
+        '.mg-btn': {{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', padding: '.7rem 1.4rem', borderRadius: '8px', fontWeight: '600', color: '#fff', backgroundImage: {json.dumps(GRADIENTS['action'])}, transition: 'filter .2s', '&:hover': {{ filter: 'brightness(.94)' }} }},
       }});
     }}),
   ],
@@ -302,10 +305,10 @@ module.exports = {{
     # v4: @theme
     T = ['/* Tailwind CSS v4 — en tu CSS principal:\n   @import "tailwindcss";\n   @import "./magdalena.tailwind-v4.css";\n   Clases: bg-mg-primary-600 text-mg-cyan-700 bg-mg-grad-primary bg-mg-grad-stripe shadow-mg-md rounded-mg-lg */',
          '@import url("' + GOOGLE_FONTS + '");', '@theme {']
-    for name in ['primary', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple', 'gray']:
+    for name in ['primary', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple', 'gray', 'navy']:
         for s, h in SCALES[name].items():
             T.append(f'  --color-mg-{name}-{s}: {h};')
-        T.append(f'  --color-mg-{name}: {SCALES[name][500] if name != "gray" else NEUTRALS["gray"]};')
+        T.append(f'  --color-mg-{name}: ' + (NEUTRALS['gray'] if name == 'gray' else (SCALES[name][900] if name == 'navy' else SCALES[name][500])) + ';')
     T.append(f'  --color-mg-ink: {NEUTRALS["ink"]};\n  --color-mg-surface: {NEUTRALS["surface"]};')
     for s, h in SCALES['primary'].items():
         T.append(f'  --color-primary-{s}: {h};')
@@ -499,7 +502,7 @@ export const MagdalenaPreset = definePreset(Aura, {{
     }},
   }},
   components: {{
-    button: {{ root: {{ borderRadius: '{RADIUS['pill']}', label: {{ fontWeight: '700' }} }} }},
+    button: {{ root: {{ borderRadius: '{RADIUS['md']}', label: {{ fontWeight: '600' }} }} }},
     card: {{ root: {{ borderRadius: '{RADIUS['lg']}' }} }},
     dialog: {{ root: {{ borderRadius: '{RADIUS['lg']}' }} }},
   }},

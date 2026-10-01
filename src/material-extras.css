@@ -1,13 +1,16 @@
 /* ==========================================================================
-   Angular Material  ·  extras visuales (degradados y la línea). Opt-in por clase.
+   Angular Material  ·  extras visuales (estilo sobrio). Opt-in por clase.
    Requiere magdalena-tokens.css o magdalena.css.
    ========================================================================== */
-.mat-toolbar.mg-toolbar-gradient { background: var(--mg-gradient-primary-h); color: #fff; }
-.mat-toolbar.mg-toolbar-stripe { position: relative; } .mat-toolbar.mg-toolbar-stripe::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.mat-mdc-unelevated-button.mg-btn-gradient, .mat-mdc-raised-button.mg-btn-gradient { background: var(--mg-gradient-action) !important; color: #fff !important; font-weight: 700; --mdc-filled-button-container-color: transparent; --mdc-protected-button-container-color: transparent; --mdc-filled-button-label-text-color: #fff; --mdc-protected-button-label-text-color: #fff; }
-.mat-mdc-unelevated-button.mg-btn-gradient:hover, .mat-mdc-raised-button.mg-btn-gradient:hover { filter: brightness(1.08); }
-.mat-mdc-card.mg-card-stripe { position: relative; overflow: hidden; } .mat-mdc-card.mg-card-stripe::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
-.mat-mdc-card.mg-card-gradient { background: var(--mg-gradient-primary); color: #fff; --mat-card-title-text-color: #fff; --mat-card-subtitle-text-color: rgba(255,255,255,.85); }
-.mat-sidenav.mg-sidenav-deep { background: var(--mg-gradient-deep); color: #fff; --mat-sidenav-container-text-color: #fff; --mat-list-list-item-label-text-color: #fff; --mat-list-list-item-leading-icon-color: var(--mg-sky); }
-.mat-mdc-progress-bar.mg-progress-gradient .mdc-linear-progress__bar-inner { border-color: transparent; background: var(--mg-gradient-primary-h); }
-.mat-mdc-table .mat-mdc-header-row.mg-header-gradient { background: var(--mg-gradient-primary-h); } .mat-mdc-table .mat-mdc-header-row.mg-header-gradient .mat-mdc-header-cell { color: #fff; }
+.mat-toolbar.mg-toolbar-gradient, .mat-toolbar.mg-toolbar-dark { background: var(--mg-gradient-night); color: #fff; }
+.mat-toolbar.mg-toolbar-glass { background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); color: var(--mg-heading); }
+.mat-toolbar.mg-toolbar-stripe { position: relative; } .mat-toolbar.mg-toolbar-stripe::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--mg-gradient-stripe); }
+.mat-mdc-unelevated-button.mg-btn-gradient, .mat-mdc-raised-button.mg-btn-gradient { background: var(--mg-gradient-steel) !important; color: #fff !important; font-weight: 600; --mdc-filled-button-container-color: transparent; --mdc-protected-button-container-color: transparent; --mdc-filled-button-label-text-color: #fff; --mdc-protected-button-label-text-color: #fff; }
+.mat-mdc-unelevated-button.mg-btn-gradient:hover, .mat-mdc-raised-button.mg-btn-gradient:hover { filter: brightness(.94); }
+.mat-mdc-card { border: 1px solid var(--mg-border); box-shadow: var(--mg-shadow-sm); }
+.mat-mdc-card.mg-card-stripe { position: relative; overflow: hidden; } .mat-mdc-card.mg-card-stripe::before { content: ""; display: block; height: 3px; background: var(--mg-gradient-stripe); }
+.mat-mdc-card.mg-card-gradient, .mat-mdc-card.mg-card-dark { background: var(--mg-gradient-night); color: #fff; --mat-card-title-text-color: #fff; --mat-card-subtitle-text-color: rgba(255,255,255,.7); }
+.mat-sidenav.mg-sidenav-deep { background: var(--mg-sidebar-bg); color: var(--mg-sidebar-text); border-right: 0; --mat-sidenav-container-text-color: var(--mg-sidebar-text); --mat-list-list-item-label-text-color: var(--mg-sidebar-text); --mat-list-list-item-leading-icon-color: var(--mg-sidebar-text); --mat-list-list-item-hover-label-text-color: #fff; --mat-list-list-item-focus-label-text-color: #fff; }
+.mat-sidenav.mg-sidenav-deep .mdc-list-item--activated { background: var(--mg-sidebar-active); }
+.mat-mdc-progress-bar.mg-progress-gradient .mdc-linear-progress__bar-inner { border-color: var(--mg-primary); }
+.mat-mdc-table .mat-mdc-header-row.mg-header-gradient, .mat-mdc-table .mat-mdc-header-row.mg-header-light { background: var(--mg-gray-50); } .mat-mdc-table .mat-mdc-header-row.mg-header-gradient .mat-mdc-header-cell, .mat-mdc-table .mat-mdc-header-row.mg-header-light .mat-mdc-header-cell { color: var(--mg-gray-600); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }

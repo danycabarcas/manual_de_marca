@@ -12,8 +12,8 @@ Para proyectos AdminLTE 3.x (incluye los paquetes Laravel/PHP basados en AdminLT
 ## 2. Clases AdminLTE que quedan con la marca
 
 ```html
-<aside class="main-sidebar sidebar-dark-primary elevation-4">...</aside>   <!-- degradado azul profundo -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">...</nav> <!-- línea multicolor abajo -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">...</aside>   <!-- azul-noche oscuro -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">...</nav> <!-- cristal claro -->
 <div class="card card-primary">...</div>
 <div class="small-box bg-info">...</div>
 <button class="btn btn-primary">Guardar</button>

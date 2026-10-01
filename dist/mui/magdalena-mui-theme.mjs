@@ -13,21 +13,20 @@ export const magdalenaTheme = createTheme({
     text:      { primary: m.neutrals.ink, secondary: m.neutrals.gray },
     background: { default: m.neutrals.surface, paper: '#fff' },
   },
-  shape: { borderRadius: 10 },
+  shape: { borderRadius: 8 },
   typography: {
     fontFamily: m.fonts.sans,
-    h1: { fontWeight: 900 }, h2: { fontWeight: 800 }, h3: { fontWeight: 800 }, h4: { fontWeight: 800 }, button: { fontWeight: 700, textTransform: 'none' },
+    h1: { fontWeight: 800 }, h2: { fontWeight: 700 }, h3: { fontWeight: 700 }, h4: { fontWeight: 700 }, button: { fontWeight: 600, textTransform: 'none' },
   },
   components: {
     MuiButton: {
       styleOverrides: {
-        root: { borderRadius: 999 },
+        root: { borderRadius: 8 },
         containedPrimary: { backgroundImage: m.gradients.action, '&:hover': { backgroundImage: m.gradients.action, filter: 'brightness(1.08)' } },
       },
     },
-    MuiAppBar: { styleOverrides: { colorPrimary: { backgroundImage: m.gradients['primary-h'] } } },
+    MuiAppBar: { styleOverrides: { colorPrimary: { backgroundImage: m.gradients.night } } },
     MuiCard: { styleOverrides: { root: { borderRadius: 16 } } },
-    MuiLinearProgress: { styleOverrides: { barColorPrimary: { backgroundImage: m.gradients['primary-h'] } } },
   },
 });
 export default magdalenaTheme;

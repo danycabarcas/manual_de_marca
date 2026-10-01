@@ -8,7 +8,7 @@ Kit para que el equipo de desarrollo aplique la identidad visual del *Manual de 
 ```html
 <link rel="stylesheet" href="https://TU-HOST/manual_de_marca/dist/css/magdalena.min.css">
 <body class="mg-base">
-  <section class="mg-hero"><h1>Hola Magdalena</h1><button class="mg-btn mg-btn--accent">Ingresar</button></section>
+  <section class="mg-hero"><h1>Hola Magdalena</h1><button class="mg-btn">Ingresar</button></section>
   <hr class="mg-stripe">
 </body>
 ```
@@ -26,7 +26,13 @@ Kit para que el equipo de desarrollo aplique la identidad visual del *Manual de 
 | `--mg-olive` | `#A28034` | Acento |
 | `--mg-purple` | `#5618BA` | Acento (extremos de la franja) |
 
-La imagen web se apoya en el **degradado de la gama azul** (`--mg-gradient-primary`: 0071BB → 00B7D9, `--mg-gradient-sky`: 0071BB → 00B7D9 → 9FD7E5). Los demás colores se usan en objetos y en **la línea** (`--mg-gradient-stripe`, 9 segmentos: violeta · ocre · amarillo · rojo · azul · cian · celeste · verde · violeta). Cada color tiene escala 50–950 (`--mg-primary-50 … --mg-primary-950`).
+## Estilo: sobrio y corporativo
+
+Por defecto las interfaces usan **superficies blancas y azul-noche** (`--mg-navy-*`), gris azulado para bordes y fondos (`--mg-gray-*`), efecto **cristal** sutil (`.mg-glass`) y **un solo color dominante: el azul institucional**. Los demás colores quedan para estados (verde/amarillo/rojo en tonos suaves) y para **la línea multicolor**, que se usa como firma fina de 3 px (pie de página, portada). Proporción orientativa por pantalla: 70% neutros · 15% azul-noche · 10% azul · 5% acentos.
+
+Si un proyecto necesita el look vivo (portadas, micrositios de campaña), los degradados `--mg-gradient-primary` y `--mg-gradient-sky` y las utilidades `mg-bg-*` siguen disponibles.
+
+La imagen web de portadas se apoya en el **degradado de la gama azul** (`--mg-gradient-primary`: 0071BB → 00B7D9, `--mg-gradient-sky`: 0071BB → 00B7D9 → 9FD7E5). Los demás colores se usan en objetos y en **la línea** (`--mg-gradient-stripe`, 9 segmentos: violeta · ocre · amarillo · rojo · azul · cian · celeste · verde · violeta). Cada color tiene escala 50–950 (`--mg-primary-50 … --mg-primary-950`).
 
 ## Estructura
 
@@ -100,4 +106,4 @@ El manual usa **Gotham** (Black/Ultra/Book) y Montserrat (tarjeta de presentaci�
 
 ## Accesibilidad
 
-Contraste calculado en `colores.html`: texto **blanco** sobre azul `#0071BB` (5.2:1) y rojo; texto **oscuro** (`#1D1D1B`) sobre cian, celeste, amarillo y verde. El degradado `action` de los botones se corta donde el contraste con texto blanco sigue ≥ 3:1 (usar texto en negrita); `--mg-gradient-action-aa` llega a 4.5:1.
+Contraste calculado en `colores.html`: texto **blanco** sobre azul `#0071BB` (5.2:1) y rojo; texto **oscuro** (`#1D1D1B`) sobre cian, celeste, amarillo y verde. El botón principal usa el azul `#0071BB` con un leve brillo tonal (`--mg-gradient-steel`): contraste 5:1 con texto blanco.

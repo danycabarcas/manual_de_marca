@@ -2,8 +2,8 @@
 
 Reemplace `https://TU-HOST/manual_de_marca` por la URL donde publique este repositorio.
 
-- [HTML / CSS puro](html.md) — Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, degradados, la línea y componentes.
-- [AdminLTE 4 (Bootstrap 5)](adminlte4.md) — Reemplaza el azul de Bootstrap por la marca, sidebar con degradado, línea multicolor en cabecera/pie, small-boxes con degradados.
+- [HTML / CSS puro](html.md) — Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, estilo sobrio (superficies blancas y azul-noche), cristal, la línea y componentes.
+- [AdminLTE 4 (Bootstrap 5)](adminlte4.md) — Reemplaza el azul de Bootstrap por la marca: sidebar azul-noche, cabecera de cristal, tarjetas blancas con filete, indicadores (small-box) limpios con acento de color.
 - [AdminLTE 3 (Bootstrap 4)](adminlte3.md) — Para proyectos AdminLTE 3.x (incluye los paquetes Laravel/PHP basados en AdminLTE 3, como jeroennoten/laravel-adminlte).
 - [Bootstrap 5 y 4](bootstrap.md) — Dos caminos: CSS precompilado (rápido) o Sass (recomendado si compilan Bootstrap).
 - [Tailwind CSS (v3 y v4)](tailwind.md) — Colores `mg-*` con escala 50–950, alias `primary`, degradados como utilidades `bg-mg-grad-*`, sombras y radios de marca.

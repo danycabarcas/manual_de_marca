@@ -71,9 +71,12 @@ def on_color(h):
 SCALES = {name: scale(v[0]) for name, v in BRAND.items()}
 SCALES['gray'] = scale(NEUTRALS['gray'])
 # Escala neutra más clara/oscura para superficies y bordes de UI
-NEUTRAL_UI = {50: '#FAFAFA', 100: '#F6F5F5', 200: '#ECEBEB', 300: '#DDDCDC', 400: '#B9B8B8', 500: '#8C8B8B',
-              600: '#606060', 700: '#4A4A4A', 800: '#333332', 900: '#1D1D1B', 950: '#0F0F0E'}
+# Neutros de interfaz (gris azulado, más serio que el gris cálido) y azul-noche para superficies oscuras
+NEUTRAL_UI = {50: '#F8FAFC', 100: '#F1F4F8', 200: '#E3E8EF', 300: '#CBD2DC', 400: '#97A1B0', 500: '#6B7482',
+              600: '#4F5866', 700: '#3A424F', 800: '#252B36', 900: '#161A22', 950: '#0C0F14'}
+NAVY = {600: '#12395C', 700: '#0E2D49', 800: '#0B2239', 900: '#081A2C', 950: '#051220'}
 SCALES['gray'] = NEUTRAL_UI
+SCALES['navy'] = NAVY
 
 
 def _action_end(min_ratio=3.0):
@@ -113,10 +116,14 @@ GRADIENTS = {
     'sky-h':        f'linear-gradient(90deg, {P} 0%, {C} 55%, {S} 100%)',
     'aqua':         f'linear-gradient(135deg, {C} 0%, {S} 100%)',
     'mist':         f'linear-gradient(180deg, {S} 0%, #EAF6FA 100%)',
-    'deep':         f'linear-gradient(160deg, {SCALES["primary"][900]} 0%, {SCALES["primary"][700]} 55%, {P} 100%)',
-    # Para botones con texto blanco: se corta donde el contraste sigue siendo >= 3:1 (usar texto en negrita)
-    'action':       f'linear-gradient(135deg, {P} 0%, {ACTION_END} 100%)',
-    'action-aa':    f'linear-gradient(135deg, {P} 0%, {ACTION_END_AA} 100%)',
+    # Superficies oscuras sobrias (sidebar, hero, pie): azul-noche, sin colores vivos
+    'deep':         f'linear-gradient(180deg, {NAVY[900]} 0%, {NAVY[950]} 100%)',
+    'night':        f'linear-gradient(135deg, {NAVY[800]} 0%, {NAVY[950]} 100%)',
+    # Degradado tonal (mismo azul, solo cambia el brillo): botones y acentos discretos
+    'steel':        f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
+    # Botones: tonal (azul con un leve brillo vertical). Texto blanco = contraste 5:1
+    'action':       f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
+    'action-aa':    f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
     # Acentos (usar con moderación, solo en objetos)
     'tropical':     f'linear-gradient(135deg, {C} 0%, {BRAND["green"][0]} 100%)',
     'sun':          f'linear-gradient(135deg, {BRAND["yellow"][0]} 0%, {SCALES["yellow"][600]} 100%)',
@@ -136,12 +143,12 @@ FONTS = {
 }
 GOOGLE_FONTS = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap'
 
-RADIUS = {'sm': '6px', 'md': '10px', 'lg': '16px', 'xl': '24px', 'pill': '999px'}
+RADIUS = {'sm': '4px', 'md': '8px', 'lg': '12px', 'xl': '16px', 'pill': '999px'}
 SHADOW = {
-    'sm': '0 1px 2px rgba(0,56,94,.08), 0 1px 3px rgba(0,56,94,.06)',
-    'md': '0 4px 10px rgba(0,56,94,.10), 0 2px 4px rgba(0,56,94,.06)',
-    'lg': '0 14px 30px rgba(0,56,94,.14), 0 4px 10px rgba(0,56,94,.08)',
-    'glow': '0 8px 24px rgba(0,183,217,.35)',
+    'sm': '0 1px 2px rgba(8,26,44,.06)',
+    'md': '0 2px 6px rgba(8,26,44,.08), 0 1px 2px rgba(8,26,44,.05)',
+    'lg': '0 12px 28px rgba(8,26,44,.14), 0 2px 6px rgba(8,26,44,.06)',
+    'glow': '0 0 0 3px rgba(0,113,187,.22)',
 }
 
 # Colores semánticos de UI

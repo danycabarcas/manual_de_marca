@@ -80,7 +80,7 @@ def page_colors(root):
     <span><b>Tailwind</b> <code>bg-mg-{k}</code></span>
   </div></div>'''
     neu = ''
-    for k, v in (('Negro de marca (ink)', NEUTRALS['ink']), ('Gris institucional (gray)', NEUTRALS['gray']), ('Gris de fondo (surface)', NEUTRALS['surface'])):
+    for k, v in (('Negro de marca (ink)', NEUTRALS['ink']), ('Gris institucional (gray)', NEUTRALS['gray']), ('Gris de fondo (surface)', NEUTRALS['surface']), ('Azul-noche (navy-900)', NAVY[900]), ('Fondo de app (gray-100)', NEUTRAL_UI[100])):
         kk = k.split('(')[1][:-1]
         neu += f'''<div class="sw"><button class="sw__color" style="background:{v};color:{on_color(v)}" data-copy="{v}">{k.split(" (")[0]}</button><div class="sw__body"><span><b>HEX</b> <code>{v}</code></span><span><b>CSS</b> <code>var(--mg-{kk})</code></span></div></div>'''
 
@@ -94,13 +94,14 @@ def page_colors(root):
 <span><code data-copy="{E(g)}" style="cursor:pointer">{E(g)}</code></span></div></div>'''
 
     blue = ''.join([
-        grad_card('primary', 'primary', 'La línea de la marca: azul → cian a 135°. Heros, tarjetas, cabeceras, KPIs.'),
-        grad_card('sky', 'sky', 'Gama completa de los tres azules (azul → cian → celeste). Banners y portadas.'),
-        grad_card('aqua', 'aqua', 'Cian → celeste. Zonas claras, tarjetas secundarias (texto oscuro).', True),
+        grad_card('deep', 'deep', 'Azul-noche vertical. <b>Sidebar</b> y menús laterales (superficie oscura sobria).'),
+        grad_card('night', 'night', 'Azul-noche diagonal. <b>Hero</b>, cabeceras de página, tarjetas y pies oscuros.'),
+        grad_card('steel', 'steel', 'Tonal: el mismo azul con un leve brillo vertical. <b>Botón principal</b> (contraste 5:1 con texto blanco).'),
+        grad_card('primary', 'primary', 'La línea de la marca: azul → cian a 135°. Uso <b>puntual</b>: portadas, ilustraciones, acentos finos.'),
+        grad_card('sky', 'sky', 'Los tres azules (azul → cian → celeste). Banners y portadas; evitar en pantallas de trabajo.'),
+        grad_card('aqua', 'aqua', 'Cian → celeste. Zonas claras de apoyo (texto oscuro).', True),
         grad_card('mist', 'mist', 'Celeste muy suave. Fondos de sección y de formularios.', True),
-        grad_card('deep', 'deep', 'Azul profundo derivado del primario. Sidebars y pies de página.'),
-        grad_card('action', 'action', f'Botones con texto blanco: se corta en {ACTION_END} para mantener contraste ≥ 3:1 (usar texto en negrita).'),
-        grad_card('primary-h', 'primary-h', 'Versión horizontal (90°): barras de navegación, cabeceras de tabla, progreso.'),
+        grad_card('primary-h', 'primary-h', 'Horizontal (90°): filetes y barras finas de acento.'),
     ])
     accents = ''.join([
         grad_card('tropical', 'tropical', 'Cian → verde. Estados positivos, turismo y naturaleza.', True),
@@ -124,9 +125,15 @@ def page_colors(root):
 <div class="mg-stripe-top" style="--mg-stripe-h:10px">…</div>   <!-- cualquier contenedor -->''')
 
     scales = '<div class="scale scale--head"><span></span>' + ''.join(f'<span>{s}</span>' for s in STEPS) + '</div>'
-    for name in ['primary', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple', 'gray']:
-        scales += f'<div class="scale"><span>{name}</span>' + ''.join(
-            f'<button style="background:{SCALES[name][s]};color:{on_color(SCALES[name][s])}" data-copy="{SCALES[name][s]}" title="--mg-{name}-{s}: {SCALES[name][s]}">{SCALES[name][s][1:]}</button>' for s in STEPS) + '</div>'
+    for name in ['primary', 'navy', 'gray', 'cyan', 'sky', 'red', 'yellow', 'green', 'olive', 'purple']:
+        cells = ''
+        for s in STEPS:
+            if s not in SCALES[name]:
+                cells += '<span></span>'
+                continue
+            hx = SCALES[name][s]
+            cells += f'<button style="background:{hx};color:{on_color(hx)}" data-copy="{hx}" title="--mg-{name}-{s}: {hx}">{hx[1:]}</button>'
+        scales += f'<div class="scale"><span>{name}</span>{cells}</div>'
 
     pairs = [('Blanco sobre Azul primario', '#FFFFFF', BRAND['primary'][0], 'Texto en botones y barras azules'),
              ('Negro de marca sobre Cian', NEUTRALS['ink'], BRAND['cyan'][0], 'Cian: usar texto oscuro, no blanco'),
@@ -148,16 +155,32 @@ def page_colors(root):
         rows += f'<tr><td><span style="display:inline-block;width:70px;padding:.2rem .4rem;border-radius:6px;background:{bg};color:{fg};font-weight:800;text-align:center">Aa</span></td><td>{n}</td><td><b>{r:.2f}:1</b></td><td><span class="mg-badge mg-badge--{cls}">{lvl}</span></td><td>{note}</td></tr>'
 
     body = f'''
+<section class="pt-section"><h2><span class="n">00.</span> Criterio de uso: sobrio</h2>
+<p class="pt-lead">La paleta oficial es amplia y vistosa, pero una interfaz profesional no debe usarla toda a la vez. Regla práctica de proporción por pantalla:</p>
+<div class="demo"><div class="demo__view demo__view--white">
+<div style="display:flex;height:46px;border-radius:8px;overflow:hidden;font:600 .78rem var(--mg-font-sans);color:#fff">
+<div style="flex:70;background:var(--mg-gray-100);color:var(--mg-gray-600);display:grid;place-items:center">70% · Neutros (blanco, grises)</div>
+<div style="flex:15;background:var(--mg-navy-900);display:grid;place-items:center">15% · Azul-noche</div>
+<div style="flex:10;background:var(--mg-primary);display:grid;place-items:center">10% · Azul</div>
+<div style="flex:5;background:var(--mg-cyan);color:var(--mg-ink);display:grid;place-items:center">5%</div></div>
+<ul style="margin:1rem 0 0;padding-left:1.1rem;color:var(--mg-gray-600);font-size:.9rem;line-height:1.7">
+<li><b>Una sola acción principal</b> por pantalla, en azul institucional.</li>
+<li><b>Verde, amarillo y rojo</b> solo para estados (aprobado, pendiente, error), en tonos suaves.</li>
+<li><b>Ocre y violeta</b> solo en la línea del logotipo y piezas impresas; no en componentes.</li>
+<li><b>La línea multicolor</b> como firma fina (3 px) en pie de página y portada; nunca como borde de todo.</li>
+<li><b>Degradados vivos</b> (azul → cian) en portadas e ilustraciones, no en botones, tablas ni tarjetas.</li>
+</ul></div></div></section>
+
 <section class="pt-section"><h2><span class="n">01.</span> Paleta oficial</h2>
 <p class="pt-lead">Los 8 colores de la página «Paleta cromática» del manual. Los cuatro primarios definen la identidad (en la web dominan el <b>azul → cian → celeste</b>); el resto se usa como acento en objetos. Clic en un color para copiar su HEX.</p>
 <div class="pt-grid">{cards}</div>
 <h3 style="margin-top:2rem">Neutros</h3><div class="pt-grid">{neu}</div></section>
 
-<section class="pt-section"><h2><span class="n">02.</span> Degradados de la línea azul</h2>
-<p class="pt-lead">La imagen de marca web se construye con el degradado de la gama azul (0071BB → 00B7D9 → 9FD7E5). Estas variables existen en CSS, SCSS, Less, Tailwind, JSON y en los temas de AdminLTE, Material y PrimeNG.</p>
+<section class="pt-section"><h2><span class="n">02.</span> Superficies y degradados</h2>
+<p class="pt-lead">Para interfaces de trabajo se usan superficies <b>blancas y azul-noche</b>; la gama azul brillante (0071BB → 00B7D9 → 9FD7E5) queda para portadas e ilustraciones. Todas las variables existen en CSS, SCSS, Less, Tailwind, JSON y en los temas de AdminLTE, Material y PrimeNG.</p>
 <div class="pt-grid pt-grid--lg">{blue}</div>
-<h3 style="margin-top:2rem">Degradados de acento (objetos)</h3>
-<p class="pt-lead">Para ilustraciones, íconos, insignias y elementos secundarios, no para fondos completos de página.</p>
+<h3 style="margin-top:2rem">Degradados de acento (uso muy puntual)</h3>
+<p class="pt-lead">Para ilustraciones, íconos o infografías. No los use como fondo de tarjetas, botones o paneles de trabajo.</p>
 <div class="pt-grid pt-grid--lg">{accents}</div></section>
 
 <section class="pt-section"><h2><span class="n">03.</span> La línea (franja multicolor)</h2>
@@ -165,7 +188,7 @@ def page_colors(root):
 {stripe}{stripe_code}</section>
 
 <section class="pt-section"><h2><span class="n">04.</span> Escalas tonales</h2>
-<p class="pt-lead">Cada color tiene una escala 50–950 (500 = color oficial) para estados hover/active, fondos suaves, bordes y texto. Clic para copiar.</p>
+<p class="pt-lead">Cada color tiene una escala 50–950 (500 = color oficial) para hover/active, fondos suaves, bordes y texto. <b>navy</b> (azul-noche) y <b>gray</b> (gris azulado) son los neutros de interfaz. Clic para copiar.</p>
 <div class="tablewrap"><div style="min-width:760px">{scales}</div></div></section>
 
 <section class="pt-section"><h2><span class="n">05.</span> Colores semánticos y accesibilidad</h2>
@@ -250,90 +273,101 @@ def page_logos(root):
 
 
 # =============================================================== COMPONENTES
+ICON = {
+    'users': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    'file': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>',
+    'check': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>',
+    'clock': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+    'alert': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
+    'pin': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    'grid': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+    'folder': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>',
+    'gear': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+}
+
+
+def stat(icon, value, label, mod='', delta=''):
+    return (f'<div class="mg-stat{(" " + mod) if mod else ""}"><div class="mg-stat__icon">{ICON[icon]}</div>'
+            f'<div><div class="mg-stat__value">{value}</div><div class="mg-stat__label">{label}</div>{delta}</div></div>')
+
+
 DEMOS = [
-    ('Botones', 'Degradado de marca (acción principal), plano, de acento, contorno y fantasma. Tamaños sm/lg.', True, '''<div class="mg-row">
+    ('Botones', 'Un solo botón principal por pantalla (azul institucional). Secundario blanco, contorno y fantasma para el resto; los colores de acento solo para estados.', True, """<div class="mg-row">
   <button class="mg-btn">Principal</button>
-  <button class="mg-btn mg-btn--flat">Plano</button>
-  <button class="mg-btn mg-btn--cyan">Cian</button>
-  <button class="mg-btn mg-btn--accent">Acento</button>
-  <button class="mg-btn mg-btn--danger">Peligro</button>
-  <button class="mg-btn mg-btn--success">Éxito</button>
+  <button class="mg-btn mg-btn--secondary">Secundario</button>
   <button class="mg-btn mg-btn--outline">Contorno</button>
   <button class="mg-btn mg-btn--ghost">Fantasma</button>
+  <button class="mg-btn mg-btn--dark">Oscuro</button>
+  <button class="mg-btn mg-btn--danger">Eliminar</button>
+  <button class="mg-btn mg-btn--success">Aprobar</button>
   <button class="mg-btn" disabled>Deshabilitado</button>
 </div>
-<div class="mg-row" style="margin-top:1rem"><button class="mg-btn mg-btn--sm">Pequeño</button><button class="mg-btn mg-btn--lg">Grande</button><button class="mg-btn mg-btn--square">Cuadrado</button></div>'''),
-    ('Tarjetas', 'Con la línea multicolor, con cabecera degradada, con borde de acento y con degradado completo.', False, '''<div class="mg-grid" style="--mg-col:15rem">
-  <div class="mg-card mg-card--stripe-top"><div class="mg-card__body"><h4 class="mg-h4">Con la línea</h4><p>.mg-card--stripe-top</p></div></div>
-  <div class="mg-card"><div class="mg-card__header mg-card__header--gradient">Cabecera degradada</div><div class="mg-card__body">.mg-card__header--gradient</div><div class="mg-card__footer">Pie</div></div>
-  <div class="mg-card mg-card--accent-cyan mg-card--hover"><div class="mg-card__body"><h4 class="mg-h4">Borde de acento</h4><p>.mg-card--accent-cyan</p></div></div>
-  <div class="mg-card mg-card--gradient"><div class="mg-card__body"><h4 class="mg-h4" style="color:#fff">Degradado</h4><p>.mg-card--gradient</p></div></div>
-</div>'''),
-    ('Indicadores (KPI / small-box)', 'Cajas de datos con el degradado de marca.', False, '''<div class="mg-grid" style="--mg-col:14rem">
-  <div class="mg-stat"><div><div class="mg-stat__value">1.284</div><div class="mg-stat__label">Trámites</div></div></div>
-  <div class="mg-stat mg-stat--aqua"><div><div class="mg-stat__value">87%</div><div class="mg-stat__label">Atendidos</div></div></div>
-  <div class="mg-stat mg-stat--deep"><div><div class="mg-stat__value">45</div><div class="mg-stat__label">Municipios</div></div></div>
-  <div class="mg-stat mg-stat--sun"><div><div class="mg-stat__value">12</div><div class="mg-stat__label">Pendientes</div></div></div>
-  <div class="mg-stat mg-stat--tropical"><div><div class="mg-stat__value">98</div><div class="mg-stat__label">Satisfacción</div></div></div>
-  <div class="mg-stat mg-stat--heat"><div><div class="mg-stat__value">3</div><div class="mg-stat__label">Alertas</div></div></div>
-</div>'''),
-    ('Insignias y chips', None, True, '''<div class="mg-row">
-  <span class="mg-badge">Primaria</span><span class="mg-badge mg-badge--solid">Sólida</span><span class="mg-badge mg-badge--gradient">Degradado</span>
-  <span class="mg-badge mg-badge--cyan">Info</span><span class="mg-badge mg-badge--green">Aprobado</span><span class="mg-badge mg-badge--yellow">Pendiente</span>
-  <span class="mg-badge mg-badge--red">Rechazado</span><span class="mg-badge mg-badge--purple">Especial</span>
-  <span class="mg-chip">📍 Santa Marta</span><span class="mg-avatar">DC</span>
-</div>'''),
-    ('Alertas', None, False, '''<div class="mg-stack">
+<div class="mg-row" style="margin-top:1rem"><button class="mg-btn mg-btn--sm">Pequeño</button><button class="mg-btn mg-btn--lg">Grande</button><button class="mg-btn mg-btn--pill">Redondeado</button><button class="mg-btn mg-btn--accent">Acento</button></div>"""),
+    ('Tarjetas', 'Blancas con borde fino. El color aparece solo como filete: superior, lateral o la línea institucional.', False, """<div class="mg-grid" style="--mg-col:15rem">
+  <div class="mg-card"><div class="mg-card__body"><h4 class="mg-h4">Estándar</h4><p class="mg-text-muted" style="margin:0">.mg-card</p></div></div>
+  <div class="mg-card mg-card--accent-top"><div class="mg-card__body"><h4 class="mg-h4">Filete superior</h4><p class="mg-text-muted" style="margin:0">.mg-card--accent-top</p></div></div>
+  <div class="mg-card mg-card--stripe-top"><div class="mg-card__body"><h4 class="mg-h4">Con la línea</h4><p class="mg-text-muted" style="margin:0">.mg-card--stripe-top</p></div></div>
+  <div class="mg-card mg-card--accent"><div class="mg-card__body"><h4 class="mg-h4">Filete lateral</h4><p class="mg-text-muted" style="margin:0">.mg-card--accent</p></div></div>
+  <div class="mg-card"><div class="mg-card__header">Con cabecera</div><div class="mg-card__body">.mg-card__header</div><div class="mg-card__footer">Pie</div></div>
+  <div class="mg-card mg-card--dark"><div class="mg-card__body"><h4 class="mg-h4">Oscura</h4><p style="margin:0;opacity:.75">.mg-card--dark</p></div></div>
+</div>"""),
+    ('Indicadores (KPI)', 'Tarjeta blanca con ícono en chip. Cada indicador toma un único color de acento.', False, '<div class="mg-grid" style="--mg-col:15rem">' + stat('file', '1.284', 'Radicados', '', '<div class="mg-stat__delta">▲ 12% este mes</div>') + stat('check', '87%', 'Atendidos', 'mg-stat--tropical') + stat('clock', '12', 'Pendientes', 'mg-stat--sun') + stat('alert', '3', 'Vencidos', 'mg-stat--heat', '<div class="mg-stat__delta is-down">▼ requieren acción</div>') + stat('users', '45', 'Municipios', 'mg-stat--aqua') + stat('pin', '9', 'Sedes', 'mg-stat--solid') + '</div>'),
+    ('Insignias y chips', 'Tonos suaves; usar el color pleno solo para estados críticos.', True, """<div class="mg-row">
+  <span class="mg-badge">Primaria</span><span class="mg-badge mg-badge--solid">Sólida</span><span class="mg-badge mg-badge--dark">Oscura</span><span class="mg-badge mg-badge--gray">Neutra</span>
+  <span class="mg-badge mg-badge--green mg-badge--dot">Aprobado</span><span class="mg-badge mg-badge--yellow mg-badge--dot">Pendiente</span><span class="mg-badge mg-badge--red mg-badge--dot">Rechazado</span><span class="mg-badge mg-badge--cyan mg-badge--dot">En revisión</span>
+  <span class="mg-chip">Santa Marta</span><span class="mg-avatar">DC</span>
+</div>"""),
+    ('Alertas', None, False, """<div class="mg-stack">
   <div class="mg-alert"><div><p class="mg-alert__title">Información</p>Su solicitud fue radicada.</div></div>
   <div class="mg-alert mg-alert--info"><div><p class="mg-alert__title">Nota</p>Recuerde adjuntar los soportes.</div></div>
   <div class="mg-alert mg-alert--success"><div><p class="mg-alert__title">Listo</p>Documento firmado correctamente.</div></div>
   <div class="mg-alert mg-alert--warning"><div><p class="mg-alert__title">Atención</p>Su sesión expira en 2 minutos.</div></div>
   <div class="mg-alert mg-alert--danger"><div><p class="mg-alert__title">Error</p>No fue posible enviar el formulario.</div></div>
-</div>'''),
-    ('Formularios', None, True, '''<div class="mg-grid" style="--mg-col:16rem">
+</div>"""),
+    ('Formularios', None, True, """<div class="mg-grid" style="--mg-col:16rem">
   <div><label class="mg-label" for="n">Nombre</label><input class="mg-input" id="n" placeholder="Escriba su nombre"><p class="mg-help">Como aparece en su documento.</p></div>
   <div><label class="mg-label" for="e">Correo</label><input class="mg-input is-invalid" id="e" value="correo@"><p class="mg-help" style="color:var(--mg-red)">Correo no válido</p></div>
   <div><label class="mg-label" for="m">Municipio</label><select class="mg-select" id="m"><option>Santa Marta</option><option>Ciénaga</option></select></div>
   <div><label class="mg-label">Opciones</label><label><input class="mg-check" type="checkbox" checked> Acepto términos</label></div>
-</div>'''),
-    ('Tabla', None, False, '''<table class="mg-table"><thead><tr><th>Radicado</th><th>Asunto</th><th>Estado</th></tr></thead><tbody>
-<tr><td>2026-00123</td><td>Certificación laboral</td><td><span class="mg-badge mg-badge--green">Resuelto</span></td></tr>
-<tr><td>2026-00124</td><td>Derecho de petición</td><td><span class="mg-badge mg-badge--yellow">En trámite</span></td></tr>
-<tr><td>2026-00125</td><td>Queja</td><td><span class="mg-badge mg-badge--red">Vencido</span></td></tr></tbody></table>'''),
-    ('Navegación', 'Navbar con la línea, pestañas, migas y sidebar degradado.', False, '''<header class="mg-navbar" style="margin-bottom:1rem">
-  <a class="mg-navbar__brand" href="#"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
-  <nav class="mg-row" style="margin-left:auto"><a class="mg-nav-link is-active" href="#">Inicio</a><a class="mg-nav-link" href="#">Trámites</a><a class="mg-nav-link" href="#">Contacto</a></nav>
-</header>
-<ul class="mg-breadcrumb" style="margin-bottom:1rem"><li>Inicio</li><li>Servicios</li><li>Trámites</li></ul>
-<div class="mg-tabs" style="margin-bottom:1rem"><button class="mg-tab is-active">General</button><button class="mg-tab">Documentos</button><button class="mg-tab">Historial</button></div>
-<div class="mg-sidebar" style="max-width:260px;border-radius:16px"><a class="is-active" href="#">📊 Panel</a><a href="#">📁 Expedientes</a><a href="#">⚙ Ajustes</a></div>'''),
-    ('Progreso, fechas y marcos', None, True, '''<div class="mg-grid" style="--mg-col:16rem">
+</div>"""),
+    ('Tabla', 'Cabecera gris claro en mayúsculas pequeñas; sin cebra.', False, """<table class="mg-table"><thead><tr><th>Radicado</th><th>Asunto</th><th>Estado</th></tr></thead><tbody>
+<tr><td>2026-00123</td><td>Certificación laboral</td><td><span class="mg-badge mg-badge--green mg-badge--dot">Resuelto</span></td></tr>
+<tr><td>2026-00124</td><td>Derecho de petición</td><td><span class="mg-badge mg-badge--yellow mg-badge--dot">En trámite</span></td></tr>
+<tr><td>2026-00125</td><td>Queja</td><td><span class="mg-badge mg-badge--red mg-badge--dot">Vencido</span></td></tr></tbody></table>"""),
+    ('Navegación y sidebar', 'Barra superior de cristal, pestañas, migas y sidebar azul-noche con indicador cian en el ítem activo.', False, '<header class="mg-navbar" style="margin-bottom:1rem; border-radius:12px; border:1px solid var(--mg-border)">\n  <a class="mg-navbar__brand" href="#"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>\n  <nav class="mg-row" style="margin-left:auto"><a class="mg-nav-link is-active" href="#">Inicio</a><a class="mg-nav-link" href="#">Trámites</a><a class="mg-nav-link" href="#">Contacto</a></nav>\n</header>\n<ul class="mg-breadcrumb" style="margin-bottom:1rem"><li>Inicio</li><li>Servicios</li><li>Trámites</li></ul>\n<div class="mg-tabs" style="margin-bottom:1rem"><button class="mg-tab is-active">General</button><button class="mg-tab">Documentos</button><button class="mg-tab">Historial</button></div>\n<div class="mg-sidebar" style="max-width:260px;border-radius:12px"><span class="mg-sidebar__label">Módulos</span><a class="is-active" href="#">' + ICON['grid'].replace('<svg', '<svg width="18" height="18"') + ' Panel</a><a href="#">' + ICON['folder'].replace('<svg', '<svg width="18" height="18"') + ' Expedientes</a><a href="#">' + ICON['users'].replace('<svg', '<svg width="18" height="18"') + ' Usuarios</a><a href="#">' + ICON['gear'].replace('<svg', '<svg width="18" height="18"') + ' Ajustes</a></div>'),
+    ('Cristal', 'Superficies translúcidas con desenfoque, sobre fondos de color o imágenes.', False, """<div style="padding:2rem;border-radius:16px;background:radial-gradient(500px 260px at 85% 0%,rgba(0,183,217,.55),transparent 60%),radial-gradient(500px 300px at 0% 100%,rgba(0,113,187,.6),transparent 60%),var(--mg-gradient-night)">
+  <div class="mg-grid" style="--mg-col:16rem">
+    <div class="mg-glass-dark" style="padding:1.25rem"><div class="mg-eyebrow" style="color:var(--mg-cyan)">Cristal oscuro</div><h4 class="mg-h4" style="color:#fff;margin:.5rem 0 .25rem">.mg-glass-dark</h4><p style="margin:0;opacity:.75;font-size:.875rem">Para paneles sobre fondos oscuros o fotografías.</p></div>
+    <div class="mg-glass" style="padding:1.25rem"><div class="mg-eyebrow">Cristal claro</div><h4 class="mg-h4" style="margin:.5rem 0 .25rem">.mg-glass</h4><p style="margin:0;font-size:.875rem;color:var(--mg-gray-800)">Barra superior, tarjetas flotantes y modales.</p></div>
+  </div>
+</div>"""),
+    ('Progreso, fechas y marcos', None, True, """<div class="mg-grid" style="--mg-col:16rem">
   <div><div class="mg-label">Avance 70%</div><div class="mg-progress" style="--value:70%"><span></span></div></div>
   <div class="mg-frame" style="padding:1rem">.mg-frame — borde degradado azul</div>
   <div class="mg-frame mg-frame--stripe mg-frame--thick" style="padding:1rem">.mg-frame--stripe — borde con la línea</div>
   <div><span class="mg-tag-date"><small>MARTES</small><strong>21</strong><small>DE JULIO</small></span></div>
-</div>'''),
-    ('Hero y pie de página', 'Cabecera con degradado + línea, y pie con la línea.', False, '''<section class="mg-hero mg-shapes" style="border-radius:16px 16px 0 0">
-  <h1 class="mg-h1" style="color:#fff">Gobierno cerca de su gente</h1>
-  <p style="max-width:50ch">Servicios, trámites e información de la Gobernación del Magdalena.</p>
-  <a class="mg-btn mg-btn--accent mg-btn--lg" href="#">Ver trámites</a>
+</div>"""),
+    ('Hero y pie de página', 'Cabecera azul-noche con brillo cian discreto y la línea como firma; pie oscuro.', False, """<section class="mg-hero mg-hero--stripe" style="border-radius:12px 12px 0 0">
+  <div class="mg-eyebrow" style="color:var(--mg-cyan);margin-bottom:.75rem">Gobernación del Magdalena</div>
+  <h1 class="mg-h1" style="color:#fff">Servicios digitales para la ciudadanía</h1>
+  <p style="max-width:52ch">Trámites, consultas e información institucional en un solo lugar.</p>
+  <div class="mg-row"><a class="mg-btn mg-btn--lg" href="#">Ver trámites</a><a class="mg-btn mg-btn--on-dark mg-btn--lg" href="#">Contacto</a></div>
 </section>
-<footer class="mg-footer" style="border-radius:0 0 16px 16px">Carrera 1C N° 16-15 Palacio Tayrona · Santa Marta · <a href="#">gobernaciondelmagdalena.gov.co</a></footer>'''),
-    ('Piezas del manual: carnet, tarjeta y post', 'Réplicas HTML de las piezas institucionales para usarlas en carnetización, firmas y redes.', False, '''<div class="mg-row" style="align-items:flex-start;gap:2rem">
-  <div class="mg-id-card"><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:80%"><div class="mg-id-card__photo"></div><div class="mg-id-card__name">Nombre y Apellido</div><div style="font-weight:700;color:var(--mg-gray)">Identificación</div><div style="font-weight:700;color:var(--mg-gray)">Área de trabajo</div></div>
+<footer class="mg-footer" style="border-radius:0 0 12px 12px">Carrera 1C N° 16-15 Palacio Tayrona · Santa Marta · <a href="#">gobernaciondelmagdalena.gov.co</a></footer>"""),
+    ('Piezas del manual: carnet, tarjeta y post', 'Réplicas HTML de las piezas institucionales. Aquí SÍ se conserva la línea multicolor, como en el manual impreso.', False, """<div class="mg-row" style="align-items:flex-start;gap:2rem">
+  <div class="mg-id-card"><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:80%"><div class="mg-id-card__photo"></div><div class="mg-id-card__name">Nombre y Apellido</div><div style="font-weight:600;color:var(--mg-gray-500)">Identificación</div><div style="font-weight:600;color:var(--mg-gray-500)">Área de trabajo</div></div>
   <div style="flex:1;min-width:280px;display:grid;gap:1.25rem">
-    <div class="mg-business-card"><div><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:100%"></div><div style="text-align:right"><div class="mg-business-card__name">Margarita Guerra</div><div style="font-size:.85rem">Gobernadora</div><small style="color:var(--mg-gray)">Santa Marta · Magdalena<br>Colombia</small></div></div>
+    <div class="mg-business-card"><div><img src="assets/logos/svg/logo-vertical-color.svg" alt="" style="width:100%"></div><div style="text-align:right"><div class="mg-business-card__name">Margarita Guerra</div><div style="font-size:.85rem">Gobernadora</div><small style="color:var(--mg-gray-500)">Santa Marta · Magdalena<br>Colombia</small></div></div>
     <div class="mg-post" style="max-width:360px"><div class="mg-shapes" style="position:absolute;inset:0;z-index:-1"></div><h2>Gobernación del<strong>Magdalena</strong></h2><div class="mg-divider mg-divider--stripe"></div><p>Te invita a la jornada de <b>reactivación del Corredor Turístico Tayrona</b></p><span class="mg-tag-date"><small>MARTES</small><strong>21</strong><small>DE JULIO</small></span><span class="mg-logo-pill"><img src="assets/logos/svg/logo-horizontal-color.svg" alt=""></span></div>
   </div>
-</div>'''),
-    ('Utilidades de fondo, texto y formas', None, False, '''<div class="mg-grid" style="--mg-col:12rem">
+</div>"""),
+    ('Utilidades de fondo y texto (uso puntual)', 'Degradados de la gama azul y acentos para banners, ilustraciones o portadas; no para componentes de interfaz.', False, """<div class="mg-grid" style="--mg-col:12rem">
   <div class="mg-bg-primary mg-rounded-lg" style="padding:1.25rem">.mg-bg-primary</div><div class="mg-bg-sky mg-rounded-lg" style="padding:1.25rem">.mg-bg-sky</div>
-  <div class="mg-bg-aqua mg-rounded-lg" style="padding:1.25rem">.mg-bg-aqua</div><div class="mg-bg-deep mg-rounded-lg" style="padding:1.25rem">.mg-bg-deep</div>
-  <div class="mg-bg-tropical mg-rounded-lg" style="padding:1.25rem">.mg-bg-tropical</div><div class="mg-bg-sun mg-rounded-lg" style="padding:1.25rem">.mg-bg-sun</div>
-  <div class="mg-bg-heat mg-rounded-lg" style="padding:1.25rem">.mg-bg-heat</div><div class="mg-bg-violet mg-rounded-lg" style="padding:1.25rem">.mg-bg-violet</div>
+  <div class="mg-bg-aqua mg-rounded-lg" style="padding:1.25rem">.mg-bg-aqua</div><div class="mg-bg-night mg-rounded-lg" style="padding:1.25rem">.mg-bg-night</div>
+  <div class="mg-bg-deep mg-rounded-lg" style="padding:1.25rem">.mg-bg-deep</div><div class="mg-bg-steel mg-rounded-lg" style="padding:1.25rem">.mg-bg-steel</div>
 </div>
-<p class="mg-text-gradient" style="font:900 3rem/1.1 var(--mg-font-display);margin:1.25rem 0 0">Texto con degradado</p>
-<div class="mg-eyebrow" style="margin-top:1rem">01.</div><h3 class="mg-h2 mg-title-underline">Título como en el manual</h3>'''),
+<p class="mg-text-gradient" style="font:800 2.6rem/1.1 var(--mg-font-display);margin:1.25rem 0 0">Texto con degradado</p>
+<div class="mg-eyebrow" style="margin-top:1rem">Sección</div><h3 class="mg-h2 mg-title-underline">Título con subrayado corto</h3>"""),
 ]
 
 
@@ -343,8 +377,8 @@ def page_components(root):
         out += f'''<section class="pt-section" id="c{i}"><h2><span class="n">{i:02d}.</span> {t}</h2>{f'<p class="pt-lead">{d}</p>' if d else ''}
 <div class="demo"><div class="demo__view{" demo__view--white" if white else ""}">{h}</div>
 <details><summary>Ver código HTML</summary>{code("html", h)}</details></div></section>'''
-    body = '<p class="pt-lead">Todo se renderiza con <code class="inline">dist/css/magdalena.css</code>. Prefijo <code class="inline">mg-</code>; sin dependencias; compatible con cualquier framework.</p>' + out
-    page(root, 'componentes.html', 'Componentes y utilidades', 'Botones, tarjetas, formularios, navegación y las piezas del manual (carnet, tarjeta, post) listos para copiar y pegar.', body)
+    body = '<p class="pt-lead">Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
+    page(root, 'componentes.html', 'Componentes y utilidades', 'Botones, tarjetas, indicadores, formularios, navegación, cristal y las piezas del manual (carnet, tarjeta, post): estilo sobrio, listo para copiar y pegar.', body)
 
 
 # =============================================================== INTEGRACION
@@ -411,23 +445,30 @@ def page_apps(root):
 # =============================================================== INICIO
 def page_index(root):
     hero = '''<section class="pt-hero"><div class="pt-hero__in">
-<div><span class="mg-badge mg-badge--solid" style="background:var(--mg-yellow);color:var(--mg-ink)">Identidad Visual 2026</span>
+<div><span class="mg-badge" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.22)">Identidad Visual 2026</span>
 <h1 style="margin-top:1rem">Manual de marca para desarrollo web</h1>
-<p>Colores, degradados, la línea multicolor, logos y componentes de la Gobernación del Magdalena, listos para usar en AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel y más.</p>
-<div class="mg-row"><a class="mg-btn mg-btn--accent mg-btn--lg" href="integracion.html">Empezar a integrar</a><a class="mg-btn mg-btn--lg" style="background:rgba(255,255,255,.18);box-shadow:none;border:2px solid #fff" href="logos.html">Descargar logos</a></div></div>
+<p>Colores, degradados, la línea institucional, logos y componentes de la Gobernación del Magdalena, con un estilo corporativo sobrio listo para AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel y más.</p>
+<div class="mg-row"><a class="mg-btn mg-btn--lg" href="integracion.html">Empezar a integrar</a><a class="mg-btn mg-btn--on-dark mg-btn--lg" href="logos.html">Descargar logos</a></div></div>
 <div class="pt-hero__logo"><img src="assets/logos/svg/logo-vertical-color.svg" alt="Gobernación del Magdalena"></div>
 </div></section>'''
-    cards = [('🎨', 'Colores y degradados', 'Paleta oficial (HEX/RGB/CMYK), la gama azul 0071BB → 00B7D9 → 9FD7E5, escalas y contraste.', 'colores.html', 'var(--mg-gradient-primary)'),
-             ('🖼', 'Logos y descargas', 'SVG, PNG y JPG de todos los logotipos, escudo, bandera y la línea. ZIP por formato.', 'logos.html', 'var(--mg-gradient-aqua)'),
-             ('🧩', 'Componentes', 'Botones, tarjetas, KPIs, formularios, navegación, carnet y tarjeta en HTML/CSS.', 'componentes.html', 'var(--mg-gradient-tropical)'),
-             ('⚙', 'Integración', 'Guías copiar-y-pegar para 14 tecnologías, con URL directa a cada CSS.', 'integracion.html', 'var(--mg-gradient-sun)'),
-             ('👕', 'Aplicaciones', 'Tarjetas, pendones, carnets, camisas, backing, post, gorra y valla del manual.', 'aplicaciones.html', 'var(--mg-gradient-heat)'),
-             ('▶', 'Demos en vivo', 'AdminLTE 3 y 4, Bootstrap 5 y Tailwind con el tema aplicado.', 'demos/index.html', 'var(--mg-gradient-violet)')]
-    ck = ''.join(f'<a class="k" style="--k:{g}" href="{h}"><div class="ic">{i}</div><h3>{t}</h3><p>{d}</p></a>' for i, t, d, h, g in cards)
+    cards = [('palette', 'Colores y degradados', 'Paleta oficial (HEX/RGB/CMYK), la gama azul 0071BB → 00B7D9 → 9FD7E5, escalas y contraste.', 'colores.html', 'var(--mg-gradient-primary)'),
+             ('image', 'Logos y descargas', 'SVG, PNG y JPG de todos los logotipos, escudo, bandera y la línea. ZIP por formato.', 'logos.html', 'var(--mg-gradient-aqua)'),
+             ('grid', 'Componentes', 'Botones, tarjetas, KPIs, formularios, navegación, carnet y tarjeta en HTML/CSS.', 'componentes.html', 'var(--mg-gradient-tropical)'),
+             ('code', 'Integración', 'Guías copiar-y-pegar para 14 tecnologías, con URL directa a cada CSS.', 'integracion.html', 'var(--mg-gradient-sun)'),
+             ('layers', 'Aplicaciones', 'Tarjetas, pendones, carnets, camisas, backing, post, gorra y valla del manual.', 'aplicaciones.html', 'var(--mg-gradient-heat)'),
+             ('play', 'Demos en vivo', 'AdminLTE 3 y 4, Bootstrap 5 y Tailwind con el tema aplicado.', 'demos/index.html', 'var(--mg-gradient-violet)')]
+    ico = {
+        'palette': '<path d="M12 22a10 10 0 1 1 10-10c0 3-2 4-4 4h-2a2 2 0 0 0-1 3.7c.6.4.4 2.3-3 2.3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="11" r="1"/>',
+        'image': '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
+        'grid': '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+        'code': '<path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/>',
+        'layers': '<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
+        'play': '<circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/>'}
+    ck = ''.join(f'<a class="k" href="{h}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{ico[i]}</svg></div><h3>{t}</h3><p>{d}</p></a>' for i, t, d, h, g in cards)
     quick = code('html', '''<link rel="stylesheet" href="__BASE__/dist/css/magdalena.min.css">
 
 <body class="mg-base">
-  <section class="mg-hero"><h1>Hola Magdalena</h1><button class="mg-btn mg-btn--accent">Ingresar</button></section>
+  <section class="mg-hero"><h1>Hola Magdalena</h1><button class="mg-btn">Ingresar</button></section>
   <hr class="mg-stripe">
 </body>''', 'index.html', tpl=True)
     body = f'''<section class="pt-section"><h2><span class="n">01.</span> Qué hay aquí</h2><div class="cards-k">{ck}</div></section>
@@ -453,7 +494,7 @@ def page_demos(root):
              ('adminlte3.html', 'AdminLTE 3', 'Bootstrap 4 · mismo tema para proyectos AdminLTE 3.2', 'var(--mg-gradient-aqua)'),
              ('bootstrap5.html', 'Bootstrap 5', 'Navbar, hero, tarjetas, formulario y modal', 'var(--mg-gradient-tropical)'),
              ('tailwind.html', 'Tailwind CSS', 'Utilidades mg-* y degradados bg-mg-grad-*', 'var(--mg-gradient-sun)')]
-    ck = ''.join(f'<a class="k" style="--k:{g}" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d, g in items)
+    ck = ''.join(f'<a class="k" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d, g in items)
     body = f'<p class="pt-lead">Páginas reales que cargan AdminLTE/Bootstrap/Tailwind desde CDN y encima el CSS de este repositorio. Úselas como referencia de marcado.</p><div class="cards-k">{ck}</div>'
     page(root, 'demos/index.html', 'Demos en vivo', 'Plantillas funcionales con la identidad visual aplicada.', body)
 

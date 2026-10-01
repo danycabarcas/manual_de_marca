@@ -235,17 +235,24 @@ module.exports = {
       "950": "#15062D"
     },
     "gray": {
-      "50": "#FAFAFA",
-      "100": "#F6F5F5",
-      "200": "#ECEBEB",
-      "300": "#DDDCDC",
-      "400": "#B9B8B8",
-      "500": "#8C8B8B",
-      "600": "#606060",
-      "700": "#4A4A4A",
-      "800": "#333332",
-      "900": "#1D1D1B",
-      "950": "#0F0F0E"
+      "50": "#F8FAFC",
+      "100": "#F1F4F8",
+      "200": "#E3E8EF",
+      "300": "#CBD2DC",
+      "400": "#97A1B0",
+      "500": "#6B7482",
+      "600": "#4F5866",
+      "700": "#3A424F",
+      "800": "#252B36",
+      "900": "#161A22",
+      "950": "#0C0F14"
+    },
+    "navy": {
+      "600": "#12395C",
+      "700": "#0E2D49",
+      "800": "#0B2239",
+      "900": "#081A2C",
+      "950": "#051220"
     }
   },
   "semantic": {
@@ -275,9 +282,11 @@ module.exports = {
     "sky-h": "linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%)",
     "aqua": "linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%)",
     "mist": "linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%)",
-    "deep": "linear-gradient(160deg, #002B47 0%, #004F83 55%, #0071BB 100%)",
-    "action": "linear-gradient(135deg, #0071BB 0%, #00A1CF 100%)",
-    "action-aa": "linear-gradient(135deg, #0071BB 0%, #007CC0 100%)",
+    "deep": "linear-gradient(180deg, #081A2C 0%, #051220 100%)",
+    "night": "linear-gradient(135deg, #0B2239 0%, #051220 100%)",
+    "steel": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
+    "action": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
+    "action-aa": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
     "tropical": "linear-gradient(135deg, #00B7D9 0%, #69B75E 100%)",
     "sun": "linear-gradient(135deg, #FEC800 0%, #DAAC00 100%)",
     "heat": "linear-gradient(135deg, #F7003C 0%, #AD002A 100%)",
@@ -294,16 +303,16 @@ module.exports = {
   },
   "googleFonts": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap",
   "radius": {
-    "sm": "6px",
-    "md": "10px",
-    "lg": "16px",
-    "xl": "24px",
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px",
     "pill": "999px"
   },
   "shadow": {
-    "sm": "0 1px 2px rgba(0,56,94,.08), 0 1px 3px rgba(0,56,94,.06)",
-    "md": "0 4px 10px rgba(0,56,94,.10), 0 2px 4px rgba(0,56,94,.06)",
-    "lg": "0 14px 30px rgba(0,56,94,.14), 0 4px 10px rgba(0,56,94,.08)",
-    "glow": "0 8px 24px rgba(0,183,217,.35)"
+    "sm": "0 1px 2px rgba(8,26,44,.06)",
+    "md": "0 2px 6px rgba(8,26,44,.08), 0 1px 2px rgba(8,26,44,.05)",
+    "lg": "0 12px 28px rgba(8,26,44,.14), 0 2px 6px rgba(8,26,44,.06)",
+    "glow": "0 0 0 3px rgba(0,113,187,.22)"
   }
 };

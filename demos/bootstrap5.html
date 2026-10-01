@@ -9,17 +9,17 @@
 <link href="../dist/bootstrap/magdalena-bootstrap5.min.css" rel="stylesheet">
 <link href="../dist/css/magdalena.min.css" rel="stylesheet"><!-- opcional: componentes mg-* -->
 </head>
-<body style="background:var(--mg-surface)">
-<nav class="navbar navbar-expand-lg bg-white shadow-sm mg-stripe-bottom"><div class="container">
+<body>
+<nav class="navbar navbar-expand-lg mg-glass" style="border-radius:0;position:sticky;top:0;z-index:10"><div class="container">
   <a class="navbar-brand" href="#"><img src="../assets/logos/svg/logo-horizontal-color.svg" height="44" alt="Gobernación del Magdalena"></a>
   <div class="ms-auto d-flex gap-2"><a class="btn btn-outline-primary" href="../index.html">Manual</a><a class="btn btn-primary" href="#">Ingresar</a></div>
 </div></nav>
-<header class="mg-hero"><div class="container"><h1 class="display-5 fw-bold text-white">Bootstrap 5 con la marca Magdalena</h1><p class="lead">Botones, formularios, tarjetas, tablas y modales ya heredan el degradado azul.</p>
-  <button class="btn btn-warning btn-lg">Acción destacada</button> <button class="btn btn-light btn-lg">Secundaria</button></div></header>
+<header class="mg-hero mg-hero--stripe"><div class="container"><h1 class="display-5 fw-bold text-white" style="color:#fff">Bootstrap 5 con la marca Magdalena</h1><p class="lead">Botones, formularios, tarjetas, tablas y modales ya heredan la identidad visual: azul institucional, superficies limpias y la línea como firma.</p>
+  <button class="btn btn-primary btn-lg">Acción principal</button> <button class="btn btn-outline-light btn-lg">Secundaria</button></div></header>
 <main class="container py-5">
   <div class="row g-4">
-    <div class="col-md-4"><div class="card card-stripe h-100"><div class="card-body"><h5 class="card-title">Tarjeta con la línea</h5><p class="card-text">Clase <code>card-stripe</code> del paquete.</p><a href="#" class="btn btn-primary">Ver más</a></div></div></div>
-    <div class="col-md-4"><div class="card h-100"><div class="card-header bg-primary text-white">Formulario</div><div class="card-body"><input class="form-control mb-2" placeholder="Correo"><select class="form-select mb-2"><option>Santa Marta</option></select><div class="form-check"><input class="form-check-input" type="checkbox" checked id="c"><label class="form-check-label" for="c">Acepto</label></div></div></div></div>
+    <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5 class="card-title">Tarjeta estándar</h5><p class="card-text text-body-secondary">Tarjeta blanca con borde fino.</p><a href="#" class="btn btn-primary">Ver más</a></div></div></div>
+    <div class="col-md-4"><div class="card h-100"><div class="card-header">Formulario</div><div class="card-body"><input class="form-control mb-2" placeholder="Correo"><select class="form-select mb-2"><option>Santa Marta</option></select><div class="form-check"><input class="form-check-input" type="checkbox" checked id="c"><label class="form-check-label" for="c">Acepto</label></div></div></div></div>
     <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>Estados</h5>
       <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-primary">Primario</span><span class="badge text-bg-info">Info</span><span class="badge text-bg-success">Éxito</span><span class="badge text-bg-warning">Aviso</span><span class="badge text-bg-danger">Error</span></div>
       <div class="progress mb-3"><div class="progress-bar" style="width:70%"></div></div>

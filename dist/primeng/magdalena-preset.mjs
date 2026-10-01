@@ -19,24 +19,24 @@ export const MagdalenaPreset = definePreset(Aura, {
       "900": "#002B47",
       "950": "#001B2D"
 },
-    formField: { borderRadius: '10px', focusRing: { width: '3px', style: 'solid', color: '#00B7D9', offset: '1px' } },
+    formField: { borderRadius: '8px', focusRing: { width: '3px', style: 'solid', color: '#00B7D9', offset: '1px' } },
     focusRing: { width: '3px', style: 'solid', color: '#00B7D9', offset: '2px' },
     colorScheme: {
       light: {
         primary: { color: '{primary.500}', contrastColor: '#ffffff', hoverColor: '{primary.600}', activeColor: '{primary.700}' },
         highlight: { background: '{primary.50}', focusBackground: '{primary.100}', color: '{primary.800}', focusColor: '{primary.900}' },
         surface: {
-          "50": "#FAFAFA",
-          "100": "#F6F5F5",
-          "200": "#ECEBEB",
-          "300": "#DDDCDC",
-          "400": "#B9B8B8",
-          "500": "#8C8B8B",
-          "600": "#606060",
-          "700": "#4A4A4A",
-          "800": "#333332",
-          "900": "#1D1D1B",
-          "950": "#0F0F0E"
+          "50": "#F8FAFC",
+          "100": "#F1F4F8",
+          "200": "#E3E8EF",
+          "300": "#CBD2DC",
+          "400": "#97A1B0",
+          "500": "#6B7482",
+          "600": "#4F5866",
+          "700": "#3A424F",
+          "800": "#252B36",
+          "900": "#161A22",
+          "950": "#0C0F14"
 },
       },
       dark: {
@@ -46,9 +46,9 @@ export const MagdalenaPreset = definePreset(Aura, {
     },
   },
   components: {
-    button: { root: { borderRadius: '999px', label: { fontWeight: '700' } } },
-    card: { root: { borderRadius: '16px' } },
-    dialog: { root: { borderRadius: '16px' } },
+    button: { root: { borderRadius: '8px', label: { fontWeight: '600' } } },
+    card: { root: { borderRadius: '12px' } },
+    dialog: { root: { borderRadius: '12px' } },
   },
 });
 

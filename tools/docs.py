@@ -13,23 +13,23 @@ def add(id, title, group, summary, steps, notes=None):
 
 
 add('html', 'HTML / CSS puro', 'Base',
-    'Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, degradados, la línea y componentes.',
+    'Funciona en cualquier stack (PHP, Java, .NET, Django, Rails, estáticos…). Un solo archivo CSS con tokens, estilo sobrio (superficies blancas y azul-noche), cristal, la línea y componentes.',
     [('1. Enlazar el CSS (una sola URL)', [('html', 'index.html', '''<!-- Todo en uno: tokens + degradados + la línea + componentes (incluye la tipografía Montserrat) -->
 <link rel="stylesheet" href="__BASE__/dist/css/magdalena.min.css">
 
 <!-- Solo variables CSS (si usted ya tiene sus propios componentes) -->
 <link rel="stylesheet" href="__BASE__/dist/css/magdalena-tokens.min.css">''')]),
      ('2. Activar estilos base y usar clases mg-*', [('html', None, '''<body class="mg-base">
-  <header class="mg-navbar">           <!-- navbar con la línea de colores abajo -->
+  <header class="mg-navbar">           <!-- barra superior de cristal -->
     <a class="mg-navbar__brand" href="/"><img src="__BASE__/assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
   </header>
 
-  <section class="mg-hero">            <!-- degradado azul → cian → celeste -->
+  <section class="mg-hero">            <!-- azul-noche con brillo cian discreto -->
     <h1>Servicios digitales</h1>
-    <a class="mg-btn mg-btn--accent" href="#">Ingresar</a>
+    <a class="mg-btn" href="#">Ingresar</a>
   </section>
 
-  <div class="mg-card mg-card--stripe-top"><div class="mg-card__body">Tarjeta con la línea</div></div>
+  <div class="mg-card mg-card--accent-top"><div class="mg-card__body">Tarjeta con filete azul</div></div>
   <hr class="mg-stripe">               <!-- La línea multicolor del logotipo -->
 </body>''')]),
      ('3. Usar las variables en su propio CSS', [('css', 'app.css', '''.mi-banner {
@@ -44,7 +44,7 @@ add('html', 'HTML / CSS puro', 'Base',
     ['Para no depender de internet (intranet), descargue `dist/` y sirva los archivos desde su propio servidor; la tipografía Montserrat se puede alojar localmente (ver README).'])
 
 add('adminlte4', 'AdminLTE 4 (Bootstrap 5)', 'Plantillas admin',
-    'Reemplaza el azul de Bootstrap por la marca, sidebar con degradado, línea multicolor en cabecera/pie, small-boxes con degradados.',
+    'Reemplaza el azul de Bootstrap por la marca: sidebar azul-noche, cabecera de cristal, tarjetas blancas con filete, indicadores (small-box) limpios con acento de color.',
     [('1. Cargar los CSS en este orden', [('html', None, '''<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/css/adminlte.min.css">
 <!-- Marca Magdalena: SIEMPRE después de AdminLTE -->
 <link rel="stylesheet" href="__BASE__/dist/adminlte/magdalena-adminlte4.min.css">''')]),
@@ -55,8 +55,8 @@ add('adminlte4', 'AdminLTE 4 (Bootstrap 5)', 'Plantillas admin',
   ...
 </aside>
 
-<div class="small-box text-bg-primary">...</div>   <!-- degradado azul -->
-<div class="small-box text-bg-info">...</div>      <!-- degradado cian → celeste -->
+<div class="small-box text-bg-primary">...</div>   <!-- blanca con filete azul -->
+<div class="small-box text-bg-info">...</div>      <!-- blanca con filete cian -->
 <div class="card card-primary card-outline">...</div>''')])],
     ['Con npm: `npm i admin-lte@4` y luego importe `magdalena-adminlte4.css` después del CSS de AdminLTE.'])
 
@@ -64,8 +64,8 @@ add('adminlte3', 'AdminLTE 3 (Bootstrap 4)', 'Plantillas admin',
     'Para proyectos AdminLTE 3.x (incluye los paquetes Laravel/PHP basados en AdminLTE 3, como jeroennoten/laravel-adminlte).',
     [('1. Cargar los CSS en este orden', [('html', None, '''<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 <link rel="stylesheet" href="__BASE__/dist/adminlte/magdalena-adminlte3.min.css">''')]),
-     ('2. Clases AdminLTE que quedan con la marca', [('html', None, '''<aside class="main-sidebar sidebar-dark-primary elevation-4">...</aside>   <!-- degradado azul profundo -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">...</nav> <!-- línea multicolor abajo -->
+     ('2. Clases AdminLTE que quedan con la marca', [('html', None, '''<aside class="main-sidebar sidebar-dark-primary elevation-4">...</aside>   <!-- azul-noche oscuro -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">...</nav> <!-- cristal claro -->
 <div class="card card-primary">...</div>
 <div class="small-box bg-info">...</div>
 <button class="btn btn-primary">Guardar</button>''')])],

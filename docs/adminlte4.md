@@ -1,6 +1,6 @@
 # AdminLTE 4 (Bootstrap 5)
 
-Reemplaza el azul de Bootstrap por la marca, sidebar con degradado, línea multicolor en cabecera/pie, small-boxes con degradados.
+Reemplaza el azul de Bootstrap por la marca: sidebar azul-noche, cabecera de cristal, tarjetas blancas con filete, indicadores (small-box) limpios con acento de color.
 
 ## 1. Cargar los CSS en este orden
 
@@ -20,8 +20,8 @@ Reemplaza el azul de Bootstrap por la marca, sidebar con degradado, línea multi
   ...
 </aside>
 
-<div class="small-box text-bg-primary">...</div>   <!-- degradado azul -->
-<div class="small-box text-bg-info">...</div>      <!-- degradado cian → celeste -->
+<div class="small-box text-bg-primary">...</div>   <!-- blanca con filete azul -->
+<div class="small-box text-bg-info">...</div>      <!-- blanca con filete cian -->
 <div class="card card-primary card-outline">...</div>
 ```
 

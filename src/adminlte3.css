@@ -1,45 +1,50 @@
 /* ==========================================================================
    ADMINLTE 3.x (Bootstrap 4)  ·  Cargar DESPUÉS de adminlte.min.css
+   Sidebar azul-noche, cabecera «cristal», tarjetas blancas, indicadores limpios.
    ========================================================================== */
-.content-wrapper, .content-wrapper > .content { background: var(--mg-surface); }
+.content-wrapper, .content-wrapper > .content { background: var(--mg-bg-app); }
 
-/* Sidebar oscuro con degradado de marca */
-.main-sidebar, .main-sidebar.sidebar-dark-primary, .main-sidebar.sidebar-dark-info, .main-sidebar.sidebar-dark-blue { background: var(--mg-gradient-deep); }
-.sidebar-dark-primary .brand-link, .sidebar-dark-info .brand-link { background: rgba(0, 0, 0, .12); border-bottom: 0; color: #fff; position: relative; font-weight: 800; }
-.sidebar-dark-primary .brand-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
+/* Sidebar */
+.main-sidebar, .main-sidebar.sidebar-dark-primary, .main-sidebar.sidebar-dark-info, .main-sidebar.sidebar-dark-blue { background: var(--mg-sidebar-bg); box-shadow: none !important; border-right: 1px solid rgba(255, 255, 255, .04); }
+.sidebar-dark-primary .brand-link, .sidebar-dark-info .brand-link { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, .07); color: #fff; font-weight: 700; }
+.nav-sidebar .nav-link { border-radius: var(--mg-radius-md); font-weight: 500; font-size: .875rem; color: var(--mg-sidebar-text); position: relative; }
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link:hover, .sidebar-dark-primary .nav-sidebar > .nav-item:hover > .nav-link { background: var(--mg-sidebar-hover); color: #fff; }
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active,
-.sidebar-dark-info .nav-sidebar > .nav-item > .nav-link.active, .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview > .nav-item > .nav-link.active { background: var(--mg-gradient-primary); color: #fff; box-shadow: var(--mg-shadow-glow); }
-.nav-sidebar .nav-link { border-radius: var(--mg-radius-md); } .nav-sidebar .nav-header { color: var(--mg-sky); font-weight: 800; letter-spacing: .06em; }
-.sidebar-dark-primary .nav-sidebar > .nav-item:hover > .nav-link { background: rgba(255, 255, 255, .1); color: #fff; }
+.sidebar-dark-info .nav-sidebar > .nav-item > .nav-link.active, .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview > .nav-item > .nav-link.active { background: var(--mg-sidebar-active); color: #fff; box-shadow: none; font-weight: 600; }
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active::before { content: ""; position: absolute; left: -.5rem; top: .4rem; bottom: .4rem; width: 3px; border-radius: 0 3px 3px 0; background: var(--mg-sidebar-accent); }
+.nav-sidebar .nav-header { color: rgba(255, 255, 255, .38); font-size: .68rem; font-weight: 700; letter-spacing: .1em; }
 
-/* Navbar, footer */
-.main-header.navbar-white, .main-header.navbar-light { background: var(--mg-surface-card); border-bottom: 0; box-shadow: var(--mg-shadow-sm); position: relative; }
-.main-header.navbar-white::after, .main-header.navbar-light::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.navbar-primary { background: var(--mg-gradient-primary-h) !important; } .navbar-info { background: var(--mg-gradient-aqua) !important; }
-.main-footer { background: var(--mg-surface-card); border-top: 0; position: relative; } .main-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.content-header h1 { font-weight: 900; color: var(--mg-gray); }
+/* Cabecera «cristal» y pie */
+.main-header.navbar-white, .main-header.navbar-light { background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); box-shadow: none; }
+.navbar-primary { background: var(--mg-gradient-night) !important; } .navbar-info { background: var(--mg-gradient-night) !important; }
+.main-footer { background: #fff; border-top: 1px solid var(--mg-border); color: var(--mg-gray-500); font-size: .8125rem; }
+.content-header h1 { font-weight: 700; color: var(--mg-heading); }
 
-/* Tarjetas */
-.card-primary:not(.card-outline) > .card-header { background: var(--mg-gradient-primary); }
-.card-info:not(.card-outline) > .card-header { background: var(--mg-gradient-aqua); color: var(--mg-ink); }
-.card-success:not(.card-outline) > .card-header { background: var(--mg-gradient-tropical); color: var(--mg-ink); }
-.card-warning:not(.card-outline) > .card-header { background: var(--mg-gradient-sun); color: var(--mg-ink); }
-.card-danger:not(.card-outline) > .card-header { background: var(--mg-gradient-heat); }
+/* Tarjetas: cabecera blanca con filete superior */
+.card { box-shadow: var(--mg-shadow-sm); border: 1px solid var(--mg-border); }
+.card-header { background: #fff; border-bottom: 1px solid var(--mg-border); }
+.card-primary:not(.card-outline) > .card-header, .card-info:not(.card-outline) > .card-header, .card-success:not(.card-outline) > .card-header,
+.card-warning:not(.card-outline) > .card-header, .card-danger:not(.card-outline) > .card-header { background: #fff; color: var(--mg-heading); }
+.card-primary:not(.card-outline) { border-top: 3px solid var(--mg-primary); } .card-info:not(.card-outline) { border-top: 3px solid var(--mg-cyan); }
+.card-success:not(.card-outline) { border-top: 3px solid var(--mg-green); } .card-warning:not(.card-outline) { border-top: 3px solid var(--mg-yellow); } .card-danger:not(.card-outline) { border-top: 3px solid var(--mg-red); }
 .card-primary.card-outline { border-top: 3px solid var(--mg-primary); } .card-info.card-outline { border-top: 3px solid var(--mg-cyan); }
 .card-success.card-outline { border-top: 3px solid var(--mg-green); } .card-warning.card-outline { border-top: 3px solid var(--mg-yellow); } .card-danger.card-outline { border-top: 3px solid var(--mg-red); }
 .card-primary.card-outline-tabs > .card-header a.active { border-top: 3px solid var(--mg-primary); }
-.card { box-shadow: var(--mg-shadow-sm); border: 1px solid var(--mg-border); }
-.card-primary > .card-header .btn-tool, .card-info > .card-header .btn-tool { color: rgba(255, 255, 255, .85); }
+.card-primary:not(.card-outline) > .card-header .btn-tool, .card-info:not(.card-outline) > .card-header .btn-tool { color: var(--mg-gray-500); }
+.card-primary:not(.card-outline) > .card-header a { color: var(--mg-primary); }
 
-/* Cajas de información */
-.small-box { border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-md); overflow: hidden; }
-.small-box.bg-info { background: var(--mg-gradient-aqua) !important; color: var(--mg-ink) !important; } .small-box.bg-info .icon > i, .small-box.bg-info .small-box-footer, .small-box.bg-info h3, .small-box.bg-info p { color: var(--mg-ink) !important; }
-.small-box.bg-primary { background: var(--mg-gradient-primary) !important; } .small-box.bg-success { background: var(--mg-gradient-tropical) !important; color: var(--mg-ink) !important; }
-.small-box.bg-success h3, .small-box.bg-success p, .small-box.bg-success .small-box-footer { color: var(--mg-ink) !important; } .small-box.bg-warning { background: var(--mg-gradient-sun) !important; } .small-box.bg-danger { background: var(--mg-gradient-heat) !important; }
-.info-box { border-radius: var(--mg-radius-lg); } .info-box .info-box-icon { border-radius: var(--mg-radius-lg); }
-.info-box .info-box-icon.bg-primary { background: var(--mg-gradient-primary) !important; } .info-box .info-box-icon.bg-info { background: var(--mg-gradient-aqua) !important; }
+/* Indicadores (small-box): blancas, con filete lateral de color */
+.small-box { --_c: var(--mg-primary); background: #fff !important; color: var(--mg-text) !important; border: 1px solid var(--mg-border); border-left: 4px solid var(--_c); border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-sm); overflow: hidden; }
+.small-box h3, .small-box p { color: inherit !important; } .small-box h3 { color: var(--mg-heading) !important; font-weight: 700; } .small-box p { color: var(--mg-text-muted) !important; font-weight: 500; font-size: .875rem; }
+.small-box .icon > i { color: var(--_c) !important; opacity: .16; }
+.small-box .small-box-footer { background: var(--mg-gray-50) !important; color: var(--mg-gray-600) !important; border-top: 1px solid var(--mg-border); font-size: .8125rem; }
+.small-box .small-box-footer:hover { color: var(--_c) !important; }
+.small-box.bg-primary { --_c: var(--mg-primary); } .small-box.bg-info { --_c: var(--mg-cyan); } .small-box.bg-success { --_c: var(--mg-green); } .small-box.bg-warning { --_c: var(--mg-yellow); } .small-box.bg-danger { --_c: var(--mg-red); }
+.info-box { border-radius: var(--mg-radius-lg); border: 1px solid var(--mg-border); } .info-box .info-box-icon { border-radius: var(--mg-radius-md); }
+.info-box .info-box-icon.bg-primary { background: var(--mg-primary-50) !important; color: var(--mg-primary) !important; } .info-box .info-box-icon.bg-info { background: var(--mg-cyan-50) !important; color: var(--mg-cyan-700) !important; }
 .callout.callout-info { border-left-color: var(--mg-cyan); } .callout.callout-primary { border-left-color: var(--mg-primary); } .callout.callout-danger { border-left-color: var(--mg-red); }
 .callout.callout-warning { border-left-color: var(--mg-yellow); } .callout.callout-success { border-left-color: var(--mg-green); }
 .timeline > div > .fa, .timeline > div > .fas { background-color: var(--mg-primary); }
-.login-box .card, .register-box .card { border-top: 0; } .login-box .card::before, .register-box .card::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
-.login-logo a, .register-logo a { color: var(--mg-gray); font-weight: 900; }
+.login-page, .register-page { background: var(--mg-gradient-night); }
+.login-box .card, .register-box .card { border-top: 0; } .login-box .card::before, .register-box .card::before { content: ""; display: block; height: 3px; background: var(--mg-gradient-stripe); }
+.login-logo a, .register-logo a { color: #fff; font-weight: 700; }

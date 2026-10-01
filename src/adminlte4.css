@@ -1,38 +1,45 @@
 /* ==========================================================================
    ADMINLTE 4 (Bootstrap 5.3)  ·  Cargar DESPUÉS de adminlte.css
+   Sidebar azul-noche, cabecera «cristal», tarjetas blancas, indicadores limpios.
    ========================================================================== */
-.app-wrapper, .app-main { background: var(--mg-surface); }
-[data-bs-theme="light"] body, body { --bs-body-bg: var(--mg-surface); --bs-body-bg-rgb: var(--mg-surface-rgb); }
+.app-wrapper, .app-main { background: var(--mg-bg-app); }
+body { --bs-body-bg: var(--mg-bg-app); --bs-body-bg-rgb: 241, 244, 248; }
 
 /* Sidebar */
-.app-sidebar { --bs-sidebar-bg: var(--mg-primary-900); background: var(--mg-gradient-deep) !important; border-right: 0; }
-.app-sidebar .sidebar-brand { background: rgba(0, 0, 0, .12); border-bottom: 0; position: relative; }
-.app-sidebar .sidebar-brand::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.app-sidebar .brand-link, .app-sidebar .brand-text { color: #fff; font-weight: 800; }
-.sidebar-menu > .nav-item > .nav-link.active, .sidebar-menu .nav-link.active:not([data-lte-toggle]) { background: var(--mg-gradient-primary) !important; color: #fff !important; box-shadow: var(--mg-shadow-glow); }
-.sidebar-menu .nav-link { border-radius: var(--mg-radius-md); }
-.sidebar-menu .nav-header { color: var(--mg-sky); font-weight: 800; letter-spacing: .06em; }
-.sidebar-menu .nav-link:hover { background: rgba(255, 255, 255, .1); }
+.app-sidebar { --bs-sidebar-bg: var(--mg-navy-900); background: var(--mg-sidebar-bg) !important; border-right: 1px solid rgba(255, 255, 255, .04); box-shadow: none !important; }
+.app-sidebar .sidebar-brand { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, .07); }
+.app-sidebar .brand-link, .app-sidebar .brand-text { color: #fff; font-weight: 700; }
+.sidebar-menu .nav-link { color: var(--mg-sidebar-text); border-radius: var(--mg-radius-md); font-weight: 500; font-size: .875rem; position: relative; }
+.sidebar-menu .nav-link:hover { background: var(--mg-sidebar-hover); color: var(--mg-sidebar-text-active); }
+.sidebar-menu > .nav-item > .nav-link.active, .sidebar-menu .nav-link.active:not([data-lte-toggle]) { background: var(--mg-sidebar-active) !important; color: #fff !important; box-shadow: none !important; font-weight: 600; }
+.sidebar-menu > .nav-item > .nav-link.active::before { content: ""; position: absolute; left: -.5rem; top: .4rem; bottom: .4rem; width: 3px; border-radius: 0 3px 3px 0; background: var(--mg-sidebar-accent); }
+.sidebar-menu .nav-header { color: rgba(255, 255, 255, .38); font-size: .68rem; font-weight: 700; letter-spacing: .1em; }
+.sidebar-menu .nav-icon { opacity: .85; }
 
-/* Cabecera */
-.app-header { background: var(--mg-surface-card); border-bottom: 0; box-shadow: var(--mg-shadow-sm); position: relative; }
-.app-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.app-header.bg-primary, .app-header.navbar-dark { background: var(--mg-gradient-primary-h) !important; }
-.app-footer { background: var(--mg-surface-card); border-top: 0; position: relative; } .app-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--mg-gradient-stripe); }
-.app-content-header h3, .app-content-header .h3 { font-weight: 900; color: var(--mg-gray); }
+/* Cabecera «cristal» y pie */
+.app-header { background: var(--mg-glass-bg) !important; -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border) !important; box-shadow: none; }
+.app-header.navbar-dark, .app-header.bg-primary { background: var(--mg-glass-bg-dark) !important; color: #fff; }
+.app-footer { background: #fff; border-top: 1px solid var(--mg-border); color: var(--mg-gray-500); font-size: .8125rem; }
+.app-content-header h3, .app-content-header .h3 { font-weight: 700; color: var(--mg-heading); }
 
-/* Small box / info box */
-.small-box { border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-md); overflow: hidden; }
-.small-box.text-bg-primary, .small-box.bg-primary { background: var(--mg-gradient-primary) !important; color: #fff !important; }
-.small-box.text-bg-info, .small-box.bg-info { background: var(--mg-gradient-aqua) !important; }
-.small-box.text-bg-success, .small-box.bg-success { background: var(--mg-gradient-tropical) !important; }
-.small-box.text-bg-warning, .small-box.bg-warning { background: var(--mg-gradient-sun) !important; }
-.small-box.text-bg-danger, .small-box.bg-danger { background: var(--mg-gradient-heat) !important; color: #fff !important; }
-.small-box .small-box-footer { background: rgba(0, 0, 0, .1); }
-.info-box { border-radius: var(--mg-radius-lg); } .info-box .info-box-icon { border-radius: var(--mg-radius-lg); }
-.info-box .info-box-icon.text-bg-primary { background: var(--mg-gradient-primary) !important; }
+/* Indicadores (small-box): tarjeta blanca con filete lateral de color */
+.small-box { --_c: var(--mg-primary); background: #fff !important; color: var(--mg-text) !important; border: 1px solid var(--mg-border); border-left: 4px solid var(--_c); border-radius: var(--mg-radius-lg); box-shadow: var(--mg-shadow-sm); overflow: hidden; }
+.small-box .inner h3, .small-box .inner .h3 { color: var(--mg-heading); font-weight: 700; }
+.small-box .inner p { color: var(--mg-text-muted); font-weight: 500; font-size: .875rem; }
+.small-box .small-box-icon { color: var(--_c) !important; opacity: .16; }
+.small-box .small-box-footer { background: var(--mg-gray-50) !important; color: var(--mg-gray-600) !important; border-top: 1px solid var(--mg-border); font-size: .8125rem; }
+.small-box .small-box-footer:hover { color: var(--_c) !important; }
+.small-box.text-bg-primary, .small-box.bg-primary { --_c: var(--mg-primary); }
+.small-box.text-bg-info, .small-box.bg-info { --_c: var(--mg-cyan); }
+.small-box.text-bg-success, .small-box.bg-success { --_c: var(--mg-green); }
+.small-box.text-bg-warning, .small-box.bg-warning { --_c: var(--mg-yellow); }
+.small-box.text-bg-danger, .small-box.bg-danger { --_c: var(--mg-red); }
+.info-box { border-radius: var(--mg-radius-lg); border: 1px solid var(--mg-border); box-shadow: var(--mg-shadow-sm); }
+.info-box .info-box-icon { border-radius: var(--mg-radius-md); }
+.info-box .info-box-icon.text-bg-primary, .info-box .info-box-icon.bg-primary { background: var(--mg-primary-50) !important; color: var(--mg-primary) !important; }
 .callout { border-radius: var(--mg-radius-md); }
 .card-primary.card-outline { border-top: 3px solid var(--mg-primary); } .card-info.card-outline { border-top: 3px solid var(--mg-cyan); }
 .card-success.card-outline { border-top: 3px solid var(--mg-green); } .card-warning.card-outline { border-top: 3px solid var(--mg-yellow); } .card-danger.card-outline { border-top: 3px solid var(--mg-red); }
-.login-box .card, .register-box .card { border-top: 0; } .login-box .card::before, .register-box .card::before { content: ""; display: block; height: 6px; background: var(--mg-gradient-stripe); }
-.login-logo a, .register-logo a { color: var(--mg-gray); font-weight: 900; }
+.login-page, .register-page { background: var(--mg-gradient-night); }
+.login-box .card, .register-box .card { border-top: 0; border-radius: var(--mg-radius-lg); } .login-box .card::before, .register-box .card::before { content: ""; display: block; height: 3px; background: var(--mg-gradient-stripe); }
+.login-logo a, .register-logo a { color: #fff; font-weight: 700; }

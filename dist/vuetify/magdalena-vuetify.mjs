@@ -16,7 +16,7 @@ export const magdalenaVuetifyTheme = {
 export default createVuetify({
   theme: { defaultTheme: 'magdalena', themes: { magdalena: magdalenaVuetifyTheme } },
   defaults: {
-    VBtn: { rounded: 'pill', class: 'text-none font-weight-bold' },
-    VCard: { rounded: 'lg' },
+    VBtn: { rounded: 'lg', class: 'text-none font-weight-semibold' },
+    VCard: { rounded: 'lg', elevation: 1 },
   },
 });
