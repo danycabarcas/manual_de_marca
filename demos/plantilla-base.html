@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi aplicación · Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+
+<!-- ① DEPENDENCIAS — es TODO lo que hay que cargar. Cópielas a su <head>:
+       · gob.css → tipografía Montserrat (autohospedada), tokens --gob-* / --mg-* y clases mg-* (botones, tarjetas, formularios, hero…)
+       · gob.js  → cargador: detecta las etiquetas <gob-*> de la página y descarga solo esos componentes
+     Sin internet: descargue gob-cdn-v1.zip (manual → Estudio → «Paquete autónomo»), descomprímalo y cambie la ruta ../cdn/v1/ por la suya. -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; padding: 1.5rem; } .grid { display: grid; gap: 1rem; max-width: 1100px; margin: 0 auto; }</style>
+</head>
+<body class="mg-base">
+<main class="grid">
+  <!--DEMO-ONLY--><!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>Esta es la <b>plantilla mínima</b>: copie la página completa y empiece. Está comentada paso a paso (① a ⑦).</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: mg-hero, gob-alerta, gob-kpi, gob-tabla, gob-grafica, gob-mapa-magdalena, gob.toast(). Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY--><!--/DEMO-ONLY-->
+
+  <!-- ② Estilos de marca: clases mg-* (no requieren JavaScript) -->
+  <section class="mg-hero mg-hero--stripe" style="border-radius:12px"><h1 class="mg-h1" style="color:#fff;margin:0 0 .5rem">Mi aplicación</h1><p style="margin:0 0 1rem">Plantilla base con la identidad de la Gobernación.</p><button class="mg-btn" id="hola">Probar notificación</button></section>
+
+  <!-- ③ Alerta -->
+  <gob-alerta tipo="info" titulo="Todo listo">Si ve este mensaje con estilo, las dependencias se cargaron bien.</gob-alerta>
+
+  <!-- ④ Indicadores -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem">
+    <gob-kpi etiqueta="Radicados" valor="1284" delta="12.5" icono="archivo" serie="[3,5,4,8,9,7,12]"></gob-kpi>
+    <gob-kpi etiqueta="Satisfacción" valor="0.91" formato="porcentaje" icono="estrella" color="amarillo" meta="1"></gob-kpi></div>
+
+  <!-- ⑤ Tabla: asigne columnas y datos con JavaScript -->
+  <gob-tabla id="tabla" titulo="Mi tabla" tamano-pagina="5"></gob-tabla>
+
+  <!-- ⑥ Gráfica y mapa (cargan sus librerías solo si están en la página) -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1rem">
+    <div class="mg-card" style="padding:1rem"><gob-grafica id="grafica" tipo="dona" titulo="Por subregión" altura="300"></gob-grafica></div>
+    <div class="mg-card" style="padding:.5rem"><gob-mapa-magdalena id="mapa" modo="coropleta" detalle="bajo" leyenda-titulo="Casos"></gob-mapa-magdalena></div></div>
+</main>
+
+<script type="module">
+  // ⑦ Datos y eventos (sustituya por su API)
+  document.getElementById('hola').onclick = () => gob.toast({ tipo: 'exito', titulo: '¡Funciona!', mensaje: 'gob.toast() está disponible en toda la página.' });
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  document.getElementById('tabla').config = { datos: filas, llave: 'id', columnas: [{ campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'municipio', titulo: 'Municipio' }, { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } }] };
+  document.getElementById('grafica').datos = [{ nombre: 'Santa Marta', valor: 560 }, { nombre: 'Norte', valor: 420 }, { nombre: 'Río', valor: 310 }, { nombre: 'Centro', valor: 240 }, { nombre: 'Sur', valor: 180 }];
+  document.getElementById('mapa').datos = { '47001': 560, '47189': 210, '47980': 150, '47288': 120, '47245': 90, '47555': 80 };
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

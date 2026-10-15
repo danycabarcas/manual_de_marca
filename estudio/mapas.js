@@ -20,7 +20,7 @@ const S = { ...structuredClone(DEF), rampaNombre: 'azul', rampaColores: null, co
   const [m, s] = await Promise.all([fetch(CDN + 'datos/municipios.json').then((r) => r.json()), fetch(CDN + 'datos/subregiones.json').then((r) => r.json())]);
   MUNIS = m; SUBS = s;
   await import(CDN + 'gob.js');
-  await customElements.whenDefined('gob-mapa-magdalena');
+  await window.gob.cargar('gob-mapa-magdalena');
   const C = customElements.get('gob-mapa-magdalena'); RAMPAS = C.rampas; ICONOS = C.iconos;
   S.rampaColores = [...RAMPAS.azul.colores];
   $('#app').innerHTML = shell();

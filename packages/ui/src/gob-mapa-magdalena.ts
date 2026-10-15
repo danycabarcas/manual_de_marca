@@ -117,6 +117,8 @@ export class GobMapaMagdalena extends LitElement {
     this.titulo = 'Mapa del departamento del Magdalena'; this.descripcion = ''; this.formato = 'numero'; this.unidad = '';
     this.srcDatos = ''; this.filtroSubregion = ''; this.mostrarContorno = true;
     this._geo = null; this._tf = { k: 1, x: 0, y: 0 }; this._hover = null; this._tip = null; this._ppu = 0.5; this._error = '';
+    // «config» asignada antes de que el componente se cargue (carga perezosa) queda como propiedad propia: se re-aplica
+    if (Object.prototype.hasOwnProperty.call(this, 'config')) { const c = (this as any).config; delete (this as any).config; (this as any).config = c; }
   }
 
   /** Configura varias propiedades a la vez (lo usa el Estudio para generar y aplicar código). */

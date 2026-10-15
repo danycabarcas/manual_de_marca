@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal ciudadano · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS — todo lo que hay que cargar (una sola vez por página) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">             <!-- tipografía Montserrat, tokens --gob-*, clases mg-* -->
+<script type="module" src="../cdn/v1/gob.js"></script>       <!-- carga solo los componentes gob-* que use la página -->
+<style>
+  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela a su proyecto) */
+  body { margin: 0; background: var(--mg-bg-app); color: var(--mg-text); }
+  h1 { margin: 0; font-size: 1.5rem; } .muted { color: var(--mg-text-muted); }
+  .grid { display: grid; gap: 1rem; } .row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding-inline: 1.25rem; box-sizing: border-box; }
+  .topbar { background: #fff; border-bottom: 1px solid var(--mg-border); position: sticky; top: 0; z-index: 40; } .topbar .wrap { display: flex; align-items: center; gap: 1.25rem; padding-block: .7rem; } .topbar img { height: 44px; display: block; } .topbar nav { margin-left: auto; display: flex; gap: .15rem; flex-wrap: wrap; }
+  section.band { padding-block: clamp(2.2rem, 5vw, 4rem); } section.band h2 { margin: 0 0 .4rem; font-size: clamp(1.4rem, 2.5vw, 2rem); } section.band .lead { margin: 0 0 1.75rem; color: var(--mg-text-muted); max-width: 60ch; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .svc { display: grid; gap: .5rem; align-content: start; padding: 1.25rem; text-decoration: none; color: inherit; } .svc .ic { display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 12px; background: var(--mg-primary-50); color: var(--mg-primary); } .svc h3 { margin: .25rem 0 0; font-size: 1.05rem; } .svc p { margin: 0; color: var(--mg-text-muted); font-size: .9rem; }
+</style>
+</head>
+<body class="mg-base">
+<a class="mg-skip" href="#contenido">Saltar al contenido</a>
+<header class="topbar" data-demo="Encabezado institucional" data-nota="Logo oficial + navegación; sticky con línea de color en el pie del hero">
+  <div class="wrap"><a href="portal-ciudadano.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena, inicio"></a>
+    <nav aria-label="Principal"><a class="mg-nav-link is-active" href="#tramites">Trámites</a><a class="mg-nav-link" href="#cifras">El Magdalena en cifras</a><a class="mg-nav-link" href="#mapa">Territorio</a><a class="mg-nav-link" href="#faq">Preguntas</a><a class="mg-nav-link" href="#noticias">Noticias</a></nav></div>
+</header>
+<!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>Esta es una página <b>pública</b> (sin menú lateral): encabezado, hero, tarjetas de servicios, KPI, mapa con modal, acordeón, noticias y pie institucional. Cada bloque se copia por separado.</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: mg-hero, mg-card, mg-acordeon, mg-footer, gob-kpi, gob-mapa-magdalena, gob-modal, gob-icono. Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY-->
+<main id="contenido">
+<section class="mg-hero mg-hero--stripe" data-demo="Hero con buscador" data-nota="Clase mg-hero (azul-noche con brillo cian); la línea multicolor como firma">
+  <div class="wrap" style="max-width:860px"><div class="mg-eyebrow" style="color:var(--mg-cyan);margin-bottom:.8rem">Gobernación del Magdalena</div>
+    <h1 class="mg-h1" style="color:#fff;margin:0 0 .8rem">Trámites y servicios para la ciudadanía</h1><p style="margin:0 0 1.5rem;font-size:1.1rem;max-width:56ch">Consulte requisitos, radique solicitudes y siga el estado de sus trámites desde un solo lugar.</p>
+    <form class="mg-glass-dark" style="display:flex;gap:.5rem;padding:.5rem;max-width:40rem" onsubmit="event.preventDefault();gob.toast({tipo:'info',titulo:'Búsqueda',mensaje:'Buscaría «'+this.q.value+'» en el catálogo de trámites.'})">
+      <label class="mg-sr-only" for="q">¿Qué trámite necesita?</label><input class="mg-input" id="q" name="q" placeholder="¿Qué trámite necesita? Ej.: certificado, licencia…" style="background:#fff;flex:1"><button class="mg-btn">Buscar</button></form></div>
+</section>
+
+<section class="band" id="tramites" data-demo="Trámites y servicios (tarjetas)" data-nota="Tarjetas mg-card--hover con ícono gob-icono; cada una enlaza al trámite">
+  <div class="wrap"><h2>Trámites y servicios</h2><p class="lead">Los más solicitados por la ciudadanía.</p>
+    <div class="cards">
+      <a class="mg-card mg-card--hover svc" href="#" data-t="Certificados"><span class="ic"><gob-icono nombre="archivo" tam="24"></gob-icono></span><h3>Certificados y constancias</h3><p>Laboral, de residencia, paz y salvo.</p></a>
+      <a class="mg-card mg-card--hover svc" href="#" data-t="Licencias"><span class="ic"><gob-icono nombre="edificio" tam="24"></gob-icono></span><h3>Licencias y permisos</h3><p>Construcción, eventos, funcionamiento.</p></a>
+      <a class="mg-card mg-card--hover svc" href="#" data-t="PQRS"><span class="ic"><gob-icono nombre="mensaje" tam="24"></gob-icono></span><h3>Peticiones, quejas y reclamos</h3><p><a href="acceso-formularios.html#pqrs">Radique su PQRS</a> en línea.</p></a>
+      <a class="mg-card mg-card--hover svc" href="#" data-t="Impuestos"><span class="ic"><gob-icono nombre="dinero" tam="24"></gob-icono></span><h3>Impuestos y pagos</h3><p>Consulte y pague en línea de forma segura.</p></a>
+      <a class="mg-card mg-card--hover svc" href="#" data-t="Salud"><span class="ic"><gob-icono nombre="salud" tam="24"></gob-icono></span><h3>Salud pública</h3><p>Programas, vacunación y vigilancia.</p></a>
+      <a class="mg-card mg-card--hover svc" href="#" data-t="Educación"><span class="ic"><gob-icono nombre="escuela" tam="24"></gob-icono></span><h3>Educación</h3><p>Matrículas, becas y convocatorias.</p></a>
+    </div></div>
+</section>
+
+<section class="band" id="cifras" style="background:#fff;border-block:1px solid var(--mg-border)" data-demo="El Magdalena en cifras (KPI)" data-nota="gob-kpi con conteo animado; valores ficticios">
+  <div class="wrap"><h2>El Magdalena en cifras</h2><p class="lead">Datos de ejemplo del departamento.</p>
+    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))">
+      <gob-kpi etiqueta="Municipios" valor="30" icono="mapa"></gob-kpi><gob-kpi etiqueta="Subregiones" valor="5" icono="globo" color="cian"></gob-kpi>
+      <gob-kpi etiqueta="Trámites en línea" valor="1284" delta="12.5" icono="tareas" color="verde"></gob-kpi><gob-kpi etiqueta="Satisfacción ciudadana" valor="0.91" formato="porcentaje" meta="1" icono="estrella" color="amarillo"></gob-kpi></div></div>
+</section>
+
+<section class="band" id="mapa" data-demo="Mapa interactivo del departamento" data-nota="gob-mapa-magdalena: al hacer clic en un municipio se abre un modal con su información">
+  <div class="wrap"><h2>Conozca el territorio</h2><p class="lead">Seleccione un municipio para ver su información.</p>
+    <div class="mg-card" style="padding:.75rem;max-width:760px;margin-inline:auto"><gob-mapa-magdalena id="mapaP" detalle="medio" clic="evento" efectos="entrada" etiquetas-auto etiquetas="nombres"></gob-mapa-magdalena></div>
+    <gob-modal id="mMun" titulo="Municipio" icono="ubicacion" tam="md"><div id="mMunCuerpo"></div><button slot="pie" class="mg-btn" type="button" onclick="document.getElementById('mMun').cerrar()">Cerrar</button></gob-modal></div>
+</section>
+
+<section class="band" id="faq" style="background:#fff;border-block:1px solid var(--mg-border)" data-demo="Preguntas frecuentes (acordeón)" data-nota="Clase mg-acordeon sobre <details> nativos: accesible sin JavaScript">
+  <div class="wrap" style="max-width:820px"><h2>Preguntas frecuentes</h2><p class="lead">Respuestas rápidas a las dudas más comunes.</p>
+    <div class="mg-acordeon">
+      <details open><summary>¿Cómo radico una petición?</summary><div class="cuerpo">Ingrese a «Peticiones, quejas y reclamos», complete el formulario en tres pasos y reciba su número de radicado por correo.</div></details>
+      <details><summary>¿Cuánto tarda la respuesta?</summary><div class="cuerpo">Por regla general 15 días hábiles. Los tiempos varían según el tipo de solicitud y se informan al radicar.</div></details>
+      <details><summary>¿Cómo consulto el estado de mi trámite?</summary><div class="cuerpo">Con su número de radicado y su documento en la sección «Consulta de trámites».</div></details>
+      <details><summary>¿Dónde están las oficinas de atención?</summary><div class="cuerpo">Carrera 1C N° 16-15, Palacio Tayrona, Santa Marta. También hay oficinas regionales en Ciénaga, Fundación, Plato y El Banco.</div></details>
+    </div></div>
+</section>
+
+<section class="band" id="noticias" data-demo="Noticias (tarjetas con imagen y etiqueta)" data-nota="mg-card con cabecera degradada y mg-badge">
+  <div class="wrap"><h2>Noticias</h2><p class="lead">Lo último de la Gobernación (contenido de ejemplo).</p>
+    <div class="cards">
+      <article class="mg-card mg-card--hover"><div class="mg-bg-night" style="height:120px;display:grid;place-items:center;color:var(--mg-cyan)"><gob-icono nombre="mundo" tam="40"></gob-icono></div><div class="mg-card__body"><span class="mg-badge">Turismo</span><h3 class="mg-h4" style="margin:.6rem 0 .3rem">Reactivación del Corredor Turístico Tayrona</h3><p class="muted" style="margin:0;font-size:.9rem">Jornada de articulación con la Cámara de Comercio de Santa Marta.</p></div></article>
+      <article class="mg-card mg-card--hover"><div class="mg-bg-night" style="height:120px;display:grid;place-items:center;color:var(--mg-cyan)"><gob-icono nombre="escuela" tam="40"></gob-icono></div><div class="mg-card__body"><span class="mg-badge mg-badge--green">Educación</span><h3 class="mg-h4" style="margin:.6rem 0 .3rem">Nuevas becas para jóvenes del departamento</h3><p class="muted" style="margin:0;font-size:.9rem">Abiertas las convocatorias para el segundo semestre.</p></div></article>
+      <article class="mg-card mg-card--hover"><div class="mg-bg-night" style="height:120px;display:grid;place-items:center;color:var(--mg-cyan)"><gob-icono nombre="via" tam="40"></gob-icono></div><div class="mg-card__body"><span class="mg-badge mg-badge--yellow">Infraestructura</span><h3 class="mg-h4" style="margin:.6rem 0 .3rem">Avanza el mejoramiento de vías rurales</h3><p class="muted" style="margin:0;font-size:.9rem">Intervenciones en la Zona Bananera y la Sierra.</p></div></article>
+    </div></div>
+</section>
+</main>
+
+<footer class="mg-footer" data-demo="Pie de página institucional" data-nota="Clase mg-footer: azul-noche con la línea multicolor como firma">
+  <div class="wrap" style="display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))">
+    <div><img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena" style="height:44px"><p style="margin:.8rem 0 0">Carrera 1C N° 16-15 · Palacio Tayrona<br>Santa Marta, Magdalena · Colombia</p></div>
+    <div><strong style="color:#fff">Contacto</strong><p style="margin:.5rem 0 0">PBX: 60-5 4381144<br><a href="mailto:contactenos@magdalena.gov.co">contactenos@magdalena.gov.co</a></p></div>
+    <div><strong style="color:#fff">Redes</strong><p style="margin:.5rem 0 0">@magdalenagober<br>@gobernaciondelmagdalena</p></div></div>
+  <p style="margin:1.5rem auto 0;text-align:center;font-size:.8rem;opacity:.7">© 2026 Gobernación del Magdalena · Demo con datos ficticios</p>
+</footer>
+
+<script type="module">
+  const mapa = document.getElementById('mapaP'), modal = document.getElementById('mMun');
+  const muni = await fetch('../cdn/v1/datos/municipios.json').then((r) => r.json());
+  const subs = await fetch('../cdn/v1/datos/subregiones.json').then((r) => r.json());
+  mapa.addEventListener('gob-municipio-click', (e) => {
+    const m = muni.find((x) => x.codigo === e.detail.codigo); modal.titulo = m.nombre;
+    document.getElementById('mMunCuerpo').innerHTML = `<dl style="display:grid;grid-template-columns:max-content 1fr;gap:.4rem 1.25rem;margin:0"><dt class="muted">Código DANE</dt><dd style="margin:0;font-weight:600">${m.codigo}</dd><dt class="muted">Subregión</dt><dd style="margin:0;font-weight:600">${m.subregion}</dd><dt class="muted">Coordenadas</dt><dd style="margin:0;font-weight:600">${m.latitud}, ${m.longitud}</dd></dl><gob-alerta tipo="info" style="margin-top:1rem">Aquí iría la ficha del municipio (población, contacto del alcalde, trámites disponibles…).</gob-alerta>`;
+    modal.abrir();
+  });
+  document.querySelectorAll('.svc[data-t]').forEach((a) => a.addEventListener('click', (e) => { if (e.target.closest('a[href]') !== a) return; e.preventDefault(); gob.toast({ tipo: 'info', titulo: a.dataset.t, mensaje: 'Abriría la ficha del trámite.' }); }));
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

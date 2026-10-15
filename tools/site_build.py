@@ -383,7 +383,8 @@ def page_components(root):
         out += f'''<section class="pt-section" id="c{i}"><h2><span class="n">{i:02d}.</span> {t}</h2>{f'<p class="pt-lead">{d}</p>' if d else ''}
 <div class="demo"><div class="demo__view{" demo__view--white" if white else ""}">{h}</div>
 <details><summary>Ver código HTML</summary>{code("html", h)}</details></div></section>'''
-    body = '<p class="pt-lead"><a href="componentes/estandar.html"><b>Estándar de componentes y guía de decisión (PrimeNG, licencias) →</b></a> · <b>Web Components:</b> <a href="componentes/gob-mapa-magdalena.html">&lt;gob-mapa-magdalena&gt;</a> y <a href="componentes/gob-grafica.html">&lt;gob-grafica&gt;</a>, con documentación y generadores en el <a href="estudio/index.html">Estudio</a>. Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
+    import site_comp as _sc
+    body = _sc.hub_html() + '<section class="pt-section"><h2><span class="n">01.</span> Componentes CSS <code style="font-size:.6em">mg-*</code></h2><p class="pt-lead">Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias, funcionan en cualquier framework).</p></section>' + out
     page(root, 'componentes.html', 'Componentes y utilidades', 'Botones, tarjetas, indicadores, formularios, navegación, cristal y las piezas del manual (carnet, tarjeta, post): estilo sobrio, listo para copiar y pegar.', body)
 
 
@@ -462,7 +463,7 @@ def page_index(root):
              ('grid', 'Componentes', 'Botones, tarjetas, KPIs, formularios, navegación, carnet y tarjeta en HTML/CSS.', 'componentes.html', 'var(--mg-gradient-tropical)'),
              ('code', 'Integración', 'Guías copiar-y-pegar para 14 tecnologías, con URL directa a cada CSS.', 'integracion.html', 'var(--mg-gradient-sun)'),
              ('layers', 'Aplicaciones', 'Tarjetas, pendones, carnets, camisas, backing, post, gorra y valla del manual.', 'aplicaciones.html', 'var(--mg-gradient-heat)'),
-             ('play', 'Demos en vivo', 'AdminLTE 3 y 4, Bootstrap 5 y Tailwind con el tema aplicado.', 'demos/index.html', 'var(--mg-gradient-violet)')]
+             ('play', 'Demos en vivo', 'Panel, gestión, territorio, portal y formularios con los componentes gob-*; copiar y pegar.', 'demos/index.html', 'var(--mg-gradient-violet)')]
     ico = {
         'palette': '<path d="M12 22a10 10 0 1 1 10-10c0 3-2 4-4 4h-2a2 2 0 0 0-1 3.7c.6.4.4 2.3-3 2.3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="11" r="1"/>',
         'image': '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
@@ -496,32 +497,43 @@ def page_index(root):
 
 
 def page_demos(root):
-    items = [('adminlte4.html', 'AdminLTE 4', 'Bootstrap 5.3 · sidebar degradado, small-boxes, línea en cabecera y pie', 'var(--mg-gradient-primary)'),
-             ('adminlte3.html', 'AdminLTE 3', 'Bootstrap 4 · mismo tema para proyectos AdminLTE 3.2', 'var(--mg-gradient-aqua)'),
-             ('bootstrap5.html', 'Bootstrap 5', 'Navbar, hero, tarjetas, formulario y modal', 'var(--mg-gradient-tropical)'),
-             ('tailwind.html', 'Tailwind CSS', 'Utilidades mg-* y degradados bg-mg-grad-*', 'var(--mg-gradient-sun)')]
-    ck = ''.join(f'<a class="k" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d, g in items)
-    body = f'<p class="pt-lead">Páginas reales que cargan AdminLTE/Bootstrap/Tailwind desde CDN y encima el CSS de este repositorio. Úselas como referencia de marcado.</p><div class="cards-k">{ck}</div>'
-    page(root, 'demos/index.html', 'Demos en vivo', 'Plantillas funcionales con la identidad visual aplicada.', body)
+    import site_demos
+    site_demos.build(root)
+    items = [('panel-ejecutivo.html', 'Panel ejecutivo', 'Dashboard declarativo (KPI, gráficas, mapa), tabla y alertas en pestañas.'),
+             ('gestion-tramites.html', 'Gestión de trámites', 'CRUD completo: tabla con selección y acciones, modales con validación, detalle y confirmaciones.'),
+             ('analitica-territorial.html', 'Analítica territorial', 'Mapa coroplético, ranking, marcadores con efectos y rutas animadas.'),
+             ('portal-ciudadano.html', 'Portal ciudadano', 'Página pública: hero, servicios, cifras, mapa con modal, FAQ, noticias y pie.'),
+             ('acceso-formularios.html', 'Acceso y formularios', 'Login, registro y formulario por pasos con validación accesible.'),
+             ('plantilla-base.html', 'Plantilla base', 'Punto de partida mínimo, comentado paso a paso, con todas las dependencias.')]
+    ck = ''.join(f'<a class="k" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d in items)
+    body = '<p class="pt-lead">Plantillas completas hechas solo con los componentes <code class="inline">gob-*</code> y las clases <code class="inline">mg-*</code> (sin AdminLTE ni Bootstrap). En cada una active <b>«Guías de código»</b> para ver y copiar cada sección, o copie la página entera. Los datos son ficticios.</p><div class="cards-k">' + ck + '</div>'
+    page(root, 'demos/index.html', 'Demos y plantillas', 'Páginas completas listas para copiar y usar como tema, con los componentes avanzados.', body)
 
 
 def page_studio(root):
     k = lambda h, ico, tt, d, est='': f'<a class="k" href="{h}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{ico}</svg></div><h3>{tt} {est}</h3><p>{d}</p></a>'
     soon = '<span class="mg-badge mg-badge--gray">Próximamente</span>'
     cards = (k('mapas.html', '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>', 'Estudio de mapas', 'Mapa del Magdalena con 30 municipios (código DIVIPOLA): coropleta, subregiones, categorías, marcadores, rutas animadas y efectos. Elija colores y copie el código.')
+             + k('tablas.html', '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>', 'Estudio de tablas', 'Tablas avanzadas con filtros, orden, selección, acciones, totales y exportación. Pegue su CSV y copie el código.')
+             + k('dashboards.html', '<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>', 'Estudio de dashboards', 'Plantillas ejecutivo, operativo y territorial con KPI, gráficas, mapa y tabla; filtros sincronizados entre widgets.')
              + k('graficas.html', '<path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>', 'Estudio de gráficas', 'Barras, líneas, áreas, torta, dona, radar, indicador, mapa de calor, treemap y sankey con la paleta institucional. Datos editables o pegados desde CSV.')
-             + '<div class="k" style="border-style:dashed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div><h3>Estudio de dashboards ' + soon + '</h3><p>Plantillas de tableros con widgets intercambiables y filtros globales.</p></div>')
+)
     body = '<p class="pt-lead">Generadores visuales: configure, vea el resultado en vivo y copie el código listo para HTML, Angular o React. Todo usa los componentes <code class="inline">gob-*</code> del CDN <code class="inline">/cdn/v1/</code>, independientes del framework.</p><div class="cards-k">' + cards + '</div>'
     page(root, 'estudio/index.html', 'Estudio', 'Genere mapas, gráficas y tableros con la identidad visual: elija colores, datos y efectos y copie el código.', body)
     shell = '<p class="pt-lead">Configure el mapa a la izquierda; la vista previa y el código se actualizan al instante. El enlace de la barra del navegador guarda su configuración.</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
     shell_g = '<p class="pt-lead">Elija el tipo de gráfica, sus colores y sus datos; la vista previa y el código se actualizan al instante. Las gráficas usan Apache ECharts, que se descarga solo cuando hay una gráfica en la página.</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
+    for nom, tit, lead, desc in (('tablas', 'Estudio de tablas', 'Configure gob-tabla: datos, columnas, filtros, selección, acciones y totales, y copie el código.', 'Datos propios (CSV) o de ejemplo, tipos de columna, filtros, selección, acciones por fila y masivas, totales y exportación. Código para HTML, Angular y React.'),
+                                   ('dashboards', 'Estudio de dashboards', 'Arme tableros con gob-dashboard: plantillas, widgets, filtros globales y código listo.', 'Plantillas ejecutivo, operativo y territorial; KPI, gráficas, mapa y tabla con filtros sincronizados. Cambie datos, widgets y colores y copie el código.')):
+        sh = f'<p class="pt-lead">{desc}</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
+        page(root, f'estudio/{nom}.html', tit, lead, sh, scripts=f'<script type="module" src="{nom}.js?v={BUILD}"></script>')
     page(root, 'estudio/graficas.html', 'Estudio de gráficas', 'Gráficas con la identidad visual: tipo, colores, datos y código generado para HTML, Angular y React.', shell_g, scripts=f'<script type="module" src="graficas.js?v={BUILD}"></script>')
     page(root, 'estudio/mapas.html', 'Estudio de mapas', 'Mapa interactivo del Magdalena: colores, datos por municipio, marcadores, rutas animadas y efectos, con código generado.', shell, scripts=f'<script type="module" src="mapas.js?v={BUILD}"></script>')
 
 
 def build(root, dist, G):
     page_studio(root)
-    import site_mapa, site_estandar, site_grafica
+    import site_mapa, site_estandar, site_grafica, site_comp
+    site_comp.build(root, page, code)
     site_mapa.build(root, page, code)
     site_grafica.build(root, page, code)
     site_estandar.build(root, page, code)

@@ -1,7 +1,9 @@
 /*! Gobernación del Magdalena · Identidad Visual 2026 · v1.0.0 (cdn/v1)
    Generado desde tools/tokens.py — NO editar a mano.
    Dev. Ing. Daniel Cabarcas · 2026 */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+/* Montserrat (SIL OFL 1.1) autohospedada en ./fonts — sin depender de Google Fonts */
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 100 900; src: url(./fonts/montserrat-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 100 900; src: url(./fonts/montserrat-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 :root {
   /* Paleta oficial */
   --mg-primary: #0071BB;
@@ -455,3 +457,23 @@
 
 @media (prefers-reduced-motion: reduce) { .mg-btn, .mg-card--hover { transition: none; } }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .mg-glass, .mg-navbar, .mg-card--glass { background: rgba(255,255,255,.96); } .mg-glass-dark, .mg-navbar--dark { background: rgba(8,26,44,.96); } }
+
+/* ---------- Acordeón (con <details> nativo), stepper, línea de tiempo y enlace de salto ---------- */
+.mg-acordeon { display: grid; gap: .5rem; }
+.mg-acordeon details { background: var(--mg-surface-card); border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); }
+.mg-acordeon summary { cursor: pointer; padding: .9rem 1.1rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; color: var(--mg-heading); }
+.mg-acordeon summary::-webkit-details-marker { display: none; } .mg-acordeon summary::after { content: "+"; color: var(--mg-primary); font-weight: 800; font-size: 1.2rem; line-height: 1; } .mg-acordeon details[open] summary::after { content: "–"; }
+.mg-acordeon summary:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: -2px; border-radius: var(--mg-radius-md); } .mg-acordeon details[open] { border-color: var(--mg-primary-200); } .mg-acordeon .cuerpo { padding: 0 1.1rem 1rem; color: var(--mg-gray-600); line-height: 1.65; }
+.mg-stepper { display: flex; gap: .5rem; list-style: none; margin: 0; padding: 0; counter-reset: paso; }
+.mg-stepper li { flex: 1; display: flex; align-items: center; gap: .6rem; counter-increment: paso; font-size: .85rem; font-weight: 600; color: var(--mg-gray-500); position: relative; }
+.mg-stepper li::before { content: counter(paso); display: grid; place-items: center; width: 2rem; height: 2rem; flex: none; border-radius: 50%; background: var(--mg-gray-100); border: 2px solid var(--mg-gray-300); color: var(--mg-gray-600); font-weight: 700; }
+.mg-stepper li:not(:last-child)::after { content: ""; flex: 1; height: 2px; background: var(--mg-gray-200); margin-inline: .25rem; }
+.mg-stepper li.is-done { color: var(--mg-gray-800); } .mg-stepper li.is-done::before { content: "✓"; background: var(--mg-green-700); border-color: var(--mg-green-700); color: #fff; } .mg-stepper li.is-done::after { background: var(--mg-green-700); }
+.mg-stepper li.is-current { color: var(--mg-primary-700); } .mg-stepper li.is-current::before { background: var(--mg-primary); border-color: var(--mg-primary); color: #fff; }
+@media (max-width: 560px) { .mg-stepper li span { display: none; } .mg-stepper li.is-current span { display: inline; } }
+.mg-timeline { list-style: none; margin: 0; padding: 0 0 0 1.1rem; border-left: 2px solid var(--mg-gray-200); display: grid; gap: 1rem; }
+.mg-timeline li { position: relative; padding-left: .9rem; font-size: .9rem; } .mg-timeline li::before { content: ""; position: absolute; left: -1.62rem; top: .3rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--mg-primary); box-shadow: 0 0 0 3px var(--mg-surface-card); }
+.mg-timeline time { display: block; font-size: .75rem; color: var(--mg-text-muted); } .mg-timeline strong { color: var(--mg-heading); }
+.mg-skip { position: absolute; left: .5rem; top: -4rem; z-index: 1000; background: var(--mg-primary); color: #fff; padding: .6rem 1rem; border-radius: var(--mg-radius-md); font-weight: 700; text-decoration: none; transition: top .15s; } .mg-skip:focus { top: .5rem; }
+.mg-field { display: grid; gap: .3rem; } .mg-error { color: var(--mg-red-700); font-size: .8rem; font-weight: 600; } .mg-input.is-invalid, .mg-select.is-invalid, .mg-textarea.is-invalid { border-color: var(--mg-red); background: var(--mg-red-50); }
+.mg-textarea { width: 100%; box-sizing: border-box; font: 400 .9375rem/1.5 var(--mg-font-sans); color: var(--mg-text); background: var(--mg-surface-card); border: 1px solid var(--mg-border-strong); border-radius: var(--mg-radius-md); padding: .55rem .8rem; min-height: 6rem; resize: vertical; } .mg-textarea:focus { outline: 0; border-color: var(--mg-primary); box-shadow: var(--mg-shadow-glow); }

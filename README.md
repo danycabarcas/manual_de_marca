@@ -71,7 +71,7 @@ La imagen web de portadas se apoya en el **degradado de la gama azul** (`--mg-gr
 ```
 index.html, colores.html, logos.html, componentes.html,
 integracion.html, aplicaciones.html   ← portal (generado)
-demos/            AdminLTE 3 y 4, Bootstrap 5, Tailwind (páginas funcionales)
+demos/            5 demos + plantilla base con componentes gob-* (copiar y pegar; sin AdminLTE/Bootstrap)
 dist/             ← LO QUE SE CONSUME (generado, versionado)
   css/            magdalena(.min).css, magdalena-tokens(.min).css
   adminlte/       magdalena-adminlte3|4(.min).css

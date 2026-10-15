@@ -15,7 +15,7 @@ export const TIPOS: Record<string, string> = {
 export interface Cfg {
   tipo: string; colores: string[]; titulo: string; subtitulo: string; leyenda: boolean; leyendaPosicion: 'arriba' | 'abajo' | 'derecha';
   etiquetas: boolean; apilado: boolean; suave: boolean; formato: string; unidad: string; tituloEjeX: string; tituloEjeY: string;
-  umbrales?: [number, string][]; min: number; max: number; patrones: boolean; animacion: boolean; oscuro: boolean; centro: string;
+  umbrales?: [number, string][]; resaltar?: string; min: number; max: number; patrones: boolean; animacion: boolean; oscuro: boolean; centro: string;
 }
 const FUENTE = "Montserrat, 'Segoe UI', system-ui, sans-serif";
 
@@ -72,12 +72,12 @@ export function construirOpcion(c: Cfg, d: any): Record<string, any> {
     opt.grid = grid; opt.xAxis = horiz ? val : cat; opt.yAxis = horiz ? cat : val;
     opt.tooltip = { ...opt.tooltip, trigger: 'axis', axisPointer: { type: esBarra ? 'shadow' : 'line' }, valueFormatter: fmt };
     opt.series = n.series.map((s) => esBarra
-      ? { name: s.nombre, type: 'bar', data: s.valores, stack: c.apilado ? 'total' : undefined, barMaxWidth: 40, itemStyle: { borderRadius: horiz ? [0, 4, 4, 0] : [4, 4, 0, 0] }, emphasis: { focus: 'series' }, label: { show: c.etiquetas, position: c.apilado ? 'inside' : horiz ? 'right' : 'top', formatter: (p: any) => fmt(p.value), fontFamily: FUENTE, fontSize: 11, color: c.apilado ? '#fff' : suave } }
+      ? { name: s.nombre, type: 'bar', data: c.resaltar ? s.valores.map((v, i) => ({ value: v, itemStyle: n.categorias[i] === c.resaltar ? undefined : { opacity: 0.3 } })) : s.valores, stack: c.apilado ? 'total' : undefined, barMaxWidth: 40, itemStyle: { borderRadius: horiz ? [0, 4, 4, 0] : [4, 4, 0, 0] }, emphasis: { focus: 'series' }, label: { show: c.etiquetas, position: c.apilado ? 'inside' : horiz ? 'right' : 'top', formatter: (p: any) => fmt(p.value), fontFamily: FUENTE, fontSize: 11, color: c.apilado ? '#fff' : suave } }
       : { name: s.nombre, type: 'line', data: s.valores, smooth: c.suave, symbolSize: 7, showSymbol: n.categorias.length <= 24, lineWidth: 2.5, lineStyle: { width: 2.5 }, stack: tipo === 'area' && c.apilado ? 'total' : undefined, areaStyle: tipo === 'area' ? { opacity: 0.16 } : undefined, emphasis: { focus: 'series' }, label: { show: c.etiquetas, position: 'top', formatter: (p: any) => fmt(p.value), fontFamily: FUENTE, fontSize: 11, color: suave } });
   } else if (tipo === 'torta' || tipo === 'dona') {
     const a: { nombre: string; valor: number }[] = Array.isArray(d) ? d : []; const dona = tipo === 'dona'; const total = suma(a.map((x) => Number(x.valor)));
     opt.tooltip = { ...opt.tooltip, trigger: 'item', valueFormatter: fmt };
-    opt.series = [{ type: 'pie', radius: dona ? ['48%', '72%'] : ['0%', '72%'], center: [legDer ? '38%' : '50%', legAbajo ? '48%' : '54%'], data: a.map((x) => ({ name: x.nombre, value: Number(x.valor) })), itemStyle: { borderColor: fondo, borderWidth: 2, borderRadius: dona ? 6 : 4 }, label: { show: c.etiquetas, formatter: '{b}\n{d}%', fontFamily: FUENTE, fontSize: 11, color: c.oscuro ? '#E3E8EF' : '#252B36' }, labelLine: { show: c.etiquetas }, emphasis: { scaleSize: 6 } }];
+    opt.series = [{ type: 'pie', radius: dona ? ['48%', '72%'] : ['0%', '72%'], center: [legDer ? '38%' : '50%', legAbajo ? '48%' : '54%'], data: a.map((x) => ({ name: x.nombre, value: Number(x.valor), ...(c.resaltar && x.nombre !== c.resaltar ? { itemStyle: { opacity: 0.3 } } : {}) })), itemStyle: { borderColor: fondo, borderWidth: 2, borderRadius: dona ? 6 : 4 }, label: { show: c.etiquetas, formatter: '{b}\n{d}%', fontFamily: FUENTE, fontSize: 11, color: c.oscuro ? '#E3E8EF' : '#252B36' }, labelLine: { show: c.etiquetas }, emphasis: { scaleSize: 6 } }];
     if (dona) opt.graphic = [{ type: 'group', left: legDer ? '25%' : 'center', top: legAbajo ? '43%' : '50%', children: [
       { type: 'text', style: { text: c.centro || fmt(total), textAlign: 'center', textVerticalAlign: 'bottom', fontSize: 24, fontWeight: 800, fontFamily: FUENTE, fill: c.oscuro ? '#fff' : '#161A22' } },
       { type: 'text', style: { text: c.centro ? '' : 'Total', textAlign: 'center', textVerticalAlign: 'top', y: 2, fontSize: 12, fontFamily: FUENTE, fill: suave } }] }];

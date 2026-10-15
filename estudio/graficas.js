@@ -24,7 +24,7 @@ const S = {
 };
 
 (async function init() {
-  await import(CDN + 'gob.js'); await customElements.whenDefined('gob-grafica');
+  await import(CDN + 'gob.js'); await window.gob.cargar('gob-grafica');
   const C = customElements.get('gob-grafica'); PALETAS = C.paletas; TIPOS = C.tipos;
   $('#app').innerHTML = shell(); vista = $('#vista'); restaurar();
   const pre = new URLSearchParams(location.search).get('preset');

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestión de trámites · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS — todo lo que hay que cargar (una sola vez por página) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">             <!-- tipografía Montserrat, tokens --gob-*, clases mg-* -->
+<script type="module" src="../cdn/v1/gob.js"></script>       <!-- carga solo los componentes gob-* que use la página -->
+<style>
+  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela a su proyecto) */
+  body { margin: 0; background: var(--mg-bg-app); color: var(--mg-text); }
+  h1 { margin: 0; font-size: 1.5rem; } .muted { color: var(--mg-text-muted); }
+  .grid { display: grid; gap: 1rem; } .row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
+  .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
+  .app__side { position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
+  .app__brand { padding: .25rem .5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; } .app__brand img { height: 40px; display: block; }
+  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; opacity: .65; }
+  .app__main { display: flex; flex-direction: column; min-width: 0; }
+  .app__top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 1rem; padding: .7rem 1.5rem; background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); }
+  .app__top .sp { flex: 1; } .app__search { max-width: 22rem; width: 100%; } .ico-btn.app__burger { display: none; }
+  .app__content { padding: 1.5rem; display: grid; gap: 1.25rem; width: 100%; max-width: 1560px; margin: 0 auto; box-sizing: border-box; }
+  .app__content > *, .grid > * { min-width: 0; } .app__content { grid-template-columns: minmax(0, 1fr); } .app__top .mg-breadcrumb { min-width: 0; overflow: hidden; white-space: nowrap; } .app__search { min-width: 0; }
+  .ico-btn { position: relative; display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--mg-border-strong); background: #fff; border-radius: 10px; cursor: pointer; color: var(--mg-gray-700); } .ico-btn:hover { background: var(--mg-gray-50); } .ico-btn .dot { position: absolute; top: -.25rem; right: -.25rem; min-width: 1.1rem; height: 1.1rem; padding: 0 .25rem; border-radius: 99px; background: var(--mg-red-600); color: #fff; font: 700 .65rem/1.1rem var(--mg-font-sans); text-align: center; }
+  .app__veil { display: none; }
+  @media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } .app__search { max-width: 9rem; } .app__top .mg-breadcrumb { display: none; } .app__side { position: fixed; z-index: 80; left: 0; top: 0; bottom: 0; width: 264px; transform: translateX(-100%); transition: transform .25s; } .app--menu .app__side { transform: none; } .app--menu .app__veil { display: block; position: fixed; inset: 0; z-index: 70; background: rgba(8,26,44,.5); } .ico-btn.app__burger { display: inline-grid; } .app__top { padding: .6rem 1rem; } .app__content { padding: 1rem; } }
+</style>
+</head>
+<body class="mg-base">
+<a class="mg-skip" href="#contenido">Saltar al contenido</a>
+<div class="app">
+    <aside class="app__side mg-sidebar" data-demo="Menú lateral" data-nota="Sidebar azul-noche (clase mg-sidebar) con íconos gob-icono">
+      <div class="app__brand"><img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena"></div>
+      <span class="mg-sidebar__label">Demos</span>
+      <a href="panel-ejecutivo.html"><gob-icono nombre="panel" tam="18"></gob-icono> Panel ejecutivo</a><a href="gestion-tramites.html" class="is-active" aria-current="page"><gob-icono nombre="tareas" tam="18"></gob-icono> Gestión de trámites</a><a href="analitica-territorial.html"><gob-icono nombre="mapa" tam="18"></gob-icono> Analítica territorial</a><a href="portal-ciudadano.html"><gob-icono nombre="globo" tam="18"></gob-icono> Portal ciudadano</a><a href="acceso-formularios.html"><gob-icono nombre="candado" tam="18"></gob-icono> Acceso y formularios</a>
+      <span class="mg-sidebar__label">Manual</span>
+      <a href="../index.html"><gob-icono nombre="flecha-izquierda" tam="18"></gob-icono> Volver al manual</a>
+      <a href="../estudio/index.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono> Estudio</a>
+      <div class="app__user"><span class="mg-avatar" style="border-color:rgba(255,255,255,.2)">UD</span><div>Usuario demostrativo<small>Oficina TIC</small></div></div>
+    </aside>
+    <div class="app__veil"></div>
+    <div class="app__main">
+      <header class="app__top" data-demo="Barra superior" data-nota="Barra de cristal con migas, buscador, notificaciones y usuario">
+        <button class="ico-btn app__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu"></gob-icono></button>
+        <ul class="mg-breadcrumb"><li>Inicio</li><li>Gestión</li><li>Trámites</li></ul><span class="sp"></span>
+        <label class="app__search"><span class="mg-sr-only">Buscar</span><input class="mg-input" type="search" placeholder="Buscar radicado, municipio…" id="buscar"></label>
+        <button class="ico-btn" type="button" id="campana" aria-label="3 notificaciones nuevas"><gob-icono nombre="campana"></gob-icono><span class="dot" aria-hidden="true">3</span></button>
+      </header>
+      <main class="app__content" id="contenido">
+<!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>El patrón CRUD completo (alta, edición, detalle, eliminación con confirmación) está en el <code>&lt;script&gt;</code> de abajo: cópielo y cambie los <code>fetch</code> por llamadas a su API.</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: gob-tabla, gob-modal, gob-pestanas, gob-kpi, gob.toast(), gob.confirmar(), mg-timeline, mg-input. Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY-->
+        <div class="page-head"><div><h1>Gestión de trámites</h1><p>Bandeja con selección, acciones por fila y masivas, alta/edición en ventana modal y confirmaciones.</p></div>
+          <div class="row" data-demo="Barra de acciones de la página" data-nota="Botones mg-btn con íconos gob-icono; abren modales y toasts"><button class="mg-btn mg-btn--secondary" id="importar"><gob-icono nombre="subir" tam="16"></gob-icono> Importar</button><button class="mg-btn" id="nuevo"><gob-icono nombre="agregar" tam="16"></gob-icono> Nuevo trámite</button></div></div>
+
+        <section class="grid" style="grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))" data-demo="Indicadores rápidos" data-nota="gob-kpi: se actualizan al cambiar la tabla (kpi.valor = …)">
+          <gob-kpi id="k1" etiqueta="Trámites" icono="archivo"></gob-kpi><gob-kpi id="k2" etiqueta="En trámite" icono="reloj" color="cian"></gob-kpi>
+          <gob-kpi id="k3" etiqueta="Vencidos" icono="alerta" color="rojo" bueno-sube="false"></gob-kpi><gob-kpi id="k4" etiqueta="Valor total" icono="dinero" color="verde" formato="compacto"></gob-kpi>
+        </section>
+
+        <section data-demo="Tabla de trámites con selección y acciones" data-nota="gob-tabla: seleccion=multiple, acciones por fila, acciones masivas y totales">
+          <gob-tabla id="tabla" titulo="Bandeja de trámites" seleccion="multiple" filtros-columna totales tamano-pagina="8" selector-columnas></gob-tabla>
+        </section>
+
+        <section data-demo="Modal de alta y edición con validación" data-nota="gob-modal + formulario mg-input; valida y muestra errores accesibles">
+          <gob-modal id="mForm" titulo="Nuevo trámite" tipo="info" tam="md">
+            <form id="form" novalidate class="grid" style="gap:.85rem">
+              <div class="mg-field"><label class="mg-label" for="f-asunto">Asunto *</label><input class="mg-input" id="f-asunto" name="asunto" autocomplete="off" aria-describedby="e-asunto"><span class="mg-error" id="e-asunto" role="alert"></span></div>
+              <div class="mg-field"><label class="mg-label" for="f-solicitante">Solicitante *</label><input class="mg-input" id="f-solicitante" name="solicitante" autocomplete="name" aria-describedby="e-solicitante"><span class="mg-error" id="e-solicitante" role="alert"></span></div>
+              <div class="grid" style="grid-template-columns:1fr 1fr;gap:.85rem">
+                <div class="mg-field"><label class="mg-label" for="f-municipio">Municipio</label><select class="mg-select" id="f-municipio" name="municipio"><option>Santa Marta</option><option>Ciénaga</option><option>Fundación</option><option>Aracataca</option><option>Plato</option><option>El Banco</option></select></div>
+                <div class="mg-field"><label class="mg-label" for="f-estado">Estado</label><select class="mg-select" id="f-estado" name="estado"><option>Pendiente</option><option>En trámite</option><option>Resuelto</option><option>Vencido</option></select></div>
+              </div>
+              <div class="mg-field"><label class="mg-label" for="f-valor">Valor estimado (COP)</label><input class="mg-input" id="f-valor" name="valor" type="number" min="0" step="1000" value="0"><span class="mg-help">Deje 0 si el trámite no genera cobro.</span></div>
+            </form>
+            <button slot="pie" class="mg-btn mg-btn--secondary" type="button" id="cancelar">Cancelar</button><button slot="pie" class="mg-btn" type="button" id="guardar">Guardar</button>
+          </gob-modal>
+        </section>
+
+        <section data-demo="Modal de detalle con pestañas y línea de tiempo" data-nota="gob-modal tam=lg con gob-pestanas y mg-timeline">
+          <gob-modal id="mDetalle" titulo="Detalle del trámite" tam="lg" icono="carpeta">
+            <gob-pestanas items='[{"id":"g","titulo":"General","icono":"inicio"},{"id":"d","titulo":"Documentos","icono":"archivo","contador":2},{"id":"h","titulo":"Historial","icono":"historial"}]' activa="g">
+              <div slot="g"><dl id="dl" style="display:grid;grid-template-columns:max-content 1fr;gap:.5rem 1.25rem;margin:0"></dl></div>
+              <div slot="d"><ul style="margin:0;padding-left:1.1rem;line-height:1.9"><li>Solicitud firmada.pdf <span class="mg-badge mg-badge--green">Verificado</span></li><li>Cédula del solicitante.pdf <span class="mg-badge mg-badge--yellow">Pendiente</span></li></ul></div>
+              <div slot="h"><ol class="mg-timeline"><li><time>12 oct 2026</time><strong>Radicado</strong> por el solicitante</li><li><time>13 oct 2026</time><strong>Asignado</strong> a la dependencia</li><li><time>15 oct 2026</time><strong>En revisión</strong> por el equipo jurídico</li></ol></div>
+            </gob-pestanas>
+            <button slot="pie" class="mg-btn" type="button" onclick="document.getElementById('mDetalle').cerrar()">Cerrar</button>
+          </gob-modal>
+        </section>
+
+        <script type="module">
+          const $ = (id) => document.getElementById(id);
+          let filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+          const tabla = $('tabla'); let editando = null;
+
+          tabla.config = { datos: filas, llave: 'id', ordenInicial: { campo: 'fecha', dir: 'desc' },
+            columnas: [
+              { campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'solicitante', titulo: 'Solicitante' }, { campo: 'municipio', titulo: 'Municipio' },
+              { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+              { campo: 'fecha', titulo: 'Fecha', tipo: 'fecha' }, { campo: 'dias', titulo: 'Días', tipo: 'numero', semaforo: { verde: 10, amarillo: 25, invertir: true }, total: 'promedio' },
+              { campo: 'valor', titulo: 'Valor', tipo: 'cop', total: 'suma' }, { campo: 'avance', titulo: 'Avance', tipo: 'barra', maximo: 1 } ],
+            acciones: [{ id: 'ver', etiqueta: 'Ver detalle', icono: 'ojo' }, { id: 'editar', etiqueta: 'Editar', icono: 'editar' }, { id: 'eliminar', etiqueta: 'Eliminar', icono: 'eliminar', tipo: 'peligro' }],
+            accionesMasivas: [{ id: 'asignar', etiqueta: 'Asignar', icono: 'persona-agregar', tipo: 'primario' }, { id: 'exportar', etiqueta: 'Exportar', icono: 'descargar' }, { id: 'eliminar', etiqueta: 'Eliminar', icono: 'eliminar', tipo: 'peligro' }] };
+
+          function indicadores() {
+            $('k1').valor = filas.length; $('k2').valor = filas.filter((f) => f.estado === 'En trámite').length;
+            $('k3').valor = filas.filter((f) => f.estado === 'Vencido').length; $('k4').valor = filas.reduce((a, f) => a + f.valor, 0);
+          }
+          indicadores();
+
+          // — Alta / edición con validación
+          const campos = { asunto: 'El asunto es obligatorio', solicitante: 'El solicitante es obligatorio' };
+          function validar() {
+            let ok = true;
+            for (const [k, msg] of Object.entries(campos)) { const i = $('f-' + k), e = $('e-' + k), vacio = !i.value.trim(); i.classList.toggle('is-invalid', vacio); i.setAttribute('aria-invalid', vacio); e.textContent = vacio ? msg : ''; if (vacio) ok = false; }
+            return ok;
+          }
+          function abrirForm(f) {
+            editando = f ?? null; $('mForm').titulo = f ? 'Editar trámite ' + f.radicado : 'Nuevo trámite';
+            $('f-asunto').value = f?.asunto ?? ''; $('f-solicitante').value = f?.solicitante ?? ''; $('f-municipio').value = f?.municipio ?? 'Santa Marta'; $('f-estado').value = f?.estado ?? 'Pendiente'; $('f-valor').value = f?.valor ?? 0;
+            for (const k of Object.keys(campos)) { $('f-' + k).classList.remove('is-invalid'); $('e-' + k).textContent = ''; }
+            $('mForm').abrir(); setTimeout(() => $('f-asunto').focus(), 120);
+          }
+          $('nuevo').onclick = () => abrirForm(); $('cancelar').onclick = () => $('mForm').cerrar();
+          $('guardar').onclick = () => {
+            if (!validar()) { gob.toast({ tipo: 'aviso', titulo: 'Revise el formulario', mensaje: 'Hay campos obligatorios sin completar.' }); return; }
+            const d = { asunto: $('f-asunto').value.trim(), solicitante: $('f-solicitante').value.trim(), municipio: $('f-municipio').value, estado: $('f-estado').value, valor: Number($('f-valor').value) || 0 };
+            if (editando) Object.assign(editando, d); else filas = [{ id: Date.now(), radicado: 'R-2026-' + String(Math.floor(Math.random() * 90000) + 10000), fecha: new Date().toISOString().slice(0, 10), dias: 0, avance: 0, ...d }, ...filas];
+            tabla.datos = [...filas]; indicadores(); $('mForm').cerrar();
+            gob.toast({ tipo: 'exito', titulo: editando ? 'Trámite actualizado' : 'Trámite creado', mensaje: d.asunto });
+          };
+
+          // — Acciones de la tabla
+          tabla.addEventListener('gob-tabla-accion', async (e) => {
+            const { accion, fila, filas: sel } = e.detail;
+            if (accion === 'ver') {
+              $('dl').innerHTML = Object.entries({ Radicado: fila.radicado, Asunto: fila.asunto, Solicitante: fila.solicitante, Municipio: fila.municipio, Estado: fila.estado, 'Días transcurridos': fila.dias }).map(([k, v]) => `<dt class="muted">${k}</dt><dd style="margin:0;font-weight:600">${v}</dd>`).join('');
+              $('mDetalle').titulo = 'Trámite ' + fila.radicado; $('mDetalle').abrir();
+            } else if (accion === 'editar') abrirForm(fila);
+            else if (accion === 'eliminar') {
+              const n = fila ? 1 : sel.length;
+              if (await gob.confirmar({ titulo: 'Eliminar', mensaje: n === 1 ? '¿Eliminar el trámite ' + (fila ?? sel[0]).radicado + '?' : '¿Eliminar ' + n + ' trámites seleccionados?', tipo: 'peligro', textoConfirmar: 'Eliminar' })) {
+                const ids = new Set((fila ? [fila] : sel).map((f) => f.id)); filas = filas.filter((f) => !ids.has(f.id)); tabla.datos = [...filas]; tabla.limpiarSeleccion(); indicadores();
+                gob.toast({ tipo: 'exito', titulo: n + ' eliminado' + (n > 1 ? 's' : '') });
+              }
+            } else if (accion === 'asignar') gob.toast({ tipo: 'info', titulo: 'Asignación', mensaje: sel.length + ' trámites asignados (demostración).' });
+            else if (accion === 'exportar') tabla.exportarCSV('tramites-seleccion');
+          });
+          $('importar').onclick = () => gob.toast({ tipo: 'info', titulo: 'Importar', mensaje: 'Aquí abriría su selector de archivos (CSV/Excel).' });
+        </script>
+      </main>
+    </div>
+</div>
+<script type="module">
+  // Menú móvil y notificaciones (propios del demo)
+  const app = document.querySelector('.app');
+  document.getElementById('menu')?.addEventListener('click', () => app.classList.toggle('app--menu'));
+  document.querySelector('.app__veil')?.addEventListener('click', () => app.classList.remove('app--menu'));
+  document.getElementById('campana')?.addEventListener('click', () => gob.toast({ tipo: 'info', titulo: '3 notificaciones', mensaje: 'Tiene 3 radicados por vencer esta semana.' }));
+  document.getElementById('buscar')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') gob.toast({ tipo: 'info', titulo: 'Búsqueda', mensaje: 'En producción esto consultaría su API: «' + e.target.value + '»' }); });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

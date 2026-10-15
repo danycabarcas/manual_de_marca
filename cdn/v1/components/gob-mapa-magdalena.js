@@ -1,46 +1,19 @@
-import { A as p, E as S, i as C, R as x, I as k, c as B, d as M, f as $, w as u, b as g, t as z, a as A } from "../chunks/mapa-recursos-3Ugn1q_R.js";
-const E = { CHILD: 2 }, j = (d) => (...t) => ({ _$litDirective$: d, values: t });
-class R {
-  constructor(t) {
-  }
-  get _$AU() {
-    return this._$AM._$AU;
-  }
-  _$AT(t, e, o) {
-    this._$Ct = t, this._$AM = e, this._$Ci = o;
-  }
-  _$AS(t, e) {
-    return this.update(t, e);
-  }
-  update(t, e) {
-    return this.render(...e);
-  }
-}
-class w extends R {
-  constructor(t) {
-    if (super(t), this.it = p, t.type !== E.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
-  }
-  render(t) {
-    if (t === p || t == null) return this._t = void 0, this.it = t;
-    if (t === S) return t;
-    if (typeof t != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
-    if (t === this.it) return this._t;
-    this.it = t;
-    const e = [t];
-    return e.raw = e, this._t = { _$litType$: this.constructor.resultType, strings: e, values: [] };
-  }
-}
-w.directiveName = "unsafeHTML", w.resultType = 1;
-const q = j(w), y = /* @__PURE__ */ new Map(), D = new URL("../datos/", import.meta.url).href, f = (d) => String(d ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]), T = { fromAttribute: (d) => d ? d.split(/[\s,]+/).filter(Boolean) : [], toAttribute: (d) => d.join(",") }, _ = { fromAttribute: (d) => {
+import { i as w, A as p, w as d, b as u, a as S } from "../chunks/lit-element-B3qO7mJS.js";
+import { o as B } from "../chunks/unsafe-html-BA-v3Y9E.js";
+import { R as v, I as k, c as C, a as z, f as y, t as M } from "../chunks/mapa-recursos-DvOcbc8o.js";
+const $ = /* @__PURE__ */ new Map(), E = new URL("../datos/", import.meta.url).href, f = (g) => String(g ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]), j = { fromAttribute: (g) => g ? g.split(/[\s,]+/).filter(Boolean) : [], toAttribute: (g) => g.join(",") }, _ = { fromAttribute: (g) => {
   try {
-    return d ? JSON.parse(d) : void 0;
+    return g ? JSON.parse(g) : void 0;
   } catch {
     return;
   }
-}, toAttribute: (d) => JSON.stringify(d) };
-class F extends C {
+}, toAttribute: (g) => JSON.stringify(g) };
+class A extends w {
   constructor() {
-    super(), this._pointers = /* @__PURE__ */ new Map(), this._drag = null, this._pinch0 = null, this._anim = 0, this.detalle = "medio", this.modo = "subregiones", this.rampa = "azul", this.clases = 5, this.escala = "lineal", this.etiquetas = "ninguna", this.etiquetasAuto = !0, this.leyenda = !0, this.leyendaTitulo = "", this.tooltip = !0, this.tooltipFormato = "<strong>{nombre}</strong><br><span>{subregion}</span><br>{valor}", this.seleccion = "", this.multiple = !1, this.clic = "seleccionar", this.enlace = "", this.efectos = ["entrada"], this.tema = "claro", this.zoom = !0, this.zoomRueda = !1, this.controles = !0, this.titulo = "Mapa del departamento del Magdalena", this.descripcion = "", this.formato = "numero", this.unidad = "", this.srcDatos = "", this.filtroSubregion = "", this.mostrarContorno = !0, this._geo = null, this._tf = { k: 1, x: 0, y: 0 }, this._hover = null, this._tip = null, this._ppu = 0.5, this._error = "";
+    if (super(), this._pointers = /* @__PURE__ */ new Map(), this._drag = null, this._pinch0 = null, this._anim = 0, this.detalle = "medio", this.modo = "subregiones", this.rampa = "azul", this.clases = 5, this.escala = "lineal", this.etiquetas = "ninguna", this.etiquetasAuto = !0, this.leyenda = !0, this.leyendaTitulo = "", this.tooltip = !0, this.tooltipFormato = "<strong>{nombre}</strong><br><span>{subregion}</span><br>{valor}", this.seleccion = "", this.multiple = !1, this.clic = "seleccionar", this.enlace = "", this.efectos = ["entrada"], this.tema = "claro", this.zoom = !0, this.zoomRueda = !1, this.controles = !0, this.titulo = "Mapa del departamento del Magdalena", this.descripcion = "", this.formato = "numero", this.unidad = "", this.srcDatos = "", this.filtroSubregion = "", this.mostrarContorno = !0, this._geo = null, this._tf = { k: 1, x: 0, y: 0 }, this._hover = null, this._tip = null, this._ppu = 0.5, this._error = "", Object.prototype.hasOwnProperty.call(this, "config")) {
+      const t = this.config;
+      delete this.config, this.config = t;
+    }
   }
   static {
     this.properties = {
@@ -65,7 +38,7 @@ class F extends C {
       enlace: { type: String },
       marcadores: { converter: _ },
       lineas: { converter: _ },
-      efectos: { converter: T },
+      efectos: { converter: j },
       tema: { type: String, reflect: !0 },
       zoom: { type: Boolean },
       zoomRueda: { attribute: "zoom-rueda", type: Boolean },
@@ -93,7 +66,7 @@ class F extends C {
     return {};
   }
   static get rampas() {
-    return x;
+    return v;
   }
   static get iconos() {
     return k;
@@ -120,17 +93,17 @@ class F extends C {
     }
   }
   _cargar() {
-    const e = (this.srcDatos || D).replace(/\/?$/, "/") + `magdalena-municipios.${this.detalle}.json`;
-    y.has(e) || y.set(e, fetch(e).then((o) => {
+    const e = (this.srcDatos || E).replace(/\/?$/, "/") + `magdalena-municipios.${this.detalle}.json`;
+    $.has(e) || $.set(e, fetch(e).then((o) => {
       if (!o.ok) throw new Error(`No se pudo cargar ${e} (${o.status})`);
       return o.json();
-    })), y.get(e).then((o) => {
+    })), $.get(e).then((o) => {
       this._geo = o, this._error = "", this.updateComplete.then(() => {
         const s = this.renderRoot.querySelector("svg");
         s && this._ro?.observe(s), this._medir(), this.dispatchEvent(new CustomEvent("gob-mapa-listo", { bubbles: !0, composed: !0 }));
       });
     }).catch((o) => {
-      y.delete(e), this._error = String(o.message || o);
+      $.delete(e), this._error = String(o.message || o);
     });
   }
   // ------------------------------------------------------------------ datos derivados
@@ -138,10 +111,10 @@ class F extends C {
     return this.seleccion ? this.seleccion.split(",").filter(Boolean) : [];
   }
   _colores() {
-    return Array.isArray(this.rampa) ? this.rampa : x[this.rampa]?.colores ?? x.azul.colores;
+    return Array.isArray(this.rampa) ? this.rampa : v[this.rampa]?.colores ?? v.azul.colores;
   }
   _clases() {
-    return this.modo === "coropleta" && this.datos ? B(Object.values(this.datos), Math.max(2, this.clases), this._colores(), this.escala) : [];
+    return this.modo === "coropleta" && this.datos ? C(Object.values(this.datos), Math.max(2, this.clases), this._colores(), this.escala) : [];
   }
   _subColor(t) {
     return this.coloresSubregiones?.[t] ?? this._geo?.subregiones.find((e) => e.id === t)?.color ?? "#97A1B0";
@@ -151,7 +124,7 @@ class F extends C {
       case "plano":
         return "var(--gob-mapa-relleno)";
       case "coropleta": {
-        const o = this.datos?.[t.codigo], s = o == null ? void 0 : M(o, e);
+        const o = this.datos?.[t.codigo], s = o == null ? void 0 : z(o, e);
         return s ? s.color : "var(--gob-mapa-sin-dato)";
       }
       case "categorias": {
@@ -164,7 +137,7 @@ class F extends C {
   }
   _valorTxt(t) {
     const e = this.datos?.[t];
-    return e == null ? "" : $(e, this.formato) + (this.unidad ? " " + this.unidad : "");
+    return e == null ? "" : y(e, this.formato) + (this.unidad ? " " + this.unidad : "");
   }
   _xy(t) {
     if (!this._geo || !t) return null;
@@ -347,92 +320,92 @@ class F extends C {
     const o = this._xy(t.codigo ?? t.lonlat);
     if (!o) return p;
     const s = this._u, r = t.tamano ?? 26, n = r / 2 * s, c = t.color ?? "var(--gob-color-primario, #0071BB)", a = k[t.icono ?? "punto"], l = t.efecto ?? "ninguno", i = n * 2.6;
-    return u`<g class="mk" part="marcador" transform="translate(${o[0]} ${o[1]})" style="--c:${c}" tabindex="0" role="button" aria-label=${t.nombre ?? "Marcador"}
+    return d`<g class="mk" part="marcador" transform="translate(${o[0]} ${o[1]})" style="--c:${c}" tabindex="0" role="button" aria-label=${t.nombre ?? "Marcador"}
         @click=${(h) => {
       h.stopPropagation(), this.dispatchEvent(new CustomEvent("gob-marcador-click", { detail: { ...t, indice: e }, bubbles: !0, composed: !0 })), t.url && (location.href = t.url);
     }}
         @pointerenter=${(h) => {
       if (this.tooltip && t.nombre) {
         const m = this.renderRoot.querySelector(".wrap").getBoundingClientRect();
-        this._tip = { x: h.clientX - m.left, y: h.clientY - m.top, html: `<strong>${f(t.nombre)}</strong>${t.categoria ? `<br><span>${f(t.categoria)}</span>` : ""}${t.valor != null ? `<br>${f($(t.valor, this.formato))}` : ""}` };
+        this._tip = { x: h.clientX - m.left, y: h.clientY - m.top, html: `<strong>${f(t.nombre)}</strong>${t.categoria ? `<br><span>${f(t.categoria)}</span>` : ""}${t.valor != null ? `<br>${f(y(t.valor, this.formato))}` : ""}` };
       }
     }}
         @pointerleave=${() => this._leave()}>
-      ${l === "ping" || l === "radar" ? u`<circle class="ring r1" r=${i} /><circle class="ring r2" r=${i} />` : p}
-      ${l === "pulso" ? u`<circle class="glow" r=${n * 1.9} />` : p}
-      ${l === "radar" ? u`<path class="sweep" d="M0 0 L${i} 0 A${i} ${i} 0 0 0 ${i * Math.cos(-0.9)} ${i * Math.sin(-0.9)} Z" />` : p}
+      ${l === "ping" || l === "radar" ? d`<circle class="ring r1" r=${i} /><circle class="ring r2" r=${i} />` : p}
+      ${l === "pulso" ? d`<circle class="glow" r=${n * 1.9} />` : p}
+      ${l === "radar" ? d`<path class="sweep" d="M0 0 L${i} 0 A${i} ${i} 0 0 0 ${i * Math.cos(-0.9)} ${i * Math.sin(-0.9)} Z" />` : p}
       <circle class="dot" r=${n} stroke-width=${1.5 * s} />
-      ${a ? u`<path class="ico" d=${a.d} transform="translate(${-n * 0.62} ${-n * 0.62}) scale(${n * 1.24 / 24})" />` : p}
-      ${t.etiqueta && t.nombre ? u`<text class="mk-t" y=${n + 12 * s} font-size=${11 * s} stroke-width=${3 * s}>${t.nombre}</text>` : p}
+      ${a ? d`<path class="ico" d=${a.d} transform="translate(${-n * 0.62} ${-n * 0.62}) scale(${n * 1.24 / 24})" />` : p}
+      ${t.etiqueta && t.nombre ? d`<text class="mk-t" y=${n + 12 * s} font-size=${11 * s} stroke-width=${3 * s}>${t.nombre}</text>` : p}
     </g>`;
   }
   _linea(t, e) {
     const o = this._xy(t.desde), s = this._xy(t.hasta);
     if (!o || !s) return p;
     const r = this._curva(o, s, t.curva ?? 0.18), n = t.estilo ?? "flujo", c = t.color ?? "var(--gob-color-primario, #0071BB)";
-    return u`<g part="linea" style="--c:${c};--w:${t.ancho ?? 2}px;--i:${e}">
+    return d`<g part="linea" style="--c:${c};--w:${t.ancho ?? 2}px;--i:${e}">
       <path class="ln base" d=${r} />
       <path class="ln ${n}" d=${r} pathLength="1" />
-      ${t.particulas ? u`<circle class="pk" r=${3.2 * this._u} fill=${c}><animateMotion dur=${3 + e % 4 * 0.6}s repeatCount="indefinite" path=${r} /></circle>` : p}
+      ${t.particulas ? d`<circle class="pk" r=${3.2 * this._u} fill=${c}><animateMotion dur=${3 + e % 4 * 0.6}s repeatCount="indefinite" path=${r} /></circle>` : p}
     </g>`;
   }
   _leyenda(t) {
     if (!this.leyenda || !this._geo) return p;
     let e = p, o = this.leyendaTitulo;
-    this.modo === "subregiones" ? (o ||= "Subregiones", e = this._geo.subregiones.map((r) => g`<li class=${this.filtroSubregion === r.id ? "on" : ""}><button type="button" @click=${() => this.filtroSubregion = this.filtroSubregion === r.id ? "" : r.id}><i style="background:${this._subColor(r.id)}"></i>${r.nombre}</button></li>`)) : this.modo === "coropleta" ? (o ||= "Valores", e = t.map((r) => g`<li><span><i style="background:${r.color}"></i>${$(r.desde, this.formato)} – ${$(r.hasta, this.formato)}${this.unidad ? " " + this.unidad : ""}</span></li>`)) : this.modo === "categorias" && this.coloresCategorias && (o ||= "Categorías", e = Object.entries(this.coloresCategorias).map(([r, n]) => g`<li><span><i style="background:${n}"></i>${r}</span></li>`));
+    this.modo === "subregiones" ? (o ||= "Subregiones", e = this._geo.subregiones.map((r) => u`<li class=${this.filtroSubregion === r.id ? "on" : ""}><button type="button" @click=${() => this.filtroSubregion = this.filtroSubregion === r.id ? "" : r.id}><i style="background:${this._subColor(r.id)}"></i>${r.nombre}</button></li>`)) : this.modo === "coropleta" ? (o ||= "Valores", e = t.map((r) => u`<li><span><i style="background:${r.color}"></i>${y(r.desde, this.formato)} – ${y(r.hasta, this.formato)}${this.unidad ? " " + this.unidad : ""}</span></li>`)) : this.modo === "categorias" && this.coloresCategorias && (o ||= "Categorías", e = Object.entries(this.coloresCategorias).map(([r, n]) => u`<li><span><i style="background:${n}"></i>${r}</span></li>`));
     const s = /* @__PURE__ */ new Map();
     for (const r of this.marcadores ?? []) r.categoria && s.set(r.categoria, { color: r.color ?? "#0071BB", icono: r.icono });
-    return g`<aside class="leyenda" part="leyenda" aria-label="Leyenda">
-      ${o ? g`<h4>${o}</h4>` : p}<ul>${e}</ul>
-      ${s.size ? g`<h4>Puntos</h4><ul>${[...s].map(([r, n]) => g`<li><span><i class="c" style="background:${n.color}"></i>${r}</span></li>`)}</ul>` : p}
+    return u`<aside class="leyenda" part="leyenda" aria-label="Leyenda">
+      ${o ? u`<h4>${o}</h4>` : p}<ul>${e}</ul>
+      ${s.size ? u`<h4>Puntos</h4><ul>${[...s].map(([r, n]) => u`<li><span><i class="c" style="background:${n.color}"></i>${r}</span></li>`)}</ul>` : p}
     </aside>`;
   }
   render() {
-    if (this._error) return g`<div class="estado err" role="alert">⚠ ${this._error}</div>`;
+    if (this._error) return u`<div class="estado err" role="alert">⚠ ${this._error}</div>`;
     const t = this._geo;
-    if (!t) return g`<div class="estado" role="status">Cargando mapa…</div>`;
+    if (!t) return u`<div class="estado" role="status">Cargando mapa…</div>`;
     const [, , e, o] = t.meta.viewBox, s = this._clases(), r = this._selSet(), n = this._u, c = new Set(this.efectos), a = c.has("foco") && r.length > 0, l = this._tf;
-    return g`
+    return u`
       <div class="wrap ${[...c].map((i) => "ef-" + i).join(" ")}" part="mapa">
         <svg viewBox="0 0 ${e} ${o}" role="group" aria-label=${this.titulo} style="--k:${l.k}"
           @pointerdown=${this._down} @pointermove=${this._move} @pointerup=${this._up} @pointercancel=${this._up} @wheel=${this._wheel} @pointerleave=${() => {
       this._pointers.clear();
     }}>
-          <title>${this.titulo}</title>${this.descripcion ? u`<desc>${this.descripcion}</desc>` : p}
+          <title>${this.titulo}</title>${this.descripcion ? d`<desc>${this.descripcion}</desc>` : p}
           <g class="vista" transform="translate(${l.x} ${l.y}) scale(${l.k})">
-            ${this.mostrarContorno ? u`<path class="contorno" part="contorno" d=${t.contorno} pathLength="1" />` : p}
+            ${this.mostrarContorno ? d`<path class="contorno" part="contorno" d=${t.contorno} pathLength="1" />` : p}
             <g class="munis">
               ${t.municipios.map((i, h) => {
-      const v = !!this.filtroSubregion && i.subregion !== this.filtroSubregion || a && !r.includes(i.codigo);
-      return u`<path class="m ${r.includes(i.codigo) ? "sel" : ""} ${this._hover === i.codigo ? "hov" : ""} ${v ? "dim" : ""}" part="municipio" data-c=${i.codigo} d=${i.d}
+      const x = !!this.filtroSubregion && i.subregion !== this.filtroSubregion || a && !r.includes(i.codigo);
+      return d`<path class="m ${r.includes(i.codigo) ? "sel" : ""} ${this._hover === i.codigo ? "hov" : ""} ${x ? "dim" : ""}" part="municipio" data-c=${i.codigo} d=${i.d}
                   style="--f:${this._fillDe(i, s)};--i:${h}" tabindex="0" role="button" aria-pressed=${r.includes(i.codigo)}
                   aria-label=${`${i.nombre}${this._valorTxt(i.codigo) ? ", " + this._valorTxt(i.codigo) : ""}`}
                   @click=${(b) => this._click(i, b)} @pointerenter=${(b) => this._enter(i, b)} @pointermove=${(b) => this._mover(i, b)}
                   @pointerleave=${() => this._leave()} @focus=${() => this._focus(i)} @blur=${() => this._leave()} @keydown=${(b) => this._key(i, b)} />`;
     })}
             </g>
-            ${t.municipios.filter((i) => r.includes(i.codigo)).map((i) => u`<path class="halo ${c.has("hormigas") ? "ants" : ""}" d=${i.d} />`)}
+            ${t.municipios.filter((i) => r.includes(i.codigo)).map((i) => d`<path class="halo ${c.has("hormigas") ? "ants" : ""}" d=${i.d} />`)}
             ${(this.lineas ?? []).map((i, h) => this._linea(i, h))}
-            ${c.has("ping-seleccion") ? t.municipios.filter((i) => r.includes(i.codigo)).map((i) => u`<g transform="translate(${i.centro[0]} ${i.centro[1]})" pointer-events="none"><circle class="ring r1 sel-ring" r=${34 * n} /><circle class="ring r2 sel-ring" r=${34 * n} /></g>`) : p}
-            ${this.etiquetas !== "ninguna" ? u`<g class="etiquetas" part="etiqueta" pointer-events="none">${t.municipios.map((i) => {
-      const h = this._fillDe(i, s), m = this._etiqueta(i), v = !this.etiquetasAuto || (i.bbox[2] - i.bbox[0]) * this._ppu * this._tf.k >= m.length * 5.6 * 0.82;
-      return m && v ? u`<text transform="translate(${i.centro[0]} ${i.centro[1]})" font-size=${10.5 * n} stroke-width=${3 * n} class=${h.startsWith("var") ? "" : "on"} style="--t:${h.startsWith("var") ? "var(--gob-mapa-texto)" : z(h)}">${m}</text>` : p;
+            ${c.has("ping-seleccion") ? t.municipios.filter((i) => r.includes(i.codigo)).map((i) => d`<g transform="translate(${i.centro[0]} ${i.centro[1]})" pointer-events="none"><circle class="ring r1 sel-ring" r=${34 * n} /><circle class="ring r2 sel-ring" r=${34 * n} /></g>`) : p}
+            ${this.etiquetas !== "ninguna" ? d`<g class="etiquetas" part="etiqueta" pointer-events="none">${t.municipios.map((i) => {
+      const h = this._fillDe(i, s), m = this._etiqueta(i), x = !this.etiquetasAuto || (i.bbox[2] - i.bbox[0]) * this._ppu * this._tf.k >= m.length * 5.6 * 0.82;
+      return m && x ? d`<text transform="translate(${i.centro[0]} ${i.centro[1]})" font-size=${10.5 * n} stroke-width=${3 * n} class=${h.startsWith("var") ? "" : "on"} style="--t:${h.startsWith("var") ? "var(--gob-mapa-texto)" : M(h)}">${m}</text>` : p;
     })}</g>` : p}
             ${(this.marcadores ?? []).map((i, h) => this._marcador(i, h))}
           </g>
         </svg>
-        ${this.controles && this.zoom ? g`<div class="ctl" part="controles">
+        ${this.controles && this.zoom ? u`<div class="ctl" part="controles">
           <button type="button" aria-label="Acercar" @click=${() => this._zoomEn(1.5)}>+</button>
           <button type="button" aria-label="Alejar" @click=${() => this._zoomEn(1 / 1.5)}>−</button>
           <button type="button" aria-label="Vista completa" @click=${() => this.reiniciar()}>⌂</button></div>` : p}
-        ${this._tip ? g`<div class="tip" part="tooltip" role="tooltip" style="left:${this._tip.x}px;top:${this._tip.y}px">${q(this._tip.html)}</div>` : p}
+        ${this._tip ? u`<div class="tip" part="tooltip" role="tooltip" style="left:${this._tip.x}px;top:${this._tip.y}px">${B(this._tip.html)}</div>` : p}
         ${this._leyenda(s)}
         <table class="sr"><caption>${this.titulo}</caption><thead><tr><th>Código</th><th>Municipio</th><th>Subregión</th><th>Valor</th></tr></thead>
-          <tbody>${t.municipios.map((i) => g`<tr><td>${i.codigo}</td><td>${i.nombre}</td><td>${t.subregiones.find((h) => h.id === i.subregion)?.nombre}</td><td>${this._valorTxt(i.codigo)}</td></tr>`)}</tbody></table>
+          <tbody>${t.municipios.map((i) => u`<tr><td>${i.codigo}</td><td>${i.nombre}</td><td>${t.subregiones.find((h) => h.id === i.subregion)?.nombre}</td><td>${this._valorTxt(i.codigo)}</td></tr>`)}</tbody></table>
       </div>`;
   }
   static {
-    this.styles = A`
+    this.styles = S`
     :host { --gob-mapa-relleno: #DCE6EE; --gob-mapa-sin-dato: #E3E8EF; --gob-mapa-borde: #fff; --gob-mapa-contorno: #0B2239; --gob-mapa-sel: #0B2239; --gob-mapa-texto: #161A22; --gob-mapa-fondo: transparent;
       --gob-mapa-tip-bg: #081A2C; --gob-mapa-tip-fg: #fff; --gob-mapa-panel: rgba(255,255,255,.86); --gob-mapa-panel-fg: #252B36; --gob-mapa-panel-borde: #E3E8EF;
       display: block; position: relative; font-family: var(--gob-fuente, 'Montserrat', system-ui, sans-serif); container-type: inline-size; }
@@ -502,7 +475,7 @@ class F extends C {
   `;
   }
 }
-customElements.get("gob-mapa-magdalena") || customElements.define("gob-mapa-magdalena", F);
+customElements.get("gob-mapa-magdalena") || customElements.define("gob-mapa-magdalena", A);
 export {
-  F as GobMapaMagdalena
+  A as GobMapaMagdalena
 };

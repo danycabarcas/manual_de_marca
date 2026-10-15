@@ -156,3 +156,8 @@ code.inline { font-family: var(--mg-font-mono); background: var(--mg-surface); p
 .flow__arrow { font-size: 1.8rem; color: var(--mg-primary); font-weight: 800; }
 .flow__out { display: flex; flex-wrap: wrap; gap: .5rem; flex: 1; min-width: 16rem; } .flow__out span { background: var(--mg-primary-50); border: 1px solid var(--mg-primary-100); color: var(--mg-primary-800); border-radius: var(--mg-radius-pill); padding: .35rem .8rem; font-size: .8rem; font-weight: 600; }
 .contrato { margin: 0; padding-left: 1.25rem; display: grid; gap: .6rem; color: var(--mg-gray-700); line-height: 1.6; } .contrato code { font-family: var(--mg-font-mono); font-size: .82em; background: var(--mg-surface); padding: .05rem .35rem; border-radius: 4px; }
+
+/* ---------- Ejemplos con código ---------- */
+.ej { margin-bottom: 1.75rem; } .ej__head { padding: 1rem 1.25rem .5rem; } .ej__head h3 { margin: 0 0 .2rem; font-size: 1.05rem; } .ej__head p { margin: 0; color: var(--mg-gray-600); font-size: .88rem; max-width: 80ch; }
+.demo__view--oscuro { background: #051220; } .ej .demo__view { overflow-x: auto; }
+.ico-g { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: .5rem; } .ico-b { display: grid; justify-items: center; gap: .4rem; padding: .85rem .4rem; background: #fff; border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); cursor: pointer; color: var(--mg-gray-800); font: inherit; } .ico-b:hover { border-color: var(--mg-primary); background: var(--mg-primary-50); } .ico-b span { font-size: .68rem; color: var(--mg-gray-600); word-break: break-all; text-align: center; } .ico-b[hidden] { display: none; }

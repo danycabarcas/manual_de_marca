@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analítica territorial · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS — todo lo que hay que cargar (una sola vez por página) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">             <!-- tipografía Montserrat, tokens --gob-*, clases mg-* -->
+<script type="module" src="../cdn/v1/gob.js"></script>       <!-- carga solo los componentes gob-* que use la página -->
+<style>
+  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela a su proyecto) */
+  body { margin: 0; background: var(--mg-bg-app); color: var(--mg-text); }
+  h1 { margin: 0; font-size: 1.5rem; } .muted { color: var(--mg-text-muted); }
+  .grid { display: grid; gap: 1rem; } .row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
+  .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
+  .app__side { position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
+  .app__brand { padding: .25rem .5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; } .app__brand img { height: 40px; display: block; }
+  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; opacity: .65; }
+  .app__main { display: flex; flex-direction: column; min-width: 0; }
+  .app__top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 1rem; padding: .7rem 1.5rem; background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); }
+  .app__top .sp { flex: 1; } .app__search { max-width: 22rem; width: 100%; } .ico-btn.app__burger { display: none; }
+  .app__content { padding: 1.5rem; display: grid; gap: 1.25rem; width: 100%; max-width: 1560px; margin: 0 auto; box-sizing: border-box; }
+  .app__content > *, .grid > * { min-width: 0; } .app__content { grid-template-columns: minmax(0, 1fr); } .app__top .mg-breadcrumb { min-width: 0; overflow: hidden; white-space: nowrap; } .app__search { min-width: 0; }
+  .ico-btn { position: relative; display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--mg-border-strong); background: #fff; border-radius: 10px; cursor: pointer; color: var(--mg-gray-700); } .ico-btn:hover { background: var(--mg-gray-50); } .ico-btn .dot { position: absolute; top: -.25rem; right: -.25rem; min-width: 1.1rem; height: 1.1rem; padding: 0 .25rem; border-radius: 99px; background: var(--mg-red-600); color: #fff; font: 700 .65rem/1.1rem var(--mg-font-sans); text-align: center; }
+  .app__veil { display: none; }
+  @media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } .app__search { max-width: 9rem; } .app__top .mg-breadcrumb { display: none; } .app__side { position: fixed; z-index: 80; left: 0; top: 0; bottom: 0; width: 264px; transform: translateX(-100%); transition: transform .25s; } .app--menu .app__side { transform: none; } .app--menu .app__veil { display: block; position: fixed; inset: 0; z-index: 70; background: rgba(8,26,44,.5); } .ico-btn.app__burger { display: inline-grid; } .app__top { padding: .6rem 1rem; } .app__content { padding: 1rem; } }  @media (max-width: 1100px) { section[data-demo^="Mapa de sedes"] { grid-template-columns: 1fr !important; } }
+</style>
+</head>
+<body class="mg-base">
+<a class="mg-skip" href="#contenido">Saltar al contenido</a>
+<div class="app">
+    <aside class="app__side mg-sidebar" data-demo="Menú lateral" data-nota="Sidebar azul-noche (clase mg-sidebar) con íconos gob-icono">
+      <div class="app__brand"><img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena"></div>
+      <span class="mg-sidebar__label">Demos</span>
+      <a href="panel-ejecutivo.html"><gob-icono nombre="panel" tam="18"></gob-icono> Panel ejecutivo</a><a href="gestion-tramites.html"><gob-icono nombre="tareas" tam="18"></gob-icono> Gestión de trámites</a><a href="analitica-territorial.html" class="is-active" aria-current="page"><gob-icono nombre="mapa" tam="18"></gob-icono> Analítica territorial</a><a href="portal-ciudadano.html"><gob-icono nombre="globo" tam="18"></gob-icono> Portal ciudadano</a><a href="acceso-formularios.html"><gob-icono nombre="candado" tam="18"></gob-icono> Acceso y formularios</a>
+      <span class="mg-sidebar__label">Manual</span>
+      <a href="../index.html"><gob-icono nombre="flecha-izquierda" tam="18"></gob-icono> Volver al manual</a>
+      <a href="../estudio/index.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono> Estudio</a>
+      <div class="app__user"><span class="mg-avatar" style="border-color:rgba(255,255,255,.2)">UD</span><div>Usuario demostrativo<small>Oficina TIC</small></div></div>
+    </aside>
+    <div class="app__veil"></div>
+    <div class="app__main">
+      <header class="app__top" data-demo="Barra superior" data-nota="Barra de cristal con migas, buscador, notificaciones y usuario">
+        <button class="ico-btn app__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu"></gob-icono></button>
+        <ul class="mg-breadcrumb"><li>Inicio</li><li>Territorio</li></ul><span class="sp"></span>
+        <label class="app__search"><span class="mg-sr-only">Buscar</span><input class="mg-input" type="search" placeholder="Buscar radicado, municipio…" id="buscar"></label>
+        <button class="ico-btn" type="button" id="campana" aria-label="3 notificaciones nuevas"><gob-icono nombre="campana"></gob-icono><span class="dot" aria-hidden="true">3</span></button>
+      </header>
+      <main class="app__content" id="contenido">
+<!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>La pestaña «Presencia institucional» muestra marcadores con efectos (radar, ping, pulso), rutas animadas con partículas y zoom a un municipio desde la tabla.</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: gob-dashboard, gob-mapa-magdalena, gob-tabla, gob-pestanas, gob-kpi, gob-grafica. Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY-->
+        <div class="page-head"><div><h1>Analítica territorial</h1><p>Indicadores por municipio y subregión, y presencia institucional con rutas animadas.</p></div></div>
+
+        <gob-pestanas items='[{"id":"ind","titulo":"Indicadores","icono":"grafica-barras"},{"id":"pre","titulo":"Presencia institucional","icono":"ubicacion"}]' activa="ind" etiqueta="Vistas territoriales" data-demo="Pestañas de vistas" data-nota="Dos vistas del territorio dentro de gob-pestanas">
+          <div slot="ind">
+            <section data-demo="Dashboard territorial" data-nota="Plantilla «territorial» del Estudio de dashboards: mapa grande + ranking + dona + treemap">
+              <gob-dashboard id="territorial"></gob-dashboard>
+              <script type="module">
+                const registros = await fetch('../cdn/v1/datos/ejemplo-radicados.json').then((r) => r.json());
+                document.getElementById('territorial').config = {
+                  titulo: 'Radicados por territorio', subtitulo: 'Haga clic en un municipio o en una barra para filtrar todo el tablero', registros,
+                  filtros: [{ campo: 'subregion', etiqueta: 'Subregión' }, { campo: 'tipo', etiqueta: 'Tipo de solicitud' }, { campo: 'fecha:mes', etiqueta: 'Mes' }],
+                  widgets: [
+                    { tipo: 'kpi', titulo: 'Radicados', medida: 'conteo', icono: 'archivo', serie: 'fecha:mes', col: 4 },
+                    { tipo: 'kpi', titulo: 'Municipios con casos', medida: 'distintos', campo: 'codigo', icono: 'mapa', color: 'cian', col: 4 },
+                    { tipo: 'kpi', titulo: 'Días promedio', medida: 'promedio', campo: 'dias', unidad: 'd', icono: 'reloj', color: 'amarillo', buenoSube: false, col: 4 },
+                    { tipo: 'mapa', titulo: 'Mapa de radicados', medida: 'conteo', col: 7, rampa: 'azul', leyendaTitulo: 'Radicados' },
+                    { tipo: 'grafica', grafica: 'barras-horizontal', titulo: 'Municipios con más radicados', agrupar: 'municipio', orden: 'valor-desc', limite: 10, etiquetas: true, col: 5, alto: 460 },
+                    { tipo: 'grafica', grafica: 'dona', titulo: 'Por subregión', agrupar: 'subregion', col: 6, alto: 300 },
+                    { tipo: 'grafica', grafica: 'treemap', titulo: 'Por dependencia', agrupar: 'dependencia', col: 6, alto: 300 },
+                  ] };
+              </script>
+            </section>
+          </div>
+          <div slot="pre">
+            <section class="grid" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:start" data-demo="Mapa de sedes con rutas y efectos" data-nota="gob-mapa-magdalena con marcadores (radar, ping, pulso), rutas animadas con partículas y zoom a un municipio">
+              <div class="mg-card" style="padding:.5rem;position:relative"><gob-mapa-magdalena id="mapa" detalle="medio" efectos="entrada,hormigas,foco" clic="zoom-seleccionar" etiquetas-auto tema="claro"></gob-mapa-magdalena></div>
+              <div class="grid">
+                <gob-tabla id="sedes" titulo="Sedes y oficinas" tamano-pagina="6" busqueda="false" exportar="false" selector-columnas="false" fila-clicable></gob-tabla>
+                <div class="mg-card" style="padding:1rem"><h3 style="margin:0 0 .6rem;font-size:1rem">Efectos del mapa</h3>
+                  <label class="st-chk" style="display:flex;gap:.5rem;margin-bottom:.4rem"><input type="checkbox" class="mg-check" id="rutas" checked> Rutas animadas</label>
+                  <label style="display:flex;gap:.5rem;align-items:center"><span class="mg-label" style="margin:0">Subregión</span><select class="mg-select" id="sub" style="max-width:12rem"><option value="">Todas</option></select></label></div>
+              </div>
+              <script type="module">
+                const $ = (id) => document.getElementById(id); const mapa = $('mapa'), sedes = $('sedes');
+                const S = [
+                  { codigo: '47001', nombre: 'Gobernación (Palacio Tayrona)', tipo: 'Sede central', icono: 'escudo', color: '#00B7D9', efecto: 'radar', municipio: 'Santa Marta', personal: 410 },
+                  { codigo: '47189', nombre: 'Oficina regional Ciénaga', tipo: 'Regional', icono: 'edificio', color: '#FEC800', efecto: 'ping', municipio: 'Ciénaga', personal: 38 },
+                  { codigo: '47288', nombre: 'Oficina regional Fundación', tipo: 'Regional', icono: 'edificio', color: '#FEC800', efecto: 'ping', municipio: 'Fundación', personal: 24 },
+                  { codigo: '47555', nombre: 'Oficina regional Plato', tipo: 'Regional', icono: 'edificio', color: '#FEC800', efecto: 'ping', municipio: 'Plato', personal: 29 },
+                  { codigo: '47245', nombre: 'Oficina regional El Banco', tipo: 'Regional', icono: 'edificio', color: '#FEC800', efecto: 'pulso', municipio: 'El Banco', personal: 21 },
+                  { codigo: '47053', nombre: 'Centro de atención Aracataca', tipo: 'Atención', icono: 'salud', color: '#F7003C', efecto: 'pulso', municipio: 'Aracataca', personal: 15 },
+                ];
+                const rutas = [['47001', '47189', '#00B7D9'], ['47189', '47288', '#00B7D9'], ['47288', '47555', '#9FD7E5'], ['47555', '47245', '#9FD7E5'], ['47189', '47053', '#00B7D9']].map(([a, b, c]) => ({ desde: a, hasta: b, estilo: 'flujo', ancho: 2.5, curva: 0.16, particulas: true, color: c }));
+                const subs = await fetch('../cdn/v1/datos/subregiones.json').then((r) => r.json());
+                $('sub').insertAdjacentHTML('beforeend', subs.map((s) => `<option value="${s.id}">${s.nombre}</option>`).join(''));
+                mapa.config = { modo: 'subregiones', leyendaTitulo: 'Subregiones', marcadores: S.map((s) => ({ codigo: s.codigo, nombre: s.nombre, categoria: s.tipo, icono: s.icono, color: s.color, efecto: s.efecto, tamano: s.efecto === 'radar' ? 32 : 26 })), lineas: rutas, coloresSubregiones: { sm: '#0B2239', no: '#0071BB', ri: '#4FA3D4', ce: '#9FD7E5', su: '#12395C' } };
+                sedes.config = { datos: S, llave: 'codigo', columnas: [{ campo: 'nombre', titulo: 'Sede' }, { campo: 'municipio', titulo: 'Municipio' }, { campo: 'personal', titulo: 'Personal', tipo: 'numero' }] };
+                sedes.addEventListener('gob-tabla-fila-clic', (e) => mapa.zoomA(e.detail.fila.codigo));
+                mapa.addEventListener('gob-marcador-click', (e) => gob.toast({ tipo: 'info', titulo: e.detail.nombre, mensaje: e.detail.categoria }));
+                $('rutas').onchange = (e) => (mapa.lineas = e.target.checked ? rutas : []);
+                $('sub').onchange = (e) => (mapa.filtroSubregion = e.target.value);
+              </script>
+            </section>
+          </div>
+        </gob-pestanas>
+      </main>
+    </div>
+</div>
+<script type="module">
+  // Menú móvil y notificaciones (propios del demo)
+  const app = document.querySelector('.app');
+  document.getElementById('menu')?.addEventListener('click', () => app.classList.toggle('app--menu'));
+  document.querySelector('.app__veil')?.addEventListener('click', () => app.classList.remove('app--menu'));
+  document.getElementById('campana')?.addEventListener('click', () => gob.toast({ tipo: 'info', titulo: '3 notificaciones', mensaje: 'Tiene 3 radicados por vencer esta semana.' }));
+  document.getElementById('buscar')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') gob.toast({ tipo: 'info', titulo: 'Búsqueda', mensaje: 'En producción esto consultaría su API: «' + e.target.value + '»' }); });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

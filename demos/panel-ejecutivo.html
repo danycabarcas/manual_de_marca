@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel ejecutivo · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS — todo lo que hay que cargar (una sola vez por página) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">             <!-- tipografía Montserrat, tokens --gob-*, clases mg-* -->
+<script type="module" src="../cdn/v1/gob.js"></script>       <!-- carga solo los componentes gob-* que use la página -->
+<style>
+  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela a su proyecto) */
+  body { margin: 0; background: var(--mg-bg-app); color: var(--mg-text); }
+  h1 { margin: 0; font-size: 1.5rem; } .muted { color: var(--mg-text-muted); }
+  .grid { display: grid; gap: 1rem; } .row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
+  .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
+  .app__side { position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
+  .app__brand { padding: .25rem .5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; } .app__brand img { height: 40px; display: block; }
+  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; opacity: .65; }
+  .app__main { display: flex; flex-direction: column; min-width: 0; }
+  .app__top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 1rem; padding: .7rem 1.5rem; background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); }
+  .app__top .sp { flex: 1; } .app__search { max-width: 22rem; width: 100%; } .ico-btn.app__burger { display: none; }
+  .app__content { padding: 1.5rem; display: grid; gap: 1.25rem; width: 100%; max-width: 1560px; margin: 0 auto; box-sizing: border-box; }
+  .app__content > *, .grid > * { min-width: 0; } .app__content { grid-template-columns: minmax(0, 1fr); } .app__top .mg-breadcrumb { min-width: 0; overflow: hidden; white-space: nowrap; } .app__search { min-width: 0; }
+  .ico-btn { position: relative; display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--mg-border-strong); background: #fff; border-radius: 10px; cursor: pointer; color: var(--mg-gray-700); } .ico-btn:hover { background: var(--mg-gray-50); } .ico-btn .dot { position: absolute; top: -.25rem; right: -.25rem; min-width: 1.1rem; height: 1.1rem; padding: 0 .25rem; border-radius: 99px; background: var(--mg-red-600); color: #fff; font: 700 .65rem/1.1rem var(--mg-font-sans); text-align: center; }
+  .app__veil { display: none; }
+  @media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } .app__search { max-width: 9rem; } .app__top .mg-breadcrumb { display: none; } .app__side { position: fixed; z-index: 80; left: 0; top: 0; bottom: 0; width: 264px; transform: translateX(-100%); transition: transform .25s; } .app--menu .app__side { transform: none; } .app--menu .app__veil { display: block; position: fixed; inset: 0; z-index: 70; background: rgba(8,26,44,.5); } .ico-btn.app__burger { display: inline-grid; } .app__top { padding: .6rem 1rem; } .app__content { padding: 1rem; } }
+</style>
+</head>
+<body class="mg-base">
+<a class="mg-skip" href="#contenido">Saltar al contenido</a>
+<div class="app">
+    <aside class="app__side mg-sidebar" data-demo="Menú lateral" data-nota="Sidebar azul-noche (clase mg-sidebar) con íconos gob-icono">
+      <div class="app__brand"><img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena"></div>
+      <span class="mg-sidebar__label">Demos</span>
+      <a href="panel-ejecutivo.html" class="is-active" aria-current="page"><gob-icono nombre="panel" tam="18"></gob-icono> Panel ejecutivo</a><a href="gestion-tramites.html"><gob-icono nombre="tareas" tam="18"></gob-icono> Gestión de trámites</a><a href="analitica-territorial.html"><gob-icono nombre="mapa" tam="18"></gob-icono> Analítica territorial</a><a href="portal-ciudadano.html"><gob-icono nombre="globo" tam="18"></gob-icono> Portal ciudadano</a><a href="acceso-formularios.html"><gob-icono nombre="candado" tam="18"></gob-icono> Acceso y formularios</a>
+      <span class="mg-sidebar__label">Manual</span>
+      <a href="../index.html"><gob-icono nombre="flecha-izquierda" tam="18"></gob-icono> Volver al manual</a>
+      <a href="../estudio/index.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono> Estudio</a>
+      <div class="app__user"><span class="mg-avatar" style="border-color:rgba(255,255,255,.2)">UD</span><div>Usuario demostrativo<small>Oficina TIC</small></div></div>
+    </aside>
+    <div class="app__veil"></div>
+    <div class="app__main">
+      <header class="app__top" data-demo="Barra superior" data-nota="Barra de cristal con migas, buscador, notificaciones y usuario">
+        <button class="ico-btn app__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu"></gob-icono></button>
+        <ul class="mg-breadcrumb"><li>Inicio</li><li>Panel ejecutivo</li></ul><span class="sp"></span>
+        <label class="app__search"><span class="mg-sr-only">Buscar</span><input class="mg-input" type="search" placeholder="Buscar radicado, municipio…" id="buscar"></label>
+        <button class="ico-btn" type="button" id="campana" aria-label="3 notificaciones nuevas"><gob-icono nombre="campana"></gob-icono><span class="dot" aria-hidden="true">3</span></button>
+      </header>
+      <main class="app__content" id="contenido">
+<!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>Cada pestaña del panel es un <code>slot</code> de <code>gob-pestanas</code>; el tablero completo se describe con un JSON (ver <a href="../componentes/gob-dashboard.html">gob-dashboard</a>).</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: gob-dashboard, gob-kpi, gob-grafica, gob-mapa-magdalena, gob-tabla, gob-pestanas, gob-alerta, gob-icono. Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY-->
+        <div class="page-head"><div><h1>Panel ejecutivo</h1><p>Atención al ciudadano · corte al 12 de octubre de 2026</p></div>
+          <div class="row"><button class="mg-btn mg-btn--secondary mg-btn--sm" id="actualizar"><gob-icono nombre="refrescar" tam="16"></gob-icono> Actualizar</button><button class="mg-btn mg-btn--sm" id="reporte"><gob-icono nombre="descargar" tam="16"></gob-icono> Descargar reporte</button></div></div>
+
+        <section data-demo="Alerta de contexto" data-nota="gob-alerta: aviso informativo cerrable con acción">
+          <gob-alerta tipo="info" titulo="Cifras de demostración" cerrable>Estos datos son ficticios. En producción se alimentan desde su API (NestJS, Laravel…).
+            <button slot="acciones" class="mg-btn mg-btn--sm mg-btn--secondary" id="verapi">Ver cómo conectar</button></gob-alerta>
+        </section>
+
+        <gob-pestanas items='[{"id":"res","titulo":"Resumen","icono":"panel"},{"id":"det","titulo":"Detalle de radicados","icono":"tabla","contador":900},{"id":"ale","titulo":"Alertas","icono":"alerta","contador":3}]' activa="res" etiqueta="Secciones del panel" data-demo="Pestañas" data-nota="gob-pestanas: cada panel va en un elemento con slot=id">
+          <div slot="res">
+            <section data-demo="Dashboard (KPI + gráficas + mapa + tabla)" data-nota="gob-dashboard: se describe con JSON; filtra al hacer clic en barras, sectores o municipios">
+              <gob-dashboard id="tablero"></gob-dashboard>
+              <script type="module">
+                const registros = await fetch('../cdn/v1/datos/ejemplo-radicados.json').then((r) => r.json());
+                document.getElementById('tablero').config = {
+                  titulo: 'Atención al ciudadano 2026', subtitulo: 'Radicados por subregión, estado y tiempo',
+                  registros,
+                  filtros: [{ campo: 'subregion', etiqueta: 'Subregión' }, { campo: 'dependencia', etiqueta: 'Dependencia' }, { campo: 'tipo', etiqueta: 'Tipo' }],
+                  widgets: [
+                    { tipo: 'kpi', titulo: 'Radicados', medida: 'conteo', icono: 'archivo', serie: 'fecha:mes', col: 3 },
+                    { tipo: 'kpi', titulo: 'Resueltos', medida: 'conteo', donde: { estado: 'Resuelto' }, icono: 'check-circulo', color: 'verde', serie: 'fecha:mes', col: 3 },
+                    { tipo: 'kpi', titulo: 'Días promedio', medida: 'promedio', campo: 'dias', unidad: 'd', icono: 'reloj', color: 'cian', buenoSube: false, serie: 'fecha:mes', col: 3 },
+                    { tipo: 'kpi', titulo: 'Vencidos', medida: 'conteo', donde: { estado: 'Vencido' }, icono: 'alerta', color: 'rojo', buenoSube: false, serie: 'fecha:mes', col: 3 },
+                    { tipo: 'grafica', grafica: 'area', titulo: 'Radicados por mes', agrupar: 'fecha:mes', serie: 'estado', colores: ['#00B7D9', '#FEC800', '#69B75E', '#F7003C'], apilado: true, col: 8, alto: 300 },
+                    { tipo: 'grafica', grafica: 'dona', titulo: 'Por tipo de solicitud', agrupar: 'tipo', col: 4, alto: 300 },
+                    { tipo: 'mapa', titulo: 'Radicados por municipio', medida: 'conteo', col: 5, rampa: 'azul', leyendaTitulo: 'Radicados' },
+                    { tipo: 'grafica', grafica: 'barras-horizontal', titulo: 'Por dependencia', agrupar: 'dependencia', orden: 'valor-desc', etiquetas: true, col: 7, alto: 360 },
+                  ],
+                };
+              </script>
+            </section>
+          </div>
+          <div slot="det">
+            <section data-demo="Tabla de radicados" data-nota="gob-tabla: búsqueda, filtros por columna, orden, paginación, exportar">
+              <gob-tabla id="tabla" titulo="Radicados 2026" filtros-columna zebra tamano-pagina="10"></gob-tabla>
+              <script type="module">
+                const filas = await fetch('../cdn/v1/datos/ejemplo-radicados.json').then((r) => r.json());
+                document.getElementById('tabla').config = { datos: filas, llave: 'id', ordenInicial: { campo: 'fecha', dir: 'desc' }, columnas: [
+                  { campo: 'id', titulo: 'Radicado', nowrap: true }, { campo: 'fecha', titulo: 'Fecha', tipo: 'fecha' }, { campo: 'municipio', titulo: 'Municipio' }, { campo: 'dependencia', titulo: 'Dependencia' }, { campo: 'tipo', titulo: 'Tipo' },
+                  { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+                  { campo: 'prioridad', titulo: 'Prioridad' }, { campo: 'dias', titulo: 'Días', tipo: 'numero', semaforo: { verde: 10, amarillo: 25, invertir: true } } ] };
+              </script>
+            </section>
+          </div>
+          <div slot="ale">
+            <section class="grid" data-demo="Alertas operativas" data-nota="gob-alerta de varios tipos con botones de acción">
+              <gob-alerta tipo="peligro" titulo="31 radicados vencidos">Superaron el plazo legal de respuesta. Priorice los de la Secretaría de Salud.<button slot="acciones" class="mg-btn mg-btn--sm mg-btn--danger" data-toast="Abrió la bandeja de vencidos">Ver bandeja</button></gob-alerta>
+              <gob-alerta tipo="aviso" titulo="12 por vencer esta semana">Responda antes del viernes para evitar sanciones.<button slot="acciones" class="mg-btn mg-btn--sm mg-btn--secondary" data-toast="Se enviaron recordatorios">Enviar recordatorios</button></gob-alerta>
+              <gob-alerta tipo="exito" titulo="Meta de resolución cumplida">El 87 % de los radicados del trimestre fue resuelto a tiempo.</gob-alerta>
+            </section>
+          </div>
+        </gob-pestanas>
+        <script type="module">
+          document.getElementById('actualizar').onclick = () => gob.toast({ tipo: 'exito', titulo: 'Datos actualizados' });
+          document.getElementById('reporte').onclick = () => gob.toast({ tipo: 'info', titulo: 'Reporte en preparación', mensaje: 'Se descargará como PDF (demostración).' });
+          document.getElementById('verapi').onclick = () => gob.confirmar({ titulo: 'Conectar a su API', mensaje: 'Asigne el arreglo de registros: tablero.registros = await fetch("/api/radicados").then(r => r.json()).', textoConfirmar: 'Entendido', textoCancelar: 'Cerrar' });
+          document.querySelectorAll('[data-toast]').forEach((b) => (b.onclick = () => gob.toast({ tipo: 'info', titulo: b.dataset.toast })));
+        </script>
+      </main>
+    </div>
+</div>
+<script type="module">
+  // Menú móvil y notificaciones (propios del demo)
+  const app = document.querySelector('.app');
+  document.getElementById('menu')?.addEventListener('click', () => app.classList.toggle('app--menu'));
+  document.querySelector('.app__veil')?.addEventListener('click', () => app.classList.remove('app--menu'));
+  document.getElementById('campana')?.addEventListener('click', () => gob.toast({ tipo: 'info', titulo: '3 notificaciones', mensaje: 'Tiene 3 radicados por vencer esta semana.' }));
+  document.getElementById('buscar')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') gob.toast({ tipo: 'info', titulo: 'Búsqueda', mensaje: 'En producción esto consultaría su API: «' + e.target.value + '»' }); });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

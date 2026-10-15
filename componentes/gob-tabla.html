@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gob-tabla · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Tabla de datos con búsqueda, filtros, orden, selección, acciones, paginación, totales y exportación. Ejemplos listos para copiar.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792035404">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>gob-tabla</h1><p>Tabla de datos con búsqueda, filtros, orden, selección, acciones, paginación, totales y exportación. Ejemplos listos para copiar.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+
+<p class="pt-lead">Tabla de datos accesible, basada en el elemento nativo <code class="inline">&lt;table&gt;</code>: búsqueda, filtros por columna, orden, selección, acciones por fila y masivas, paginación (local o de servidor), totales, columnas visibles, exportar a Excel (CSV), copiar, imprimir y vista de tarjetas en móvil. Funciona igual en HTML plano, Angular, React, Vue o Next.js. <a href="../estudio/tablas.html"><b>Configúrela visualmente en el Estudio de tablas →</b></a></p>
+<section class="pt-section"><h2><span class="n">01.</span> Cuándo usarla y cuándo no</h2><div class="dont"><div class="ok"><b>✔ Usar para</b><br>Listados administrativos, bandejas, reportes y catálogos en cualquier framework; hasta unas decenas de miles de filas en memoria, y sin límite con <code>modo-servidor</code>.</div><div class="no"><b>✘ No usar para</b><br>Hojas de cálculo con edición de celdas, agrupación/pivote o millones de filas en el cliente (use AG Grid Community) ni para maquetar layouts. Para Angular puede usar también <code>p-table</code> de PrimeNG con el preset oficial.</div></div></section>
+<section class="pt-section"><h2><span class="n">02.</span> Instalación (todo lo que hay que cargar)</h2>
+<div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div>
+<div class="code"><div class="code__bar"><span>Instalación mínima (HTML plano)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla titulo=&quot;Mi tabla&quot;&gt;&lt;/gob-tabla&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelector(&#x27;gob-tabla&#x27;).config = { datos: [], columnas: [] };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla titulo=&quot;Mi tabla&quot;&gt;&lt;/gob-tabla&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelector(&#x27;gob-tabla&#x27;).config = { datos: [], columnas: [] };
+&lt;/script&gt;</code></pre></div>
+<div class="mg-alert mg-alert--info"><div><p class="mg-alert__title">Sin internet o en intranet</p>Descargue <a href="../dist/downloads/gob-cdn-v1.zip"><code>gob-cdn-v1.zip</code></a>, descomprímalo en su servidor y use esa carpeta como URL base: incluye los scripts, la tipografía Montserrat, los datos geográficos y los íconos. No hay llamadas a servicios externos.</div></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Ejemplos (cada uno con su código completo)</h2><div class="demo ej" id="ej-t1"><div class="ej__head"><h3>1 · Tabla básica</h3><p>Columnas simples con orden (clic en el encabezado), búsqueda y paginación. Es lo mínimo para empezar.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t1" titulo="Trámites" tamano-pagina="5"></gob-tabla>
+
+<script type="module">
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  document.getElementById('t1').config = {
+    datos: filas, llave: 'id',
+    columnas: [
+      { campo: 'radicado', titulo: 'Radicado', nowrap: true },
+      { campo: 'asunto', titulo: 'Asunto' },
+      { campo: 'municipio', titulo: 'Municipio' },
+      { campo: 'fecha', titulo: 'Fecha', tipo: 'fecha' },
+    ],
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t1&quot; titulo=&quot;Trámites&quot; tamano-pagina=&quot;5&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t1&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true },
+      { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+      { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; },
+    ],
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t1&quot; titulo=&quot;Trámites&quot; tamano-pagina=&quot;5&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t1&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true },
+      { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+      { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; },
+    ],
+  };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t2"><div class="ej__head"><h3>2 · Filtros, estados, semáforo, pesos y barras</h3><p>Filtros por columna (botón «Filtros»): select para estados, expresiones para números (<code>&gt;20</code>, <code>5-15</code>). Formatos es-CO listos.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t2" titulo="Gestión de trámites" filtros-columna tamano-pagina="6" zebra></gob-tabla>
+
+<script type="module">
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  document.getElementById('t2').config = {
+    datos: filas, llave: 'id',
+    ordenInicial: { campo: 'fecha', dir: 'desc' },
+    columnas: [
+      { campo: 'radicado', titulo: 'Radicado', nowrap: true },
+      { campo: 'asunto', titulo: 'Asunto' },
+      { campo: 'solicitante', titulo: 'Solicitante' },
+      { campo: 'municipio', titulo: 'Municipio' },
+      { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+      { campo: 'fecha', titulo: 'Fecha', tipo: 'fecha' },
+      { campo: 'dias', titulo: 'Días', tipo: 'numero', semaforo: { verde: 10, amarillo: 25, invertir: true } },
+      { campo: 'valor', titulo: 'Valor', tipo: 'cop' },
+      { campo: 'avance', titulo: 'Avance', tipo: 'barra', maximo: 1 },
+    ],
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t2.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t2&quot; titulo=&quot;Gestión de trámites&quot; filtros-columna tamano-pagina=&quot;6&quot; zebra&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t2&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    ordenInicial: { campo: &#x27;fecha&#x27;, dir: &#x27;desc&#x27; },
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true },
+      { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;solicitante&#x27;, titulo: &#x27;Solicitante&#x27; },
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+      { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+      { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; },
+      { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27;, semaforo: { verde: 10, amarillo: 25, invertir: true } },
+      { campo: &#x27;valor&#x27;, titulo: &#x27;Valor&#x27;, tipo: &#x27;cop&#x27; },
+      { campo: &#x27;avance&#x27;, titulo: &#x27;Avance&#x27;, tipo: &#x27;barra&#x27;, maximo: 1 },
+    ],
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t2&quot; titulo=&quot;Gestión de trámites&quot; filtros-columna tamano-pagina=&quot;6&quot; zebra&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t2&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    ordenInicial: { campo: &#x27;fecha&#x27;, dir: &#x27;desc&#x27; },
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true },
+      { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;solicitante&#x27;, titulo: &#x27;Solicitante&#x27; },
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+      { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+      { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; },
+      { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27;, semaforo: { verde: 10, amarillo: 25, invertir: true } },
+      { campo: &#x27;valor&#x27;, titulo: &#x27;Valor&#x27;, tipo: &#x27;cop&#x27; },
+      { campo: &#x27;avance&#x27;, titulo: &#x27;Avance&#x27;, tipo: &#x27;barra&#x27;, maximo: 1 },
+    ],
+  };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t3"><div class="ej__head"><h3>3 · Selección, acciones por fila y acciones masivas</h3><p>Seleccione filas: aparece la barra de acciones masivas. Los botones por fila emiten <code>gob-tabla-accion</code>; aquí usamos <code>gob.toast</code> y <code>gob.confirmar</code>.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t3" titulo="Bandeja de trámites" seleccion="multiple" tamano-pagina="5" selector-columnas></gob-tabla>
+
+<script type="module">
+  const tabla = document.getElementById('t3');
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  tabla.config = {
+    datos: filas, llave: 'id',
+    columnas: [
+      { campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' },
+      { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+      { campo: 'prioridad', titulo: 'Prioridad' },
+    ],
+    acciones: [
+      { id: 'ver', etiqueta: 'Ver detalle', icono: 'ojo' },
+      { id: 'editar', etiqueta: 'Editar', icono: 'editar' },
+      { id: 'eliminar', etiqueta: 'Eliminar', icono: 'eliminar', tipo: 'peligro' },
+    ],
+    accionesMasivas: [
+      { id: 'asignar', etiqueta: 'Asignar', icono: 'persona-agregar', tipo: 'primario' },
+      { id: 'eliminar', etiqueta: 'Eliminar', icono: 'eliminar', tipo: 'peligro' },
+    ],
+  };
+  tabla.addEventListener('gob-tabla-accion', async (e) => {
+    const { accion, fila, filas } = e.detail;
+    if (accion === 'eliminar') {
+      const ok = await gob.confirmar({ titulo: 'Eliminar', mensaje: fila ? `¿Eliminar el trámite ${fila.radicado}?` : `¿Eliminar ${filas.length} trámites?`, tipo: 'peligro', textoConfirmar: 'Eliminar' });
+      if (ok) gob.toast({ tipo: 'exito', titulo: 'Eliminado', mensaje: 'La operación se completó.' });
+    } else gob.toast({ tipo: 'info', titulo: accion, mensaje: fila ? fila.radicado : filas.length + ' filas' });
+  });
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t3.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t3&quot; titulo=&quot;Bandeja de trámites&quot; seleccion=&quot;multiple&quot; tamano-pagina=&quot;5&quot; selector-columnas&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const tabla = document.getElementById(&#x27;t3&#x27;);
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  tabla.config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+      { campo: &#x27;prioridad&#x27;, titulo: &#x27;Prioridad&#x27; },
+    ],
+    acciones: [
+      { id: &#x27;ver&#x27;, etiqueta: &#x27;Ver detalle&#x27;, icono: &#x27;ojo&#x27; },
+      { id: &#x27;editar&#x27;, etiqueta: &#x27;Editar&#x27;, icono: &#x27;editar&#x27; },
+      { id: &#x27;eliminar&#x27;, etiqueta: &#x27;Eliminar&#x27;, icono: &#x27;eliminar&#x27;, tipo: &#x27;peligro&#x27; },
+    ],
+    accionesMasivas: [
+      { id: &#x27;asignar&#x27;, etiqueta: &#x27;Asignar&#x27;, icono: &#x27;persona-agregar&#x27;, tipo: &#x27;primario&#x27; },
+      { id: &#x27;eliminar&#x27;, etiqueta: &#x27;Eliminar&#x27;, icono: &#x27;eliminar&#x27;, tipo: &#x27;peligro&#x27; },
+    ],
+  };
+  tabla.addEventListener(&#x27;gob-tabla-accion&#x27;, async (e) =&gt; {
+    const { accion, fila, filas } = e.detail;
+    if (accion === &#x27;eliminar&#x27;) {
+      const ok = await gob.confirmar({ titulo: &#x27;Eliminar&#x27;, mensaje: fila ? `¿Eliminar el trámite ${fila.radicado}?` : `¿Eliminar ${filas.length} trámites?`, tipo: &#x27;peligro&#x27;, textoConfirmar: &#x27;Eliminar&#x27; });
+      if (ok) gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Eliminado&#x27;, mensaje: &#x27;La operación se completó.&#x27; });
+    } else gob.toast({ tipo: &#x27;info&#x27;, titulo: accion, mensaje: fila ? fila.radicado : filas.length + &#x27; filas&#x27; });
+  });
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t3&quot; titulo=&quot;Bandeja de trámites&quot; seleccion=&quot;multiple&quot; tamano-pagina=&quot;5&quot; selector-columnas&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const tabla = document.getElementById(&#x27;t3&#x27;);
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  tabla.config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; },
+      { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+      { campo: &#x27;prioridad&#x27;, titulo: &#x27;Prioridad&#x27; },
+    ],
+    acciones: [
+      { id: &#x27;ver&#x27;, etiqueta: &#x27;Ver detalle&#x27;, icono: &#x27;ojo&#x27; },
+      { id: &#x27;editar&#x27;, etiqueta: &#x27;Editar&#x27;, icono: &#x27;editar&#x27; },
+      { id: &#x27;eliminar&#x27;, etiqueta: &#x27;Eliminar&#x27;, icono: &#x27;eliminar&#x27;, tipo: &#x27;peligro&#x27; },
+    ],
+    accionesMasivas: [
+      { id: &#x27;asignar&#x27;, etiqueta: &#x27;Asignar&#x27;, icono: &#x27;persona-agregar&#x27;, tipo: &#x27;primario&#x27; },
+      { id: &#x27;eliminar&#x27;, etiqueta: &#x27;Eliminar&#x27;, icono: &#x27;eliminar&#x27;, tipo: &#x27;peligro&#x27; },
+    ],
+  };
+  tabla.addEventListener(&#x27;gob-tabla-accion&#x27;, async (e) =&gt; {
+    const { accion, fila, filas } = e.detail;
+    if (accion === &#x27;eliminar&#x27;) {
+      const ok = await gob.confirmar({ titulo: &#x27;Eliminar&#x27;, mensaje: fila ? `¿Eliminar el trámite ${fila.radicado}?` : `¿Eliminar ${filas.length} trámites?`, tipo: &#x27;peligro&#x27;, textoConfirmar: &#x27;Eliminar&#x27; });
+      if (ok) gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Eliminado&#x27;, mensaje: &#x27;La operación se completó.&#x27; });
+    } else gob.toast({ tipo: &#x27;info&#x27;, titulo: accion, mensaje: fila ? fila.radicado : filas.length + &#x27; filas&#x27; });
+  });
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t4"><div class="ej__head"><h3>4 · Totales, densidad compacta y altura fija</h3><p>Fila de totales (suma, promedio) calculada sobre todos los resultados filtrados; encabezado fijo con scroll; exportación a Excel (CSV), copiar e imprimir.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t4" titulo="Resumen de valores" densidad="compacta" totales altura-max="320" tamano-pagina="25"></gob-tabla>
+
+<script type="module">
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  document.getElementById('t4').config = {
+    datos: filas, llave: 'id',
+    columnas: [
+      { campo: 'municipio', titulo: 'Municipio' }, { campo: 'dependencia', titulo: 'Dependencia' },
+      { campo: 'dias', titulo: 'Días', tipo: 'numero', total: 'promedio' },
+      { campo: 'valor', titulo: 'Valor', tipo: 'cop', total: 'suma' },
+      { campo: 'radicado', titulo: 'Trámites', total: 'conteo', ordenable: false, filtrable: false, render: () => '1' },
+    ],
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t4.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t4&quot; titulo=&quot;Resumen de valores&quot; densidad=&quot;compacta&quot; totales altura-max=&quot;320&quot; tamano-pagina=&quot;25&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t4&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dependencia&#x27;, titulo: &#x27;Dependencia&#x27; },
+      { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27;, total: &#x27;promedio&#x27; },
+      { campo: &#x27;valor&#x27;, titulo: &#x27;Valor&#x27;, tipo: &#x27;cop&#x27;, total: &#x27;suma&#x27; },
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Trámites&#x27;, total: &#x27;conteo&#x27;, ordenable: false, filtrable: false, render: () =&gt; &#x27;1&#x27; },
+    ],
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t4&quot; titulo=&quot;Resumen de valores&quot; densidad=&quot;compacta&quot; totales altura-max=&quot;320&quot; tamano-pagina=&quot;25&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t4&#x27;).config = {
+    datos: filas, llave: &#x27;id&#x27;,
+    columnas: [
+      { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dependencia&#x27;, titulo: &#x27;Dependencia&#x27; },
+      { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27;, total: &#x27;promedio&#x27; },
+      { campo: &#x27;valor&#x27;, titulo: &#x27;Valor&#x27;, tipo: &#x27;cop&#x27;, total: &#x27;suma&#x27; },
+      { campo: &#x27;radicado&#x27;, titulo: &#x27;Trámites&#x27;, total: &#x27;conteo&#x27;, ordenable: false, filtrable: false, render: () =&gt; &#x27;1&#x27; },
+    ],
+  };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t5"><div class="ej__head"><h3>5 · Modo servidor (paginación, orden y búsqueda en su API)</h3><p>Con <code>modo-servidor</code> la tabla no procesa nada: emite <code>gob-tabla-consulta</code> y usted responde con <code>datos</code> y <code>totalFilas</code>. Aquí la API se simula con un retardo.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t5" titulo="Trámites (servidor)" modo-servidor tamano-pagina="5"></gob-tabla>
+
+<script type="module">
+  const t = document.getElementById('t5');
+  const BD = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());           // simula su base de datos
+  t.columnas = [{ campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'municipio', titulo: 'Municipio' }, { campo: 'dias', titulo: 'Días', tipo: 'numero' }];
+
+  t.addEventListener('gob-tabla-consulta', async (e) => {
+    const { pagina, tamano, orden, busqueda } = e.detail;
+    t.cargando = true;
+    // ← REAL: const r = await fetch(`/api/tramites?pagina=${pagina}&tamano=${tamano}&q=${busqueda}&orden=${orden?.campo}&dir=${orden?.dir}`).then(r => r.json());
+    await new Promise((ok) => setTimeout(ok, 450));
+    let f = BD.filter((x) => !busqueda || JSON.stringify(x).toLowerCase().includes(busqueda.toLowerCase()));
+    if (orden) f.sort((a, b) => (a[orden.campo] > b[orden.campo] ? 1 : -1) * (orden.dir === 'asc' ? 1 : -1));
+    t.totalFilas = f.length;                          // total de resultados (no de la página)
+    t.datos = f.slice((pagina - 1) * tamano, pagina * tamano);
+    t.cargando = false;
+  });
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t5.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t5&quot; titulo=&quot;Trámites (servidor)&quot; modo-servidor tamano-pagina=&quot;5&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const t = document.getElementById(&#x27;t5&#x27;);
+  const BD = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());           // simula su base de datos
+  t.columnas = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27; }];
+
+  t.addEventListener(&#x27;gob-tabla-consulta&#x27;, async (e) =&gt; {
+    const { pagina, tamano, orden, busqueda } = e.detail;
+    t.cargando = true;
+    // ← REAL: const r = await fetch(`/api/tramites?pagina=${pagina}&amp;tamano=${tamano}&amp;q=${busqueda}&amp;orden=${orden?.campo}&amp;dir=${orden?.dir}`).then(r =&gt; r.json());
+    await new Promise((ok) =&gt; setTimeout(ok, 450));
+    let f = BD.filter((x) =&gt; !busqueda || JSON.stringify(x).toLowerCase().includes(busqueda.toLowerCase()));
+    if (orden) f.sort((a, b) =&gt; (a[orden.campo] &gt; b[orden.campo] ? 1 : -1) * (orden.dir === &#x27;asc&#x27; ? 1 : -1));
+    t.totalFilas = f.length;                          // total de resultados (no de la página)
+    t.datos = f.slice((pagina - 1) * tamano, pagina * tamano);
+    t.cargando = false;
+  });
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t5&quot; titulo=&quot;Trámites (servidor)&quot; modo-servidor tamano-pagina=&quot;5&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const t = document.getElementById(&#x27;t5&#x27;);
+  const BD = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());           // simula su base de datos
+  t.columnas = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27; }];
+
+  t.addEventListener(&#x27;gob-tabla-consulta&#x27;, async (e) =&gt; {
+    const { pagina, tamano, orden, busqueda } = e.detail;
+    t.cargando = true;
+    // ← REAL: const r = await fetch(`/api/tramites?pagina=${pagina}&amp;tamano=${tamano}&amp;q=${busqueda}&amp;orden=${orden?.campo}&amp;dir=${orden?.dir}`).then(r =&gt; r.json());
+    await new Promise((ok) =&gt; setTimeout(ok, 450));
+    let f = BD.filter((x) =&gt; !busqueda || JSON.stringify(x).toLowerCase().includes(busqueda.toLowerCase()));
+    if (orden) f.sort((a, b) =&gt; (a[orden.campo] &gt; b[orden.campo] ? 1 : -1) * (orden.dir === &#x27;asc&#x27; ? 1 : -1));
+    t.totalFilas = f.length;                          // total de resultados (no de la página)
+    t.datos = f.slice((pagina - 1) * tamano, pagina * tamano);
+    t.cargando = false;
+  });
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t6"><div class="ej__head"><h3>6 · Herramientas propias y modal «Nuevo»</h3><p>El slot <code>herramientas</code> admite sus propios botones. Aquí un botón abre un <code>&lt;gob-modal&gt;</code> con formulario y, al guardar, la tabla se actualiza y se muestra un toast.</p></div><div class="demo__view demo__view--white"><gob-tabla id="t6" titulo="Organizaciones" tamano-pagina="4">
+  <button slot="herramientas" class="mg-btn mg-btn--sm" id="nuevo">+ Nueva organización</button>
+</gob-tabla>
+
+<gob-modal id="m6" titulo="Nueva organización" tipo="info">
+  <label class="mg-label" for="n6">Nombre</label>
+  <input class="mg-input" id="n6" placeholder="Junta de Acción Comunal…">
+  <button slot="pie" class="mg-btn mg-btn--secondary" id="cancelar6">Cancelar</button>
+  <button slot="pie" class="mg-btn" id="guardar6">Guardar</button>
+</gob-modal>
+
+<script type="module">
+  const t = document.getElementById('t6'), m = document.getElementById('m6');
+  let datos = [{ id: 1, nombre: 'Asociación de Productores', municipio: 'Aracataca' }, { id: 2, nombre: 'JAC Pescadito', municipio: 'Santa Marta' }, { id: 3, nombre: 'Cooperativa Bananera', municipio: 'Zona Bananera' }];
+  t.config = { datos, columnas: [{ campo: 'nombre', titulo: 'Organización' }, { campo: 'municipio', titulo: 'Municipio' }] };
+  document.getElementById('nuevo').onclick = () => m.abrir();
+  document.getElementById('cancelar6').onclick = () => m.cerrar();
+  document.getElementById('guardar6').onclick = () => {
+    const nombre = document.getElementById('n6').value.trim();
+    if (!nombre) return gob.toast({ tipo: 'aviso', titulo: 'Falta el nombre' });
+    datos = [{ id: Date.now(), nombre, municipio: 'Santa Marta' }, ...datos]; t.datos = datos; m.cerrar();
+    gob.toast({ tipo: 'exito', titulo: 'Organización creada', mensaje: nombre });
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t6.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t6&quot; titulo=&quot;Organizaciones&quot; tamano-pagina=&quot;4&quot;&gt;
+  &lt;button slot=&quot;herramientas&quot; class=&quot;mg-btn mg-btn--sm&quot; id=&quot;nuevo&quot;&gt;+ Nueva organización&lt;/button&gt;
+&lt;/gob-tabla&gt;
+
+&lt;gob-modal id=&quot;m6&quot; titulo=&quot;Nueva organización&quot; tipo=&quot;info&quot;&gt;
+  &lt;label class=&quot;mg-label&quot; for=&quot;n6&quot;&gt;Nombre&lt;/label&gt;
+  &lt;input class=&quot;mg-input&quot; id=&quot;n6&quot; placeholder=&quot;Junta de Acción Comunal…&quot;&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;cancelar6&quot;&gt;Cancelar&lt;/button&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; id=&quot;guardar6&quot;&gt;Guardar&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const t = document.getElementById(&#x27;t6&#x27;), m = document.getElementById(&#x27;m6&#x27;);
+  let datos = [{ id: 1, nombre: &#x27;Asociación de Productores&#x27;, municipio: &#x27;Aracataca&#x27; }, { id: 2, nombre: &#x27;JAC Pescadito&#x27;, municipio: &#x27;Santa Marta&#x27; }, { id: 3, nombre: &#x27;Cooperativa Bananera&#x27;, municipio: &#x27;Zona Bananera&#x27; }];
+  t.config = { datos, columnas: [{ campo: &#x27;nombre&#x27;, titulo: &#x27;Organización&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }] };
+  document.getElementById(&#x27;nuevo&#x27;).onclick = () =&gt; m.abrir();
+  document.getElementById(&#x27;cancelar6&#x27;).onclick = () =&gt; m.cerrar();
+  document.getElementById(&#x27;guardar6&#x27;).onclick = () =&gt; {
+    const nombre = document.getElementById(&#x27;n6&#x27;).value.trim();
+    if (!nombre) return gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Falta el nombre&#x27; });
+    datos = [{ id: Date.now(), nombre, municipio: &#x27;Santa Marta&#x27; }, ...datos]; t.datos = datos; m.cerrar();
+    gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Organización creada&#x27;, mensaje: nombre });
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-tabla id=&quot;t6&quot; titulo=&quot;Organizaciones&quot; tamano-pagina=&quot;4&quot;&gt;
+  &lt;button slot=&quot;herramientas&quot; class=&quot;mg-btn mg-btn--sm&quot; id=&quot;nuevo&quot;&gt;+ Nueva organización&lt;/button&gt;
+&lt;/gob-tabla&gt;
+
+&lt;gob-modal id=&quot;m6&quot; titulo=&quot;Nueva organización&quot; tipo=&quot;info&quot;&gt;
+  &lt;label class=&quot;mg-label&quot; for=&quot;n6&quot;&gt;Nombre&lt;/label&gt;
+  &lt;input class=&quot;mg-input&quot; id=&quot;n6&quot; placeholder=&quot;Junta de Acción Comunal…&quot;&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;cancelar6&quot;&gt;Cancelar&lt;/button&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; id=&quot;guardar6&quot;&gt;Guardar&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const t = document.getElementById(&#x27;t6&#x27;), m = document.getElementById(&#x27;m6&#x27;);
+  let datos = [{ id: 1, nombre: &#x27;Asociación de Productores&#x27;, municipio: &#x27;Aracataca&#x27; }, { id: 2, nombre: &#x27;JAC Pescadito&#x27;, municipio: &#x27;Santa Marta&#x27; }, { id: 3, nombre: &#x27;Cooperativa Bananera&#x27;, municipio: &#x27;Zona Bananera&#x27; }];
+  t.config = { datos, columnas: [{ campo: &#x27;nombre&#x27;, titulo: &#x27;Organización&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }] };
+  document.getElementById(&#x27;nuevo&#x27;).onclick = () =&gt; m.abrir();
+  document.getElementById(&#x27;cancelar6&#x27;).onclick = () =&gt; m.cerrar();
+  document.getElementById(&#x27;guardar6&#x27;).onclick = () =&gt; {
+    const nombre = document.getElementById(&#x27;n6&#x27;).value.trim();
+    if (!nombre) return gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Falta el nombre&#x27; });
+    datos = [{ id: Date.now(), nombre, municipio: &#x27;Santa Marta&#x27; }, ...datos]; t.datos = datos; m.cerrar();
+    gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Organización creada&#x27;, mensaje: nombre });
+  };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t7"><div class="ej__head"><h3>7 · Vista de tarjetas (móvil) y estados vacío / cargando</h3><p>Con <code>tarjetas="siempre"</code> cada fila es una tarjeta (en pantallas pequeñas ocurre automáticamente). Abajo: tabla cargando (esqueleto) y vacía (con su mensaje).</p></div><div class="demo__view demo__view--white"><div style="max-width:420px"><gob-tabla id="t7a" titulo="En el celular" tarjetas="siempre" tamano-pagina="3" busqueda="false" exportar="false"></gob-tabla></div>
+<gob-tabla id="t7b" titulo="Cargando…" cargando tamano-pagina="3" style="margin-top:1rem"></gob-tabla>
+<gob-tabla id="t7c" titulo="Sin resultados" vacio="Aún no hay trámites radicados." style="margin-top:1rem"></gob-tabla>
+
+<script type="module">
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  const cols = [{ campo: 'radicado', titulo: 'Radicado' }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } }];
+  document.getElementById('t7a').config = { datos: filas, columnas: cols, busqueda: false, exportar: false };
+  document.getElementById('t7b').config = { columnas: cols };
+  document.getElementById('t7c').config = { columnas: cols, datos: [] };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t7.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;max-width:420px&quot;&gt;&lt;gob-tabla id=&quot;t7a&quot; titulo=&quot;En el celular&quot; tarjetas=&quot;siempre&quot; tamano-pagina=&quot;3&quot; busqueda=&quot;false&quot; exportar=&quot;false&quot;&gt;&lt;/gob-tabla&gt;&lt;/div&gt;
+&lt;gob-tabla id=&quot;t7b&quot; titulo=&quot;Cargando…&quot; cargando tamano-pagina=&quot;3&quot; style=&quot;margin-top:1rem&quot;&gt;&lt;/gob-tabla&gt;
+&lt;gob-tabla id=&quot;t7c&quot; titulo=&quot;Sin resultados&quot; vacio=&quot;Aún no hay trámites radicados.&quot; style=&quot;margin-top:1rem&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  const cols = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }, { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } }];
+  document.getElementById(&#x27;t7a&#x27;).config = { datos: filas, columnas: cols, busqueda: false, exportar: false };
+  document.getElementById(&#x27;t7b&#x27;).config = { columnas: cols };
+  document.getElementById(&#x27;t7c&#x27;).config = { columnas: cols, datos: [] };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;max-width:420px&quot;&gt;&lt;gob-tabla id=&quot;t7a&quot; titulo=&quot;En el celular&quot; tarjetas=&quot;siempre&quot; tamano-pagina=&quot;3&quot; busqueda=&quot;false&quot; exportar=&quot;false&quot;&gt;&lt;/gob-tabla&gt;&lt;/div&gt;
+&lt;gob-tabla id=&quot;t7b&quot; titulo=&quot;Cargando…&quot; cargando tamano-pagina=&quot;3&quot; style=&quot;margin-top:1rem&quot;&gt;&lt;/gob-tabla&gt;
+&lt;gob-tabla id=&quot;t7c&quot; titulo=&quot;Sin resultados&quot; vacio=&quot;Aún no hay trámites radicados.&quot; style=&quot;margin-top:1rem&quot;&gt;&lt;/gob-tabla&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  const cols = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }, { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } }];
+  document.getElementById(&#x27;t7a&#x27;).config = { datos: filas, columnas: cols, busqueda: false, exportar: false };
+  document.getElementById(&#x27;t7b&#x27;).config = { columnas: cols };
+  document.getElementById(&#x27;t7c&#x27;).config = { columnas: cols, datos: [] };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-t8"><div class="ej__head"><h3>8 · Tema oscuro</h3><p>Con <code>tema="oscuro"</code> la tabla se adapta a fondos azul-noche (paneles oscuros, salas de monitoreo).</p></div><div class="demo__view demo__view--oscuro"><div style="background:#051220;padding:1rem;border-radius:12px">
+  <gob-tabla id="t8" titulo="Monitoreo" tema="oscuro" tamano-pagina="4" zebra></gob-tabla>
+</div>
+
+<script type="module">
+  const filas = await fetch('../cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  document.getElementById('t8').config = { datos: filas, llave: 'id', columnas: [
+    { campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'municipio', titulo: 'Municipio' },
+    { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+    { campo: 'avance', titulo: 'Avance', tipo: 'barra', maximo: 1 } ] };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>t8.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;background:#051220;padding:1rem;border-radius:12px&quot;&gt;
+  &lt;gob-tabla id=&quot;t8&quot; titulo=&quot;Monitoreo&quot; tema=&quot;oscuro&quot; tamano-pagina=&quot;4&quot; zebra&gt;&lt;/gob-tabla&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t8&#x27;).config = { datos: filas, llave: &#x27;id&#x27;, columnas: [
+    { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+    { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+    { campo: &#x27;avance&#x27;, titulo: &#x27;Avance&#x27;, tipo: &#x27;barra&#x27;, maximo: 1 } ] };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;background:#051220;padding:1rem;border-radius:12px&quot;&gt;
+  &lt;gob-tabla id=&quot;t8&quot; titulo=&quot;Monitoreo&quot; tema=&quot;oscuro&quot; tamano-pagina=&quot;4&quot; zebra&gt;&lt;/gob-tabla&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const filas = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-tramites.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;t8&#x27;).config = { datos: filas, llave: &#x27;id&#x27;, columnas: [
+    { campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; },
+    { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+    { campo: &#x27;avance&#x27;, titulo: &#x27;Avance&#x27;, tipo: &#x27;barra&#x27;, maximo: 1 } ] };
+&lt;/script&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">04.</span> Otros frameworks</h2><div class="code"><div class="code__bar"><span>Angular (CUSTOM_ELEMENTS_SCHEMA)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="// 1) src/index.html — dependencias (todo lo que hay que cargar)
+// &lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+// &lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-tramites&#x27;, standalone: true, schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `&lt;gob-tabla titulo=&quot;Trámites&quot; seleccion=&quot;multiple&quot; filtros-columna
+               [columnas]=&quot;columnas&quot; [datos]=&quot;datos&quot; (gob-tabla-accion)=&quot;alAccion($event)&quot;&gt;&lt;/gob-tabla&gt;`,
+})
+export class TramitesComponent {
+  columnas = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, Vencido: &#x27;peligro&#x27; } }];
+  datos: any[] = [];
+  constructor(private http: HttpClient) { this.http.get&lt;any[]&gt;(&#x27;/api/tramites&#x27;).subscribe((d) =&gt; (this.datos = d)); }
+  alAccion(e: Event) { console.log((e as CustomEvent).detail); }
+}">// 1) src/index.html — dependencias (todo lo que hay que cargar)
+// &lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+// &lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-tramites&#x27;, standalone: true, schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `&lt;gob-tabla titulo=&quot;Trámites&quot; seleccion=&quot;multiple&quot; filtros-columna
+               [columnas]=&quot;columnas&quot; [datos]=&quot;datos&quot; (gob-tabla-accion)=&quot;alAccion($event)&quot;&gt;&lt;/gob-tabla&gt;`,
+})
+export class TramitesComponent {
+  columnas = [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, Vencido: &#x27;peligro&#x27; } }];
+  datos: any[] = [];
+  constructor(private http: HttpClient) { this.http.get&lt;any[]&gt;(&#x27;/api/tramites&#x27;).subscribe((d) =&gt; (this.datos = d)); }
+  alAccion(e: Event) { console.log((e as CustomEvent).detail); }
+}</code></pre></div><div class="code"><div class="code__bar"><span>React / Next.js</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="// 1) index.html — dependencias:
+//   &lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+//   &lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+&#x27;use client&#x27;; // Next.js: solo cliente
+import { useEffect, useRef } from &#x27;react&#x27;;
+
+export default function TablaTramites({ datos, onAccion }) {
+  const ref = useRef(null);
+  useEffect(() =&gt; {
+    const t = ref.current; if (!t) return;
+    t.config = { datos, llave: &#x27;id&#x27;, columnas: [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }], acciones: [{ id: &#x27;ver&#x27;, etiqueta: &#x27;Ver&#x27;, icono: &#x27;ojo&#x27; }] };
+    const h = (e) =&gt; onAccion?.(e.detail);
+    t.addEventListener(&#x27;gob-tabla-accion&#x27;, h);
+    return () =&gt; t.removeEventListener(&#x27;gob-tabla-accion&#x27;, h);
+  }, [datos]);
+  return &lt;gob-tabla ref={ref} titulo=&quot;Trámites&quot; /&gt;;
+}">// 1) index.html — dependencias:
+//   &lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+//   &lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+&#x27;use client&#x27;; // Next.js: solo cliente
+import { useEffect, useRef } from &#x27;react&#x27;;
+
+export default function TablaTramites({ datos, onAccion }) {
+  const ref = useRef(null);
+  useEffect(() =&gt; {
+    const t = ref.current; if (!t) return;
+    t.config = { datos, llave: &#x27;id&#x27;, columnas: [{ campo: &#x27;radicado&#x27;, titulo: &#x27;Radicado&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }], acciones: [{ id: &#x27;ver&#x27;, etiqueta: &#x27;Ver&#x27;, icono: &#x27;ojo&#x27; }] };
+    const h = (e) =&gt; onAccion?.(e.detail);
+    t.addEventListener(&#x27;gob-tabla-accion&#x27;, h);
+    return () =&gt; t.removeEventListener(&#x27;gob-tabla-accion&#x27;, h);
+  }, [datos]);
+  return &lt;gob-tabla ref={ref} titulo=&quot;Trámites&quot; /&gt;;
+}</code></pre></div><div class="code"><div class="code__bar"><span>Vue 3</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- vite.config.js → vue({ template: { compilerOptions: { isCustomElement: (t) =&gt; t.startsWith(&#x27;gob-&#x27;) } } }) --&gt;
+&lt;!-- index.html → &lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt; y &lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt; --&gt;
+&lt;template&gt;
+  &lt;gob-tabla titulo=&quot;Trámites&quot; seleccion=&quot;multiple&quot; :columnas.prop=&quot;columnas&quot; :datos.prop=&quot;datos&quot; @gob-tabla-accion=&quot;alAccion&quot; /&gt;
+&lt;/template&gt;">&lt;!-- vite.config.js → vue({ template: { compilerOptions: { isCustomElement: (t) =&gt; t.startsWith(&#x27;gob-&#x27;) } } }) --&gt;
+&lt;!-- index.html → &lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt; y &lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt; --&gt;
+&lt;template&gt;
+  &lt;gob-tabla titulo=&quot;Trámites&quot; seleccion=&quot;multiple&quot; :columnas.prop=&quot;columnas&quot; :datos.prop=&quot;datos&quot; @gob-tabla-accion=&quot;alAccion&quot; /&gt;
+&lt;/template&gt;</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">05.</span> Integración con una API NestJS</h2><div class="code"><div class="code__bar"><span>API NestJS</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// NestJS + Prisma — endpoint para &lt;gob-tabla modo-servidor&gt;
+@Get(&#x27;tramites&#x27;)
+async listar(@Query() q: { pagina?: string; tamano?: string; q?: string; orden?: string; dir?: &#x27;asc&#x27; | &#x27;desc&#x27; }) {
+  const take = Math.min(Number(q.tamano ?? 10), 100), skip = (Number(q.pagina ?? 1) - 1) * take;
+  const where = q.q ? { OR: [{ asunto: { contains: q.q, mode: &#x27;insensitive&#x27; } }, { radicado: { contains: q.q } }] } : {};
+  const [datos, total] = await this.prisma.$transaction([
+    this.prisma.tramite.findMany({ where, skip, take, orderBy: q.orden ? { [q.orden]: q.dir ?? &#x27;asc&#x27; } : { fecha: &#x27;desc&#x27; } }),
+    this.prisma.tramite.count({ where }),
+  ]);
+  return { data: datos, meta: { total, pagina: Number(q.pagina ?? 1), tamano: take } };
+}
+// Frontend: t.totalFilas = r.meta.total; t.datos = r.data;   (ver ejemplo 5)</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">06.</span> Referencia</h2><h3>Propiedades</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Propiedad</th><th>Atributo</th><th>Tipo</th><th>Por defecto</th><th>Descripción</th></tr></thead><tbody><tr><td><code>columnas</code></td><td><code>columnas (JSON)</code></td><td><code>Columna[]</code></td><td>—</td><td>Definición de columnas (ver tabla «Columna»).</td></tr><tr><td><code>datos</code></td><td><code>datos (JSON)</code></td><td><code>object[]</code></td><td>[]</td><td>Filas. Cada fila es un objeto; se admiten rutas con punto (<code>persona.nombre</code>).</td></tr><tr><td><code>llave</code></td><td><code>llave</code></td><td><code>string</code></td><td>'id'</td><td>Campo único de cada fila (selección y eventos).</td></tr><tr><td><code>titulo / descripcion</code></td><td><code>titulo / descripcion</code></td><td><code>string</code></td><td>—</td><td>Título visible y nombre accesible de la tabla.</td></tr><tr><td><code>busqueda</code></td><td><code>busqueda</code></td><td><code>boolean</code></td><td>true</td><td>Cuadro de búsqueda global (sin tildes ni mayúsculas).</td></tr><tr><td><code>filtrosColumna</code></td><td><code>filtros-columna</code></td><td><code>boolean</code></td><td>false</td><td>Fila de filtros por columna: select (≤ 12 valores), texto, o expresiones numéricas (<code>&gt;10</code>, <code>5-20</code>).</td></tr><tr><td><code>ordenInicial</code></td><td><code>orden-inicial (JSON)</code></td><td><code>{ campo, dir }</code></td><td>—</td><td>Orden inicial, p. ej. <code>{"campo":"fecha","dir":"desc"}</code>.</td></tr><tr><td><code>paginacion</code></td><td><code>paginacion</code></td><td><code>boolean</code></td><td>true</td><td>Paginación (en modo servidor siempre se muestra el paginador).</td></tr><tr><td><code>tamanoPagina / opcionesTamano</code></td><td><code>tamano-pagina / opciones-tamano</code></td><td><code>number / number[]</code></td><td>10 / [5,10,25,50,100]</td><td>Filas por página y opciones del selector.</td></tr><tr><td><code>seleccion</code></td><td><code>seleccion</code></td><td><code>'ninguna' | 'una' | 'multiple'</code></td><td>'ninguna'</td><td>Casillas de selección; «multiple» incluye seleccionar la página y todos los resultados.</td></tr><tr><td><code>acciones</code></td><td><code>acciones (JSON)</code></td><td><code>{ id, etiqueta, icono, tipo }[]</code></td><td>—</td><td>Botones por fila (hasta 3 visibles; más van a un menú «⋯»). <code>tipo: "peligro"</code> los pinta en rojo.</td></tr><tr><td><code>accionesMasivas</code></td><td><code>acciones-masivas (JSON)</code></td><td><code>idem</code></td><td>—</td><td>Botones que aparecen al seleccionar filas.</td></tr><tr><td><code>exportar</code></td><td><code>exportar</code></td><td><code>boolean</code></td><td>true</td><td>Menú Exportar: Excel (CSV), copiar, imprimir/PDF.</td></tr><tr><td><code>selectorColumnas</code></td><td><code>selector-columnas</code></td><td><code>boolean</code></td><td>true</td><td>Menú para mostrar u ocultar columnas.</td></tr><tr><td><code>densidad</code></td><td><code>densidad</code></td><td><code>'compacta' | 'normal' | 'amplia'</code></td><td>'normal'</td><td>Espaciado vertical.</td></tr><tr><td><code>zebra</code></td><td><code>zebra</code></td><td><code>boolean</code></td><td>false</td><td>Filas alternadas.</td></tr><tr><td><code>totales</code></td><td><code>totales</code></td><td><code>boolean</code></td><td>false</td><td>Pie con totales según <code>total</code> de cada columna.</td></tr><tr><td><code>alturaMax</code></td><td><code>altura-max (px)</code></td><td><code>number</code></td><td>—</td><td>Altura máxima con scroll vertical y encabezado fijo.</td></tr><tr><td><code>filaClicable</code></td><td><code>fila-clicable</code></td><td><code>boolean</code></td><td>false</td><td>Emite <code>gob-tabla-fila-clic</code> al hacer clic o Enter.</td></tr><tr><td><code>cargando / vacio</code></td><td><code>cargando / vacio</code></td><td><code>boolean / string</code></td><td>false / «No hay datos…»</td><td>Estado de carga (esqueleto) y mensaje de vacío (también el slot <code>vacio</code>).</td></tr><tr><td><code>modoServidor</code></td><td><code>modo-servidor</code></td><td><code>boolean</code></td><td>false</td><td>Orden, filtros y paginación los hace su API: la tabla emite <code>gob-tabla-consulta</code> y usted entrega <code>datos</code> y <code>totalFilas</code>.</td></tr><tr><td><code>totalFilas</code></td><td><code>total-filas</code></td><td><code>number</code></td><td>0</td><td>Total de resultados (modo servidor).</td></tr><tr><td><code>tarjetas</code></td><td><code>tarjetas</code></td><td><code>'auto' | 'siempre' | 'nunca'</code></td><td>'auto'</td><td>Vista de tarjetas: automática bajo 640 px de ancho del contenedor.</td></tr><tr><td><code>tema</code></td><td><code>tema</code></td><td><code>'claro' | 'oscuro'</code></td><td>'claro'</td><td>Tema.</td></tr><tr><td><code>config</code></td><td><code>—</code></td><td><code>objeto</code></td><td>—</td><td>Asigna varias propiedades a la vez.</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Columna</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Campo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>campo</code></td><td>Nombre del campo en cada fila (obligatorio).</td></tr><tr><td><code>titulo</code></td><td>Encabezado (por defecto, el campo capitalizado).</td></tr><tr><td><code>tipo</code></td><td><code>texto</code> (defecto), <code>numero</code>, <code>cop</code> (pesos), <code>porcentaje</code> (0–1), <code>fecha</code> (ISO), <code>estado</code> (insignia de color), <code>booleano</code>, <code>enlace</code>, <code>barra</code> (progreso).</td></tr><tr><td><code>estados</code></td><td>Para <code>tipo:"estado"</code>: valor → <code>exito | aviso | peligro | info | neutro | primario | violeta</code>.</td></tr><tr><td><code>semaforo</code></td><td><code>{ verde, amarillo, invertir? }</code>: punto verde/amarillo/rojo según umbrales (<code>invertir</code>: menor es mejor).</td></tr><tr><td><code>total</code></td><td><code>suma | promedio | conteo | min | max</code> (fila de totales).</td></tr><tr><td><code>enlace</code></td><td>Plantilla de URL con <code>{campo}</code>, para <code>tipo:"enlace"</code>.</td></tr><tr><td><code>maximo</code></td><td>Valor 100 % de la barra (<code>tipo:"barra"</code>).</td></tr><tr><td><code>ancho / alinear / nowrap</code></td><td>Ancho CSS, alineación (<code>izq | centro | der</code>) y no partir el texto.</td></tr><tr><td><code>ordenable / filtrable / oculta</code></td><td>Por defecto verdadero / verdadero / falso.</td></tr><tr><td><code>decimales</code></td><td>Decimales máximos (números).</td></tr><tr><td><code>render</code></td><td>Función <code>(valor, fila) =&gt; "HTML"</code> para celdas a medida (HTML de confianza: escape lo que venga del usuario).</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Eventos</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Evento</th><th>detail</th><th>Cuándo</th></tr></thead><tbody><tr><td><code>gob-tabla-seleccion</code></td><td><code>{ llaves, filas }</code></td><td>Cambió la selección.</td></tr><tr><td><code>gob-tabla-accion</code></td><td><code>{ accion, fila } o { accion, filas, llaves }</code></td><td>Botón de fila o acción masiva.</td></tr><tr><td><code>gob-tabla-fila-clic</code></td><td><code>{ fila }</code></td><td>Clic/Enter en una fila (con <code>fila-clicable</code>).</td></tr><tr><td><code>gob-tabla-orden</code></td><td><code>{ campo, dir } | null</code></td><td>Cambió el orden.</td></tr><tr><td><code>gob-tabla-filtro</code></td><td><code>{ busqueda, filtros }</code></td><td>Cambió la búsqueda o un filtro.</td></tr><tr><td><code>gob-tabla-pagina</code></td><td><code>{ pagina, tamano }</code></td><td>Cambió la página o el tamaño.</td></tr><tr><td><code>gob-tabla-consulta</code></td><td><code>{ pagina, tamano, orden, busqueda, filtros }</code></td><td>Modo servidor: pida los datos a su API.</td></tr><tr><td><code>gob-tabla-exportar</code></td><td><code>{ formato, filas }</code></td><td>Se exportó o copió.</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Métodos</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Método</th><th>Descripción</th></tr></thead><tbody><tr><td><code>exportarCSV(nombre?)</code></td><td>Descarga un CSV (UTF-8 con BOM, separador «;», abre bien en Excel).</td></tr><tr><td><code>csv()</code></td><td>Devuelve el CSV como texto.</td></tr><tr><td><code>copiar()</code></td><td>Copia la tabla (TSV) al portapapeles.</td></tr><tr><td><code>imprimir()</code></td><td>Imprime todas las filas filtradas.</td></tr><tr><td><code>limpiarFiltros()</code></td><td>Quita búsqueda y filtros.</td></tr><tr><td><code>seleccionar(llaves) / limpiarSeleccion() / seleccionarTodo()</code></td><td>Control de la selección.</td></tr><tr><td><code>filasFiltradas</code></td><td>Getter: filas tras filtros y orden.</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Slots, partes y variables</h3><p class="mg-help">Slots: <code>herramientas</code> (botones propios en la barra) y <code>vacio</code>. Partes: <code>tabla</code>, <code>barra</code>, <code>paginacion</code>. Tipografía: <code>--gob-fuente</code>.</p></section>
+<section class="pt-section"><h2><span class="n">07.</span> Accesibilidad</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Tabla HTML nativa con <code>caption</code>, <code>scope</code> y <code>aria-sort</code> en los encabezados ordenables; los botones de orden, filtros, acciones y paginación son controles reales con foco visible.</li>
+<li>Cada casilla y botón de fila tiene nombre propio («Seleccionar R-2026-01000», «Editar: R-2026-01000»); el total de resultados se anuncia en una región <code>aria-live</code>.</li><li>La región de desplazamiento es enfocable por teclado; en móvil la vista de tarjetas conserva las etiquetas de cada dato; no se transmite información solo con color (las insignias llevan texto).</li></ul></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792035404"></script>
+
+</body>
+</html>

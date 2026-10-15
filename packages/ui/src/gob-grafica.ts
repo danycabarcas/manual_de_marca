@@ -23,7 +23,7 @@ export class GobGrafica extends LitElement {
     etiquetas: { type: Boolean }, apilado: { type: Boolean }, suave: { type: Boolean },
     formato: { type: String }, unidad: { type: String },
     tituloEjeX: { attribute: 'titulo-eje-x', type: String }, tituloEjeY: { attribute: 'titulo-eje-y', type: String },
-    umbrales: { converter: jsonConv }, min: { type: Number }, max: { type: Number },
+    umbrales: { converter: jsonConv }, resaltar: { type: String }, min: { type: Number }, max: { type: Number },
     patrones: { type: Boolean }, animacion: { type: Boolean },
     tema: { type: String, reflect: true }, altura: { type: Number }, centro: { type: String },
     descripcion: { type: String },
@@ -31,7 +31,7 @@ export class GobGrafica extends LitElement {
   };
   declare tipo: string; declare datos?: unknown; declare colores: string | string[]; declare titulo: string; declare subtitulo: string;
   declare leyenda: boolean; declare leyendaPosicion: 'arriba' | 'abajo' | 'derecha'; declare etiquetas: boolean; declare apilado: boolean; declare suave: boolean;
-  declare formato: string; declare unidad: string; declare tituloEjeX: string; declare tituloEjeY: string; declare umbrales?: [number, string][];
+  declare formato: string; declare unidad: string; declare tituloEjeX: string; declare tituloEjeY: string; declare umbrales?: [number, string][]; declare resaltar: string;
   declare min: number; declare max: number; declare patrones: boolean; declare animacion: boolean; declare tema: 'claro' | 'oscuro'; declare altura: number; declare centro: string; declare descripcion: string;
   declare _listo: boolean; declare _error: string;
 
@@ -41,8 +41,10 @@ export class GobGrafica extends LitElement {
     super();
     this.tipo = 'barras'; this.colores = 'institucional'; this.titulo = ''; this.subtitulo = ''; this.leyenda = true; this.leyendaPosicion = 'arriba';
     this.etiquetas = false; this.apilado = false; this.suave = false; this.formato = 'numero'; this.unidad = ''; this.tituloEjeX = ''; this.tituloEjeY = '';
-    this.min = 0; this.max = 100; this.patrones = false; this.animacion = true; this.tema = 'claro'; this.altura = 360; this.centro = ''; this.descripcion = '';
+    this.resaltar = ''; this.min = 0; this.max = 100; this.patrones = false; this.animacion = true; this.tema = 'claro'; this.altura = 360; this.centro = ''; this.descripcion = '';
     this._listo = false; this._error = '';
+    // «config» asignada antes de que el componente se cargue (carga perezosa) queda como propiedad propia: se re-aplica
+    if (Object.prototype.hasOwnProperty.call(this, 'config')) { const c = (this as any).config; delete (this as any).config; (this as any).config = c; }
   }
   /** Asigna varias propiedades a la vez. */
   set config(c: Record<string, unknown>) { Object.assign(this, c); }
@@ -57,7 +59,7 @@ export class GobGrafica extends LitElement {
   private _paleta(): string[] { return Array.isArray(this.colores) ? this.colores : (PALETAS[this.colores]?.colores ?? PALETAS.institucional.colores); }
   private _cfg(): Cfg {
     return { tipo: this.tipo, colores: this._paleta(), titulo: this.titulo, subtitulo: this.subtitulo, leyenda: this.leyenda, leyendaPosicion: this.leyendaPosicion, etiquetas: this.etiquetas, apilado: this.apilado, suave: this.suave,
-      formato: this.formato, unidad: this.unidad, tituloEjeX: this.tituloEjeX, tituloEjeY: this.tituloEjeY, umbrales: this.umbrales, min: this.min, max: this.max, patrones: this.patrones,
+      formato: this.formato, unidad: this.unidad, tituloEjeX: this.tituloEjeX, tituloEjeY: this.tituloEjeY, umbrales: this.umbrales, resaltar: this.resaltar, min: this.min, max: this.max, patrones: this.patrones,
       animacion: this.animacion && !matchMedia('(prefers-reduced-motion: reduce)').matches, oscuro: this.tema === 'oscuro', centro: this.centro };
   }
   private async _dibujar() {

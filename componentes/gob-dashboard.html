@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard, KPI y pestañas · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="gob-dashboard, gob-kpi y gob-pestanas: tableros con filtros sincronizados, indicadores y pestañas accesibles. Ejemplos para copiar.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792035404">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Dashboard, KPI y pestañas</h1><p>gob-dashboard, gob-kpi y gob-pestanas: tableros con filtros sincronizados, indicadores y pestañas accesibles. Ejemplos para copiar.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+
+<p class="pt-lead">Indicadores (KPI), pestañas y tableros completos. El tablero se describe con JSON y se sincroniza solo: filtros globales y filtro cruzado entre widgets. <a href="../estudio/dashboards.html"><b>Arme el suyo en el Estudio de dashboards →</b></a></p>
+<section class="pt-section"><h2><span class="n">01.</span> Instalación (todo lo que hay que cargar)</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div>
+<div class="code"><div class="code__bar"><span>Instalación mínima</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-kpi etiqueta=&#x27;Radicados&#x27; valor=&#x27;1284&#x27; delta=&#x27;12.5&#x27;&gt;&lt;/gob-kpi&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-kpi etiqueta=&#x27;Radicados&#x27; valor=&#x27;1284&#x27; delta=&#x27;12.5&#x27;&gt;&lt;/gob-kpi&gt;</code></pre></div>
+<p class="mg-help">El cargador <code>gob.js</code> detecta qué componentes hay en la página y descarga solo esos. Un dashboard usa KPI, gráficas (ECharts, solo si hay gráficas), tabla y mapa; los datos geográficos se descargan solos desde <code>/cdn/v1/datos/</code>.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplos (cada uno con su código completo)</h2><div class="demo ej" id="ej-k1"><div class="ej__head"><h3>1 · Indicadores (gob-kpi)</h3><p>Valor animado, variación (verde/rojo según si subir es bueno), sparkline, meta y ayuda. Formatos: número, compacto, pesos, porcentaje.</p></div><div class="demo__view demo__view--white"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem">
+  <gob-kpi etiqueta="Radicados" valor="1284" delta="12.5" serie="[3,5,4,8,9,7,12]" icono="archivo" color="primario"></gob-kpi>
+  <gob-kpi etiqueta="Resueltos" valor="0.87" formato="porcentaje" delta="3.2" meta="1" icono="check-circulo" color="verde"></gob-kpi>
+  <gob-kpi etiqueta="Presupuesto ejecutado" valor="2450000000" formato="compacto" delta="4" icono="dinero" color="amarillo" ayuda="Corte a octubre de 2026"></gob-kpi>
+  <gob-kpi etiqueta="Vencidos" valor="31" delta="-8" bueno-sube="false" icono="alerta" color="rojo"></gob-kpi>
+</div>
+<script type="module">
+  // «bueno-sube="false"»: que baje es bueno (verde). Para asignar por código:  document.querySelector('gob-kpi').valor = 1300;
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>k1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem&quot;&gt;
+  &lt;gob-kpi etiqueta=&quot;Radicados&quot; valor=&quot;1284&quot; delta=&quot;12.5&quot; serie=&quot;[3,5,4,8,9,7,12]&quot; icono=&quot;archivo&quot; color=&quot;primario&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Resueltos&quot; valor=&quot;0.87&quot; formato=&quot;porcentaje&quot; delta=&quot;3.2&quot; meta=&quot;1&quot; icono=&quot;check-circulo&quot; color=&quot;verde&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Presupuesto ejecutado&quot; valor=&quot;2450000000&quot; formato=&quot;compacto&quot; delta=&quot;4&quot; icono=&quot;dinero&quot; color=&quot;amarillo&quot; ayuda=&quot;Corte a octubre de 2026&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Vencidos&quot; valor=&quot;31&quot; delta=&quot;-8&quot; bueno-sube=&quot;false&quot; icono=&quot;alerta&quot; color=&quot;rojo&quot;&gt;&lt;/gob-kpi&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  // «bueno-sube=&quot;false&quot;»: que baje es bueno (verde). Para asignar por código:  document.querySelector(&#x27;gob-kpi&#x27;).valor = 1300;
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem&quot;&gt;
+  &lt;gob-kpi etiqueta=&quot;Radicados&quot; valor=&quot;1284&quot; delta=&quot;12.5&quot; serie=&quot;[3,5,4,8,9,7,12]&quot; icono=&quot;archivo&quot; color=&quot;primario&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Resueltos&quot; valor=&quot;0.87&quot; formato=&quot;porcentaje&quot; delta=&quot;3.2&quot; meta=&quot;1&quot; icono=&quot;check-circulo&quot; color=&quot;verde&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Presupuesto ejecutado&quot; valor=&quot;2450000000&quot; formato=&quot;compacto&quot; delta=&quot;4&quot; icono=&quot;dinero&quot; color=&quot;amarillo&quot; ayuda=&quot;Corte a octubre de 2026&quot;&gt;&lt;/gob-kpi&gt;
+  &lt;gob-kpi etiqueta=&quot;Vencidos&quot; valor=&quot;31&quot; delta=&quot;-8&quot; bueno-sube=&quot;false&quot; icono=&quot;alerta&quot; color=&quot;rojo&quot;&gt;&lt;/gob-kpi&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  // «bueno-sube=&quot;false&quot;»: que baje es bueno (verde). Para asignar por código:  document.querySelector(&#x27;gob-kpi&#x27;).valor = 1300;
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-p1"><div class="ej__head"><h3>2 · Pestañas (gob-pestanas)</h3><p>Variantes <code>linea</code> y <code>pildora</code>, con íconos y contadores. Flechas, Inicio y Fin mueven entre pestañas. El contenido de cada pestaña va en un elemento con <code>slot="id"</code>.</p></div><div class="demo__view demo__view--white"><gob-pestanas items='[{"id":"gen","titulo":"General","icono":"inicio"},{"id":"doc","titulo":"Documentos","icono":"archivo","contador":3},{"id":"his","titulo":"Historial","icono":"historial"}]' activa="gen">
+  <div slot="gen"><p>Datos generales del expediente.</p></div>
+  <div slot="doc"><p>Tres documentos adjuntos.</p></div>
+  <div slot="his"><p>Línea de tiempo de cambios.</p></div>
+</gob-pestanas>
+
+<gob-pestanas variante="pildora" items='[{"id":"a","titulo":"Mensual"},{"id":"b","titulo":"Trimestral"},{"id":"c","titulo":"Anual"}]' style="margin-top:1rem">
+  <div slot="a">Vista mensual</div><div slot="b">Vista trimestral</div><div slot="c">Vista anual</div>
+</gob-pestanas>
+
+<script type="module">
+  document.querySelector('gob-pestanas').addEventListener('gob-pestana-cambio', (e) => console.log('pestaña:', e.detail.id));
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>p1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-pestanas items=&#x27;[{&quot;id&quot;:&quot;gen&quot;,&quot;titulo&quot;:&quot;General&quot;,&quot;icono&quot;:&quot;inicio&quot;},{&quot;id&quot;:&quot;doc&quot;,&quot;titulo&quot;:&quot;Documentos&quot;,&quot;icono&quot;:&quot;archivo&quot;,&quot;contador&quot;:3},{&quot;id&quot;:&quot;his&quot;,&quot;titulo&quot;:&quot;Historial&quot;,&quot;icono&quot;:&quot;historial&quot;}]&#x27; activa=&quot;gen&quot;&gt;
+  &lt;div slot=&quot;gen&quot;&gt;&lt;p&gt;Datos generales del expediente.&lt;/p&gt;&lt;/div&gt;
+  &lt;div slot=&quot;doc&quot;&gt;&lt;p&gt;Tres documentos adjuntos.&lt;/p&gt;&lt;/div&gt;
+  &lt;div slot=&quot;his&quot;&gt;&lt;p&gt;Línea de tiempo de cambios.&lt;/p&gt;&lt;/div&gt;
+&lt;/gob-pestanas&gt;
+
+&lt;gob-pestanas variante=&quot;pildora&quot; items=&#x27;[{&quot;id&quot;:&quot;a&quot;,&quot;titulo&quot;:&quot;Mensual&quot;},{&quot;id&quot;:&quot;b&quot;,&quot;titulo&quot;:&quot;Trimestral&quot;},{&quot;id&quot;:&quot;c&quot;,&quot;titulo&quot;:&quot;Anual&quot;}]&#x27; style=&quot;margin-top:1rem&quot;&gt;
+  &lt;div slot=&quot;a&quot;&gt;Vista mensual&lt;/div&gt;&lt;div slot=&quot;b&quot;&gt;Vista trimestral&lt;/div&gt;&lt;div slot=&quot;c&quot;&gt;Vista anual&lt;/div&gt;
+&lt;/gob-pestanas&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelector(&#x27;gob-pestanas&#x27;).addEventListener(&#x27;gob-pestana-cambio&#x27;, (e) =&gt; console.log(&#x27;pestaña:&#x27;, e.detail.id));
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-pestanas items=&#x27;[{&quot;id&quot;:&quot;gen&quot;,&quot;titulo&quot;:&quot;General&quot;,&quot;icono&quot;:&quot;inicio&quot;},{&quot;id&quot;:&quot;doc&quot;,&quot;titulo&quot;:&quot;Documentos&quot;,&quot;icono&quot;:&quot;archivo&quot;,&quot;contador&quot;:3},{&quot;id&quot;:&quot;his&quot;,&quot;titulo&quot;:&quot;Historial&quot;,&quot;icono&quot;:&quot;historial&quot;}]&#x27; activa=&quot;gen&quot;&gt;
+  &lt;div slot=&quot;gen&quot;&gt;&lt;p&gt;Datos generales del expediente.&lt;/p&gt;&lt;/div&gt;
+  &lt;div slot=&quot;doc&quot;&gt;&lt;p&gt;Tres documentos adjuntos.&lt;/p&gt;&lt;/div&gt;
+  &lt;div slot=&quot;his&quot;&gt;&lt;p&gt;Línea de tiempo de cambios.&lt;/p&gt;&lt;/div&gt;
+&lt;/gob-pestanas&gt;
+
+&lt;gob-pestanas variante=&quot;pildora&quot; items=&#x27;[{&quot;id&quot;:&quot;a&quot;,&quot;titulo&quot;:&quot;Mensual&quot;},{&quot;id&quot;:&quot;b&quot;,&quot;titulo&quot;:&quot;Trimestral&quot;},{&quot;id&quot;:&quot;c&quot;,&quot;titulo&quot;:&quot;Anual&quot;}]&#x27; style=&quot;margin-top:1rem&quot;&gt;
+  &lt;div slot=&quot;a&quot;&gt;Vista mensual&lt;/div&gt;&lt;div slot=&quot;b&quot;&gt;Vista trimestral&lt;/div&gt;&lt;div slot=&quot;c&quot;&gt;Vista anual&lt;/div&gt;
+&lt;/gob-pestanas&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelector(&#x27;gob-pestanas&#x27;).addEventListener(&#x27;gob-pestana-cambio&#x27;, (e) =&gt; console.log(&#x27;pestaña:&#x27;, e.detail.id));
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-d1"><div class="ej__head"><h3>3 · Dashboard completo (gob-dashboard)</h3><p>Describe el tablero en JSON: registros + filtros + widgets (KPI, gráficas, mapa, tabla). <b>Haga clic en una barra, un sector o un municipio</b> para filtrar todo el tablero; el chip superior lo quita.</p></div><div class="demo__view demo__view--white"><gob-dashboard id="tablero"></gob-dashboard>
+
+<script type="module">
+  const registros = await fetch('../cdn/v1/datos/ejemplo-radicados.json').then((r) => r.json());
+  document.getElementById('tablero').config = {
+    titulo: 'Atención al ciudadano 2026', subtitulo: 'Radicados por subregión, estado y tiempo (datos de ejemplo)',
+    registros,
+    filtros: [{ campo: 'subregion', etiqueta: 'Subregión' }, { campo: 'dependencia', etiqueta: 'Dependencia' }, { campo: 'tipo', etiqueta: 'Tipo' }],
+    widgets: [
+      { tipo: 'kpi', titulo: 'Radicados', medida: 'conteo', icono: 'archivo', serie: 'fecha:mes', col: 3 },
+      { tipo: 'kpi', titulo: 'Resueltos', medida: 'conteo', donde: { estado: 'Resuelto' }, icono: 'check-circulo', color: 'verde', serie: 'fecha:mes', col: 3 },
+      { tipo: 'kpi', titulo: 'Días promedio', medida: 'promedio', campo: 'dias', unidad: 'd', icono: 'reloj', color: 'cian', buenoSube: false, serie: 'fecha:mes', col: 3 },
+      { tipo: 'kpi', titulo: 'Vencidos', medida: 'conteo', donde: { estado: 'Vencido' }, icono: 'alerta', color: 'rojo', buenoSube: false, serie: 'fecha:mes', col: 3 },
+      { tipo: 'grafica', grafica: 'area', titulo: 'Radicados por mes', agrupar: 'fecha:mes', serie: 'estado', colores: ['#00B7D9', '#FEC800', '#69B75E', '#F7003C'], apilado: true, col: 8, alto: 300 },
+      { tipo: 'grafica', grafica: 'dona', titulo: 'Por tipo de solicitud', agrupar: 'tipo', col: 4, alto: 300, leyendaPosicion: 'abajo' },
+      { tipo: 'mapa', titulo: 'Radicados por municipio', agrupar: 'codigo', medida: 'conteo', col: 5, rampa: 'azul', leyendaTitulo: 'Radicados' },
+      { tipo: 'grafica', grafica: 'barras-horizontal', titulo: 'Por dependencia', agrupar: 'dependencia', orden: 'valor-desc', etiquetas: true, col: 7, alto: 360 },
+      { tipo: 'tabla', titulo: 'Últimos radicados', limite: 80, col: 12, columnas: [
+        { campo: 'id', titulo: 'Radicado', nowrap: true }, { campo: 'fecha', titulo: 'Fecha', tipo: 'fecha' }, { campo: 'municipio', titulo: 'Municipio' }, { campo: 'dependencia', titulo: 'Dependencia' }, { campo: 'tipo', titulo: 'Tipo' },
+        { campo: 'estado', titulo: 'Estado', tipo: 'estado', estados: { Resuelto: 'exito', 'En trámite': 'info', Pendiente: 'aviso', Vencido: 'peligro' } },
+        { campo: 'dias', titulo: 'Días', tipo: 'numero' }] },
+    ],
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>d1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-dashboard id=&quot;tablero&quot;&gt;&lt;/gob-dashboard&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const registros = await fetch(&#x27;__BASE__/cdn/v1/datos/ejemplo-radicados.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;tablero&#x27;).config = {
+    titulo: &#x27;Atención al ciudadano 2026&#x27;, subtitulo: &#x27;Radicados por subregión, estado y tiempo (datos de ejemplo)&#x27;,
+    registros,
+    filtros: [{ campo: &#x27;subregion&#x27;, etiqueta: &#x27;Subregión&#x27; }, { campo: &#x27;dependencia&#x27;, etiqueta: &#x27;Dependencia&#x27; }, { campo: &#x27;tipo&#x27;, etiqueta: &#x27;Tipo&#x27; }],
+    widgets: [
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Radicados&#x27;, medida: &#x27;conteo&#x27;, icono: &#x27;archivo&#x27;, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Resueltos&#x27;, medida: &#x27;conteo&#x27;, donde: { estado: &#x27;Resuelto&#x27; }, icono: &#x27;check-circulo&#x27;, color: &#x27;verde&#x27;, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Días promedio&#x27;, medida: &#x27;promedio&#x27;, campo: &#x27;dias&#x27;, unidad: &#x27;d&#x27;, icono: &#x27;reloj&#x27;, color: &#x27;cian&#x27;, buenoSube: false, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Vencidos&#x27;, medida: &#x27;conteo&#x27;, donde: { estado: &#x27;Vencido&#x27; }, icono: &#x27;alerta&#x27;, color: &#x27;rojo&#x27;, buenoSube: false, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;area&#x27;, titulo: &#x27;Radicados por mes&#x27;, agrupar: &#x27;fecha:mes&#x27;, serie: &#x27;estado&#x27;, colores: [&#x27;#00B7D9&#x27;, &#x27;#FEC800&#x27;, &#x27;#69B75E&#x27;, &#x27;#F7003C&#x27;], apilado: true, col: 8, alto: 300 },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;dona&#x27;, titulo: &#x27;Por tipo de solicitud&#x27;, agrupar: &#x27;tipo&#x27;, col: 4, alto: 300, leyendaPosicion: &#x27;abajo&#x27; },
+      { tipo: &#x27;mapa&#x27;, titulo: &#x27;Radicados por municipio&#x27;, agrupar: &#x27;codigo&#x27;, medida: &#x27;conteo&#x27;, col: 5, rampa: &#x27;azul&#x27;, leyendaTitulo: &#x27;Radicados&#x27; },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;barras-horizontal&#x27;, titulo: &#x27;Por dependencia&#x27;, agrupar: &#x27;dependencia&#x27;, orden: &#x27;valor-desc&#x27;, etiquetas: true, col: 7, alto: 360 },
+      { tipo: &#x27;tabla&#x27;, titulo: &#x27;Últimos radicados&#x27;, limite: 80, col: 12, columnas: [
+        { campo: &#x27;id&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dependencia&#x27;, titulo: &#x27;Dependencia&#x27; }, { campo: &#x27;tipo&#x27;, titulo: &#x27;Tipo&#x27; },
+        { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+        { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27; }] },
+    ],
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-dashboard id=&quot;tablero&quot;&gt;&lt;/gob-dashboard&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const registros = await fetch(&#x27;https://TU-HOST/manual_de_marca/cdn/v1/datos/ejemplo-radicados.json&#x27;).then((r) =&gt; r.json());
+  document.getElementById(&#x27;tablero&#x27;).config = {
+    titulo: &#x27;Atención al ciudadano 2026&#x27;, subtitulo: &#x27;Radicados por subregión, estado y tiempo (datos de ejemplo)&#x27;,
+    registros,
+    filtros: [{ campo: &#x27;subregion&#x27;, etiqueta: &#x27;Subregión&#x27; }, { campo: &#x27;dependencia&#x27;, etiqueta: &#x27;Dependencia&#x27; }, { campo: &#x27;tipo&#x27;, etiqueta: &#x27;Tipo&#x27; }],
+    widgets: [
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Radicados&#x27;, medida: &#x27;conteo&#x27;, icono: &#x27;archivo&#x27;, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Resueltos&#x27;, medida: &#x27;conteo&#x27;, donde: { estado: &#x27;Resuelto&#x27; }, icono: &#x27;check-circulo&#x27;, color: &#x27;verde&#x27;, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Días promedio&#x27;, medida: &#x27;promedio&#x27;, campo: &#x27;dias&#x27;, unidad: &#x27;d&#x27;, icono: &#x27;reloj&#x27;, color: &#x27;cian&#x27;, buenoSube: false, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;kpi&#x27;, titulo: &#x27;Vencidos&#x27;, medida: &#x27;conteo&#x27;, donde: { estado: &#x27;Vencido&#x27; }, icono: &#x27;alerta&#x27;, color: &#x27;rojo&#x27;, buenoSube: false, serie: &#x27;fecha:mes&#x27;, col: 3 },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;area&#x27;, titulo: &#x27;Radicados por mes&#x27;, agrupar: &#x27;fecha:mes&#x27;, serie: &#x27;estado&#x27;, colores: [&#x27;#00B7D9&#x27;, &#x27;#FEC800&#x27;, &#x27;#69B75E&#x27;, &#x27;#F7003C&#x27;], apilado: true, col: 8, alto: 300 },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;dona&#x27;, titulo: &#x27;Por tipo de solicitud&#x27;, agrupar: &#x27;tipo&#x27;, col: 4, alto: 300, leyendaPosicion: &#x27;abajo&#x27; },
+      { tipo: &#x27;mapa&#x27;, titulo: &#x27;Radicados por municipio&#x27;, agrupar: &#x27;codigo&#x27;, medida: &#x27;conteo&#x27;, col: 5, rampa: &#x27;azul&#x27;, leyendaTitulo: &#x27;Radicados&#x27; },
+      { tipo: &#x27;grafica&#x27;, grafica: &#x27;barras-horizontal&#x27;, titulo: &#x27;Por dependencia&#x27;, agrupar: &#x27;dependencia&#x27;, orden: &#x27;valor-desc&#x27;, etiquetas: true, col: 7, alto: 360 },
+      { tipo: &#x27;tabla&#x27;, titulo: &#x27;Últimos radicados&#x27;, limite: 80, col: 12, columnas: [
+        { campo: &#x27;id&#x27;, titulo: &#x27;Radicado&#x27;, nowrap: true }, { campo: &#x27;fecha&#x27;, titulo: &#x27;Fecha&#x27;, tipo: &#x27;fecha&#x27; }, { campo: &#x27;municipio&#x27;, titulo: &#x27;Municipio&#x27; }, { campo: &#x27;dependencia&#x27;, titulo: &#x27;Dependencia&#x27; }, { campo: &#x27;tipo&#x27;, titulo: &#x27;Tipo&#x27; },
+        { campo: &#x27;estado&#x27;, titulo: &#x27;Estado&#x27;, tipo: &#x27;estado&#x27;, estados: { Resuelto: &#x27;exito&#x27;, &#x27;En trámite&#x27;: &#x27;info&#x27;, Pendiente: &#x27;aviso&#x27;, Vencido: &#x27;peligro&#x27; } },
+        { campo: &#x27;dias&#x27;, titulo: &#x27;Días&#x27;, tipo: &#x27;numero&#x27; }] },
+    ],
+  };
+&lt;/script&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Referencia del dashboard</h2>
+<div class="tablewrap"><table class="mg-table"><thead><tr><th>Propiedad</th><th>Descripción</th></tr></thead><tbody><tr><td><code>titulo</code>, <code>subtitulo</code></td><td>Encabezado.</td></tr><tr><td><code>registros</code></td><td>Arreglo de objetos con los datos (una fila por hecho: radicado, venta, atención…).</td></tr><tr><td><code>filtros</code></td><td><code>[{ campo, etiqueta, todos?, opciones? }]</code>: los valores se leen de los registros si no se indican.</td></tr><tr><td><code>widgets</code></td><td>Lista de widgets (tabla siguiente).</td></tr><tr><td><code>tema</code>, <code>colores</code></td><td><code>claro | oscuro</code> y paleta por defecto de las gráficas.</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Widgets</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Campo del widget</th><th>Descripción</th></tr></thead><tbody><tr><td><code>tipo</code></td><td><code>kpi | grafica | mapa | tabla | texto | alerta</code></td></tr><tr><td><code>col</code>, <code>alto</code></td><td>Columnas de 12 que ocupa (1–12) y alto en px. En pantallas pequeñas todos pasan a ancho completo (KPI a mitad).</td></tr><tr><td><code>medida</code>, <code>campo</code></td><td><code>conteo | suma | promedio | max | min | distintos</code> y el campo numérico a medir.</td></tr><tr><td><code>agrupar</code></td><td>Campo para agrupar; admite fechas: <code>fecha:mes</code>, <code>fecha:anio</code>, <code>fecha:trimestre</code>, <code>fecha:dia</code>. En el mapa, <code>codigo</code> (DIVIPOLA).</td></tr><tr><td><code>serie</code></td><td>Segunda dimensión: una serie por valor (gráficas) o sparkline/variación por mes (KPI: <code>"fecha:mes"</code>).</td></tr><tr><td><code>donde</code></td><td>Filtro fijo del widget: <code>{ estado: "Vencido" }</code>.</td></tr><tr><td><code>grafica</code></td><td>Cualquier tipo de <a href="gob-grafica.html">gob-grafica</a>; más <code>orden</code> (<code>natural | valor-desc | valor-asc | nombre</code>), <code>limite</code>, <code>etiquetas</code>, <code>apilado</code>, <code>colores</code>, <code>formato</code>, <code>unidad</code>.</td></tr><tr><td><code>filtrar</code></td><td>Por defecto verdadero: el clic en la gráfica/mapa filtra el resto. <code>false</code> lo desactiva.</td></tr><tr><td><code>columnas</code>, <code>limite</code></td><td>Para <code>tabla</code> (las mismas columnas de <a href="gob-tabla.html">gob-tabla</a>).</td></tr><tr><td><code>contenido</code>, <code>tono</code></td><td>Para <code>texto</code> y <code>alerta</code>.</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">Eventos y métodos</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th></th><th>Descripción</th></tr></thead><tbody><tr><td><code>gob-dashboard-filtro</code></td><td><code>{ filtros, total }</code> cada vez que cambia algún filtro.</td></tr><tr><td><code>reiniciar()</code></td><td>Quita todos los filtros.</td></tr><tr><td><code>descargarCSV(nombre?)</code> · <code>imprimir()</code></td><td>Descarga los registros filtrados o imprime (los filtros se ocultan).</td></tr></tbody></table></div>
+<h3 style="margin-top:1.5rem">gob-kpi y gob-pestanas</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Componente</th><th>Atributos y eventos</th></tr></thead><tbody><tr><td><code>&lt;gob-kpi&gt;</code></td><td><code>etiqueta</code>, <code>valor</code>, <code>formato</code> (numero, compacto, cop, porcentaje), <code>unidad</code>, <code>delta</code> (% de variación), <code>delta-texto</code>, <code>bueno-sube</code>, <code>icono</code>, <code>color</code> (primario, cian, verde, amarillo, rojo, violeta, gris, navy o CSS), <code>serie</code> (JSON, sparkline), <code>meta</code>, <code>ayuda</code>, <code>animar</code>, <code>cargando</code>, <code>oscuro</code>.</td></tr><tr><td><code>&lt;gob-pestanas&gt;</code></td><td><code>items</code> (JSON <code>[{{ id, titulo, icono?, contador?, deshabilitada? }}]</code>), <code>activa</code>, <code>variante</code> (linea | pildora), <code>etiqueta</code>. Evento <code>gob-pestana-cambio</code> (<code>detail.id</code>). Cada panel: elemento con <code>slot="id"</code>.</td></tr></tbody></table></div></section>
+<section class="pt-section"><h2><span class="n">04.</span> Accesibilidad</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Cada KPI es un grupo con nombre accesible que incluye valor y variación; la barra de meta es <code>role="progressbar"</code>. Pestañas con roles <code>tablist/tab/tabpanel</code> y navegación por teclado.</li><li>Las gráficas del tablero traen tabla de datos equivalente; los filtros son selects nativos y los filtros activos se anuncian (<code>aria-live</code>).</li></ul></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792035404"></script>
+
+</body>
+</html>

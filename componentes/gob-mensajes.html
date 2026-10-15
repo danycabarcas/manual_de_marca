@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alertas, modales y toasts · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="gob-alerta, gob-modal, gob.toast() y gob.confirmar(): mensajes y diálogos accesibles con ejemplos para copiar.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792035404">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Alertas, modales y toasts</h1><p>gob-alerta, gob-modal, gob.toast() y gob.confirmar(): mensajes y diálogos accesibles con ejemplos para copiar.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+
+<p class="pt-lead">Alertas, diálogos modales, notificaciones (toasts) y confirmaciones listos para cualquier framework. Todos son accesibles: foco atrapado y devuelto, <code class="inline">role</code> correcto, anuncio a lectores de pantalla y <code class="inline">prefers-reduced-motion</code>.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Instalación (todo lo que hay que cargar)</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div>
+<div class="code"><div class="code__bar"><span>Instalación mínima</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Listo&quot;&gt;Todo salió bien.&lt;/gob-alerta&gt;
+&lt;script type=&quot;module&quot;&gt;
+  gob.toast({ tipo: &#x27;info&#x27;, titulo: &#x27;Hola&#x27; });
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Listo&quot;&gt;Todo salió bien.&lt;/gob-alerta&gt;
+&lt;script type=&quot;module&quot;&gt;
+  gob.toast({ tipo: &#x27;info&#x27;, titulo: &#x27;Hola&#x27; });
+&lt;/script&gt;</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplos (cada uno con su código completo)</h2><div class="demo ej" id="ej-a1"><div class="ej__head"><h3>1 · Alertas</h3><p>Cinco tipos, con título, cerrable y botón de acción (slot <code>acciones</code>). Peligro y aviso usan <code>role="alert"</code>; el resto <code>role="status"</code>.</p></div><div class="demo__view demo__view--white"><div style="display:grid;gap:.6rem">
+  <gob-alerta tipo="info" titulo="Información">Su solicitud fue radicada con el número R-2026-00123.</gob-alerta>
+  <gob-alerta tipo="exito" titulo="Listo" cerrable>El documento se firmó correctamente.</gob-alerta>
+  <gob-alerta tipo="aviso" titulo="Atención">Su sesión expira en 2 minutos.
+    <button slot="acciones" class="mg-btn mg-btn--sm mg-btn--secondary">Extender sesión</button></gob-alerta>
+  <gob-alerta tipo="peligro" titulo="Error" cerrable>No fue posible enviar el formulario. Intente de nuevo.</gob-alerta>
+  <gob-alerta tipo="neutro">Mensaje neutro sin título.</gob-alerta>
+</div></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>a1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:grid;gap:.6rem&quot;&gt;
+  &lt;gob-alerta tipo=&quot;info&quot; titulo=&quot;Información&quot;&gt;Su solicitud fue radicada con el número R-2026-00123.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Listo&quot; cerrable&gt;El documento se firmó correctamente.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;aviso&quot; titulo=&quot;Atención&quot;&gt;Su sesión expira en 2 minutos.
+    &lt;button slot=&quot;acciones&quot; class=&quot;mg-btn mg-btn--sm mg-btn--secondary&quot;&gt;Extender sesión&lt;/button&gt;&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;peligro&quot; titulo=&quot;Error&quot; cerrable&gt;No fue posible enviar el formulario. Intente de nuevo.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;neutro&quot;&gt;Mensaje neutro sin título.&lt;/gob-alerta&gt;
+&lt;/div&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:grid;gap:.6rem&quot;&gt;
+  &lt;gob-alerta tipo=&quot;info&quot; titulo=&quot;Información&quot;&gt;Su solicitud fue radicada con el número R-2026-00123.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Listo&quot; cerrable&gt;El documento se firmó correctamente.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;aviso&quot; titulo=&quot;Atención&quot;&gt;Su sesión expira en 2 minutos.
+    &lt;button slot=&quot;acciones&quot; class=&quot;mg-btn mg-btn--sm mg-btn--secondary&quot;&gt;Extender sesión&lt;/button&gt;&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;peligro&quot; titulo=&quot;Error&quot; cerrable&gt;No fue posible enviar el formulario. Intente de nuevo.&lt;/gob-alerta&gt;
+  &lt;gob-alerta tipo=&quot;neutro&quot;&gt;Mensaje neutro sin título.&lt;/gob-alerta&gt;
+&lt;/div&gt;</code></pre></div></details></div><div class="demo ej" id="ej-m1"><div class="ej__head"><h3>2 · Modal con formulario</h3><p>Basado en <code>&lt;dialog&gt;</code> nativo: atrapa el foco, se cierra con Esc o clic en el fondo, bloquea el scroll y devuelve el foco al botón que lo abrió. Slot <code>pie</code> para los botones.</p></div><div class="demo__view demo__view--white"><button class="mg-btn" id="abrir1">Nuevo trámite</button>
+
+<gob-modal id="modal1" titulo="Nuevo trámite" tipo="info">
+  <div style="display:grid;gap:.75rem">
+    <div><label class="mg-label" for="asunto1">Asunto</label><input class="mg-input" id="asunto1" placeholder="Describa su solicitud"></div>
+    <div><label class="mg-label" for="mun1">Municipio</label><select class="mg-select" id="mun1"><option>Santa Marta</option><option>Ciénaga</option><option>Fundación</option></select></div>
+  </div>
+  <button slot="pie" class="mg-btn mg-btn--secondary" id="cancelar1">Cancelar</button>
+  <button slot="pie" class="mg-btn" id="guardar1">Guardar</button>
+</gob-modal>
+
+<script type="module">
+  const m = document.getElementById('modal1');
+  document.getElementById('abrir1').onclick = () => m.abrir();
+  document.getElementById('cancelar1').onclick = () => m.cerrar();
+  document.getElementById('guardar1').onclick = () => { m.cerrar(); gob.toast({ tipo: 'exito', titulo: 'Trámite creado' }); };
+  m.addEventListener('gob-modal-cerrar', (e) => console.log('cerrado por:', e.detail.motivo));   // boton | esc | fondo | api
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>m1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;button class=&quot;mg-btn&quot; id=&quot;abrir1&quot;&gt;Nuevo trámite&lt;/button&gt;
+
+&lt;gob-modal id=&quot;modal1&quot; titulo=&quot;Nuevo trámite&quot; tipo=&quot;info&quot;&gt;
+  &lt;div style=&quot;display:grid;gap:.75rem&quot;&gt;
+    &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;asunto1&quot;&gt;Asunto&lt;/label&gt;&lt;input class=&quot;mg-input&quot; id=&quot;asunto1&quot; placeholder=&quot;Describa su solicitud&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;mun1&quot;&gt;Municipio&lt;/label&gt;&lt;select class=&quot;mg-select&quot; id=&quot;mun1&quot;&gt;&lt;option&gt;Santa Marta&lt;/option&gt;&lt;option&gt;Ciénaga&lt;/option&gt;&lt;option&gt;Fundación&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;cancelar1&quot;&gt;Cancelar&lt;/button&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; id=&quot;guardar1&quot;&gt;Guardar&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const m = document.getElementById(&#x27;modal1&#x27;);
+  document.getElementById(&#x27;abrir1&#x27;).onclick = () =&gt; m.abrir();
+  document.getElementById(&#x27;cancelar1&#x27;).onclick = () =&gt; m.cerrar();
+  document.getElementById(&#x27;guardar1&#x27;).onclick = () =&gt; { m.cerrar(); gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Trámite creado&#x27; }); };
+  m.addEventListener(&#x27;gob-modal-cerrar&#x27;, (e) =&gt; console.log(&#x27;cerrado por:&#x27;, e.detail.motivo));   // boton | esc | fondo | api
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;button class=&quot;mg-btn&quot; id=&quot;abrir1&quot;&gt;Nuevo trámite&lt;/button&gt;
+
+&lt;gob-modal id=&quot;modal1&quot; titulo=&quot;Nuevo trámite&quot; tipo=&quot;info&quot;&gt;
+  &lt;div style=&quot;display:grid;gap:.75rem&quot;&gt;
+    &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;asunto1&quot;&gt;Asunto&lt;/label&gt;&lt;input class=&quot;mg-input&quot; id=&quot;asunto1&quot; placeholder=&quot;Describa su solicitud&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;label class=&quot;mg-label&quot; for=&quot;mun1&quot;&gt;Municipio&lt;/label&gt;&lt;select class=&quot;mg-select&quot; id=&quot;mun1&quot;&gt;&lt;option&gt;Santa Marta&lt;/option&gt;&lt;option&gt;Ciénaga&lt;/option&gt;&lt;option&gt;Fundación&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;cancelar1&quot;&gt;Cancelar&lt;/button&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; id=&quot;guardar1&quot;&gt;Guardar&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const m = document.getElementById(&#x27;modal1&#x27;);
+  document.getElementById(&#x27;abrir1&#x27;).onclick = () =&gt; m.abrir();
+  document.getElementById(&#x27;cancelar1&#x27;).onclick = () =&gt; m.cerrar();
+  document.getElementById(&#x27;guardar1&#x27;).onclick = () =&gt; { m.cerrar(); gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Trámite creado&#x27; }); };
+  m.addEventListener(&#x27;gob-modal-cerrar&#x27;, (e) =&gt; console.log(&#x27;cerrado por:&#x27;, e.detail.motivo));   // boton | esc | fondo | api
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-m2"><div class="ej__head"><h3>3 · Confirmación (gob.confirmar) y tipos</h3><p><code>gob.confirmar()</code> devuelve una promesa: <code>true</code> si el usuario acepta. Sirve para cualquier acción destructiva sin escribir HTML.</p></div><div class="demo__view demo__view--white"><div class="mg-row">
+  <button class="mg-btn mg-btn--danger" id="del2">Eliminar registro</button>
+  <button class="mg-btn mg-btn--secondary" id="pub2">Publicar</button>
+</div>
+<p id="res2" class="mg-help" aria-live="polite"></p>
+
+<script type="module">
+  document.getElementById('del2').onclick = async () => {
+    const ok = await gob.confirmar({ titulo: 'Eliminar registro', mensaje: 'Esta acción no se puede deshacer.', tipo: 'peligro', textoConfirmar: 'Sí, eliminar' });
+    document.getElementById('res2').textContent = ok ? 'Confirmado: se eliminó.' : 'Cancelado.';
+  };
+  document.getElementById('pub2').onclick = async () => {
+    const ok = await gob.confirmar({ titulo: '¿Publicar?', mensaje: 'El documento será visible para toda la ciudadanía.', tipo: 'aviso', textoConfirmar: 'Publicar' });
+    if (ok) gob.toast({ tipo: 'exito', titulo: 'Publicado' });
+  };
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>m2.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--danger&quot; id=&quot;del2&quot;&gt;Eliminar registro&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;pub2&quot;&gt;Publicar&lt;/button&gt;
+&lt;/div&gt;
+&lt;p id=&quot;res2&quot; class=&quot;mg-help&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;del2&#x27;).onclick = async () =&gt; {
+    const ok = await gob.confirmar({ titulo: &#x27;Eliminar registro&#x27;, mensaje: &#x27;Esta acción no se puede deshacer.&#x27;, tipo: &#x27;peligro&#x27;, textoConfirmar: &#x27;Sí, eliminar&#x27; });
+    document.getElementById(&#x27;res2&#x27;).textContent = ok ? &#x27;Confirmado: se eliminó.&#x27; : &#x27;Cancelado.&#x27;;
+  };
+  document.getElementById(&#x27;pub2&#x27;).onclick = async () =&gt; {
+    const ok = await gob.confirmar({ titulo: &#x27;¿Publicar?&#x27;, mensaje: &#x27;El documento será visible para toda la ciudadanía.&#x27;, tipo: &#x27;aviso&#x27;, textoConfirmar: &#x27;Publicar&#x27; });
+    if (ok) gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Publicado&#x27; });
+  };
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--danger&quot; id=&quot;del2&quot;&gt;Eliminar registro&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;pub2&quot;&gt;Publicar&lt;/button&gt;
+&lt;/div&gt;
+&lt;p id=&quot;res2&quot; class=&quot;mg-help&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;del2&#x27;).onclick = async () =&gt; {
+    const ok = await gob.confirmar({ titulo: &#x27;Eliminar registro&#x27;, mensaje: &#x27;Esta acción no se puede deshacer.&#x27;, tipo: &#x27;peligro&#x27;, textoConfirmar: &#x27;Sí, eliminar&#x27; });
+    document.getElementById(&#x27;res2&#x27;).textContent = ok ? &#x27;Confirmado: se eliminó.&#x27; : &#x27;Cancelado.&#x27;;
+  };
+  document.getElementById(&#x27;pub2&#x27;).onclick = async () =&gt; {
+    const ok = await gob.confirmar({ titulo: &#x27;¿Publicar?&#x27;, mensaje: &#x27;El documento será visible para toda la ciudadanía.&#x27;, tipo: &#x27;aviso&#x27;, textoConfirmar: &#x27;Publicar&#x27; });
+    if (ok) gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Publicado&#x27; });
+  };
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-m3"><div class="ej__head"><h3>4 · Tamaños y modal estático</h3><p>Tamaños <code>sm · md · lg · xl · pantalla</code>. Con <code>estatico</code> no se cierra con Esc ni con clic afuera (procesos que no deben interrumpirse).</p></div><div class="demo__view demo__view--white"><div class="mg-row">
+  <button class="mg-btn mg-btn--secondary" id="tl3">Grande (lg)</button>
+  <button class="mg-btn mg-btn--secondary" id="te3">Estático</button>
+</div>
+
+<gob-modal id="lg3" titulo="Detalle del expediente" tam="lg" icono="carpeta">
+  <p>Contenido amplio: tablas, formularios largos o vistas previas de documentos. El cuerpo tiene su propio scroll si excede la altura de la pantalla.</p>
+  <button slot="pie" class="mg-btn" onclick="document.getElementById('lg3').cerrar()">Cerrar</button>
+</gob-modal>
+<gob-modal id="es3" titulo="Procesando firma digital" tipo="aviso" estatico cerrable="false" tam="sm">
+  <p>No cierre esta ventana hasta que termine el proceso.</p>
+  <button slot="pie" class="mg-btn" onclick="document.getElementById('es3').cerrar()">Entendido</button>
+</gob-modal>
+
+<script type="module">
+  document.getElementById('tl3').onclick = () => document.getElementById('lg3').abrir();
+  document.getElementById('te3').onclick = () => document.getElementById('es3').abrir();
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>m3.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;tl3&quot;&gt;Grande (lg)&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;te3&quot;&gt;Estático&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;gob-modal id=&quot;lg3&quot; titulo=&quot;Detalle del expediente&quot; tam=&quot;lg&quot; icono=&quot;carpeta&quot;&gt;
+  &lt;p&gt;Contenido amplio: tablas, formularios largos o vistas previas de documentos. El cuerpo tiene su propio scroll si excede la altura de la pantalla.&lt;/p&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; onclick=&quot;document.getElementById(&#x27;lg3&#x27;).cerrar()&quot;&gt;Cerrar&lt;/button&gt;
+&lt;/gob-modal&gt;
+&lt;gob-modal id=&quot;es3&quot; titulo=&quot;Procesando firma digital&quot; tipo=&quot;aviso&quot; estatico cerrable=&quot;false&quot; tam=&quot;sm&quot;&gt;
+  &lt;p&gt;No cierre esta ventana hasta que termine el proceso.&lt;/p&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; onclick=&quot;document.getElementById(&#x27;es3&#x27;).cerrar()&quot;&gt;Entendido&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;tl3&#x27;).onclick = () =&gt; document.getElementById(&#x27;lg3&#x27;).abrir();
+  document.getElementById(&#x27;te3&#x27;).onclick = () =&gt; document.getElementById(&#x27;es3&#x27;).abrir();
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;tl3&quot;&gt;Grande (lg)&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;te3&quot;&gt;Estático&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;gob-modal id=&quot;lg3&quot; titulo=&quot;Detalle del expediente&quot; tam=&quot;lg&quot; icono=&quot;carpeta&quot;&gt;
+  &lt;p&gt;Contenido amplio: tablas, formularios largos o vistas previas de documentos. El cuerpo tiene su propio scroll si excede la altura de la pantalla.&lt;/p&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; onclick=&quot;document.getElementById(&#x27;lg3&#x27;).cerrar()&quot;&gt;Cerrar&lt;/button&gt;
+&lt;/gob-modal&gt;
+&lt;gob-modal id=&quot;es3&quot; titulo=&quot;Procesando firma digital&quot; tipo=&quot;aviso&quot; estatico cerrable=&quot;false&quot; tam=&quot;sm&quot;&gt;
+  &lt;p&gt;No cierre esta ventana hasta que termine el proceso.&lt;/p&gt;
+  &lt;button slot=&quot;pie&quot; class=&quot;mg-btn&quot; onclick=&quot;document.getElementById(&#x27;es3&#x27;).cerrar()&quot;&gt;Entendido&lt;/button&gt;
+&lt;/gob-modal&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;tl3&#x27;).onclick = () =&gt; document.getElementById(&#x27;lg3&#x27;).abrir();
+  document.getElementById(&#x27;te3&#x27;).onclick = () =&gt; document.getElementById(&#x27;es3&#x27;).abrir();
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-n1"><div class="ej__head"><h3>5 · Toasts (notificaciones)</h3><p>Se apilan, se pausan al pasar el cursor, se pueden cerrar y admiten una acción (p. ej. «Deshacer»). <code>duracion: 0</code> las deja fijas. <code>role="alert"</code> para errores.</p></div><div class="demo__view demo__view--white"><div class="mg-row">
+  <button class="mg-btn mg-btn--secondary" id="ok4">Éxito</button>
+  <button class="mg-btn mg-btn--secondary" id="inf4">Info</button>
+  <button class="mg-btn mg-btn--secondary" id="av4">Aviso</button>
+  <button class="mg-btn mg-btn--secondary" id="er4">Error fijo</button>
+  <button class="mg-btn mg-btn--secondary" id="un4">Con «Deshacer»</button>
+</div>
+
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('ok4').onclick = () => gob.toast({ tipo: 'exito', titulo: 'Guardado', mensaje: 'Los cambios se guardaron.' });
+  $('inf4').onclick = () => gob.toast('Hay una nueva versión del manual.');                  // forma corta
+  $('av4').onclick = () => gob.toast({ tipo: 'aviso', titulo: 'Conexión lenta', duracion: 8000 });
+  $('er4').onclick = () => gob.toast({ tipo: 'peligro', titulo: 'Error de red', mensaje: 'No se pudo contactar al servidor.', duracion: 0 });
+  $('un4').onclick = () => gob.toast({ tipo: 'neutro', titulo: 'Trámite archivado', accion: { etiqueta: 'Deshacer', alClic: () => gob.toast({ tipo: 'exito', titulo: 'Restaurado' }) } });
+  // Posición: document.querySelector('gob-toasts').posicion = 'arriba-derecha'  (abajo-derecha | abajo-izquierda | arriba-izquierda | arriba-centro)
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>n1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;ok4&quot;&gt;Éxito&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;inf4&quot;&gt;Info&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;av4&quot;&gt;Aviso&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;er4&quot;&gt;Error fijo&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;un4&quot;&gt;Con «Deshacer»&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const $ = (id) =&gt; document.getElementById(id);
+  $(&#x27;ok4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Guardado&#x27;, mensaje: &#x27;Los cambios se guardaron.&#x27; });
+  $(&#x27;inf4&#x27;).onclick = () =&gt; gob.toast(&#x27;Hay una nueva versión del manual.&#x27;);                  // forma corta
+  $(&#x27;av4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Conexión lenta&#x27;, duracion: 8000 });
+  $(&#x27;er4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;peligro&#x27;, titulo: &#x27;Error de red&#x27;, mensaje: &#x27;No se pudo contactar al servidor.&#x27;, duracion: 0 });
+  $(&#x27;un4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;neutro&#x27;, titulo: &#x27;Trámite archivado&#x27;, accion: { etiqueta: &#x27;Deshacer&#x27;, alClic: () =&gt; gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Restaurado&#x27; }) } });
+  // Posición: document.querySelector(&#x27;gob-toasts&#x27;).posicion = &#x27;arriba-derecha&#x27;  (abajo-derecha | abajo-izquierda | arriba-izquierda | arriba-centro)
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;mg-row&quot;&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;ok4&quot;&gt;Éxito&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;inf4&quot;&gt;Info&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;av4&quot;&gt;Aviso&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;er4&quot;&gt;Error fijo&lt;/button&gt;
+  &lt;button class=&quot;mg-btn mg-btn--secondary&quot; id=&quot;un4&quot;&gt;Con «Deshacer»&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  const $ = (id) =&gt; document.getElementById(id);
+  $(&#x27;ok4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Guardado&#x27;, mensaje: &#x27;Los cambios se guardaron.&#x27; });
+  $(&#x27;inf4&#x27;).onclick = () =&gt; gob.toast(&#x27;Hay una nueva versión del manual.&#x27;);                  // forma corta
+  $(&#x27;av4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Conexión lenta&#x27;, duracion: 8000 });
+  $(&#x27;er4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;peligro&#x27;, titulo: &#x27;Error de red&#x27;, mensaje: &#x27;No se pudo contactar al servidor.&#x27;, duracion: 0 });
+  $(&#x27;un4&#x27;).onclick = () =&gt; gob.toast({ tipo: &#x27;neutro&#x27;, titulo: &#x27;Trámite archivado&#x27;, accion: { etiqueta: &#x27;Deshacer&#x27;, alClic: () =&gt; gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Restaurado&#x27; }) } });
+  // Posición: document.querySelector(&#x27;gob-toasts&#x27;).posicion = &#x27;arriba-derecha&#x27;  (abajo-derecha | abajo-izquierda | arriba-izquierda | arriba-centro)
+&lt;/script&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Referencia</h2><div class="tablewrap"><table class="mg-table"><thead><tr><th>Componente</th><th>Eventos y API</th></tr></thead><tbody><tr><td><code>&lt;gob-alerta&gt;</code></td><td>Atributos: <code>tipo</code> (info, exito, aviso, peligro, neutro), <code>titulo</code>, <code>cerrable</code>, <code>icono</code>. Evento: <code>gob-alerta-cerrar</code>. Slots: por defecto y <code>acciones</code>.</td></tr><tr><td><code>&lt;gob-modal&gt;</code></td><td>Atributos: <code>abierto</code>, <code>titulo</code>, <code>tam</code> (sm, md, lg, xl, pantalla), <code>tipo</code> (normal, info, exito, aviso, peligro), <code>icono</code>, <code>cerrable</code>, <code>estatico</code>. Métodos: <code>abrir()</code>, <code>cerrar(motivo?)</code>. Eventos: <code>gob-modal-abrir</code>, <code>gob-modal-cerrar</code> (<code>detail.motivo</code>: boton, esc, fondo, api). Slots: por defecto y <code>pie</code>.</td></tr><tr><td><code>gob.toast(opciones | texto)</code></td><td><code>{ tipo, titulo, mensaje, duracion = 5000, accion: { etiqueta, alClic } }</code>. Devuelve una promesa con el id. El contenedor <code>&lt;gob-toasts&gt;</code> se crea solo; <code>posicion</code> y <code>max</code> son configurables.</td></tr><tr><td><code>gob.confirmar(opciones | texto)</code></td><td><code>{ titulo, mensaje, tipo, textoConfirmar, textoCancelar }</code> → <code>Promise&lt;boolean&gt;</code>.</td></tr></tbody></table></div></section>
+<section class="pt-section"><h2><span class="n">04.</span> Accesibilidad</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Modal:</b> elemento <code>&lt;dialog&gt;</code> nativo con <code>aria-labelledby</code>; el foco queda dentro, Esc cierra (salvo <code>estatico</code>) y el foco vuelve al botón que lo abrió.</li><li><b>Toast y alerta:</b> <code>role="status"</code> (cortés) o <code>role="alert"</code> (peligro y aviso); los toasts se pausan con el cursor y con el foco.</li><li>Todos los botones tienen nombre accesible y foco visible; las animaciones se desactivan con <code>prefers-reduced-motion</code>.</li></ul></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792035404"></script>
+
+</body>
+</html>

@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Catálogos y geografía del Magdalena (DIVIPOLA DANE)",
-  "scripts": { "build": "node scripts/build-geo.mjs" },
-  "devDependencies": { "mapshaper": "^0.6.100" }
+  "description": "Cat\u00c3\u00a1logos y geograf\u00c3\u00ada del Magdalena (DIVIPOLA DANE)",
+  "scripts": {
+    "build": "node scripts/build-geo.mjs && node scripts/build-ejemplos.mjs"
+  },
+  "devDependencies": {
+    "mapshaper": "^0.6.100"
+  }
 }

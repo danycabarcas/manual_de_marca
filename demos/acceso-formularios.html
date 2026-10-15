@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acceso y formularios · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS — todo lo que hay que cargar (una sola vez por página) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">             <!-- tipografía Montserrat, tokens --gob-*, clases mg-* -->
+<script type="module" src="../cdn/v1/gob.js"></script>       <!-- carga solo los componentes gob-* que use la página -->
+<style>
+  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela a su proyecto) */
+  body { margin: 0; background: var(--mg-bg-app); color: var(--mg-text); }
+  h1 { margin: 0; font-size: 1.5rem; } .muted { color: var(--mg-text-muted); }
+  .grid { display: grid; gap: 1rem; } .row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding-inline: 1.25rem; box-sizing: border-box; }
+  .topbar { background: #fff; border-bottom: 1px solid var(--mg-border); position: sticky; top: 0; z-index: 40; } .topbar .wrap { display: flex; align-items: center; gap: 1.25rem; padding-block: .7rem; } .topbar img { height: 44px; display: block; } .topbar nav { margin-left: auto; display: flex; gap: .15rem; flex-wrap: wrap; }
+  section.band { padding-block: clamp(2.2rem, 5vw, 4rem); } section.band h2 { margin: 0 0 .4rem; font-size: clamp(1.4rem, 2.5vw, 2rem); } section.band .lead { margin: 0 0 1.75rem; color: var(--mg-text-muted); max-width: 60ch; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .svc { display: grid; gap: .5rem; align-content: start; padding: 1.25rem; text-decoration: none; color: inherit; } .svc .ic { display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 12px; background: var(--mg-primary-50); color: var(--mg-primary); } .svc h3 { margin: .25rem 0 0; font-size: 1.05rem; } .svc p { margin: 0; color: var(--mg-text-muted); font-size: .9rem; }
+  body { background: var(--mg-bg-app); }
+</style>
+</head>
+<body class="mg-base">
+<a class="mg-skip" href="#contenido">Saltar al contenido</a>
+<div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:100vh" class="acc">
+  <aside class="mg-bg-night mg-shapes mg-shapes--dark" style="padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;color:#fff" data-demo="Panel de marca" data-nota="Fondo azul-noche con formas y logo blanco">
+    <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena" style="height:56px;align-self:flex-start">
+    <div><div class="mg-eyebrow" style="color:var(--mg-cyan);margin-bottom:.8rem">Servicios en línea</div><h1 class="mg-h1" style="color:#fff;margin:0 0 1rem">Un solo acceso a sus trámites</h1><p style="max-width:34ch;opacity:.8;margin:0">Ingrese, radique y haga seguimiento de sus solicitudes con la Gobernación del Magdalena.</p></div>
+    <hr class="mg-stripe mg-stripe--thick" style="border-radius:3px"></aside>
+  <div style="padding:2rem 1.25rem;display:grid;gap:2rem;align-content:start;max-width:720px;width:100%;margin-inline:auto;box-sizing:border-box" id="contenido">
+<!--DEMO-ONLY-->
+<section class="mg-card" style="border-left:4px solid var(--mg-primary)" aria-label="Cómo usar este demo">
+  <details open style="padding:1rem 1.25rem"><summary style="cursor:pointer;font-weight:700">Cómo usar este demo como plantilla (clic para ocultar)</summary>
+    <ol style="margin:.8rem 0 0;padding-left:1.2rem;line-height:1.75;color:var(--mg-gray-700)">
+      <li>Pulse <b>«‹/› Guías de código»</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li>
+      <li>O use <b>«⧉ Copiar página»</b> / <b>«⬇ .html»</b> para llevarse la página completa. Las rutas relativas se convierten en absolutas (<code>https://su-sitio/…</code>), así funciona pegada en cualquier sitio.</li>
+      <li>Toda página necesita solo <b>dos líneas</b> en el <code>&lt;head&gt;</code>: <code>gob.css</code> y <code>gob.js</code> (están en el <code>&lt;head&gt;</code> de este archivo, marcadas con ①). Sin internet: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li>
+      <li>Incluye <b>validación accesible</b> (mensaje junto al campo con <code>role="alert"</code> y <code>aria-invalid</code>), stepper de 3 pasos y confirmación con <code>gob.confirmar()</code>.</li>
+    </ol>
+    <p class="mg-help" style="margin:.8rem 0 0">Componentes usados: gob-pestanas, gob-modal, gob-alerta, gob.toast(), gob.confirmar(), mg-stepper, mg-input, mg-field. Los datos son <b>ficticios</b> (<code>cdn/v1/datos/ejemplo-*.json</code>); en producción cámbielos por su API.</p></details>
+</section>
+<!--/DEMO-ONLY-->
+    <section class="mg-card" style="padding:1.5rem" data-demo="Ingreso y registro (pestañas)" data-nota="gob-pestanas con dos formularios; validación en cliente y mensajes accesibles">
+      <gob-pestanas items='[{"id":"in","titulo":"Ingresar","icono":"entrar"},{"id":"re","titulo":"Crear cuenta","icono":"persona-agregar"}]' activa="in" etiqueta="Acceso">
+        <form slot="in" id="fIn" novalidate class="grid" style="gap:1rem">
+          <div class="mg-field"><label class="mg-label" for="i-doc">Documento de identidad</label><input class="mg-input" id="i-doc" inputmode="numeric" autocomplete="username" aria-describedby="e-idoc"><span class="mg-error" id="e-idoc" role="alert"></span></div>
+          <div class="mg-field"><label class="mg-label" for="i-pw">Contraseña</label><div style="position:relative"><input class="mg-input" id="i-pw" type="password" autocomplete="current-password" aria-describedby="e-ipw" style="padding-right:3rem"><button type="button" class="ico-btn" id="ver" aria-label="Mostrar contraseña" aria-pressed="false" style="position:absolute;right:.3rem;top:50%;transform:translateY(-50%);width:2.2rem;height:2.2rem;border:0;background:none;cursor:pointer"><gob-icono nombre="ojo"></gob-icono></button></div><span class="mg-error" id="e-ipw" role="alert"></span></div>
+          <label style="display:flex;gap:.5rem;align-items:center;font-size:.9rem"><input type="checkbox" class="mg-check"> Mantener la sesión iniciada</label>
+          <button class="mg-btn mg-btn--lg mg-btn--block">Ingresar</button><a href="#" class="mg-link" style="text-align:center;font-size:.9rem" id="olvido">¿Olvidó su contraseña?</a>
+        </form>
+        <form slot="re" id="fRe" novalidate class="grid" style="gap:1rem">
+          <div class="mg-field"><label class="mg-label" for="r-nom">Nombre completo</label><input class="mg-input" id="r-nom" autocomplete="name" aria-describedby="e-rnom"><span class="mg-error" id="e-rnom" role="alert"></span></div>
+          <div class="mg-field"><label class="mg-label" for="r-mail">Correo electrónico</label><input class="mg-input" id="r-mail" type="email" autocomplete="email" aria-describedby="e-rmail"><span class="mg-error" id="e-rmail" role="alert"></span></div>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;font-size:.88rem"><input type="checkbox" class="mg-check" id="r-ok" style="margin-top:.2rem"> Acepto la política de tratamiento de datos personales.</label><span class="mg-error" id="e-rok" role="alert"></span>
+          <button class="mg-btn mg-btn--lg mg-btn--block">Crear cuenta</button>
+        </form>
+      </gob-pestanas>
+    </section>
+
+    <section class="mg-card" style="padding:1.5rem" id="pqrs" data-demo="Formulario por pasos (stepper) · Radicar una PQRS" data-nota="mg-stepper + 3 pasos con validación, resumen, confirmación (gob.confirmar) y toast">
+      <h2 style="margin:0 0 .25rem;font-size:1.25rem">Radicar una petición, queja o reclamo</h2><p class="muted" style="margin:0 0 1.25rem">Complete los tres pasos. Los campos con * son obligatorios.</p>
+      <ol class="mg-stepper" id="pasos" aria-label="Progreso"><li class="is-current" aria-current="step"><span>Sus datos</span></li><li><span>Su solicitud</span></li><li><span>Confirmación</span></li></ol>
+      <div id="alertaForm" aria-live="polite" style="margin-top:1rem"></div>
+      <form id="fPq" novalidate style="margin-top:1.25rem">
+        <div data-paso="1" class="grid" style="gap:1rem"><div class="grid" style="grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="mg-field"><label class="mg-label" for="p-tipo">Tipo de documento *</label><select class="mg-select" id="p-tipo"><option>Cédula de ciudadanía</option><option>Cédula de extranjería</option><option>NIT</option></select></div>
+          <div class="mg-field"><label class="mg-label" for="p-doc">Número *</label><input class="mg-input" id="p-doc" inputmode="numeric" aria-describedby="e-pdoc"><span class="mg-error" id="e-pdoc" role="alert"></span></div></div>
+          <div class="mg-field"><label class="mg-label" for="p-nom">Nombre completo *</label><input class="mg-input" id="p-nom" autocomplete="name" aria-describedby="e-pnom"><span class="mg-error" id="e-pnom" role="alert"></span></div>
+          <div class="mg-field"><label class="mg-label" for="p-cel">Celular *</label><input class="mg-input" id="p-cel" inputmode="tel" placeholder="3001234567" aria-describedby="e-pcel"><span class="mg-help">10 dígitos, empieza por 3.</span><span class="mg-error" id="e-pcel" role="alert"></span></div></div>
+        <div data-paso="2" class="grid" style="gap:1rem" hidden><div class="grid" style="grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="mg-field"><label class="mg-label" for="p-clase">Tipo de solicitud *</label><select class="mg-select" id="p-clase"><option>Petición</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div>
+          <div class="mg-field"><label class="mg-label" for="p-mun">Municipio *</label><select class="mg-select" id="p-mun"></select></div></div>
+          <div class="mg-field"><label class="mg-label" for="p-asu">Asunto *</label><input class="mg-input" id="p-asu" aria-describedby="e-pasu"><span class="mg-error" id="e-pasu" role="alert"></span></div>
+          <div class="mg-field"><label class="mg-label" for="p-det">Descripción *</label><textarea class="mg-textarea" id="p-det" aria-describedby="e-pdet"></textarea><span class="mg-help" id="cont">0 / 500 caracteres</span><span class="mg-error" id="e-pdet" role="alert"></span></div>
+          <div class="mg-field"><label class="mg-label" for="p-file">Anexo (opcional)</label><input class="mg-input" type="file" id="p-file"></div></div>
+        <div data-paso="3" hidden><gob-alerta tipo="info" titulo="Revise su solicitud">Verifique que los datos sean correctos antes de radicar.</gob-alerta><dl id="resumen" style="display:grid;grid-template-columns:max-content 1fr;gap:.5rem 1.25rem;margin:1rem 0 0"></dl></div>
+        <div class="row" style="justify-content:space-between;margin-top:1.5rem"><button type="button" class="mg-btn mg-btn--secondary" id="atras" hidden>Atrás</button><span style="flex:1"></span><button type="button" class="mg-btn" id="sig">Siguiente</button></div>
+      </form>
+    </section>
+  </div>
+</div>
+<style>@media (max-width: 900px) { .acc { grid-template-columns: 1fr !important; } .acc > aside { padding: 1.5rem !important; gap: 1.5rem; } }</style>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // — utilidades de validación (copie esta función a su proyecto)
+  function error(id, msg) { const i = $(id), e = $('e-' + id.split('-')[1]) ?? $('e-' + id); i?.classList.toggle('is-invalid', !!msg); i?.setAttribute('aria-invalid', !!msg); if (e) e.textContent = msg || ''; return !msg; }
+  // — Ingreso
+  $('ver').onclick = (e) => { const p = $('i-pw'), v = p.type === 'password'; p.type = v ? 'text' : 'password'; e.currentTarget.setAttribute('aria-pressed', v); e.currentTarget.setAttribute('aria-label', v ? 'Ocultar contraseña' : 'Mostrar contraseña'); };
+  $('fIn').onsubmit = (e) => { e.preventDefault(); const a = !!$('i-doc').value.trim() || (error('i-doc', 'Escriba su documento'), false), b = !!$('i-pw').value || (error('i-pw', 'Escriba su contraseña'), false);
+    if (a) error('i-doc', ''); if (b) error('i-pw', ''); if (a && b) gob.toast({ tipo: 'exito', titulo: 'Ingreso exitoso', mensaje: 'En producción redirigiría al panel.' }); };
+  $('olvido').onclick = (e) => { e.preventDefault(); gob.toast({ tipo: 'info', titulo: 'Recuperar contraseña', mensaje: 'Enviaríamos un enlace a su correo.' }); };
+  $('fRe').onsubmit = (e) => { e.preventDefault(); const ok = [error('r-nom', $('r-nom').value.trim() ? '' : 'Escriba su nombre'), error('r-mail', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('r-mail').value) ? '' : 'Escriba un correo válido')];
+    $('e-rok').textContent = $('r-ok').checked ? '' : 'Debe aceptar la política'; if (ok.every(Boolean) && $('r-ok').checked) gob.toast({ tipo: 'exito', titulo: 'Cuenta creada', mensaje: 'Revise su correo para activarla.' }); };
+
+  // — Formulario por pasos
+  const muni = await fetch('../cdn/v1/datos/municipios.json').then((r) => r.json()); $('p-mun').innerHTML = muni.map((m) => `<option>${m.nombre}</option>`).join('');
+  let paso = 1; const pasos = [...$('pasos').children];
+  $('p-det').oninput = (e) => ($('cont').textContent = e.target.value.length + ' / 500 caracteres');
+  const validar = { 1: () => [error('p-doc', /^\d{5,12}$/.test($('p-doc').value) ? '' : 'Escriba entre 5 y 12 dígitos'), error('p-nom', $('p-nom').value.trim().split(/\s+/).length >= 2 ? '' : 'Escriba nombre y apellido'), error('p-cel', /^3\d{9}$/.test($('p-cel').value) ? '' : 'Celular de 10 dígitos que empiece por 3')].every(Boolean),
+    2: () => [error('p-asu', $('p-asu').value.trim().length >= 5 ? '' : 'El asunto necesita al menos 5 caracteres'), error('p-det', $('p-det').value.trim().length >= 20 ? '' : 'Describa su solicitud (mínimo 20 caracteres)')].every(Boolean), 3: () => true };
+  function mostrar() {
+    document.querySelectorAll('[data-paso]').forEach((s) => (s.hidden = Number(s.dataset.paso) !== paso)); $('atras').hidden = paso === 1; $('sig').textContent = paso === 3 ? 'Radicar' : 'Siguiente';
+    pasos.forEach((li, i) => { li.classList.toggle('is-done', i + 1 < paso); li.classList.toggle('is-current', i + 1 === paso); i + 1 === paso ? li.setAttribute('aria-current', 'step') : li.removeAttribute('aria-current'); });
+    if (paso === 3) $('resumen').innerHTML = Object.entries({ Solicitante: $('p-nom').value, Documento: $('p-tipo').value + ' ' + $('p-doc').value, Celular: $('p-cel').value, Solicitud: $('p-clase').value + ' · ' + $('p-mun').value, Asunto: $('p-asu').value }).map(([k, v]) => `<dt class="muted">${k}</dt><dd style="margin:0;font-weight:600">${v.replace(/</g, '&lt;')}</dd>`).join('');
+    $('alertaForm').innerHTML = ''; document.querySelector(`[data-paso="${paso}"] input, [data-paso="${paso}"] select`)?.focus();
+  }
+  $('atras').onclick = () => { paso--; mostrar(); };
+  $('sig').onclick = async () => {
+    if (!validar[paso]()) { $('alertaForm').innerHTML = '<gob-alerta tipo="peligro" titulo="Revise los campos marcados">Corrija los errores para continuar.</gob-alerta>'; return; }
+    if (paso < 3) { paso++; mostrar(); return; }
+    if (await gob.confirmar({ titulo: 'Radicar solicitud', mensaje: '¿Desea radicar esta solicitud? Recibirá el número de radicado por correo.', textoConfirmar: 'Radicar' })) {
+      const n = 'R-2026-' + String(Math.floor(Math.random() * 90000) + 10000); $('fPq').innerHTML = `<gob-alerta tipo="exito" titulo="Solicitud radicada">Su número de radicado es <b>${n}</b>. Guárdelo para consultar el estado.</gob-alerta>`; pasos.forEach((li) => { li.classList.add('is-done'); li.classList.remove('is-current'); });
+      gob.toast({ tipo: 'exito', titulo: 'Radicado ' + n });
+    }
+  };
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>
