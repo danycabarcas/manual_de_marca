@@ -1,0 +1,212 @@
+[
+  {
+    "codigo": "47001",
+    "nombre": "Santa Marta",
+    "subregion": "Santa Marta",
+    "longitud": -73.948,
+    "latitud": 11.1642
+  },
+  {
+    "codigo": "47030",
+    "nombre": "Algarrobo",
+    "subregion": "Norte",
+    "longitud": -74.1141,
+    "latitud": 10.2785
+  },
+  {
+    "codigo": "47053",
+    "nombre": "Aracataca",
+    "subregion": "Norte",
+    "longitud": -73.772,
+    "latitud": 10.6918
+  },
+  {
+    "codigo": "47058",
+    "nombre": "Ariguaní",
+    "subregion": "Centro",
+    "longitud": -74.1172,
+    "latitud": 9.8261
+  },
+  {
+    "codigo": "47161",
+    "nombre": "Cerro de San Antonio",
+    "subregion": "Río",
+    "longitud": -74.8348,
+    "latitud": 10.3187
+  },
+  {
+    "codigo": "47170",
+    "nombre": "Chivolo",
+    "subregion": "Centro",
+    "longitud": -74.5143,
+    "latitud": 10.1216
+  },
+  {
+    "codigo": "47189",
+    "nombre": "Ciénaga",
+    "subregion": "Norte",
+    "longitud": -73.9813,
+    "latitud": 10.8474
+  },
+  {
+    "codigo": "47205",
+    "nombre": "Concordia",
+    "subregion": "Río",
+    "longitud": -74.7535,
+    "latitud": 10.2193
+  },
+  {
+    "codigo": "47245",
+    "nombre": "El Banco",
+    "subregion": "Sur",
+    "longitud": -73.9555,
+    "latitud": 9.1003
+  },
+  {
+    "codigo": "47258",
+    "nombre": "El Piñón",
+    "subregion": "Río",
+    "longitud": -74.6999,
+    "latitud": 10.3786
+  },
+  {
+    "codigo": "47268",
+    "nombre": "El Retén",
+    "subregion": "Norte",
+    "longitud": -74.3697,
+    "latitud": 10.6877
+  },
+  {
+    "codigo": "47288",
+    "nombre": "Fundación",
+    "subregion": "Norte",
+    "longitud": -73.8855,
+    "latitud": 10.4491
+  },
+  {
+    "codigo": "47318",
+    "nombre": "Guamal",
+    "subregion": "Sur",
+    "longitud": -74.1734,
+    "latitud": 9.2039
+  },
+  {
+    "codigo": "47460",
+    "nombre": "Nueva Granada",
+    "subregion": "Centro",
+    "longitud": -74.3267,
+    "latitud": 9.6912
+  },
+  {
+    "codigo": "47541",
+    "nombre": "Pedraza",
+    "subregion": "Río",
+    "longitud": -74.8348,
+    "latitud": 10.1547
+  },
+  {
+    "codigo": "47545",
+    "nombre": "Pijiño del Carmen",
+    "subregion": "Sur",
+    "longitud": -74.1423,
+    "latitud": 9.5367
+  },
+  {
+    "codigo": "47551",
+    "nombre": "Pivijay",
+    "subregion": "Río",
+    "longitud": -74.3772,
+    "latitud": 10.4405
+  },
+  {
+    "codigo": "47555",
+    "nombre": "Plato",
+    "subregion": "Centro",
+    "longitud": -74.6562,
+    "latitud": 9.7663
+  },
+  {
+    "codigo": "47570",
+    "nombre": "Puebloviejo",
+    "subregion": "Norte",
+    "longitud": -74.3831,
+    "latitud": 10.8695
+  },
+  {
+    "codigo": "47605",
+    "nombre": "Remolino",
+    "subregion": "Río",
+    "longitud": -74.588,
+    "latitud": 10.6361
+  },
+  {
+    "codigo": "47660",
+    "nombre": "Sabanas de San Ángel",
+    "subregion": "Centro",
+    "longitud": -74.2729,
+    "latitud": 10.0926
+  },
+  {
+    "codigo": "47675",
+    "nombre": "Salamina",
+    "subregion": "Río",
+    "longitud": -74.7214,
+    "latitud": 10.4988
+  },
+  {
+    "codigo": "47692",
+    "nombre": "San Sebastián de Buenavista",
+    "subregion": "Sur",
+    "longitud": -74.1393,
+    "latitud": 9.4112
+  },
+  {
+    "codigo": "47703",
+    "nombre": "San Zenón",
+    "subregion": "Sur",
+    "longitud": -74.3962,
+    "latitud": 9.2901
+  },
+  {
+    "codigo": "47707",
+    "nombre": "Santa Ana",
+    "subregion": "Sur",
+    "longitud": -74.4426,
+    "latitud": 9.5059
+  },
+  {
+    "codigo": "47720",
+    "nombre": "Santa Bárbara de Pinto",
+    "subregion": "Sur",
+    "longitud": -74.6653,
+    "latitud": 9.4927
+  },
+  {
+    "codigo": "47745",
+    "nombre": "Sitionuevo",
+    "subregion": "Río",
+    "longitud": -74.6047,
+    "latitud": 10.8618
+  },
+  {
+    "codigo": "47798",
+    "nombre": "Tenerife",
+    "subregion": "Centro",
+    "longitud": -74.7837,
+    "latitud": 9.9115
+  },
+  {
+    "codigo": "47960",
+    "nombre": "Zapayán",
+    "subregion": "Río",
+    "longitud": -74.6908,
+    "latitud": 10.1081
+  },
+  {
+    "codigo": "47980",
+    "nombre": "Zona Bananera",
+    "subregion": "Norte",
+    "longitud": -74.1721,
+    "latitud": 10.7868
+  }
+]

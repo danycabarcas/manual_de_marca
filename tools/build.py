@@ -55,7 +55,7 @@ def tokens_css(root_sel=':root'):
         L.append(f'  --mg-gradient-{k}: {g};')
     L.append('  /* Semánticos de interfaz */')
     L += ['  --mg-bg: #ffffff;', f'  --mg-bg-app: {NEUTRAL_UI[100]};', '  --mg-surface-card: #ffffff;', f'  --mg-text: {NEUTRAL_UI[800]};',
-          f'  --mg-text-muted: {NEUTRAL_UI[500]};', f'  --mg-heading: {NEUTRAL_UI[900]};', f'  --mg-border: {NEUTRAL_UI[200]};', f'  --mg-border-strong: {NEUTRAL_UI[300]};']
+          f'  --mg-text-muted: {NEUTRAL_UI[600]};', f'  --mg-heading: {NEUTRAL_UI[900]};', f'  --mg-border: {NEUTRAL_UI[200]};', f'  --mg-border-strong: {NEUTRAL_UI[300]};']
     L += ['  /* Cristal (glassmorphism sobrio) */', '  --mg-glass-bg: rgba(255, 255, 255, .72);', '  --mg-glass-bg-dark: rgba(8, 26, 44, .62);',
           '  --mg-glass-border: rgba(255, 255, 255, .45);', '  --mg-glass-border-dark: rgba(255, 255, 255, .10);', '  --mg-glass-blur: blur(14px) saturate(160%);',
           '  /* Sidebar oscuro */', '  --mg-sidebar-bg: var(--mg-gradient-deep);', '  --mg-sidebar-text: rgba(255, 255, 255, .68);', '  --mg-sidebar-text-active: #ffffff;',
@@ -556,10 +556,54 @@ def build_zips():
     zipdir('kit-desarrollo-css-y-temas.zip', kit)
 
 
+def gob_aliases():
+    """Alias --gob-* (nombres en español del sistema de diseño) + z-index, espaciado, breakpoints y modo oscuro (beta)."""
+    c = ['/* ---------- Capa --gob-*: alias del sistema de diseño (la fuente son los --mg-*) ---------- */', ':root {']
+    for k, v in (('primario', 'primary'), ('cian', 'cyan'), ('celeste', 'sky'), ('rojo', 'red'), ('amarillo', 'yellow'), ('verde', 'green'), ('ocre', 'olive'), ('violeta', 'purple'), ('azul-noche', 'navy-900')):
+        c.append(f'  --gob-color-{k}: var(--mg-{v});')
+    c += ['  --gob-color-texto: var(--mg-text);', '  --gob-color-texto-suave: var(--mg-text-muted);', '  --gob-color-fondo: var(--mg-bg-app);', '  --gob-color-superficie: var(--mg-surface-card);', '  --gob-color-borde: var(--mg-border);',
+          '  --gob-fuente: var(--mg-font-sans);']
+    for k in RADIUS:
+        c.append(f'  --gob-radio-{k}: var(--mg-radius-{k});')
+    for k in ('sm', 'md', 'lg'):
+        c.append(f'  --gob-sombra-{k}: var(--mg-shadow-{k});')
+    for i, px in enumerate((4, 8, 12, 16, 24, 32, 48, 64), 1):
+        c.append(f'  --gob-espacio-{i}: {px}px;')
+    for k, v in (('base', 0), ('sticky', 100), ('menu', 200), ('overlay', 800), ('modal', 1000), ('tooltip', 1100), ('toast', 1200)):
+        c.append(f'  --gob-z-{k}: {v};')
+    for k, v in (('sm', 480), ('md', 768), ('lg', 1024), ('xl', 1280), ('xxl', 1920)):
+        c.append(f'  --gob-bp-{k}: {v}px; /* referencia: las media queries no admiten variables */')
+    c.append('}')
+    c += ['/* Modo oscuro (beta): active con <html data-gob-tema="oscuro"> o la clase .gob-tema-oscuro */',
+          ':root[data-gob-tema="oscuro"], .gob-tema-oscuro {', '  color-scheme: dark;',
+          f'  --mg-bg: {NAVY[950]}; --mg-bg-app: {NAVY[950]}; --mg-surface-card: {NAVY[800]}; --mg-surface: {NAVY[800]};',
+          f'  --mg-text: {NEUTRAL_UI[200]}; --mg-text-muted: {NEUTRAL_UI[400]}; --mg-heading: #FFFFFF;',
+          f'  --mg-border: {NAVY[600]}; --mg-border-strong: #1B4B75;',
+          '  --mg-glass-bg: rgba(8, 26, 44, .72); --mg-glass-border: rgba(255, 255, 255, .10);',
+          f'  --mg-gray-50: {NAVY[700]}; --mg-gray-100: {NAVY[700]}; --mg-gray-200: {NAVY[600]};',
+          f'  --mg-gray-600: {NEUTRAL_UI[300]}; --mg-gray-700: {NEUTRAL_UI[200]}; --mg-gray-800: {NEUTRAL_UI[100]}; --mg-gray-900: #FFFFFF;',
+          f'  --mg-primary-50: rgba(0, 183, 217, .12); --mg-primary-700: {SCALES["cyan"][300]};', '}']
+    return '\n'.join(c) + '\n'
+
+
+def build_cdn():
+    """/cdn/v1/tokens.css y /cdn/v1/gob.css (rutas versionadas e inmutables por versión mayor)."""
+    out = os.path.join(ROOT, 'cdn', 'v1')
+    os.makedirs(out, exist_ok=True)
+    tok, al, comp = tokens_css(), gob_aliases(), src('components.css')
+    banner = BANNER.replace('v' + VERSION, 'v' + VERSION + ' (cdn/v1)')
+    files = {'tokens.css': tok + al, 'gob.css': FONT_IMPORT + tok + al + '\n' + comp}
+    for n, body in files.items():
+        with open(os.path.join(out, n), 'w', encoding='utf-8', newline='\n') as f:
+            f.write(banner + body)
+        with open(os.path.join(out, n.replace('.css', '.min.css')), 'w', encoding='utf-8', newline='\n') as f:
+            f.write(banner + minify(body))
+
+
 def build_all():
     if os.path.isdir(DIST):
         shutil.rmtree(DIST)
-    build_css(); build_scss_less(); build_js(); build_tailwind(); build_material(); build_prime()
+    build_css(); build_scss_less(); build_js(); build_tailwind(); build_material(); build_prime(); build_cdn()
     try:
         import docs  # genera docs/*.md y paginas del portal
         docs.build(ROOT, DIST)

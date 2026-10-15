@@ -1,0 +1,9 @@
+{
+  "name": "@gobmagdalena/datos",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Catálogos y geografía del Magdalena (DIVIPOLA DANE)",
+  "scripts": { "build": "node scripts/build-geo.mjs" },
+  "devDependencies": { "mapshaper": "^0.6.100" }
+}

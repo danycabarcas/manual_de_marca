@@ -1,0 +1,12 @@
+{
+  "name": "manual-de-marca-gobmagdalena",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sistema de diseño y librería de componentes - Gobernación del Magdalena",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "datos": "npm run build -w @gobmagdalena/datos",
+    "ui": "npm run build -w @gobmagdalena/ui",
+    "build": "npm run datos && npm run ui"
+  }
+}

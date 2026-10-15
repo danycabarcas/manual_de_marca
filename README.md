@@ -13,6 +13,37 @@ Kit para que el equipo de desarrollo aplique la identidad visual del *Manual de 
 </body>
 ```
 
+## Sistema de diseño y librería de componentes (en construcción)
+
+Además del CSS `mg-*`, el repo es ahora un monorepo (npm workspaces) con la librería de **Web Components `gob-*`** (Lit + TypeScript, agnóstica de framework):
+
+```
+packages/datos/   Catálogos y geografía (DIVIPOLA DANE) → dist/  (ver packages/datos/LICENCIAS.md)
+packages/ui/      Componentes gob-*  → compilados con Vite a  cdn/v1/
+cdn/v1/           CDN estático versionado:  gob.js · components/*.js · datos/* · tokens.css · gob.css
+estudio/          Generadores visuales (Estudio de mapas) que producen código HTML/Angular/React
+componentes/      Documentación de cada componente (propiedades, eventos, instalación, accesibilidad)
+```
+
+```bash
+npm install
+npm run build        # datos geográficos + componentes → cdn/v1/
+python tools/build.py  # portal, docs y dist/ (usar Python 3.10 con Pillow y PyMuPDF)
+```
+
+| Fase | Estado |
+|---|---|
+| 0 · Tokens `--gob-*`, modo oscuro (beta), monorepo, CDN `/cdn/v1/` | ✅ base lista · pendiente Style Dictionary y pruebas Playwright |
+| 4 · Mapas | ✅ `<gob-mapa-magdalena>` (30 municipios, DIVIPOLA, subregiones, coropleta, categorías, marcadores, rutas animadas, efectos) + **Estudio de mapas** · ⏳ Santa Marta (comunas/barrios), veredas y PMTiles (faltan datos oficiales) |
+| 3 · Gráficas y dashboards | ⏳ siguiente |
+| 2 · Tabla y datos · 1 · Fundaciones · 5 · Formularios de negocio | ⏳ |
+
+- Documentación del mapa: `componentes/gob-mapa-magdalena.html` · Generador: `estudio/mapas.html`.
+- Bundle del mapa: ≈ 18 KB gzip (Lit incluido) + `gob.min.css` ≈ 7 KB. Límite del brief: 50 KB.
+- Dependencias y licencias: `LICENSES.md`.
+- Datos: códigos **DIVIPOLA** y geometría **MGN 2024** del DANE (origen y licencia en `packages/datos/LICENCIAS.md`).
+- Accesibilidad: las páginas del portal y el Estudio pasan **axe-core (WCAG 2.1 A/AA)** sin violaciones; falta Lighthouse y pruebas con lector de pantalla.
+
 ## Paleta (página 05 del manual)
 
 | Variable | HEX | Rol |

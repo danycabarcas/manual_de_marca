@@ -292,5 +292,6 @@ def build(root, dist):
     try:
         import site_build
         site_build.build(root, dist, G)
-    except ImportError:
-        print('site_build.py aún no existe')
+    except ImportError as e:
+        print('ERROR importando site_build (¿usa Python 3.10 con Pillow?):', e)
+        raise

@@ -4,12 +4,14 @@ from PIL import Image
 from tokens import *
 
 E = html.escape
+import time
+BUILD = int(time.time())
 NAV = [('index.html', 'Inicio'), ('colores.html', 'Colores y degradados'), ('logos.html', 'Logos y descargas'),
-       ('componentes.html', 'Componentes'), ('integracion.html', 'Integración'), ('aplicaciones.html', 'Aplicaciones'),
+       ('componentes.html', 'Componentes'), ('estudio/index.html', 'Estudio'), ('integracion.html', 'Integración'), ('aplicaciones.html', 'Aplicaciones'),
        ('demos/index.html', 'Demos')]
 
 
-def page(root, fname, title, lead, body, hero=False, active=None):
+def page(root, fname, title, lead, body, hero=False, active=None, scripts=''):
     depth = fname.count('/')
     up = '../' * depth
     cur = ' aria-current="page"'
@@ -26,7 +28,7 @@ def page(root, fname, title, lead, body, hero=False, active=None):
 <link rel="icon" type="image/png" href="{up}assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="{up}assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="{up}dist/css/magdalena.css">
-<link rel="stylesheet" href="{up}site/portal.css">
+<link rel="stylesheet" href="{up}site/portal.css?v={BUILD}">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
@@ -45,7 +47,8 @@ def page(root, fname, title, lead, body, hero=False, active=None):
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="{up}site/portal.js"></script>
+<script src="{up}site/portal.js?v={BUILD}"></script>
+{scripts}
 </body>
 </html>
 '''
@@ -58,9 +61,9 @@ def page(root, fname, title, lead, body, hero=False, active=None):
 def code(lang, text, fname=None, tpl=False):
     label = E(fname) if fname else lang.upper()
     if tpl:
-        inner = f'<pre><code data-tpl="{E(text)}">{E(text.replace("__BASE__", "https://TU-HOST/manual_de_marca"))}</code></pre>'
+        inner = f'<pre tabindex="0"><code data-tpl="{E(text)}">{E(text.replace("__BASE__", "https://TU-HOST/manual_de_marca"))}</code></pre>'
     else:
-        inner = f'<pre><code>{E(text)}</code></pre>'
+        inner = f'<pre tabindex="0"><code>{E(text)}</code></pre>'
     return f'<div class="code"><div class="code__bar"><span>{label}</span><button data-codecopy>Copiar</button></div>{inner}</div>'
 
 
@@ -134,7 +137,8 @@ def page_colors(root):
                 cells += '<span></span>'
                 continue
             hx = SCALES[name][s]
-            cells += f'<button style="background:{hx};color:{on_color(hx)}" data-copy="{hx}" title="--mg-{name}-{s}: {hx}">{hx[1:]}</button>'
+            legible = max(contrast(hx, '#FFFFFF'), contrast(hx, NEUTRALS['ink'])) >= 4.5
+            cells += f'<button style="background:{hx};color:{on_color(hx)}" data-copy="{hx}" title="--mg-{name}-{s}: {hx}" aria-label="--mg-{name}-{s} {hx}">{hx[1:] if legible else ""}</button>'
         scales += f'<div class="scale"><span>{name}</span>{cells}</div>'
 
     pairs = [('Blanco sobre Azul primario', '#FFFFFF', BRAND['primary'][0], 'Texto en botones y barras azules'),
@@ -154,7 +158,7 @@ def page_colors(root):
         r = contrast(fg, bg)
         lvl = 'AAA' if r >= 7 else 'AA' if r >= 4.5 else 'AA grande' if r >= 3 else 'No cumple'
         cls = 'green' if r >= 4.5 else 'yellow' if r >= 3 else 'red'
-        rows += f'<tr><td><span style="display:inline-block;width:70px;padding:.2rem .4rem;border-radius:6px;background:{bg};color:{fg};font-weight:800;text-align:center">Aa</span></td><td>{n}</td><td><b>{r:.2f}:1</b></td><td><span class="mg-badge mg-badge--{cls}">{lvl}</span></td><td>{note}</td></tr>'
+        rows += f'<tr><td><span class="smp" aria-hidden="true" data-t="Aa" style="display:inline-block;width:70px;padding:.2rem .4rem;border-radius:6px;background:{bg};color:{fg};font-weight:800;text-align:center"></span></td><td>{n}</td><td><b>{r:.2f}:1</b></td><td><span class="mg-badge mg-badge--{cls}">{lvl}</span></td><td>{note}</td></tr>'
 
     body = f'''
 <section class="pt-section"><h2><span class="n">00.</span> Criterio de uso: sobrio</h2>
@@ -328,7 +332,7 @@ DEMOS = [
 </div>"""),
     ('Formularios', None, True, """<div class="mg-grid" style="--mg-col:16rem">
   <div><label class="mg-label" for="n">Nombre</label><input class="mg-input" id="n" placeholder="Escriba su nombre"><p class="mg-help">Como aparece en su documento.</p></div>
-  <div><label class="mg-label" for="e">Correo</label><input class="mg-input is-invalid" id="e" value="correo@"><p class="mg-help" style="color:var(--mg-red)">Correo no válido</p></div>
+  <div><label class="mg-label" for="e">Correo</label><input class="mg-input is-invalid" id="e" value="correo@"><p class="mg-help" style="color:var(--mg-red-700)">Correo no válido</p></div>
   <div><label class="mg-label" for="m">Municipio</label><select class="mg-select" id="m"><option>Santa Marta</option><option>Ciénaga</option></select></div>
   <div><label class="mg-label">Opciones</label><label><input class="mg-check" type="checkbox" checked> Acepto términos</label></div>
 </div>"""),
@@ -379,7 +383,7 @@ def page_components(root):
         out += f'''<section class="pt-section" id="c{i}"><h2><span class="n">{i:02d}.</span> {t}</h2>{f'<p class="pt-lead">{d}</p>' if d else ''}
 <div class="demo"><div class="demo__view{" demo__view--white" if white else ""}">{h}</div>
 <details><summary>Ver código HTML</summary>{code("html", h)}</details></div></section>'''
-    body = '<p class="pt-lead">Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
+    body = '<p class="pt-lead"><b>Web Components:</b> <a href="componentes/gob-mapa-magdalena.html">&lt;gob-mapa-magdalena&gt;</a> (mapa del Magdalena por municipios, con documentación y generador en el <a href="estudio/mapas.html">Estudio</a>). Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
     page(root, 'componentes.html', 'Componentes y utilidades', 'Botones, tarjetas, indicadores, formularios, navegación, cristal y las piezas del manual (carnet, tarjeta, post): estilo sobrio, listo para copiar y pegar.', body)
 
 
@@ -501,7 +505,22 @@ def page_demos(root):
     page(root, 'demos/index.html', 'Demos en vivo', 'Plantillas funcionales con la identidad visual aplicada.', body)
 
 
+def page_studio(root):
+    k = lambda h, ico, tt, d, est='': f'<a class="k" href="{h}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{ico}</svg></div><h3>{tt} {est}</h3><p>{d}</p></a>'
+    soon = '<span class="mg-badge mg-badge--gray">Próximamente</span>'
+    cards = (k('mapas.html', '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>', 'Estudio de mapas', 'Mapa del Magdalena con 30 municipios (código DIVIPOLA): coropleta, subregiones, categorías, marcadores, rutas animadas y efectos. Elija colores y copie el código.')
+             + '<div class="k" style="border-style:dashed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div><h3>Estudio de gráficas ' + soon + '</h3><p>Barras, líneas, torta, dona, radar, gauge, heatmap, treemap y sankey con la paleta institucional.</p></div>'
+             + '<div class="k" style="border-style:dashed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div><h3>Estudio de dashboards ' + soon + '</h3><p>Plantillas de tableros con widgets intercambiables y filtros globales.</p></div>')
+    body = '<p class="pt-lead">Generadores visuales: configure, vea el resultado en vivo y copie el código listo para HTML, Angular o React. Todo usa los componentes <code class="inline">gob-*</code> del CDN <code class="inline">/cdn/v1/</code>, independientes del framework.</p><div class="cards-k">' + cards + '</div>'
+    page(root, 'estudio/index.html', 'Estudio', 'Genere mapas, gráficas y tableros con la identidad visual: elija colores, datos y efectos y copie el código.', body)
+    shell = '<p class="pt-lead">Configure el mapa a la izquierda; la vista previa y el código se actualizan al instante. El enlace de la barra del navegador guarda su configuración.</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
+    page(root, 'estudio/mapas.html', 'Estudio de mapas', 'Mapa interactivo del Magdalena: colores, datos por municipio, marcadores, rutas animadas y efectos, con código generado.', shell, scripts=f'<script type="module" src="mapas.js?v={BUILD}"></script>')
+
+
 def build(root, dist, G):
+    page_studio(root)
+    import site_mapa
+    site_mapa.build(root, page, code)
     page_demos(root)
     page_index(root); page_colors(root); page_logos(root); page_components(root); page_integration(root, G); page_apps(root)
     print('portal generado')
