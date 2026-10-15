@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formularios nativos · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Select, input, botones, casillas y más con la apariencia de la marca sin escribir clases; foco, hover, validación y deshabilitado incluidos.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792036364">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Formularios nativos</h1><p>Select, input, botones, casillas y más con la apariencia de la marca sin escribir clases; foco, hover, validación y deshabilitado incluidos.</p></div></section>
+<main class="pt-main">
+
+<p class="pt-lead">Instale <code class="inline">gob.css</code> y los <b>elementos HTML normales</b> (<code class="inline">select</code>, <code class="inline">input</code>, <code class="inline">button</code>, casillas, archivos…) toman los colores, el foco, el hover y la apariencia de la Gobernación, sin escribir clases. Sirve para formularios y paneles.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Cómo se activa</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div><div class="code"><div class="code__bar"><span>Activarlo</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Opción A: toda la página --&gt;
+&lt;body class=&quot;mg-base&quot;&gt; … &lt;/body&gt;
+
+&lt;!-- Opción B: solo un contenedor (convive con otros estilos) --&gt;
+&lt;div class=&quot;mg-forms&quot;&gt; &lt;select&gt;…&lt;/select&gt; &lt;input type=&quot;text&quot;&gt; &lt;button&gt;Guardar&lt;/button&gt; &lt;/div&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Opción A: toda la página --&gt;
+&lt;body class=&quot;mg-base&quot;&gt; … &lt;/body&gt;
+
+&lt;!-- Opción B: solo un contenedor (convive con otros estilos) --&gt;
+&lt;div class=&quot;mg-forms&quot;&gt; &lt;select&gt;…&lt;/select&gt; &lt;input type=&quot;text&quot;&gt; &lt;button&gt;Guardar&lt;/button&gt; &lt;/div&gt;</code></pre></div>
+<p class="mg-help">Es una capa de <b>especificidad cero</b> (<code>:where</code>): nunca pelea con sus clases ni con las de otro framework. Con PrimeNG/Material/Bootstrap use sus propios componentes: el preset de este repositorio ya los estiliza y esta capa no los toca.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplo en vivo (código completo)</h2><div class="demo ej" id="ej-f1"><div class="ej__head"><h3>Formulario con elementos HTML normales</h3><p>No hay clases: son <code>input</code>, <code>select</code>, <code>textarea</code>, <code>button</code>, casillas, radios, interruptor, rango, archivo y progreso del navegador. Pruebe el foco (Tab), el hover, la validación (escriba un correo inválido y salga del campo) y el estado deshabilitado.</p></div><div class="demo__view demo__view--white"><form class="mg-forms" style="display:grid;gap:1rem;max-width:560px" onsubmit="event.preventDefault();gob.toast({tipo:'exito',titulo:'Formulario enviado'})">
+  <fieldset>
+    <legend>Datos del solicitante</legend>
+    <div style="display:grid;gap:.9rem">
+      <label>Nombre completo <input type="text" required placeholder="Ej.: Ana María Pérez"></label>
+      <label>Correo <input type="email" required placeholder="nombre@correo.com"></label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+        <label>Municipio <select><option>Santa Marta</option><option>Ciénaga</option><option>Fundación</option></select></label>
+        <label>Fecha <input type="date"></label>
+      </div>
+      <label>Mensaje <textarea placeholder="Cuéntenos su solicitud…"></textarea></label>
+      <label>Anexo <input type="file"></label>
+    </div>
+  </fieldset>
+  <div style="display:flex;gap:1.25rem;flex-wrap:wrap">
+    <label><input type="checkbox" checked> Recibir notificaciones</label>
+    <label><input type="radio" name="p" checked> Persona</label><label><input type="radio" name="p"> Empresa</label>
+    <label><input type="checkbox" role="switch" checked> Modo público</label>
+  </div>
+  <label>Prioridad <input type="range" min="1" max="5" value="3"></label>
+  <label>Avance <progress value="62" max="100"></progress></label>
+  <div style="display:flex;gap:.6rem"><button type="submit">Enviar</button><button type="reset">Limpiar</button><button type="button" disabled>Deshabilitado</button></div>
+</form></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>f1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;form class=&quot;mg-forms&quot; style=&quot;display:grid;gap:1rem;max-width:560px&quot; onsubmit=&quot;event.preventDefault();gob.toast({tipo:&#x27;exito&#x27;,titulo:&#x27;Formulario enviado&#x27;})&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Datos del solicitante&lt;/legend&gt;
+    &lt;div style=&quot;display:grid;gap:.9rem&quot;&gt;
+      &lt;label&gt;Nombre completo &lt;input type=&quot;text&quot; required placeholder=&quot;Ej.: Ana María Pérez&quot;&gt;&lt;/label&gt;
+      &lt;label&gt;Correo &lt;input type=&quot;email&quot; required placeholder=&quot;nombre@correo.com&quot;&gt;&lt;/label&gt;
+      &lt;div style=&quot;display:grid;grid-template-columns:1fr 1fr;gap:.9rem&quot;&gt;
+        &lt;label&gt;Municipio &lt;select&gt;&lt;option&gt;Santa Marta&lt;/option&gt;&lt;option&gt;Ciénaga&lt;/option&gt;&lt;option&gt;Fundación&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;label&gt;Fecha &lt;input type=&quot;date&quot;&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;label&gt;Mensaje &lt;textarea placeholder=&quot;Cuéntenos su solicitud…&quot;&gt;&lt;/textarea&gt;&lt;/label&gt;
+      &lt;label&gt;Anexo &lt;input type=&quot;file&quot;&gt;&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+  &lt;div style=&quot;display:flex;gap:1.25rem;flex-wrap:wrap&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Recibir notificaciones&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;p&quot; checked&gt; Persona&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;p&quot;&gt; Empresa&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot; checked&gt; Modo público&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;label&gt;Prioridad &lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;5&quot; value=&quot;3&quot;&gt;&lt;/label&gt;
+  &lt;label&gt;Avance &lt;progress value=&quot;62&quot; max=&quot;100&quot;&gt;&lt;/progress&gt;&lt;/label&gt;
+  &lt;div style=&quot;display:flex;gap:.6rem&quot;&gt;&lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;&lt;button type=&quot;reset&quot;&gt;Limpiar&lt;/button&gt;&lt;button type=&quot;button&quot; disabled&gt;Deshabilitado&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;form class=&quot;mg-forms&quot; style=&quot;display:grid;gap:1rem;max-width:560px&quot; onsubmit=&quot;event.preventDefault();gob.toast({tipo:&#x27;exito&#x27;,titulo:&#x27;Formulario enviado&#x27;})&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Datos del solicitante&lt;/legend&gt;
+    &lt;div style=&quot;display:grid;gap:.9rem&quot;&gt;
+      &lt;label&gt;Nombre completo &lt;input type=&quot;text&quot; required placeholder=&quot;Ej.: Ana María Pérez&quot;&gt;&lt;/label&gt;
+      &lt;label&gt;Correo &lt;input type=&quot;email&quot; required placeholder=&quot;nombre@correo.com&quot;&gt;&lt;/label&gt;
+      &lt;div style=&quot;display:grid;grid-template-columns:1fr 1fr;gap:.9rem&quot;&gt;
+        &lt;label&gt;Municipio &lt;select&gt;&lt;option&gt;Santa Marta&lt;/option&gt;&lt;option&gt;Ciénaga&lt;/option&gt;&lt;option&gt;Fundación&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;label&gt;Fecha &lt;input type=&quot;date&quot;&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;label&gt;Mensaje &lt;textarea placeholder=&quot;Cuéntenos su solicitud…&quot;&gt;&lt;/textarea&gt;&lt;/label&gt;
+      &lt;label&gt;Anexo &lt;input type=&quot;file&quot;&gt;&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+  &lt;div style=&quot;display:flex;gap:1.25rem;flex-wrap:wrap&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Recibir notificaciones&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;p&quot; checked&gt; Persona&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;p&quot;&gt; Empresa&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot; checked&gt; Modo público&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;label&gt;Prioridad &lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;5&quot; value=&quot;3&quot;&gt;&lt;/label&gt;
+  &lt;label&gt;Avance &lt;progress value=&quot;62&quot; max=&quot;100&quot;&gt;&lt;/progress&gt;&lt;/label&gt;
+  &lt;div style=&quot;display:flex;gap:.6rem&quot;&gt;&lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;&lt;button type=&quot;reset&quot;&gt;Limpiar&lt;/button&gt;&lt;button type=&quot;button&quot; disabled&gt;Deshabilitado&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Qué se estiliza</h2><div class="tablewrap"><table class="mg-table"><thead><tr><th>Elemento</th><th>Qué recibe de la marca</th></tr></thead><tbody><tr><td><code>input</code> texto, correo, número, fecha, hora, búsqueda…</td><td>Borde, radio, tipografía Montserrat, hover, foco con halo azul, deshabilitado, solo lectura, placeholder, validación (<code>:user-invalid</code> en rojo; <code>aria-invalid</code>).</td></tr><tr><td><code>select</code></td><td>Flecha propia, hover y foco; opción seleccionada en azul claro. Los <code>multiple</code>/<code>size</code> conservan lista.</td></tr><tr><td><code>textarea</code></td><td>Igual que los campos; redimensiona solo en vertical.</td></tr><tr><td><code>checkbox</code>, <code>radio</code></td><td>Casilla/círculo propios con marca blanca; indeterminado; foco con halo.</td></tr><tr><td><code>input type=checkbox role="switch"</code></td><td>Interruptor (toggle).</td></tr><tr><td><code>range</code>, <code>color</code>, <code>file</code>, <code>progress</code>, <code>meter</code></td><td>Pista y perilla, selector de color, botón «Seleccionar archivo» de marca, barra con degradado.</td></tr><tr><td><code>button</code>, <code>input[type=submit|reset|button]</code> sin clase</td><td>Primario azul; <code>type="button"</code>/<code>reset</code> en secundario blanco. Hover, active, foco y deshabilitado.</td></tr><tr><td><code>label</code>, <code>fieldset</code>, <code>legend</code></td><td>Etiquetas y agrupaciones; <code>label class="mg-req"</code> añade «*» rojo.</td></tr><tr><td><code>table</code> sin clase, <code>details</code>, <code>dialog</code>, <code>blockquote</code>, <code>kbd</code>, <code>mark</code>, <code>hr</code></td><td>Estilo de tabla de la marca, acordeón, diálogo con velo, cita, tecla, resaltado y separador. También la barra de desplazamiento.</td></tr></tbody></table></div></section>
+<section class="pt-section"><h2><span class="n">04.</span> Exclusiones y precedencia</h2><div class="code"><div class="code__bar"><span>Reglas de exclusión</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;!-- No se tocan controles de frameworks: p-*, mat-*, mdc-*, form-*, btn*, ant-*, Mui*, v-*, el-* --&gt;
+&lt;input class=&quot;p-inputtext&quot;&gt;          &lt;!-- PrimeNG: lo estiliza el preset --&gt;
+&lt;select class=&quot;form-select&quot;&gt;        &lt;!-- Bootstrap: lo estiliza bootstrap5.css --&gt;
+
+&lt;!-- Excluir uno a mano --&gt;
+&lt;input class=&quot;mg-nativo-off&quot;&gt;
+
+&lt;!-- Cualquier clase tuya gana (especificidad cero): --&gt;
+&lt;input class=&quot;mi-campo&quot;&gt;             &lt;!-- sin estilos de marca; defina los suyos o use class=&quot;mg-input&quot; --&gt;
+
+&lt;!-- Botones: solo los SIN clase se estilizan; con clase use mg-btn --&gt;
+&lt;button&gt;Guardar&lt;/button&gt;             &lt;!-- azul de marca --&gt;
+&lt;button class=&quot;mg-btn mg-btn--secondary&quot;&gt;Cancelar&lt;/button&gt;</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">05.</span> Con PrimeNG y otros frameworks</h2><p>Para <b>PrimeNG, PrimeVue, Material, Vuetify o Bootstrap</b> use sus componentes (<code>p-select</code>, <code>mat-select</code>…): se ven de marca con el preset/tema de este repositorio (ver <a href="../integracion.html">Integración</a>). Para el resto de la página (campos HTML simples, formularios de login, filtros rápidos) cargue <code>gob.css</code>: ambos conviven sin conflicto.</p></section>
+<script type="module" src="../cdn/v1/gob.js"></script>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792036364"></script>
+
+</body>
+</html>

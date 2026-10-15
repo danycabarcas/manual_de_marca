@@ -19,9 +19,17 @@ def w(path, content):
         f.write(content)
 
 
+# controles de frameworks que los estilos nativos NO deben tocar (la :not() queda dentro de :where -> especificidad 0)
+FORM_EXCL = ':not([class^="p-"], [class*=" p-"], [class*="mat-"], [class*="mdc-"], [class*="form-"], [class*="btn"], [class*="ant-"], [class*="Mui"], [class^="v-"], [class*=" v-"], [class^="el-"], [class*=" el-"], .mg-nativo-off)'
+
+
 def src(name):
     with open(os.path.join(ROOT, 'src', name), encoding='utf-8') as f:
-        return f.read()
+        t = f.read()
+    if name == 'components.css':
+        with open(os.path.join(ROOT, 'src', 'formularios.css'), encoding='utf-8') as f:
+            t += f.read().replace('{X}', FORM_EXCL)
+    return t
 
 
 def minify(css):

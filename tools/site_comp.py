@@ -476,6 +476,70 @@ async listar(@Query() q: { pagina?: string; tamano?: string; q?: string; orden?:
 <script type="module" src="../cdn/v1/gob.js"></script>'''
     page(root, 'componentes/iconos.html', 'Íconos estándar', 'Catálogo de íconos gob-icono: SVG sueltos, sprite y componente, con nombres en español.', body, active='componentes.html')
 
+    # ================================================================ formularios nativos
+    FORM = PRELUDIO + """<form class="mg-forms" style="display:grid;gap:1rem;max-width:560px" onsubmit="event.preventDefault();gob.toast({tipo:'exito',titulo:'Formulario enviado'})">
+  <fieldset>
+    <legend>Datos del solicitante</legend>
+    <div style="display:grid;gap:.9rem">
+      <label>Nombre completo <input type="text" required placeholder="Ej.: Ana María Pérez"></label>
+      <label>Correo <input type="email" required placeholder="nombre@correo.com"></label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem">
+        <label>Municipio <select><option>Santa Marta</option><option>Ciénaga</option><option>Fundación</option></select></label>
+        <label>Fecha <input type="date"></label>
+      </div>
+      <label>Mensaje <textarea placeholder="Cuéntenos su solicitud…"></textarea></label>
+      <label>Anexo <input type="file"></label>
+    </div>
+  </fieldset>
+  <div style="display:flex;gap:1.25rem;flex-wrap:wrap">
+    <label><input type="checkbox" checked> Recibir notificaciones</label>
+    <label><input type="radio" name="p" checked> Persona</label><label><input type="radio" name="p"> Empresa</label>
+    <label><input type="checkbox" role="switch" checked> Modo público</label>
+  </div>
+  <label>Prioridad <input type="range" min="1" max="5" value="3"></label>
+  <label>Avance <progress value="62" max="100"></progress></label>
+  <div style="display:flex;gap:.6rem"><button type="submit">Enviar</button><button type="reset">Limpiar</button><button type="button" disabled>Deshabilitado</button></div>
+</form>"""
+    ef = ejemplo(code, 'f1', 'Formulario con elementos HTML normales', 'No hay clases: son <code>input</code>, <code>select</code>, <code>textarea</code>, <code>button</code>, casillas, radios, interruptor, rango, archivo y progreso del navegador. Pruebe el foco (Tab), el hover, la validación (escriba un correo inválido y salga del campo) y el estado deshabilitado.', FORM)
+    inst = code('html', PRELUDIO + """<!-- Opción A: toda la página -->
+<body class="mg-base"> … </body>
+
+<!-- Opción B: solo un contenedor (convive con otros estilos) -->
+<div class="mg-forms"> <select>…</select> <input type="text"> <button>Guardar</button> </div>""", 'Activarlo', tpl=True)
+    excl = code('html', """<!-- No se tocan controles de frameworks: p-*, mat-*, mdc-*, form-*, btn*, ant-*, Mui*, v-*, el-* -->
+<input class="p-inputtext">          <!-- PrimeNG: lo estiliza el preset -->
+<select class="form-select">        <!-- Bootstrap: lo estiliza bootstrap5.css -->
+
+<!-- Excluir uno a mano -->
+<input class="mg-nativo-off">
+
+<!-- Cualquier clase tuya gana (especificidad cero): -->
+<input class="mi-campo">             <!-- sin estilos de marca; defina los suyos o use class="mg-input" -->
+
+<!-- Botones: solo los SIN clase se estilizan; con clase use mg-btn -->
+<button>Guardar</button>             <!-- azul de marca -->
+<button class="mg-btn mg-btn--secondary">Cancelar</button>""", 'Reglas de exclusión')
+    tabla_el = tabla(['Elemento', 'Qué recibe de la marca'], [
+        ('<code>input</code> texto, correo, número, fecha, hora, búsqueda…', 'Borde, radio, tipografía Montserrat, hover, foco con halo azul, deshabilitado, solo lectura, placeholder, validación (<code>:user-invalid</code> en rojo; <code>aria-invalid</code>).'),
+        ('<code>select</code>', 'Flecha propia, hover y foco; opción seleccionada en azul claro. Los <code>multiple</code>/<code>size</code> conservan lista.'),
+        ('<code>textarea</code>', 'Igual que los campos; redimensiona solo en vertical.'),
+        ('<code>checkbox</code>, <code>radio</code>', 'Casilla/círculo propios con marca blanca; indeterminado; foco con halo.'),
+        ('<code>input type=checkbox role="switch"</code>', 'Interruptor (toggle).'),
+        ('<code>range</code>, <code>color</code>, <code>file</code>, <code>progress</code>, <code>meter</code>', 'Pista y perilla, selector de color, botón «Seleccionar archivo» de marca, barra con degradado.'),
+        ('<code>button</code>, <code>input[type=submit|reset|button]</code> sin clase', 'Primario azul; <code>type="button"</code>/<code>reset</code> en secundario blanco. Hover, active, foco y deshabilitado.'),
+        ('<code>label</code>, <code>fieldset</code>, <code>legend</code>', 'Etiquetas y agrupaciones; <code>label class="mg-req"</code> añade «*» rojo.'),
+        ('<code>table</code> sin clase, <code>details</code>, <code>dialog</code>, <code>blockquote</code>, <code>kbd</code>, <code>mark</code>, <code>hr</code>', 'Estilo de tabla de la marca, acordeón, diálogo con velo, cita, tecla, resaltado y separador. También la barra de desplazamiento.')])
+    body = f'''
+<p class="pt-lead">Instale <code class="inline">gob.css</code> y los <b>elementos HTML normales</b> (<code class="inline">select</code>, <code class="inline">input</code>, <code class="inline">button</code>, casillas, archivos…) toman los colores, el foco, el hover y la apariencia de la Gobernación, sin escribir clases. Sirve para formularios y paneles.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Cómo se activa</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div>{inst}
+<p class="mg-help">Es una capa de <b>especificidad cero</b> (<code>:where</code>): nunca pelea con sus clases ni con las de otro framework. Con PrimeNG/Material/Bootstrap use sus propios componentes: el preset de este repositorio ya los estiliza y esta capa no los toca.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplo en vivo (código completo)</h2>{ef}</section>
+<section class="pt-section"><h2><span class="n">03.</span> Qué se estiliza</h2>{tabla_el}</section>
+<section class="pt-section"><h2><span class="n">04.</span> Exclusiones y precedencia</h2>{excl}</section>
+<section class="pt-section"><h2><span class="n">05.</span> Con PrimeNG y otros frameworks</h2><p>Para <b>PrimeNG, PrimeVue, Material, Vuetify o Bootstrap</b> use sus componentes (<code>p-select</code>, <code>mat-select</code>…): se ven de marca con el preset/tema de este repositorio (ver <a href="../integracion.html">Integración</a>). Para el resto de la página (campos HTML simples, formularios de login, filtros rápidos) cargue <code>gob.css</code>: ambos conviven sin conflicto.</p></section>
+<script type="module" src="../cdn/v1/gob.js"></script>'''
+    page(root, 'componentes/formularios.html', 'Formularios nativos', 'Select, input, botones, casillas y más con la apariencia de la marca sin escribir clases; foco, hover, validación y deshabilitado incluidos.', body, active='componentes.html')
+
 
 def hub_html():
     cards = [
@@ -484,6 +548,7 @@ def hub_html():
         ('gob-dashboard.html', 'Dashboard, KPI y pestañas', 'Tableros declarativos con filtros sincronizados.', '<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>'),
         ('gob-grafica.html', 'gob-grafica', '11 tipos de gráfica con la paleta institucional.', '<path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>'),
         ('gob-mapa-magdalena.html', 'gob-mapa-magdalena', 'Mapa por municipios con DIVIPOLA, rutas y efectos.', '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>'),
+        ('formularios.html', 'Formularios nativos', 'Select, input, botones y casillas HTML con la marca, sin clases.', '<rect x="3" y="5" width="18" height="5" rx="1"/><rect x="3" y="14" width="10" height="5" rx="1"/>'),
         ('iconos.html', 'Íconos estándar', '104 íconos en SVG, sprite y componente.', '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>'),
         ('estandar.html', 'Estándar y licencias', 'Guía de decisión, contrato y licencias de PrimeNG.', '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
     ]
