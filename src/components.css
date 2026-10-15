@@ -5,17 +5,17 @@
    ========================================================================== */
 
 /* ---------- Base (opt-in con la clase .mg-base en <body> o <html>) ---------- */
-.mg-base, .mg-base body { font-family: var(--mg-font-sans); color: var(--mg-text); background: var(--mg-bg-app); line-height: 1.55; -webkit-font-smoothing: antialiased; }
-.mg-base *, .mg-base *::before, .mg-base *::after { box-sizing: border-box; }
-.mg-base h1, .mg-base h2, .mg-base h3, .mg-base h4, .mg-h1, .mg-h2, .mg-h3, .mg-h4 { font-family: var(--mg-font-display); color: var(--mg-heading); line-height: 1.2; letter-spacing: -.015em; margin: 0 0 .5em; }
-.mg-base h1, .mg-h1 { font-weight: 800; font-size: clamp(1.9rem, 3vw + 1rem, 2.75rem); }
-.mg-base h2, .mg-h2 { font-weight: 700; font-size: clamp(1.4rem, 1.5vw + 1rem, 1.9rem); }
-.mg-base h3, .mg-h3 { font-weight: 700; font-size: 1.2rem; }
-.mg-base h4, .mg-h4 { font-weight: 600; font-size: 1.0625rem; }
+:where(.mg-base), :where(.mg-base) body { font-family: var(--mg-font-sans); color: var(--mg-text); background: var(--mg-bg-app); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+:where(.mg-base) *, :where(.mg-base) *::before, :where(.mg-base) *::after { box-sizing: border-box; }
+:where(.mg-base) :is(h1, h2, h3, h4), .mg-h1, .mg-h2, .mg-h3, .mg-h4 { font-family: var(--mg-font-display); color: var(--mg-heading); line-height: 1.2; letter-spacing: -.015em; margin: 0 0 .5em; }
+:where(.mg-base) h1, .mg-h1 { font-weight: 800; font-size: clamp(1.9rem, 3vw + 1rem, 2.75rem); }
+:where(.mg-base) h2, .mg-h2 { font-weight: 700; font-size: clamp(1.4rem, 1.5vw + 1rem, 1.9rem); }
+:where(.mg-base) h3, .mg-h3 { font-weight: 700; font-size: 1.2rem; }
+:where(.mg-base) h4, .mg-h4 { font-weight: 600; font-size: 1.0625rem; }
 :where(.mg-base) a:not([class]), .mg-link { color: var(--mg-primary); text-decoration-thickness: .06em; text-underline-offset: .2em; }
 :where(.mg-base) a:not([class]):hover, .mg-link:hover { color: var(--mg-primary-700); }
-.mg-base :focus-visible, .mg-focusable:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: 2px; }
-.mg-base ::selection { background: var(--mg-sky); color: var(--mg-ink); }
+:where(.mg-base) :focus-visible, .mg-focusable:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: 2px; }
+:where(.mg-base) ::selection { background: var(--mg-sky); color: var(--mg-ink); }
 
 /* Rótulo de sección (eyebrow) y subrayado corto */
 .mg-eyebrow { font-family: var(--mg-font-sans); font-weight: 700; color: var(--mg-primary); font-size: .75rem; line-height: 1; letter-spacing: .12em; text-transform: uppercase; }

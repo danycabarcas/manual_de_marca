@@ -131,6 +131,8 @@ def build(root, page, code):
                            (I('gob-menu'), I('items [{ id, etiqueta, icono?, tipo?, separador?, deshabilitado? }], contextual, alinear') + '; evento <code>gob-menu-accion</code> <code>{ id }</code>.'), (I('gob-tooltip'), I('texto, posicion (arriba | abajo | izquierda | derecha)')),
                            (I('gob-paginador'), I('total, pagina, tamano, opciones, resumen') + '; evento <code>gob-pagina-cambio</code>.')])]
     frameworks(root, page, code)
+    import site_compat
+    site_compat.build(root, page, code)
     pagina(root, page, code, 'gob-contenido.html', 'Avatar, árbol, kanban, menú y paginador', 'Piezas de interfaz para paneles: <b>gob-avatar</b>, <b>gob-arbol</b>, <b>gob-kanban</b>, <b>gob-menu</b> (y contextual), <b>gob-tooltip</b> y <b>gob-paginador</b>.', 'Avatar, árbol, kanban con arrastrar y soltar, menú contextual, tooltip y paginador accesibles, con ejemplos.', ej, refs)
 
 
@@ -217,6 +219,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 
 HUB = [
+    ('compatibilidad.html', 'Compatibilidad (Tailwind, Prime, Material)', 'Cómo conviven con otras librerías, qué prima y recetas.', '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>'),
     ('frameworks.html', 'Angular, React, Next.js y Vue', 'Envoltorios, tipos y ejemplos para usar gob-* en cada framework.', '<path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>'),
     ('gob-flujo.html', 'Línea de tiempo y pasos', 'Historial de trámites y asistentes por pasos.', '<path d="M12 3v18"/><circle cx="12" cy="7" r="2"/><circle cx="12" cy="17" r="2"/><path d="M14 7h6M4 17h6"/>'),
     ('gob-campos.html', 'Selector, fecha y archivos', 'Búsqueda y multiselección, calendario, subir archivos.', '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'),

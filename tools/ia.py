@@ -36,7 +36,8 @@ Eres un agente que construye interfaces para la **Gobernación del Magdalena**. 
 6. Datos de ejemplo del CDN (ficticios): `/cdn/v1/datos/ejemplo-radicados.json` (900 filas), `ejemplo-tramites.json` (140 filas), `municipios.json`, `subregiones.json`. En producción sustitúyelos por la API real.
 7. Accesibilidad AA es obligatoria: etiquetas en todos los campos, `aria-live` en mensajes, foco visible. Los componentes ya la traen; no la desactives.
 8. Colores de marca: azul `#0071BB`, cian `#00B7D9`, celeste `#9FD7E5`, rojo `#F7003C`, amarillo `#FEC800`, verde `#69B75E`, azul-noche `#0B2239`. Usa variables (`var(--mg-primary)`), no valores sueltos. Interfaces sobrias: superficies blancas/azul-noche; el color solo como acento.
-9. **No uses** AdminLTE, Bootstrap ni PrimeNG 22 / PrimeVue 5 / `@primeuix/themes` ≥ 3 (licencia comercial «PrimeUI»). Si el proyecto ya usa PrimeNG, fijar ≤ 21 y ver `__BASE__/componentes/estandar.html`.
+9. **Convivencia**: si el proyecto ya usa PrimeNG/Material/Bootstrap, usa SU componente donde exista (p-select, mat-select…) y `gob-*` solo para lo que no tienen (mapa, kanban, dashboard, línea de tiempo, Gantt…); no dupliques el mismo tipo de componente. Con Tailwind v4 carga `cdn/v1/gob.layer.css` ANTES de Tailwind. Un control con clase siempre gana sobre gob. Detalle: `__BASE__/componentes/compatibilidad.html`.
+10. **No uses** AdminLTE, Bootstrap ni PrimeNG 22 / PrimeVue 5 / `@primeuix/themes` ≥ 3 (licencia comercial «PrimeUI»). Si el proyecto ya usa PrimeNG, fijar ≤ 21 y ver `__BASE__/componentes/estandar.html`.
 
 ## 3. Catálogo de componentes
 

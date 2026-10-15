@@ -269,17 +269,17 @@
    ========================================================================== */
 
 /* ---------- Base (opt-in con la clase .mg-base en <body> o <html>) ---------- */
-.mg-base, .mg-base body { font-family: var(--mg-font-sans); color: var(--mg-text); background: var(--mg-bg-app); line-height: 1.55; -webkit-font-smoothing: antialiased; }
-.mg-base *, .mg-base *::before, .mg-base *::after { box-sizing: border-box; }
-.mg-base h1, .mg-base h2, .mg-base h3, .mg-base h4, .mg-h1, .mg-h2, .mg-h3, .mg-h4 { font-family: var(--mg-font-display); color: var(--mg-heading); line-height: 1.2; letter-spacing: -.015em; margin: 0 0 .5em; }
-.mg-base h1, .mg-h1 { font-weight: 800; font-size: clamp(1.9rem, 3vw + 1rem, 2.75rem); }
-.mg-base h2, .mg-h2 { font-weight: 700; font-size: clamp(1.4rem, 1.5vw + 1rem, 1.9rem); }
-.mg-base h3, .mg-h3 { font-weight: 700; font-size: 1.2rem; }
-.mg-base h4, .mg-h4 { font-weight: 600; font-size: 1.0625rem; }
+:where(.mg-base), :where(.mg-base) body { font-family: var(--mg-font-sans); color: var(--mg-text); background: var(--mg-bg-app); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+:where(.mg-base) *, :where(.mg-base) *::before, :where(.mg-base) *::after { box-sizing: border-box; }
+:where(.mg-base) :is(h1, h2, h3, h4), .mg-h1, .mg-h2, .mg-h3, .mg-h4 { font-family: var(--mg-font-display); color: var(--mg-heading); line-height: 1.2; letter-spacing: -.015em; margin: 0 0 .5em; }
+:where(.mg-base) h1, .mg-h1 { font-weight: 800; font-size: clamp(1.9rem, 3vw + 1rem, 2.75rem); }
+:where(.mg-base) h2, .mg-h2 { font-weight: 700; font-size: clamp(1.4rem, 1.5vw + 1rem, 1.9rem); }
+:where(.mg-base) h3, .mg-h3 { font-weight: 700; font-size: 1.2rem; }
+:where(.mg-base) h4, .mg-h4 { font-weight: 600; font-size: 1.0625rem; }
 :where(.mg-base) a:not([class]), .mg-link { color: var(--mg-primary); text-decoration-thickness: .06em; text-underline-offset: .2em; }
 :where(.mg-base) a:not([class]):hover, .mg-link:hover { color: var(--mg-primary-700); }
-.mg-base :focus-visible, .mg-focusable:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: 2px; }
-.mg-base ::selection { background: var(--mg-sky); color: var(--mg-ink); }
+:where(.mg-base) :focus-visible, .mg-focusable:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: 2px; }
+:where(.mg-base) ::selection { background: var(--mg-sky); color: var(--mg-ink); }
 
 /* Rótulo de sección (eyebrow) y subrayado corto */
 .mg-eyebrow { font-family: var(--mg-font-sans); font-weight: 700; color: var(--mg-primary); font-size: .75rem; line-height: 1; letter-spacing: .12em; text-transform: uppercase; }
@@ -588,3 +588,101 @@
 @media (prefers-reduced-motion: reduce) { :where(:is(.mg-base, .mg-forms) *) { transition-duration: .01ms !important; } }
 /* etiqueta que envuelve un campo: texto arriba, campo debajo */
 :where(:is(.mg-base, .mg-forms) label:has(> :is(input:not([type=checkbox], [type=radio]), select, textarea, progress, meter)):not([class^="p-"], [class*=" p-"], [class*="mat-"], [class*="mdc-"], [class*="form-"], [class*="btn"], [class*="ant-"], [class*="Mui"], [class^="v-"], [class*=" v-"], [class^="el-"], [class*=" el-"], .mg-nativo-off)) { display: grid; gap: .35rem; align-content: start; }
+
+/* ---- controles nativos sin clase: especificidad normal (vence al preflight de Tailwind) ---- */
+
+/* ---- campos de texto, fechas, número, textarea, select ---- */
+:is(.mg-base, .mg-forms) :is(input:not([type=checkbox], [type=radio], [type=range], [type=file], [type=color], [type=button], [type=submit], [type=reset], [type=image], [type=hidden]), textarea, select):not([class]) {
+  box-sizing: border-box; max-width: 100%; font: 400 .9375rem/1.4 var(--mg-font-sans); color: var(--mg-text); background-color: var(--_f-bg);
+  border: 1px solid var(--_f-bd); border-radius: var(--mg-radius-md); padding: .55rem .8rem; min-height: var(--_f-h);
+  transition: border-color .15s, box-shadow .15s, background-color .15s; accent-color: var(--mg-primary); color-scheme: light;
+}
+:is(.mg-base, .mg-forms) textarea:not([class]) { min-height: 6rem; resize: vertical; line-height: 1.5; }
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class])::placeholder { color: var(--mg-gray-400); opacity: 1; }
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class]):hover:not(:disabled, :focus) { border-color: var(--mg-gray-400); }
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class]):focus { outline: 0; border-color: var(--mg-primary); box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class]):disabled { background-color: var(--mg-gray-100); color: var(--mg-gray-500); cursor: not-allowed; }
+:is(.mg-base, .mg-forms) :is(input, textarea):not([class]):read-only:not(:disabled, [type=checkbox], [type=radio]) { background-color: var(--mg-gray-50); }
+/* validación: solo después de que la persona interactúa (:user-invalid) o con aria-invalid */
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class]):user-invalid, :is(.mg-base, .mg-forms) [aria-invalid=true]:not([class]) { border-color: var(--mg-red-600); }
+:is(.mg-base, .mg-forms) :is(input, textarea, select):not([class]):user-invalid:focus, :is(.mg-base, .mg-forms) [aria-invalid=true]:not([class]):focus { box-shadow: 0 0 0 3px rgba(247, 0, 60, .18); }
+/* select con flecha propia */
+:is(.mg-base, .mg-forms) select:not([multiple], [size]):not([class]) { appearance: none; -webkit-appearance: none; padding-right: 2.4rem; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .7rem center; background-size: 1.05rem; }
+:is(.mg-base, .mg-forms) select:not([multiple], [size]):not([class]):focus { background-repeat: no-repeat; background-position: right .7rem center; background-size: 1.05rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230071BB' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
+:is(.mg-base, .mg-forms) select[multiple]:not([class]) option, :is(.mg-base, .mg-forms) select[size]:not([class]) option { padding: .3rem .5rem; border-radius: 6px; }
+:is(.mg-base, .mg-forms) option:not([class]):checked { background: var(--mg-primary-50); color: var(--mg-primary-800); }
+:is(.mg-base, .mg-forms) input[type=search]:not([class])::-webkit-search-cancel-button { cursor: pointer; }
+:is(.mg-base, .mg-forms) input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):not([class])::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .6; border-radius: 4px; }
+:is(.mg-base, .mg-forms) input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):not([class])::-webkit-calendar-picker-indicator:hover { opacity: 1; background-color: var(--mg-primary-50); }
+
+/* ---- casillas y radios ---- */
+:is(.mg-base, .mg-forms) :is(input[type=checkbox], input[type=radio]):not([role=switch]):not([class]) { appearance: none; -webkit-appearance: none; flex: none; box-sizing: border-box; width: 1.15rem; height: 1.15rem; margin: 0 .5rem 0 0; vertical-align: -.2em;
+  border: 1.5px solid var(--mg-gray-400); background: #fff center / 82% no-repeat; cursor: pointer; transition: background-color .15s, border-color .15s, box-shadow .15s; display: inline-grid; place-content: center; }
+:is(.mg-base, .mg-forms) input[type=checkbox]:not([role=switch]):not([class]) { border-radius: 5px; }
+:is(.mg-base, .mg-forms) input[type=radio]:not([class]) { border-radius: 50%; }
+:is(.mg-base, .mg-forms) :is(input[type=checkbox], input[type=radio]):not([role=switch]):not([class]):hover:not(:disabled) { border-color: var(--mg-primary); }
+:is(.mg-base, .mg-forms) :is(input[type=checkbox], input[type=radio]):not([role=switch]):not([class]):checked, :is(.mg-base, .mg-forms) input[type=checkbox]:indeterminate:not([role=switch]):not([class]) { background-color: var(--mg-primary); border-color: var(--mg-primary); }
+:is(.mg-base, .mg-forms) input[type=checkbox]:not([role=switch]):not([class]):checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+:is(.mg-base, .mg-forms) input[type=checkbox]:indeterminate:not([role=switch]):not([class]) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E"); }
+:is(.mg-base, .mg-forms) input[type=radio]:not([class]):checked { background-image: radial-gradient(circle, #fff 0 32%, transparent 36%); }
+:is(.mg-base, .mg-forms) :is(input[type=checkbox], input[type=radio]):not([class]):focus-visible { outline: 0; box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) :is(input[type=checkbox], input[type=radio]):not([class]):disabled { opacity: .5; cursor: not-allowed; }
+/* interruptor: <input type="checkbox" role="switch"> */
+:is(.mg-base, .mg-forms) input[type=checkbox][role=switch]:not([class]) { appearance: none; -webkit-appearance: none; flex: none; width: 2.4rem; height: 1.4rem; margin: 0 .55rem 0 0; vertical-align: -.3em; border-radius: 99px; border: 0; cursor: pointer; background-color: var(--mg-gray-300); background-repeat: no-repeat; background-image: radial-gradient(circle, #fff 0 .55rem, transparent .6rem); background-size: 1.4rem 1.4rem; background-position: left center; transition: background-color .2s, background-position .2s; }
+:is(.mg-base, .mg-forms) input[type=checkbox][role=switch]:not([class]):checked { background-color: var(--mg-primary); background-position: right center; }
+:is(.mg-base, .mg-forms) input[type=checkbox][role=switch]:not([class]):focus-visible { outline: 0; box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) input[type=checkbox][role=switch]:not([class]):disabled { opacity: .5; cursor: not-allowed; }
+
+/* ---- rango, color, archivo, progreso ---- */
+:is(.mg-base, .mg-forms) input[type=range]:not([class]) { appearance: none; -webkit-appearance: none; width: 100%; height: 1.4rem; background: transparent; accent-color: var(--mg-primary); cursor: pointer; }
+:is(.mg-base, .mg-forms) input[type=range]:not([class])::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: var(--mg-gray-200); }
+:is(.mg-base, .mg-forms) input[type=range]:not([class])::-moz-range-track { height: 6px; border-radius: 99px; background: var(--mg-gray-200); }
+:is(.mg-base, .mg-forms) input[type=range]:not([class])::-webkit-slider-thumb { -webkit-appearance: none; width: 1.15rem; height: 1.15rem; margin-top: -6px; border-radius: 50%; background: var(--mg-primary); border: 3px solid #fff; box-shadow: 0 1px 4px rgba(8,26,44,.4); transition: box-shadow .15s; }
+:is(.mg-base, .mg-forms) input[type=range]:not([class])::-moz-range-thumb { width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--mg-primary); border: 3px solid #fff; box-shadow: 0 1px 4px rgba(8,26,44,.4); }
+:is(.mg-base, .mg-forms) input[type=range]:not([class]):focus-visible { outline: 0; }
+:is(.mg-base, .mg-forms) input[type=range]:not([class]):focus-visible::-webkit-slider-thumb { box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) input[type=color]:not([class]) { width: 3rem; height: 2.5rem; padding: .2rem; border: 1px solid var(--_f-bd); border-radius: var(--mg-radius-md); background: #fff; cursor: pointer; }
+:is(.mg-base, .mg-forms) input[type=file]:not([class]) { box-sizing: border-box; max-width: 100%; font: 400 .875rem var(--mg-font-sans); color: var(--mg-text-muted); padding: .35rem; border: 1px dashed var(--mg-gray-400); border-radius: var(--mg-radius-md); background: var(--mg-gray-50); cursor: pointer; }
+:is(.mg-base, .mg-forms) input[type=file]:not([class])::file-selector-button { font: 600 .8125rem var(--mg-font-sans); margin-right: .8rem; padding: .45rem .9rem; border: 0; border-radius: var(--mg-radius-sm); background: var(--mg-primary); color: #fff; cursor: pointer; transition: filter .15s; }
+:is(.mg-base, .mg-forms) input[type=file]:not([class])::file-selector-button:hover { filter: brightness(.92); }
+:is(.mg-base, .mg-forms) input[type=file]:not([class]):focus-visible { outline: 0; border-color: var(--mg-primary); box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) progress:not([class]) { appearance: none; -webkit-appearance: none; width: 100%; height: .6rem; border: 0; border-radius: 99px; overflow: hidden; background: var(--mg-gray-200); color: var(--mg-primary); }
+:is(.mg-base, .mg-forms) progress:not([class])::-webkit-progress-bar { background: var(--mg-gray-200); }
+:is(.mg-base, .mg-forms) progress:not([class])::-webkit-progress-value { background: var(--mg-gradient-steel); border-radius: 99px; }
+:is(.mg-base, .mg-forms) progress:not([class])::-moz-progress-bar { background: var(--mg-primary); }
+:is(.mg-base, .mg-forms) meter:not([class]) { width: 100%; height: .6rem; }
+
+/* ---- botones sin clase (los que ya traen class="…" no se tocan) ---- */
+:is(.mg-base, .mg-forms) :is(button, input[type=button], input[type=submit], input[type=reset]):not([class]):not([class]) { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font: 600 .875rem/1.2 var(--mg-font-sans); padding: .6rem 1.15rem; min-height: var(--_f-h); border-radius: var(--mg-radius-md); border: 1px solid transparent; background: var(--mg-primary); color: #fff; cursor: pointer; box-shadow: var(--mg-shadow-sm); text-decoration: none; transition: background-color .15s, box-shadow .15s, filter .15s, border-color .15s; }
+:is(.mg-base, .mg-forms) :is(button, input[type=button], input[type=submit], input[type=reset]):not([class]):not([class]):hover:not(:disabled) { filter: brightness(.92); box-shadow: var(--mg-shadow-md); }
+:is(.mg-base, .mg-forms) :is(button, input[type=button], input[type=submit], input[type=reset]):not([class]):not([class]):active:not(:disabled) { filter: brightness(.86); box-shadow: none; }
+:is(.mg-base, .mg-forms) :is(button, input[type=button], input[type=submit], input[type=reset]):not([class]):not([class]):focus-visible { outline: 0; box-shadow: var(--mg-shadow-glow); }
+:is(.mg-base, .mg-forms) :is(button, input[type=button], input[type=submit], input[type=reset]):not([class]):not([class]):disabled { opacity: .5; cursor: not-allowed; box-shadow: none; filter: none; }
+:is(.mg-base, .mg-forms) :is(button[type=reset], input[type=reset], button[type=button]):not([class]):not([class]) { background: #fff; color: var(--mg-gray-700); border-color: var(--_f-bd); }
+:is(.mg-base, .mg-forms) :is(button[type=reset], input[type=reset], button[type=button]):not([class]):not([class]):hover:not(:disabled) { background: var(--mg-gray-50); filter: none; }
+
+/* ---- estructura de formulario ---- */
+:is(.mg-base, .mg-forms) label:not([class]) { font-weight: 600; font-size: .8125rem; color: var(--mg-gray-700); }
+:is(.mg-base, .mg-forms) label:has(> input:is([type=checkbox], [type=radio])):not([class]) { display: inline-flex; align-items: center; font-weight: 500; font-size: .9rem; color: var(--mg-text); cursor: pointer; }
+:is(.mg-base, .mg-forms) fieldset:not([class]) { border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); padding: 1rem 1.15rem; margin: 0 0 1rem; min-width: 0; }
+:is(.mg-base, .mg-forms) legend:not([class]) { font-weight: 700; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; color: var(--mg-primary-700); padding: 0 .4rem; }
+:is(.mg-base, .mg-forms) label.mg-req:not([class])::after { content: " *"; color: var(--mg-red-600); }
+
+/* ---- texto y contenido nativo ---- */
+:is(.mg-base, .mg-forms) hr:not([class]) { border: 0; border-top: 1px solid var(--mg-border); margin: 1.5rem 0; }
+:is(.mg-base, .mg-forms) kbd:not([class]) { font: 600 .78em ui-monospace, Consolas, monospace; padding: .15em .45em; border: 1px solid var(--mg-border-strong); border-bottom-width: 2px; border-radius: 6px; background: var(--mg-gray-50); }
+:is(.mg-base, .mg-forms) mark:not([class]) { background: color-mix(in srgb, var(--mg-yellow) 45%, #fff); color: inherit; padding: 0 .2em; border-radius: 3px; }
+:is(.mg-base, .mg-forms) blockquote:not([class]) { margin: 1rem 0; padding: .4rem 1.1rem; border-left: 4px solid var(--mg-cyan); color: var(--mg-gray-600); background: var(--mg-gray-50); border-radius: 0 var(--mg-radius-md) var(--mg-radius-md) 0; }
+:is(.mg-base, .mg-forms) table:not([class]):not([class]) { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .875rem; background: var(--mg-surface-card); border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); overflow: hidden; }
+:is(.mg-base, .mg-forms) table:not([class]):not([class]) th { background: var(--mg-gray-50); color: var(--mg-gray-600); text-align: left; font-weight: 600; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: .7rem 1rem; border-bottom: 1px solid var(--mg-border); }
+:is(.mg-base, .mg-forms) table:not([class]):not([class]) td { padding: .7rem 1rem; border-top: 1px solid var(--mg-border); }
+:is(.mg-base, .mg-forms) table:not([class]):not([class]) tbody tr:first-child td { border-top: 0; }
+:is(.mg-base, .mg-forms) table:not([class]):not([class]) tbody tr:hover { background: var(--mg-gray-50); }
+:is(.mg-base, .mg-forms) details:not([class]):not([class]) { border: 1px solid var(--mg-border); border-radius: var(--mg-radius-md); padding: .7rem 1rem; background: var(--mg-surface-card); }
+:is(.mg-base, .mg-forms) details:not([class]):not([class]) > summary { cursor: pointer; font-weight: 600; }
+:is(.mg-base, .mg-forms) dialog:not([class]):not([class]) { border: 0; border-radius: var(--mg-radius-lg); padding: 1.5rem; box-shadow: 0 24px 60px rgba(8,26,44,.35); max-width: min(32rem, 92vw); }
+:is(.mg-base, .mg-forms) dialog:not([class]):not([class])::backdrop { background: rgba(8, 26, 44, .55); backdrop-filter: blur(3px); }
+/* etiqueta que envuelve un campo: texto arriba, campo debajo */
+:is(.mg-base, .mg-forms) label:has(> :is(input:not([type=checkbox], [type=radio]), select, textarea, progress, meter)):not([class]) { display: grid; gap: .35rem; align-content: start; }

@@ -23,12 +23,37 @@ def w(path, content):
 FORM_EXCL = ':not([class^="p-"], [class*=" p-"], [class*="mat-"], [class*="mdc-"], [class*="form-"], [class*="btn"], [class*="ant-"], [class*="Mui"], [class^="v-"], [class*=" v-"], [class^="el-"], [class*=" el-"], .mg-nativo-off)'
 
 
+def form_alta(ft):
+    """Segunda pasada de los controles nativos SIN clase con especificidad normal (0,1,1): vence al «preflight» de Tailwind
+    (button{background:transparent}, input{padding:0}…). Los controles con clase siguen con especificidad cero."""
+    bloques, d, ini, i = [], 0, 0, 0
+    while i < len(ft):
+        if ft.startswith('{X}', i):
+            i += 3
+            continue
+        ch = ft[i]
+        if ch == '{':
+            d += 1
+        elif ch == '}':
+            d -= 1
+            if d == 0:
+                bloques.append(ft[ini:i + 1]); ini = i + 1
+        i += 1
+    out = []
+    for b in bloques:
+        if '{X})' not in b:
+            continue
+        out.append(re.sub(r':where\((:is\(\.mg-base, \.mg-forms\) .*?)\{X\}\)', r'\1:not([class])', b))
+    return '\n/* ---- controles nativos sin clase: especificidad normal (vence al preflight de Tailwind) ---- */' + ''.join(out) + '\n'
+
+
 def src(name):
     with open(os.path.join(ROOT, 'src', name), encoding='utf-8') as f:
         t = f.read()
     if name == 'components.css':
         with open(os.path.join(ROOT, 'src', 'formularios.css'), encoding='utf-8') as f:
-            t += f.read().replace('{X}', FORM_EXCL)
+            ft = f.read()
+        t += ft.replace('{X}', FORM_EXCL) + form_alta(ft)
     return t
 
 
@@ -636,6 +661,12 @@ def build_cdn():
     for n, body in files.items():
         with open(os.path.join(out, n), 'w', encoding='utf-8', newline='\n') as f:
             f.write(banner + body)
+    # variante en capa: @layer gob (declarada la más baja) para convivir con Tailwind v4 / PrimeNG con cssLayer
+    capa = '@layer theme, base, gob, primeng, components, utilities;\n@layer gob {\n' + files['gob.css'].replace(fuente, '') + '\n}\n'
+    with open(os.path.join(out, 'gob.layer.css'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write(banner + fuente + capa)
+    with open(os.path.join(out, 'gob.layer.min.css'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write(banner + fuente + minify(capa))
         with open(os.path.join(out, n.replace('.css', '.min.css')), 'w', encoding='utf-8', newline='\n') as f:
             f.write(banner + minify(body))
 
