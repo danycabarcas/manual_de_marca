@@ -503,6 +503,7 @@ def page_demos(root):
              ('gestion-tramites.html', 'Gestión de trámites', 'CRUD completo: tabla con selección y acciones, modales con validación, detalle y confirmaciones.'),
              ('analitica-territorial.html', 'Analítica territorial', 'Mapa coroplético, ranking, marcadores con efectos y rutas animadas.'),
              ('portal-ciudadano.html', 'Portal ciudadano', 'Página pública: hero, servicios, cifras, mapa con modal, FAQ, noticias y pie.'),
+             ('mesa-ayuda.html', 'Mesa de ayuda', 'Tickets en kanban y lista, alta por pasos, detalle con línea de tiempo y centro de ayuda.'),
              ('acceso-formularios.html', 'Acceso y formularios', 'Login, registro y formulario por pasos con validación accesible.'),
              ('plantilla-base.html', 'Plantilla base', 'Punto de partida mínimo, comentado paso a paso, con todas las dependencias.')]
     ck = ''.join(f'<a class="k" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d in items)
@@ -534,6 +535,8 @@ def build(root, dist, G):
     page_studio(root)
     import site_mapa, site_estandar, site_grafica, site_comp
     site_comp.build(root, page, code)
+    import site_nuevos
+    site_nuevos.build(root, page, code)
     site_mapa.build(root, page, code)
     site_grafica.build(root, page, code)
     site_estandar.build(root, page, code)

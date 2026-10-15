@@ -35,7 +35,9 @@ python tools/build.py  # portal, docs y dist/ (usar Python 3.10 con Pillow y PyM
 |---|---|
 | 0 · Tokens `--gob-*`, modo oscuro (beta), monorepo, CDN `/cdn/v1/` | ✅ base lista · pendiente Style Dictionary y pruebas Playwright |
 | 4 · Mapas | ✅ `<gob-mapa-magdalena>` (30 municipios, DIVIPOLA, subregiones, coropleta, categorías, marcadores, rutas animadas, efectos) + **Estudio de mapas** · ⏳ Santa Marta (comunas/barrios), veredas y PMTiles (faltan datos oficiales) |
-| 3 · Gráficas | ✅ `<gob-grafica>` (11 tipos, ECharts perezoso ≈ 284 KB gzip solo si hay gráfica) + **Estudio de gráficas** · ⏳ `<gob-dashboard>` y filtros globales |
+| 3 · Gráficas | ✅ `<gob-grafica>` (14 tipos, incl. embudo, calendario de actividad y Gantt; ECharts perezoso ≈ 298 KB gzip solo si hay gráfica) + **Estudio de gráficas** · ✅ `<gob-dashboard>` con filtros globales |
+| 4 · Componentes de interfaz | ✅ `gob-tabla`, `gob-modal/alerta/toast`, `gob-kpi`, `gob-pestanas`, `gob-icono`, `gob-linea-tiempo`, `gob-pasos`, `gob-selector`, `gob-fecha`, `gob-archivos`, `gob-avatar`, `gob-arbol`, `gob-kanban`, `gob-menu`, `gob-tooltip`, `gob-paginador` · formularios nativos con la marca (`mg-base` / `mg-forms`) · envoltorios Angular/React/Next en `cdn/v1/wrappers/` |
+| 5 · Demos | ✅ 6 demos con componentes `gob-*` (`demos/`): panel ejecutivo, gestión de trámites, analítica territorial, portal ciudadano, mesa de ayuda, acceso y formularios + plantilla base |
 | Estándar | ✅ `componentes/estandar.html`: un origen de tokens, presets PrimeNG/PrimeVue verificados, guía de decisión, contrato `gob-*` y **licencias de PrimeNG 22 / PrimeVue 5 (PrimeUI License)** |
 | 2 · Tabla y datos · 1 · Fundaciones · 5 · Formularios de negocio | ⏳ |
 

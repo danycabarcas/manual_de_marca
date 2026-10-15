@@ -3,13 +3,16 @@
  * Una sola etiqueta <script type="module"> basta: detecta qué componentes hay en la página (y los que se agreguen después)
  * y descarga SOLO esos. Para importar uno concreto: import '/cdn/v1/components/gob-tabla.js'.
  */
-export const version = '0.3.0';
+export const version = '0.4.0';
 const REG: Record<string, () => Promise<unknown>> = {
   'gob-mapa-magdalena': () => import('./gob-mapa-magdalena.js'),
   'gob-grafica': () => import('./gob-grafica.js'),
   'gob-tabla': () => import('./gob-tabla.js'),
   'gob-alerta': () => import('./gob-mensajes.js'), 'gob-modal': () => import('./gob-mensajes.js'), 'gob-toasts': () => import('./gob-mensajes.js'),
   'gob-kpi': () => import('./gob-kpi.js'), 'gob-pestanas': () => import('./gob-pestanas.js'), 'gob-icono': () => import('./gob-icono.js'), 'gob-dashboard': () => import('./gob-dashboard.js'),
+  'gob-linea-tiempo': () => import('./gob-flujo.js'), 'gob-pasos': () => import('./gob-flujo.js'),
+  'gob-selector': () => import('./gob-campos.js'), 'gob-fecha': () => import('./gob-campos.js'), 'gob-archivos': () => import('./gob-campos.js'),
+  'gob-avatar': () => import('./gob-contenido.js'), 'gob-arbol': () => import('./gob-contenido.js'), 'gob-kanban': () => import('./gob-contenido.js'), 'gob-menu': () => import('./gob-contenido.js'), 'gob-tooltip': () => import('./gob-contenido.js'), 'gob-paginador': () => import('./gob-contenido.js'),
 };
 const pend = new Map<string, Promise<unknown>>();
 /** Carga un componente por su etiqueta y resuelve cuando ya está definido. */

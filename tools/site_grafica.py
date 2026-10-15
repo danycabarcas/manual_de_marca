@@ -2,7 +2,7 @@
 from site_mapa import tabla
 
 PROPS = [
-    ('tipo', 'tipo', "'barras' | 'barras-horizontal' | 'lineas' | 'area' | 'torta' | 'dona' | 'radar' | 'gauge' | 'mapa-calor' | 'treemap' | 'sankey'", "'barras'", 'Tipo de gráfica.'),
+    ('tipo', 'tipo', "'barras' | 'barras-horizontal' | 'lineas' | 'area' | 'torta' | 'dona' | 'radar' | 'gauge' | 'mapa-calor' | 'treemap' | 'sankey' | 'embudo' | 'calendario' | 'gantt'", "'barras'", 'Tipo de gráfica.'),
     ('datos', 'datos (JSON)', 'según el tipo (ver tabla de formatos)', '—', 'Los datos. Siempre por propiedad o atributo JSON.'),
     ('colores', 'colores', "string | string[]", "'institucional'", 'Paleta: <code>institucional, azules, calida, semaforo, neutra</code> o lista de colores HEX.'),
     ('titulo / subtitulo', 'titulo / subtitulo', 'string', '—', 'Encabezado dentro de la gráfica (también es el nombre accesible).'),
@@ -26,6 +26,9 @@ PROPS = [
 ]
 FORMATOS = [
     ('barras, barras-horizontal, lineas, area, radar', '<code>{ categorias: ["Ene","Feb"], series: [{ nombre: "A", valores: [10, 20] }] }</code> o, para una sola serie, <code>[{ nombre, valor }]</code>'),
+    ('embudo', '<code>[{ nombre: "Visitas", valor: 5000 }, …]</code> (de mayor a menor etapa)'),
+    ('calendario', '<code>[{ fecha: "2026-05-01", valor: 12 }, …]</code> (actividad diaria; muestra hasta 12 meses)'),
+    ('gantt', '<code>[{ nombre, inicio: "2026-01-05", fin: "2026-02-15", avance?: 0.4, grupo? }]</code> (fechas ISO; <code>avance</code> de 0 a 1; <code>grupo</code> cambia el color)'),
     ('torta, dona, treemap', '<code>[{ nombre: "Norte", valor: 420 }]</code> (treemap admite <code>hijos: [...]</code>)'),
     ('gauge', '<code>{ valor: 72, nombre: "Avance" }</code> o solo el número'),
     ('mapa-calor', '<code>{ x: ["Lun","Mar"], y: ["8h","10h"], valores: [[xi, yi, valor], …] }</code>'),
@@ -124,4 +127,4 @@ async porMes() {
 
 <section class="pt-section"><h2><span class="n">08.</span> Licencias</h2><p class="pt-lead">Apache ECharts 6 (<b>Apache-2.0</b>, con archivo NOTICE) y ZRender (BSD-3-Clause). Registro completo en <code class="inline">LICENSES.md</code>.</p></section>
 '''
-    page(root, 'componentes/gob-grafica.html', 'gob-grafica', 'Gráficas con la identidad visual: barras, líneas, áreas, torta, dona, radar, indicador, mapa de calor, treemap y sankey.', body, active='componentes.html')
+    page(root, 'componentes/gob-grafica.html', 'gob-grafica', 'Gráficas con la identidad visual: barras, líneas, áreas, torta, dona, radar, indicador, mapa de calor, treemap, sankey, embudo, calendario de actividad y cronograma Gantt.', body, active='componentes.html')

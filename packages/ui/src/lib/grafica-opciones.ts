@@ -9,7 +9,7 @@ export const PALETAS: Record<string, { nombre: string; colores: string[] }> = {
   neutra:        { nombre: 'Neutra', colores: ['#4F5866', '#97A1B0', '#CBD2DC', '#6B7482'] },
 };
 export const TIPOS: Record<string, string> = {
-  barras: 'Barras', 'barras-horizontal': 'Barras horizontales', lineas: 'Líneas', area: 'Áreas', torta: 'Torta', dona: 'Dona', radar: 'Radar', gauge: 'Indicador (gauge)', 'mapa-calor': 'Mapa de calor', treemap: 'Treemap', sankey: 'Sankey',
+  barras: 'Barras', 'barras-horizontal': 'Barras horizontales', lineas: 'Líneas', area: 'Áreas', torta: 'Torta', dona: 'Dona', radar: 'Radar', gauge: 'Indicador (gauge)', 'mapa-calor': 'Mapa de calor', treemap: 'Treemap', sankey: 'Sankey', embudo: 'Embudo', calendario: 'Calendario de actividad', gantt: 'Cronograma (Gantt)',
 };
 
 export interface Cfg {
@@ -44,7 +44,9 @@ const suma = (a: number[]) => a.reduce((x, y) => x + (Number.isFinite(y) ? y : 0
 /** Tabla de datos (para accesibilidad y exportación CSV). */
 export function tablaDe(tipo: string, d: any): { cab: string[]; filas: (string | number)[][] } {
   if (tipo === 'gauge') return { cab: ['Indicador', 'Valor'], filas: [[typeof d === 'object' && d?.nombre ? d.nombre : 'Valor', typeof d === 'object' ? d?.valor : d]] };
-  if (tipo === 'torta' || tipo === 'dona' || tipo === 'treemap') { const a = Array.isArray(d) ? d : []; return { cab: ['Nombre', 'Valor'], filas: a.map((x: any) => [x.nombre, x.valor]) }; }
+  if (tipo === 'gantt') return { cab: ['Tarea', 'Inicio', 'Fin', 'Avance'], filas: ((d as any[]) ?? []).map((t) => [t.nombre, t.inicio, t.fin, t.avance != null ? Math.round(t.avance * 100) + ' %' : '']) };
+  if (tipo === 'calendario') return { cab: ['Fecha', 'Valor'], filas: ((d as any[]) ?? []).map((x) => [x.fecha, x.valor]) };
+  if (tipo === 'torta' || tipo === 'dona' || tipo === 'treemap' || tipo === 'embudo') { const a = Array.isArray(d) ? d : []; return { cab: ['Nombre', 'Valor'], filas: a.map((x: any) => [x.nombre, x.valor]) }; }
   if (tipo === 'mapa-calor') return { cab: ['Fila', 'Columna', 'Valor'], filas: ((d?.valores as number[][]) ?? []).map(([xi, yi, v]) => [d.y?.[yi] ?? yi, d.x?.[xi] ?? xi, v]) };
   if (tipo === 'sankey') return { cab: ['Origen', 'Destino', 'Valor'], filas: ((d?.enlaces as any[]) ?? []).map((e) => [e.origen, e.destino, e.valor]) };
   const n = normalizar(d); return { cab: ['Categoría', ...n.series.map((s) => s.nombre)], filas: n.categorias.map((c, i) => [c, ...n.series.map((s) => s.valores[i] ?? '')]) };
@@ -107,6 +109,28 @@ export function construirOpcion(c: Cfg, d: any): Record<string, any> {
     opt.legend = undefined; opt.tooltip = { ...opt.tooltip, trigger: 'item', valueFormatter: fmt };
     opt.series = [{ type: 'treemap', top: tTop, left: 0, right: 0, bottom: 0, roam: false, nodeClick: false, breadcrumb: { show: false }, data: (Array.isArray(d) ? d : []).map((x: any, i: number) => conv(x, pal[i % pal.length])), label: { show: true, formatter: (p: any) => `${p.name}
 ${fmt(p.value)}`, fontFamily: FUENTE, fontWeight: 600, fontSize: 12 }, upperLabel: { show: false }, itemStyle: { borderColor: fondo, borderWidth: 2, gapWidth: 2, borderRadius: 4 }, levels: [{ itemStyle: { borderWidth: 0, gapWidth: 3 } }, { colorSaturation: [0.55, 0.85], itemStyle: { borderColorSaturation: 0.7, gapWidth: 2, borderWidth: 2 } }] }];
+  } else if (tipo === 'embudo') {
+    const a: { nombre: string; valor: number }[] = Array.isArray(d) ? d : []; const max = Math.max(...a.map((x) => Number(x.valor)), 1);
+    opt.legend = undefined; opt.tooltip = { ...opt.tooltip, trigger: 'item', formatter: (p: any) => `<b>${p.name}</b><br>${fmt(p.data.real)} (${Math.round((p.data.real / (a[0] ? Number(a[0].valor) : 1)) * 100)} % del inicio)` };
+    opt.series = [{ type: 'funnel', top: tTop, left: '8%', right: '8%', bottom: legAbajo ? 44 : 8, minSize: '18%', maxSize: '100%', gap: 3, sort: 'none', data: a.map((x) => ({ name: x.nombre, value: Number(x.valor) / max * 100, real: Number(x.valor) })), itemStyle: { borderColor: fondo, borderWidth: 1 }, label: { show: true, position: 'inside', fontFamily: FUENTE, fontWeight: 700, fontSize: 12, formatter: (p: any) => `${p.name}  ${fmt(p.data.real)}`, color: '#fff' }, emphasis: { label: { fontSize: 13 } } }];
+  } else if (tipo === 'calendario') {
+    const a: { fecha: string; valor: number }[] = Array.isArray(d) ? d : []; const fechas = a.map((x) => x.fecha).sort(); const ini = fechas[0] ?? new Date().toISOString().slice(0, 10); const fin = fechas.at(-1) ?? ini; const t0 = new Date(ini + 'T00:00'), t1 = new Date(fin + 'T00:00');
+    const meses = Math.max(1, (t1.getFullYear() - t0.getFullYear()) * 12 + t1.getMonth() - t0.getMonth() + 1); const rango = meses > 12 ? [ini, fin] : [new Date(t0.getFullYear(), t0.getMonth(), 1).toISOString().slice(0, 10), new Date(t0.getFullYear(), t0.getMonth() + meses, 0).toISOString().slice(0, 10)];
+    const rampa = c.colores.length >= 3 && JSON.stringify(c.colores) !== JSON.stringify(PALETAS.institucional.colores) ? c.colores : ['#EAF4FA', '#9FD7E5', '#00B7D9', '#0071BB', '#0B2239']; const vs = a.map((x) => Number(x.valor));
+    opt.legend = undefined; opt.tooltip = { ...opt.tooltip, trigger: 'item', formatter: (p: any) => `<b>${p.value[0]}</b><br>${fmt(p.value[1])}` };
+    opt.visualMap = { min: 0, max: Math.max(...vs, 1), calculable: false, orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 14, itemHeight: 140, inRange: { color: rampa }, formatter: (v: number) => fmt(v) };
+    opt.calendar = { top: tTop + 24, left: 36, right: 8, bottom: 44, cellSize: ['auto', 15], range: rango, itemStyle: { borderWidth: 3, borderColor: fondo, color: c.oscuro ? '#12395C' : '#F1F4F8' }, splitLine: { show: false }, yearLabel: { show: false }, dayLabel: { firstDay: 1, nameMap: ['D', 'L', 'M', 'M', 'J', 'V', 'S'], color: suave, fontFamily: FUENTE, fontSize: 10 }, monthLabel: { nameMap: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'], color: suave, fontFamily: FUENTE, fontSize: 11 } };
+    opt.series = [{ type: 'heatmap', coordinateSystem: 'calendar', data: a.map((x) => [x.fecha, Number(x.valor)]), itemStyle: { borderRadius: 3 } }];
+  } else if (tipo === 'gantt') {
+    const a: { nombre: string; inicio: string; fin: string; avance?: number; grupo?: string }[] = Array.isArray(d) ? d : []; const pal = c.colores.length ? c.colores : PALETAS.institucional.colores;
+    const grupos = [...new Set(a.map((x) => x.grupo ?? ''))]; const T = (s: string) => new Date(s + 'T00:00').getTime();
+    opt.legend = undefined; opt.grid = { ...grid, left: 8, right: 24, bottom: 8 };
+    opt.xAxis = { type: 'time', position: 'top', splitLine: { show: true }, axisLabel: { fontFamily: FUENTE, color: suave, formatter: (v: number) => { const f = new Date(v); return ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'][f.getMonth()] + ' ' + String(f.getFullYear()).slice(2); } } };
+    opt.yAxis = { type: 'category', inverse: true, data: a.map((x) => x.nombre), axisTick: { show: false }, axisLine: { show: false }, axisLabel: { fontFamily: FUENTE, color: c.oscuro ? '#E3E8EF' : '#252B36', fontWeight: 600 } };
+    opt.tooltip = { ...opt.tooltip, trigger: 'item', formatter: (p: any) => { const t = a[p.dataIndex]; return `<b>${t.nombre}</b><br>${t.inicio} → ${t.fin}${t.avance != null ? `<br>Avance: ${Math.round(t.avance * 100)} %` : ''}`; } };
+    opt.series = [{ type: 'custom', encode: { x: [1, 2], y: 0 }, data: a.map((x, i) => [i, T(x.inicio), T(x.fin) + 86400000, x.avance ?? 0, grupos.indexOf(x.grupo ?? '')]),
+      renderItem: (_p: any, api: any) => { const i = api.value(0); const s = api.coord([api.value(1), i]), e = api.coord([api.value(2), i]); const h = Math.min(22, api.size([0, 1])[1] * 0.55); const w = Math.max(e[0] - s[0], 3); const col = pal[api.value(4) % pal.length]; const av = Math.max(0, Math.min(1, api.value(3)));
+        return { type: 'group', children: [{ type: 'rect', shape: { x: s[0], y: s[1] - h / 2, width: w, height: h, r: 5 }, style: { fill: col, opacity: av > 0 ? 0.28 : 0.9 } }, ...(av > 0 ? [{ type: 'rect', shape: { x: s[0], y: s[1] - h / 2, width: w * av, height: h, r: 5 }, style: { fill: col } }] : [])] }; } }];
   } else if (tipo === 'sankey') {
     const nodos: string[] = (d?.nodos ?? []).map((n: any) => (typeof n === 'string' ? n : n.nombre));
     opt.legend = undefined; opt.tooltip = { ...opt.tooltip, trigger: 'item', valueFormatter: fmt };

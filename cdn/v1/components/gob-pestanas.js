@@ -1,5 +1,5 @@
-import { i as l, A as c, b as a, a as p } from "../chunks/lit-element-B3qO7mJS.js";
-import { i as m } from "../chunks/icono-CX7ui34k.js";
+import { a as l, A as c, b as a, i as p } from "../chunks/lit-element-CZvHeOsZ.js";
+import { i as m } from "../chunks/icono-x0IYmMl5.js";
 const b = { fromAttribute: (s) => {
   try {
     return s ? JSON.parse(s) : [];

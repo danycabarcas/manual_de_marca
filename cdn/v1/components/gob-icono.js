@@ -1,5 +1,5 @@
-import { i as t, b as e, a as i } from "../chunks/lit-element-B3qO7mJS.js";
-import { N as s, i as a } from "../chunks/icono-CX7ui34k.js";
+import { a as t, b as e, i } from "../chunks/lit-element-CZvHeOsZ.js";
+import { N as s, i as a } from "../chunks/icono-x0IYmMl5.js";
 class o extends t {
   static {
     this.properties = { nombre: { type: String }, tam: { type: Number }, etiqueta: { type: String } };

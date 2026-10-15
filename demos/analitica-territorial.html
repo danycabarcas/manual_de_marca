@@ -16,9 +16,9 @@
   .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
   .page-head p { margin: .25rem 0 0; color: var(--mg-text-muted); }
   .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
-  .app__side { position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
+  .app__side { background: #081A2C; position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
   .app__brand { padding: .25rem .5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; } .app__brand img { height: 40px; display: block; }
-  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; opacity: .65; }
+  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; color: #C9D4E3; }
   .app__main { display: flex; flex-direction: column; min-width: 0; }
   .app__top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 1rem; padding: .7rem 1.5rem; background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); }
   .app__top .sp { flex: 1; } .app__search { max-width: 22rem; width: 100%; } .ico-btn.app__burger { display: none; }
@@ -35,7 +35,7 @@
     <aside class="app__side mg-sidebar" data-demo="Menú lateral" data-nota="Sidebar azul-noche (clase mg-sidebar) con íconos gob-icono">
       <div class="app__brand"><img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena"></div>
       <span class="mg-sidebar__label">Demos</span>
-      <a href="panel-ejecutivo.html"><gob-icono nombre="panel" tam="18"></gob-icono> Panel ejecutivo</a><a href="gestion-tramites.html"><gob-icono nombre="tareas" tam="18"></gob-icono> Gestión de trámites</a><a href="analitica-territorial.html" class="is-active" aria-current="page"><gob-icono nombre="mapa" tam="18"></gob-icono> Analítica territorial</a><a href="portal-ciudadano.html"><gob-icono nombre="globo" tam="18"></gob-icono> Portal ciudadano</a><a href="acceso-formularios.html"><gob-icono nombre="candado" tam="18"></gob-icono> Acceso y formularios</a>
+      <a href="panel-ejecutivo.html"><gob-icono nombre="panel" tam="18"></gob-icono> Panel ejecutivo</a><a href="gestion-tramites.html"><gob-icono nombre="tareas" tam="18"></gob-icono> Gestión de trámites</a><a href="analitica-territorial.html" class="is-active" aria-current="page"><gob-icono nombre="mapa" tam="18"></gob-icono> Analítica territorial</a><a href="portal-ciudadano.html"><gob-icono nombre="globo" tam="18"></gob-icono> Portal ciudadano</a><a href="mesa-ayuda.html"><gob-icono nombre="soporte" tam="18"></gob-icono> Mesa de ayuda</a><a href="acceso-formularios.html"><gob-icono nombre="candado" tam="18"></gob-icono> Acceso y formularios</a>
       <span class="mg-sidebar__label">Manual</span>
       <a href="../index.html"><gob-icono nombre="flecha-izquierda" tam="18"></gob-icono> Volver al manual</a>
       <a href="../estudio/index.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono> Estudio</a>

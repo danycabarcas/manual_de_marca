@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Línea de tiempo y pasos · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="gob-linea-tiempo y gob-pasos: historial de trámites y asistentes por pasos, accesibles y con ejemplos para copiar.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792038172">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Línea de tiempo y pasos</h1><p>gob-linea-tiempo y gob-pasos: historial de trámites y asistentes por pasos, accesibles y con ejemplos para copiar.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<p class="pt-lead">Historiales y asistentes: <b>gob-linea-tiempo</b> para mostrar qué pasó con un trámite o ticket y <b>gob-pasos</b> para formularios en varios pasos.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Instalación (todo lo que hay que cargar)</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div><div class="code"><div class="code__bar"><span>Instalación</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ② Use la etiqueta de cualquier ejemplo de esta página --&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ② Use la etiqueta de cualquier ejemplo de esta página --&gt;</code></pre></div>
+<p class="mg-help">Funcionan igual en HTML, Angular (<code>CUSTOM_ELEMENTS_SCHEMA</code>), React y Next.js (solo cliente). Sin dependencias: <code>gob.js</code> descarga cada componente solo si está en la página.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplos (cada uno con su código completo)</h2><div class="demo ej" id="ej-lt1"><div class="ej__head"><h3>1 · Línea de tiempo vertical</h3><p>Historial de un trámite o ticket. Cada evento tiene fecha, tipo (color e ícono automáticos), descripción y autor.</p></div><div class="demo__view demo__view--white"><gob-linea-tiempo eventos='[
+  { "fecha": "12 oct · 08:15", "titulo": "Radicado", "descripcion": "Ingresó por el portal ciudadano.", "tipo": "exito", "autor": "Sistema" },
+  { "fecha": "12 oct · 09:40", "titulo": "Asignado a Secretaría General", "tipo": "info", "autor": "Mesa de ayuda" },
+  { "fecha": "14 oct · 11:05", "titulo": "Requiere documentos", "descripcion": "Falta la copia de la cédula.", "tipo": "aviso", "icono": "archivo" },
+  { "fecha": "16 oct", "titulo": "Vence el plazo de respuesta", "tipo": "peligro" }
+]'></gob-linea-tiempo></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>lt1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-linea-tiempo eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;12 oct · 08:15&quot;, &quot;titulo&quot;: &quot;Radicado&quot;, &quot;descripcion&quot;: &quot;Ingresó por el portal ciudadano.&quot;, &quot;tipo&quot;: &quot;exito&quot;, &quot;autor&quot;: &quot;Sistema&quot; },
+  { &quot;fecha&quot;: &quot;12 oct · 09:40&quot;, &quot;titulo&quot;: &quot;Asignado a Secretaría General&quot;, &quot;tipo&quot;: &quot;info&quot;, &quot;autor&quot;: &quot;Mesa de ayuda&quot; },
+  { &quot;fecha&quot;: &quot;14 oct · 11:05&quot;, &quot;titulo&quot;: &quot;Requiere documentos&quot;, &quot;descripcion&quot;: &quot;Falta la copia de la cédula.&quot;, &quot;tipo&quot;: &quot;aviso&quot;, &quot;icono&quot;: &quot;archivo&quot; },
+  { &quot;fecha&quot;: &quot;16 oct&quot;, &quot;titulo&quot;: &quot;Vence el plazo de respuesta&quot;, &quot;tipo&quot;: &quot;peligro&quot; }
+]&#x27;&gt;&lt;/gob-linea-tiempo&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-linea-tiempo eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;12 oct · 08:15&quot;, &quot;titulo&quot;: &quot;Radicado&quot;, &quot;descripcion&quot;: &quot;Ingresó por el portal ciudadano.&quot;, &quot;tipo&quot;: &quot;exito&quot;, &quot;autor&quot;: &quot;Sistema&quot; },
+  { &quot;fecha&quot;: &quot;12 oct · 09:40&quot;, &quot;titulo&quot;: &quot;Asignado a Secretaría General&quot;, &quot;tipo&quot;: &quot;info&quot;, &quot;autor&quot;: &quot;Mesa de ayuda&quot; },
+  { &quot;fecha&quot;: &quot;14 oct · 11:05&quot;, &quot;titulo&quot;: &quot;Requiere documentos&quot;, &quot;descripcion&quot;: &quot;Falta la copia de la cédula.&quot;, &quot;tipo&quot;: &quot;aviso&quot;, &quot;icono&quot;: &quot;archivo&quot; },
+  { &quot;fecha&quot;: &quot;16 oct&quot;, &quot;titulo&quot;: &quot;Vence el plazo de respuesta&quot;, &quot;tipo&quot;: &quot;peligro&quot; }
+]&#x27;&gt;&lt;/gob-linea-tiempo&gt;</code></pre></div></details></div><div class="demo ej" id="ej-lt2"><div class="ej__head"><h3>2 · Horizontal y alternada</h3><p>Con <code>orientacion="horizontal"</code> para pocos hitos, o <code>alternar</code> para páginas de historia (lados alternos en pantallas anchas).</p></div><div class="demo__view demo__view--white"><gob-linea-tiempo orientacion="horizontal" eventos='[
+  { "fecha": "Ene", "titulo": "Diagnóstico", "tipo": "primario" }, { "fecha": "Mar", "titulo": "Diseño", "tipo": "primario" },
+  { "fecha": "Jun", "titulo": "Desarrollo", "tipo": "info" }, { "fecha": "Sep", "titulo": "Lanzamiento", "tipo": "exito" } ]'></gob-linea-tiempo>
+<gob-linea-tiempo alternar eventos='[
+  { "fecha": "2024", "titulo": "Nace el portal", "descripcion": "Primera versión." }, { "fecha": "2025", "titulo": "Sistema de diseño" }, { "fecha": "2026", "titulo": "Componentes gob-*", "tipo": "exito" } ]'></gob-linea-tiempo></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>lt2.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-linea-tiempo orientacion=&quot;horizontal&quot; eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;Ene&quot;, &quot;titulo&quot;: &quot;Diagnóstico&quot;, &quot;tipo&quot;: &quot;primario&quot; }, { &quot;fecha&quot;: &quot;Mar&quot;, &quot;titulo&quot;: &quot;Diseño&quot;, &quot;tipo&quot;: &quot;primario&quot; },
+  { &quot;fecha&quot;: &quot;Jun&quot;, &quot;titulo&quot;: &quot;Desarrollo&quot;, &quot;tipo&quot;: &quot;info&quot; }, { &quot;fecha&quot;: &quot;Sep&quot;, &quot;titulo&quot;: &quot;Lanzamiento&quot;, &quot;tipo&quot;: &quot;exito&quot; } ]&#x27;&gt;&lt;/gob-linea-tiempo&gt;
+&lt;gob-linea-tiempo alternar eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;2024&quot;, &quot;titulo&quot;: &quot;Nace el portal&quot;, &quot;descripcion&quot;: &quot;Primera versión.&quot; }, { &quot;fecha&quot;: &quot;2025&quot;, &quot;titulo&quot;: &quot;Sistema de diseño&quot; }, { &quot;fecha&quot;: &quot;2026&quot;, &quot;titulo&quot;: &quot;Componentes gob-*&quot;, &quot;tipo&quot;: &quot;exito&quot; } ]&#x27;&gt;&lt;/gob-linea-tiempo&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-linea-tiempo orientacion=&quot;horizontal&quot; eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;Ene&quot;, &quot;titulo&quot;: &quot;Diagnóstico&quot;, &quot;tipo&quot;: &quot;primario&quot; }, { &quot;fecha&quot;: &quot;Mar&quot;, &quot;titulo&quot;: &quot;Diseño&quot;, &quot;tipo&quot;: &quot;primario&quot; },
+  { &quot;fecha&quot;: &quot;Jun&quot;, &quot;titulo&quot;: &quot;Desarrollo&quot;, &quot;tipo&quot;: &quot;info&quot; }, { &quot;fecha&quot;: &quot;Sep&quot;, &quot;titulo&quot;: &quot;Lanzamiento&quot;, &quot;tipo&quot;: &quot;exito&quot; } ]&#x27;&gt;&lt;/gob-linea-tiempo&gt;
+&lt;gob-linea-tiempo alternar eventos=&#x27;[
+  { &quot;fecha&quot;: &quot;2024&quot;, &quot;titulo&quot;: &quot;Nace el portal&quot;, &quot;descripcion&quot;: &quot;Primera versión.&quot; }, { &quot;fecha&quot;: &quot;2025&quot;, &quot;titulo&quot;: &quot;Sistema de diseño&quot; }, { &quot;fecha&quot;: &quot;2026&quot;, &quot;titulo&quot;: &quot;Componentes gob-*&quot;, &quot;tipo&quot;: &quot;exito&quot; } ]&#x27;&gt;&lt;/gob-linea-tiempo&gt;</code></pre></div></details></div><div class="demo ej" id="ej-ps1"><div class="ej__head"><h3>3 · Pasos (asistente)</h3><p>Indicador de progreso que muestra el contenido del paso actual (<code>slot="paso0"</code>, <code>paso1</code>…). Usted controla los botones con <code>siguiente()</code> / <code>anterior()</code> y valida antes de avanzar; <code>error</code> marca un paso.</p></div><div class="demo__view demo__view--white"><gob-pasos id="ps1" pasos='[{"titulo":"Sus datos","descripcion":"Identificación"},{"titulo":"Su solicitud"},{"titulo":"Confirmar"}]' clicable>
+  <div slot="paso0"><label>Nombre <input id="ps1-nombre" placeholder="Escriba su nombre"></label></div>
+  <div slot="paso1"><label>Asunto <input placeholder="¿Qué necesita?"></label></div>
+  <div slot="paso2"><gob-alerta tipo="exito" titulo="Todo listo">Revise y confirme.</gob-alerta></div>
+</gob-pasos>
+<div style="display:flex;gap:.5rem;margin-top:1rem"><button type="button" id="ps1-atras">Atrás</button><button id="ps1-sig">Siguiente</button></div>
+<script type="module">
+  const p = document.getElementById('ps1');
+  document.getElementById('ps1-atras').onclick = () => p.anterior();
+  document.getElementById('ps1-sig').onclick = () => {
+    if (p.actual === 0 && !document.getElementById('ps1-nombre').value.trim()) { p.error = 0; return gob.toast({ tipo: 'aviso', titulo: 'Escriba su nombre' }); }
+    p.error = -1; p.actual === p.total - 1 ? gob.toast({ tipo: 'exito', titulo: 'Enviado' }) : p.siguiente();
+  };
+  p.addEventListener('gob-paso-cambio', (e) => console.log(e.detail));   // { actual, id, primero, ultimo }
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>ps1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-pasos id=&quot;ps1&quot; pasos=&#x27;[{&quot;titulo&quot;:&quot;Sus datos&quot;,&quot;descripcion&quot;:&quot;Identificación&quot;},{&quot;titulo&quot;:&quot;Su solicitud&quot;},{&quot;titulo&quot;:&quot;Confirmar&quot;}]&#x27; clicable&gt;
+  &lt;div slot=&quot;paso0&quot;&gt;&lt;label&gt;Nombre &lt;input id=&quot;ps1-nombre&quot; placeholder=&quot;Escriba su nombre&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;div slot=&quot;paso1&quot;&gt;&lt;label&gt;Asunto &lt;input placeholder=&quot;¿Qué necesita?&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;div slot=&quot;paso2&quot;&gt;&lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Todo listo&quot;&gt;Revise y confirme.&lt;/gob-alerta&gt;&lt;/div&gt;
+&lt;/gob-pasos&gt;
+&lt;div style=&quot;display:flex;gap:.5rem;margin-top:1rem&quot;&gt;&lt;button type=&quot;button&quot; id=&quot;ps1-atras&quot;&gt;Atrás&lt;/button&gt;&lt;button id=&quot;ps1-sig&quot;&gt;Siguiente&lt;/button&gt;&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  const p = document.getElementById(&#x27;ps1&#x27;);
+  document.getElementById(&#x27;ps1-atras&#x27;).onclick = () =&gt; p.anterior();
+  document.getElementById(&#x27;ps1-sig&#x27;).onclick = () =&gt; {
+    if (p.actual === 0 &amp;&amp; !document.getElementById(&#x27;ps1-nombre&#x27;).value.trim()) { p.error = 0; return gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Escriba su nombre&#x27; }); }
+    p.error = -1; p.actual === p.total - 1 ? gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Enviado&#x27; }) : p.siguiente();
+  };
+  p.addEventListener(&#x27;gob-paso-cambio&#x27;, (e) =&gt; console.log(e.detail));   // { actual, id, primero, ultimo }
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-pasos id=&quot;ps1&quot; pasos=&#x27;[{&quot;titulo&quot;:&quot;Sus datos&quot;,&quot;descripcion&quot;:&quot;Identificación&quot;},{&quot;titulo&quot;:&quot;Su solicitud&quot;},{&quot;titulo&quot;:&quot;Confirmar&quot;}]&#x27; clicable&gt;
+  &lt;div slot=&quot;paso0&quot;&gt;&lt;label&gt;Nombre &lt;input id=&quot;ps1-nombre&quot; placeholder=&quot;Escriba su nombre&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;div slot=&quot;paso1&quot;&gt;&lt;label&gt;Asunto &lt;input placeholder=&quot;¿Qué necesita?&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;div slot=&quot;paso2&quot;&gt;&lt;gob-alerta tipo=&quot;exito&quot; titulo=&quot;Todo listo&quot;&gt;Revise y confirme.&lt;/gob-alerta&gt;&lt;/div&gt;
+&lt;/gob-pasos&gt;
+&lt;div style=&quot;display:flex;gap:.5rem;margin-top:1rem&quot;&gt;&lt;button type=&quot;button&quot; id=&quot;ps1-atras&quot;&gt;Atrás&lt;/button&gt;&lt;button id=&quot;ps1-sig&quot;&gt;Siguiente&lt;/button&gt;&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  const p = document.getElementById(&#x27;ps1&#x27;);
+  document.getElementById(&#x27;ps1-atras&#x27;).onclick = () =&gt; p.anterior();
+  document.getElementById(&#x27;ps1-sig&#x27;).onclick = () =&gt; {
+    if (p.actual === 0 &amp;&amp; !document.getElementById(&#x27;ps1-nombre&#x27;).value.trim()) { p.error = 0; return gob.toast({ tipo: &#x27;aviso&#x27;, titulo: &#x27;Escriba su nombre&#x27; }); }
+    p.error = -1; p.actual === p.total - 1 ? gob.toast({ tipo: &#x27;exito&#x27;, titulo: &#x27;Enviado&#x27; }) : p.siguiente();
+  };
+  p.addEventListener(&#x27;gob-paso-cambio&#x27;, (e) =&gt; console.log(e.detail));   // { actual, id, primero, ultimo }
+&lt;/script&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Referencia</h2><h3 style="margin-top:1.5rem">gob-linea-tiempo</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Propiedad / evento</th><th>Descripción</th></tr></thead><tbody><tr><td><code>eventos (JSON)</code></td><td><code>[{ fecha, titulo, descripcion, autor, icono, tipo }]</code> con <code>tipo</code>: primario, info, exito, aviso, peligro, neutro.</td></tr><tr><td><code>orientacion</code></td><td>vertical (defecto) | horizontal.</td></tr><tr><td><code>alternar</code></td><td>Lados alternos (≥ 640 px).</td></tr><tr><td><code>invertir</code></td><td>Más reciente primero.</td></tr><tr><td><code>slot="e0", "e1"…</code></td><td>Contenido extra dentro de cada evento.</td></tr></tbody></table></div><h3 style="margin-top:1.5rem">gob-pasos</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Propiedad / evento</th><th>Descripción</th></tr></thead><tbody><tr><td><code>pasos (JSON)</code></td><td><code>[{ id?, titulo, descripcion?, icono? }]</code>. El slot de cada paso es <code>id</code> o <code>paso&lt;n&gt;</code>.</td></tr><tr><td><code>actual</code></td><td>Índice del paso (desde 0).</td></tr><tr><td><code>vertical, clicable</code></td><td>Disposición vertical; clic en pasos ya alcanzados.</td></tr><tr><td><code>error</code></td><td>Índice del paso con error (−1 = ninguno).</td></tr><tr><td><code>siguiente() · anterior() · ir(n) · total</code></td><td>Control programático.</td></tr><tr><td><code>gob-paso-cambio</code></td><td><code>{ actual, id, primero, ultimo }</code></td></tr></tbody></table></div></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792038172"></script>
+
+</body>
+</html>

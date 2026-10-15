@@ -8,4 +8,5 @@ fs.mkdirSync(path.join(cdn, 'fonts'), { recursive: true });
 const fuente = path.join(root, 'node_modules/@fontsource-variable/montserrat/files');
 for (const s of ['latin', 'latin-ext']) fs.copyFileSync(path.join(fuente, `montserrat-${s}-wght-normal.woff2`), path.join(cdn, 'fonts', `montserrat-${s}.woff2`));
 fs.copyFileSync(path.join(root, 'node_modules/@fontsource-variable/montserrat/LICENSE'), path.join(cdn, 'fonts', 'LICENSE-OFL.txt'));
+fs.cpSync(path.resolve(here, '../wrappers'), path.join(cdn, 'wrappers'), { recursive: true });
 console.log('datos y fuentes → cdn/v1');

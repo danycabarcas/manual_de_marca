@@ -552,5 +552,7 @@ def hub_html():
         ('iconos.html', 'Íconos estándar', '104 íconos en SVG, sprite y componente.', '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>'),
         ('estandar.html', 'Estándar y licencias', 'Guía de decisión, contrato y licencias de PrimeNG.', '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
     ]
+    from site_nuevos import HUB
+    cards = cards[:5] + HUB + cards[5:]
     ck = ''.join(f'<a class="k" href="componentes/{h}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{i}</svg></div><h3>{t}</h3><p>{d}</p></a>' for h, t, d, i in cards)
     return f'<section class="pt-section"><h2><span class="n">00.</span> Web Components <code style="font-size:.6em">gob-*</code></h2><p class="pt-lead">Funcionan igual en HTML plano, Angular, React, Vue y Next.js. Cada página trae ejemplos en vivo con su código completo para copiar y pegar.</p><div class="cards-k">{ck}</div></section>'

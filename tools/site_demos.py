@@ -1,9 +1,10 @@
 """Genera demos/*.html: plantillas completas con los componentes avanzados (sin AdminLTE ni Bootstrap).
 Cada demo es autosuficiente: dependencias en <head>, secciones marcadas con data-demo (copiables) y banner «Cómo usar este demo»."""
 import os
+from site_demos_ayuda import AYUDA
 
 NAV = [('panel-ejecutivo.html', 'Panel ejecutivo', 'panel'), ('gestion-tramites.html', 'Gestión de trámites', 'tareas'), ('analitica-territorial.html', 'Analítica territorial', 'mapa'),
-       ('portal-ciudadano.html', 'Portal ciudadano', 'globo'), ('acceso-formularios.html', 'Acceso y formularios', 'candado')]
+       ('portal-ciudadano.html', 'Portal ciudadano', 'globo'), ('mesa-ayuda.html', 'Mesa de ayuda', 'soporte'), ('acceso-formularios.html', 'Acceso y formularios', 'candado')]
 
 HEAD = '''<!doctype html>
 <html lang="es">
@@ -30,9 +31,9 @@ CSS_BASE = '''  /* ② ESTRUCTURA DE LA PÁGINA (propia de este demo: adáptela 
 
 CSS_ADMIN = CSS_BASE + '''
   .app { display: grid; grid-template-columns: 264px minmax(0, 1fr); min-height: 100vh; }
-  .app__side { position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
+  .app__side { background: #081A2C; position: sticky; top: 0; height: 100vh; overflow: auto; display: flex; flex-direction: column; gap: .25rem; padding: 1rem .75rem; }
   .app__brand { padding: .25rem .5rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: .5rem; } .app__brand img { height: 40px; display: block; }
-  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; opacity: .65; }
+  .app__user { margin-top: auto; display: flex; align-items: center; gap: .65rem; padding: .75rem; border-radius: 12px; background: rgba(255,255,255,.06); color: #fff; font-size: .82rem; } .app__user small { display: block; color: #C9D4E3; }
   .app__main { display: flex; flex-direction: column; min-width: 0; }
   .app__top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 1rem; padding: .7rem 1.5rem; background: var(--mg-glass-bg); -webkit-backdrop-filter: var(--mg-glass-blur); backdrop-filter: var(--mg-glass-blur); border-bottom: 1px solid var(--mg-border); }
   .app__top .sp { flex: 1; } .app__search { max-width: 22rem; width: 100%; } .ico-btn.app__burger { display: none; }
@@ -584,6 +585,7 @@ def build(root):
         'panel-ejecutivo.html': admin('panel-ejecutivo.html', 'Panel ejecutivo', ['Inicio', 'Panel ejecutivo'], PANEL, banner(['Cada pestaña del panel es un <code>slot</code> de <code>gob-pestanas</code>; el tablero completo se describe con un JSON (ver <a href="../componentes/gob-dashboard.html">gob-dashboard</a>).'], 'gob-dashboard, gob-kpi, gob-grafica, gob-mapa-magdalena, gob-tabla, gob-pestanas, gob-alerta, gob-icono')),
         'gestion-tramites.html': admin('gestion-tramites.html', 'Gestión de trámites', ['Inicio', 'Gestión', 'Trámites'], GESTION, banner(['El patrón CRUD completo (alta, edición, detalle, eliminación con confirmación) está en el <code>&lt;script&gt;</code> de abajo: cópielo y cambie los <code>fetch</code> por llamadas a su API.'], 'gob-tabla, gob-modal, gob-pestanas, gob-kpi, gob.toast(), gob.confirmar(), mg-timeline, mg-input'), ''),
         'analitica-territorial.html': admin('analitica-territorial.html', 'Analítica territorial', ['Inicio', 'Territorio'], TERR, banner(['La pestaña «Presencia institucional» muestra marcadores con efectos (radar, ping, pulso), rutas animadas con partículas y zoom a un municipio desde la tabla.'], 'gob-dashboard, gob-mapa-magdalena, gob-tabla, gob-pestanas, gob-kpi, gob-grafica'), '  @media (max-width: 1100px) { section[data-demo^="Mapa de sedes"] { grid-template-columns: 1fr !important; } }'),
+        'mesa-ayuda.html': admin('mesa-ayuda.html', 'Mesa de ayuda', ['Inicio', 'Soporte', 'Mesa de ayuda'], AYUDA, banner(['Combina los componentes nuevos: <b>kanban</b>, <b>pasos</b>, <b>selector con búsqueda</b>, <b>calendario</b>, <b>subir archivos</b>, <b>línea de tiempo</b> y <b>avatar</b>. Cada interacción actualiza indicadores, tablero y lista.'], 'gob-kanban, gob-tabla, gob-pasos, gob-selector, gob-fecha, gob-archivos, gob-linea-tiempo, gob-avatar, gob-modal, gob-kpi, gob-pestanas')),
         'portal-ciudadano.html': publica('Portal ciudadano', PORTAL, banner(['Esta es una página <b>pública</b> (sin menú lateral): encabezado, hero, tarjetas de servicios, KPI, mapa con modal, acordeón, noticias y pie institucional. Cada bloque se copia por separado.'], 'mg-hero, mg-card, mg-acordeon, mg-footer, gob-kpi, gob-mapa-magdalena, gob-modal, gob-icono')),
         'acceso-formularios.html': publica('Acceso y formularios', ACCESO, banner(['Incluye <b>validación accesible</b> (mensaje junto al campo con <code>role="alert"</code> y <code>aria-invalid</code>), stepper de 3 pasos y confirmación con <code>gob.confirmar()</code>.'], 'gob-pestanas, gob-modal, gob-alerta, gob.toast(), gob.confirmar(), mg-stepper, mg-input, mg-field'), '\n  body { background: var(--mg-bg-app); }'),
         'plantilla-base.html': PLANTILLA.replace('%BANNER%', banner(['Esta es la <b>plantilla mínima</b>: copie la página completa y empiece. Está comentada paso a paso (① a ⑦).'], 'mg-hero, gob-alerta, gob-kpi, gob-tabla, gob-grafica, gob-mapa-magdalena, gob.toast()')),

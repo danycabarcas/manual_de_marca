@@ -420,7 +420,7 @@
 .mg-nav-link.is-active { background: var(--mg-primary-50); color: var(--mg-primary-700); }
 .mg-tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--mg-border); } .mg-tab { padding: .65rem 1rem; font: 600 .875rem var(--mg-font-sans); color: var(--mg-text-muted); border: 0; background: none; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; } .mg-tab:hover { color: var(--mg-gray-900); } .mg-tab.is-active { color: var(--mg-primary); border-bottom-color: var(--mg-primary); }
 .mg-sidebar { background: var(--mg-sidebar-bg); color: var(--mg-sidebar-text); min-height: 100%; padding: .75rem; }
-.mg-sidebar__label { display: block; padding: .9rem .75rem .4rem; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.38); }
+.mg-sidebar__label { display: block; padding: .9rem .75rem .4rem; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.62); }
 .mg-sidebar a { display: flex; gap: .7rem; align-items: center; color: var(--mg-sidebar-text); text-decoration: none; padding: .6rem .75rem; border-radius: var(--mg-radius-md); font-weight: 500; font-size: .875rem; position: relative; }
 .mg-sidebar a:hover { background: var(--mg-sidebar-hover); color: var(--mg-sidebar-text-active); }
 .mg-sidebar a.is-active { background: var(--mg-sidebar-active); color: var(--mg-sidebar-text-active); font-weight: 600; } .mg-sidebar a.is-active::before { content: ""; position: absolute; left: -.75rem; top: .45rem; bottom: .45rem; width: 3px; border-radius: 0 3px 3px 0; background: var(--mg-sidebar-accent); }

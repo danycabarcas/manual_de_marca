@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avatar, árbol, kanban, menú y paginador · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Avatar, árbol, kanban con arrastrar y soltar, menú contextual, tooltip y paginador accesibles, con ejemplos.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792038172">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Avatar, árbol, kanban, menú y paginador</h1><p>Avatar, árbol, kanban con arrastrar y soltar, menú contextual, tooltip y paginador accesibles, con ejemplos.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<p class="pt-lead">Piezas de interfaz para paneles: <b>gob-avatar</b>, <b>gob-arbol</b>, <b>gob-kanban</b>, <b>gob-menu</b> (y contextual), <b>gob-tooltip</b> y <b>gob-paginador</b>.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Instalación (todo lo que hay que cargar)</h2><div class="baseurl"><b>URL base:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button></div><div class="code"><div class="code__bar"><span>Instalación</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ② Use la etiqueta de cualquier ejemplo de esta página --&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ② Use la etiqueta de cualquier ejemplo de esta página --&gt;</code></pre></div>
+<p class="mg-help">Funcionan igual en HTML, Angular (<code>CUSTOM_ELEMENTS_SCHEMA</code>), React y Next.js (solo cliente). Sin dependencias: <code>gob.js</code> descarga cada componente solo si está en la página.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Ejemplos (cada uno con su código completo)</h2><div class="demo ej" id="ej-av1"><div class="ej__head"><h3>1 · Avatar</h3><p>Foto o iniciales con color estable según el nombre; <code>estado</code>: en-linea, ocupado, ausente.</p></div><div class="demo__view demo__view--white"><div style="display:flex;gap:.6rem;align-items:center">
+  <gob-avatar nombre="Ana María Pérez" estado="en-linea"></gob-avatar><gob-avatar nombre="Luis Mora" estado="ocupado" tam="48"></gob-avatar><gob-avatar nombre="Carlos Díaz" estado="ausente" tam="32"></gob-avatar><gob-avatar nombre="Sofía"></gob-avatar>
+</div></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>av1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:flex;gap:.6rem;align-items:center&quot;&gt;
+  &lt;gob-avatar nombre=&quot;Ana María Pérez&quot; estado=&quot;en-linea&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Luis Mora&quot; estado=&quot;ocupado&quot; tam=&quot;48&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Carlos Díaz&quot; estado=&quot;ausente&quot; tam=&quot;32&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Sofía&quot;&gt;&lt;/gob-avatar&gt;
+&lt;/div&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:flex;gap:.6rem;align-items:center&quot;&gt;
+  &lt;gob-avatar nombre=&quot;Ana María Pérez&quot; estado=&quot;en-linea&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Luis Mora&quot; estado=&quot;ocupado&quot; tam=&quot;48&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Carlos Díaz&quot; estado=&quot;ausente&quot; tam=&quot;32&quot;&gt;&lt;/gob-avatar&gt;&lt;gob-avatar nombre=&quot;Sofía&quot;&gt;&lt;/gob-avatar&gt;
+&lt;/div&gt;</code></pre></div></details></div><div class="demo ej" id="ej-ab1"><div class="ej__head"><h3>2 · Árbol</h3><p>Organigramas, carpetas, territorios. Teclado: ↑↓ mover, →← abrir/cerrar, Enter seleccionar. <code>abierto</code> expande todo.</p></div><div class="demo__view demo__view--white"><gob-arbol id="ab1" abierto etiqueta="Organigrama" nodos='[
+ {"id":"g","etiqueta":"Gobernación","icono":"gobierno","hijos":[
+   {"id":"sg","etiqueta":"Secretaría General","hijos":[{"id":"tic","etiqueta":"Oficina TIC","icono":"soporte"},{"id":"arch","etiqueta":"Archivo"}]},
+   {"id":"hac","etiqueta":"Hacienda","hijos":[{"id":"tes","etiqueta":"Tesorería"}]},{"id":"sal","etiqueta":"Salud"}]}]'></gob-arbol>
+<script type="module">document.getElementById('ab1').addEventListener('gob-arbol-seleccion', (e) => console.log(e.detail.id));</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>ab1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-arbol id=&quot;ab1&quot; abierto etiqueta=&quot;Organigrama&quot; nodos=&#x27;[
+ {&quot;id&quot;:&quot;g&quot;,&quot;etiqueta&quot;:&quot;Gobernación&quot;,&quot;icono&quot;:&quot;gobierno&quot;,&quot;hijos&quot;:[
+   {&quot;id&quot;:&quot;sg&quot;,&quot;etiqueta&quot;:&quot;Secretaría General&quot;,&quot;hijos&quot;:[{&quot;id&quot;:&quot;tic&quot;,&quot;etiqueta&quot;:&quot;Oficina TIC&quot;,&quot;icono&quot;:&quot;soporte&quot;},{&quot;id&quot;:&quot;arch&quot;,&quot;etiqueta&quot;:&quot;Archivo&quot;}]},
+   {&quot;id&quot;:&quot;hac&quot;,&quot;etiqueta&quot;:&quot;Hacienda&quot;,&quot;hijos&quot;:[{&quot;id&quot;:&quot;tes&quot;,&quot;etiqueta&quot;:&quot;Tesorería&quot;}]},{&quot;id&quot;:&quot;sal&quot;,&quot;etiqueta&quot;:&quot;Salud&quot;}]}]&#x27;&gt;&lt;/gob-arbol&gt;
+&lt;script type=&quot;module&quot;&gt;document.getElementById(&#x27;ab1&#x27;).addEventListener(&#x27;gob-arbol-seleccion&#x27;, (e) =&gt; console.log(e.detail.id));&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-arbol id=&quot;ab1&quot; abierto etiqueta=&quot;Organigrama&quot; nodos=&#x27;[
+ {&quot;id&quot;:&quot;g&quot;,&quot;etiqueta&quot;:&quot;Gobernación&quot;,&quot;icono&quot;:&quot;gobierno&quot;,&quot;hijos&quot;:[
+   {&quot;id&quot;:&quot;sg&quot;,&quot;etiqueta&quot;:&quot;Secretaría General&quot;,&quot;hijos&quot;:[{&quot;id&quot;:&quot;tic&quot;,&quot;etiqueta&quot;:&quot;Oficina TIC&quot;,&quot;icono&quot;:&quot;soporte&quot;},{&quot;id&quot;:&quot;arch&quot;,&quot;etiqueta&quot;:&quot;Archivo&quot;}]},
+   {&quot;id&quot;:&quot;hac&quot;,&quot;etiqueta&quot;:&quot;Hacienda&quot;,&quot;hijos&quot;:[{&quot;id&quot;:&quot;tes&quot;,&quot;etiqueta&quot;:&quot;Tesorería&quot;}]},{&quot;id&quot;:&quot;sal&quot;,&quot;etiqueta&quot;:&quot;Salud&quot;}]}]&#x27;&gt;&lt;/gob-arbol&gt;
+&lt;script type=&quot;module&quot;&gt;document.getElementById(&#x27;ab1&#x27;).addEventListener(&#x27;gob-arbol-seleccion&#x27;, (e) =&gt; console.log(e.detail.id));&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-kb1"><div class="ej__head"><h3>3 · Kanban</h3><p>Arrastre tarjetas entre columnas, o use los botones ◀ ▶ (también <kbd>Alt</kbd>+flechas con la tarjeta enfocada). Evento <code>gob-kanban-mover</code> para guardar en su API.</p></div><div class="demo__view demo__view--white"><gob-kanban id="kb1"></gob-kanban>
+<script type="module">
+  const k = document.getElementById('kb1');
+  k.columnas = [{ id: 'n', titulo: 'Nuevos', color: '#00B7D9' }, { id: 'p', titulo: 'En proceso', color: '#FEC800', limite: 3 }, { id: 'r', titulo: 'Resueltos', color: '#69B75E' }];
+  k.tarjetas = [
+    { id: '1', columna: 'n', titulo: 'No puedo ingresar al portal', prioridad: 'alta', etiquetas: ['Acceso'], asignado: 'Ana Pérez', fecha: '14 oct' },
+    { id: '2', columna: 'n', titulo: 'Solicitud de usuario nuevo', prioridad: 'baja', etiquetas: ['Cuenta'] },
+    { id: '3', columna: 'p', titulo: 'Impresora de Hacienda', descripcion: 'Atasco constante de papel', prioridad: 'media', asignado: 'Luis Mora' },
+    { id: '4', columna: 'r', titulo: 'Correo institucional', prioridad: 'baja', asignado: 'Sofía Ruiz' },
+  ];
+  k.addEventListener('gob-kanban-mover', (e) => console.log(e.detail.id, e.detail.desde, '→', e.detail.hasta));
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>kb1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-kanban id=&quot;kb1&quot;&gt;&lt;/gob-kanban&gt;
+&lt;script type=&quot;module&quot;&gt;
+  const k = document.getElementById(&#x27;kb1&#x27;);
+  k.columnas = [{ id: &#x27;n&#x27;, titulo: &#x27;Nuevos&#x27;, color: &#x27;#00B7D9&#x27; }, { id: &#x27;p&#x27;, titulo: &#x27;En proceso&#x27;, color: &#x27;#FEC800&#x27;, limite: 3 }, { id: &#x27;r&#x27;, titulo: &#x27;Resueltos&#x27;, color: &#x27;#69B75E&#x27; }];
+  k.tarjetas = [
+    { id: &#x27;1&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;No puedo ingresar al portal&#x27;, prioridad: &#x27;alta&#x27;, etiquetas: [&#x27;Acceso&#x27;], asignado: &#x27;Ana Pérez&#x27;, fecha: &#x27;14 oct&#x27; },
+    { id: &#x27;2&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;Solicitud de usuario nuevo&#x27;, prioridad: &#x27;baja&#x27;, etiquetas: [&#x27;Cuenta&#x27;] },
+    { id: &#x27;3&#x27;, columna: &#x27;p&#x27;, titulo: &#x27;Impresora de Hacienda&#x27;, descripcion: &#x27;Atasco constante de papel&#x27;, prioridad: &#x27;media&#x27;, asignado: &#x27;Luis Mora&#x27; },
+    { id: &#x27;4&#x27;, columna: &#x27;r&#x27;, titulo: &#x27;Correo institucional&#x27;, prioridad: &#x27;baja&#x27;, asignado: &#x27;Sofía Ruiz&#x27; },
+  ];
+  k.addEventListener(&#x27;gob-kanban-mover&#x27;, (e) =&gt; console.log(e.detail.id, e.detail.desde, &#x27;→&#x27;, e.detail.hasta));
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-kanban id=&quot;kb1&quot;&gt;&lt;/gob-kanban&gt;
+&lt;script type=&quot;module&quot;&gt;
+  const k = document.getElementById(&#x27;kb1&#x27;);
+  k.columnas = [{ id: &#x27;n&#x27;, titulo: &#x27;Nuevos&#x27;, color: &#x27;#00B7D9&#x27; }, { id: &#x27;p&#x27;, titulo: &#x27;En proceso&#x27;, color: &#x27;#FEC800&#x27;, limite: 3 }, { id: &#x27;r&#x27;, titulo: &#x27;Resueltos&#x27;, color: &#x27;#69B75E&#x27; }];
+  k.tarjetas = [
+    { id: &#x27;1&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;No puedo ingresar al portal&#x27;, prioridad: &#x27;alta&#x27;, etiquetas: [&#x27;Acceso&#x27;], asignado: &#x27;Ana Pérez&#x27;, fecha: &#x27;14 oct&#x27; },
+    { id: &#x27;2&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;Solicitud de usuario nuevo&#x27;, prioridad: &#x27;baja&#x27;, etiquetas: [&#x27;Cuenta&#x27;] },
+    { id: &#x27;3&#x27;, columna: &#x27;p&#x27;, titulo: &#x27;Impresora de Hacienda&#x27;, descripcion: &#x27;Atasco constante de papel&#x27;, prioridad: &#x27;media&#x27;, asignado: &#x27;Luis Mora&#x27; },
+    { id: &#x27;4&#x27;, columna: &#x27;r&#x27;, titulo: &#x27;Correo institucional&#x27;, prioridad: &#x27;baja&#x27;, asignado: &#x27;Sofía Ruiz&#x27; },
+  ];
+  k.addEventListener(&#x27;gob-kanban-mover&#x27;, (e) =&gt; console.log(e.detail.id, e.detail.desde, &#x27;→&#x27;, e.detail.hasta));
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-mn1"><div class="ej__head"><h3>4 · Menú, menú contextual y tooltip</h3><p>El menú se ancla al elemento que envuelve (flechas, Enter, Esc); con <code>contextual</code> aparece con clic derecho. El tooltip aparece con hover o foco.</p></div><div class="demo__view demo__view--white"><div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap">
+  <gob-menu id="mn1" items='[{"id":"ver","etiqueta":"Ver detalle","icono":"ojo"},{"id":"ed","etiqueta":"Editar","icono":"editar"},{"id":"dup","etiqueta":"Duplicar","icono":"copiar"},{"separador":true},{"id":"el","etiqueta":"Eliminar","icono":"eliminar","tipo":"peligro"}]'><button type="button">Acciones ▾</button></gob-menu>
+  <gob-menu id="mn2" contextual items='[{"id":"copiar","etiqueta":"Copiar enlace","icono":"enlace"},{"id":"abrir","etiqueta":"Abrir en pestaña nueva","icono":"enlace-externo"}]'><div style="padding:1rem 1.5rem;border:1px dashed #9AA4B2;border-radius:10px">Clic derecho aquí</div></gob-menu>
+  <gob-tooltip texto="Descarga el reporte en PDF" posicion="abajo"><button type="button">Descargar</button></gob-tooltip>
+</div>
+<script type="module">
+  document.querySelectorAll('gob-menu').forEach((m) => m.addEventListener('gob-menu-accion', (e) => gob.toast({ tipo: 'info', titulo: 'Acción: ' + e.detail.id })));
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>mn1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap&quot;&gt;
+  &lt;gob-menu id=&quot;mn1&quot; items=&#x27;[{&quot;id&quot;:&quot;ver&quot;,&quot;etiqueta&quot;:&quot;Ver detalle&quot;,&quot;icono&quot;:&quot;ojo&quot;},{&quot;id&quot;:&quot;ed&quot;,&quot;etiqueta&quot;:&quot;Editar&quot;,&quot;icono&quot;:&quot;editar&quot;},{&quot;id&quot;:&quot;dup&quot;,&quot;etiqueta&quot;:&quot;Duplicar&quot;,&quot;icono&quot;:&quot;copiar&quot;},{&quot;separador&quot;:true},{&quot;id&quot;:&quot;el&quot;,&quot;etiqueta&quot;:&quot;Eliminar&quot;,&quot;icono&quot;:&quot;eliminar&quot;,&quot;tipo&quot;:&quot;peligro&quot;}]&#x27;&gt;&lt;button type=&quot;button&quot;&gt;Acciones ▾&lt;/button&gt;&lt;/gob-menu&gt;
+  &lt;gob-menu id=&quot;mn2&quot; contextual items=&#x27;[{&quot;id&quot;:&quot;copiar&quot;,&quot;etiqueta&quot;:&quot;Copiar enlace&quot;,&quot;icono&quot;:&quot;enlace&quot;},{&quot;id&quot;:&quot;abrir&quot;,&quot;etiqueta&quot;:&quot;Abrir en pestaña nueva&quot;,&quot;icono&quot;:&quot;enlace-externo&quot;}]&#x27;&gt;&lt;div style=&quot;padding:1rem 1.5rem;border:1px dashed #9AA4B2;border-radius:10px&quot;&gt;Clic derecho aquí&lt;/div&gt;&lt;/gob-menu&gt;
+  &lt;gob-tooltip texto=&quot;Descarga el reporte en PDF&quot; posicion=&quot;abajo&quot;&gt;&lt;button type=&quot;button&quot;&gt;Descargar&lt;/button&gt;&lt;/gob-tooltip&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelectorAll(&#x27;gob-menu&#x27;).forEach((m) =&gt; m.addEventListener(&#x27;gob-menu-accion&#x27;, (e) =&gt; gob.toast({ tipo: &#x27;info&#x27;, titulo: &#x27;Acción: &#x27; + e.detail.id })));
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;div style=&quot;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap&quot;&gt;
+  &lt;gob-menu id=&quot;mn1&quot; items=&#x27;[{&quot;id&quot;:&quot;ver&quot;,&quot;etiqueta&quot;:&quot;Ver detalle&quot;,&quot;icono&quot;:&quot;ojo&quot;},{&quot;id&quot;:&quot;ed&quot;,&quot;etiqueta&quot;:&quot;Editar&quot;,&quot;icono&quot;:&quot;editar&quot;},{&quot;id&quot;:&quot;dup&quot;,&quot;etiqueta&quot;:&quot;Duplicar&quot;,&quot;icono&quot;:&quot;copiar&quot;},{&quot;separador&quot;:true},{&quot;id&quot;:&quot;el&quot;,&quot;etiqueta&quot;:&quot;Eliminar&quot;,&quot;icono&quot;:&quot;eliminar&quot;,&quot;tipo&quot;:&quot;peligro&quot;}]&#x27;&gt;&lt;button type=&quot;button&quot;&gt;Acciones ▾&lt;/button&gt;&lt;/gob-menu&gt;
+  &lt;gob-menu id=&quot;mn2&quot; contextual items=&#x27;[{&quot;id&quot;:&quot;copiar&quot;,&quot;etiqueta&quot;:&quot;Copiar enlace&quot;,&quot;icono&quot;:&quot;enlace&quot;},{&quot;id&quot;:&quot;abrir&quot;,&quot;etiqueta&quot;:&quot;Abrir en pestaña nueva&quot;,&quot;icono&quot;:&quot;enlace-externo&quot;}]&#x27;&gt;&lt;div style=&quot;padding:1rem 1.5rem;border:1px dashed #9AA4B2;border-radius:10px&quot;&gt;Clic derecho aquí&lt;/div&gt;&lt;/gob-menu&gt;
+  &lt;gob-tooltip texto=&quot;Descarga el reporte en PDF&quot; posicion=&quot;abajo&quot;&gt;&lt;button type=&quot;button&quot;&gt;Descargar&lt;/button&gt;&lt;/gob-tooltip&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.querySelectorAll(&#x27;gob-menu&#x27;).forEach((m) =&gt; m.addEventListener(&#x27;gob-menu-accion&#x27;, (e) =&gt; gob.toast({ tipo: &#x27;info&#x27;, titulo: &#x27;Acción: &#x27; + e.detail.id })));
+&lt;/script&gt;</code></pre></div></details></div><div class="demo ej" id="ej-pg1"><div class="ej__head"><h3>5 · Paginador</h3><p>Paginación suelta para listas, tarjetas o respuestas de API. No pagina datos: emite <code>gob-pagina-cambio</code> con <code>desde/hasta</code>.</p></div><div class="demo__view demo__view--white"><gob-paginador id="pg1" total="900" tamano="10"></gob-paginador>
+<script type="module">
+  document.getElementById('pg1').addEventListener('gob-pagina-cambio', (e) => console.log(e.detail));   // { pagina, tamano, desde, hasta }
+</script></div><details><summary>Ver código completo (copiar y pegar)</summary><div class="code"><div class="code__bar"><span>pg1.html</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code data-tpl="&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;__BASE__/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;__BASE__/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-paginador id=&quot;pg1&quot; total=&quot;900&quot; tamano=&quot;10&quot;&gt;&lt;/gob-paginador&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;pg1&#x27;).addEventListener(&#x27;gob-pagina-cambio&#x27;, (e) =&gt; console.log(e.detail));   // { pagina, tamano, desde, hasta }
+&lt;/script&gt;">&lt;!-- ① Dependencias: TODO lo que hay que cargar (una vez por página) --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://TU-HOST/manual_de_marca/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;gob-paginador id=&quot;pg1&quot; total=&quot;900&quot; tamano=&quot;10&quot;&gt;&lt;/gob-paginador&gt;
+&lt;script type=&quot;module&quot;&gt;
+  document.getElementById(&#x27;pg1&#x27;).addEventListener(&#x27;gob-pagina-cambio&#x27;, (e) =&gt; console.log(e.detail));   // { pagina, tamano, desde, hasta }
+&lt;/script&gt;</code></pre></div></details></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Referencia</h2><h3 style="margin-top:1.5rem">Componentes</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Propiedad / evento</th><th>Descripción</th></tr></thead><tbody><tr><td><code>gob-avatar</code></td><td><code>nombre, src, tam, estado</code></td></tr><tr><td><code>gob-arbol</code></td><td><code>nodos [{ id, etiqueta, icono?, hijos?, deshabilitado? }], seleccionado, abierto, etiqueta</code>; evento <code>gob-arbol-seleccion</code> <code>{ id, nodo }</code>; método <code>expandir(id)</code>.</td></tr><tr><td><code>gob-kanban</code></td><td><code>columnas [{ id, titulo, color?, limite? }], tarjetas [{ id, columna, titulo, descripcion?, etiquetas?, asignado?, prioridad?, fecha? }]</code>; eventos <code>gob-kanban-mover</code> <code>{ id, desde, hasta, tarjetas }</code> y <code>gob-kanban-clic</code>; método <code>mover(id, columna, antesDe?)</code>.</td></tr><tr><td><code>gob-menu</code></td><td><code>items [{ id, etiqueta, icono?, tipo?, separador?, deshabilitado? }], contextual, alinear</code>; evento <code>gob-menu-accion</code> <code>{ id }</code>.</td></tr><tr><td><code>gob-tooltip</code></td><td><code>texto, posicion (arriba | abajo | izquierda | derecha)</code></td></tr><tr><td><code>gob-paginador</code></td><td><code>total, pagina, tamano, opciones, resumen</code>; evento <code>gob-pagina-cambio</code>.</td></tr></tbody></table></div></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792038172"></script>
+
+</body>
+</html>

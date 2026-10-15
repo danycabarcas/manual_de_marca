@@ -1,5 +1,5 @@
-import { i as m, A as d, b as s, a as g } from "../chunks/lit-element-B3qO7mJS.js";
-import { i as u } from "../chunks/icono-CX7ui34k.js";
+import { a as m, A as d, b as s, i as g } from "../chunks/lit-element-CZvHeOsZ.js";
+import { i as u } from "../chunks/icono-x0IYmMl5.js";
 import { f as l } from "../chunks/mapa-recursos-DvOcbc8o.js";
 const b = { primario: "#0071BB", cian: "#007A91", verde: "#3F7A37", amarillo: "#8A6D00", rojo: "#B20028", violeta: "#5618BA", gris: "#4F5866", navy: "#0B2239" }, v = { fromAttribute: (h) => {
   try {

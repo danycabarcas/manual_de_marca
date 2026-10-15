@@ -1,5 +1,5 @@
-import { i as w, A as p, w as d, b as u, a as S } from "../chunks/lit-element-B3qO7mJS.js";
-import { o as B } from "../chunks/unsafe-html-BA-v3Y9E.js";
+import { a as w, A as p, w as d, b as u, i as S } from "../chunks/lit-element-CZvHeOsZ.js";
+import { o as B } from "../chunks/unsafe-html-BbuUcIkg.js";
 import { R as v, I as k, c as C, a as z, f as y, t as M } from "../chunks/mapa-recursos-DvOcbc8o.js";
 const $ = /* @__PURE__ */ new Map(), E = new URL("../datos/", import.meta.url).href, f = (g) => String(g ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]), j = { fromAttribute: (g) => g ? g.split(/[\s,]+/).filter(Boolean) : [], toAttribute: (g) => g.join(",") }, _ = { fromAttribute: (g) => {
   try {

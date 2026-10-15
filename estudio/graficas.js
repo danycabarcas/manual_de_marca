@@ -20,6 +20,7 @@ const S = {
   dPartes: [{ nombre: 'Santa Marta', valor: 560 }, { nombre: 'Norte', valor: 420 }, { nombre: 'Río', valor: 310 }, { nombre: 'Centro', valor: 240 }, { nombre: 'Sur', valor: 180 }],
   dGauge: { valor: 72, nombre: 'Avance del plan' },
   dHeat: { x: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie'], y: ['8h', '10h', '12h', '14h', '16h'], m: [[42, 3, 24, 45, 6], [56, 24, 52, 20, 48], [10, 45, 20, 55, 30], [24, 6, 48, 30, 12], [38, 27, 16, 5, 54]] },
+  dJson: { calendario: JSON.stringify(Array.from({ length: 120 }, (_, i) => ({ fecha: new Date(Date.UTC(2026, 4, 1 + i)).toISOString().slice(0, 10), valor: Math.round(Math.abs(Math.sin(i * 1.7)) * 20) }))), gantt: JSON.stringify([{ nombre: 'Diagnóstico', inicio: '2026-01-05', fin: '2026-02-15', avance: 1, grupo: 'a' }, { nombre: 'Diseño', inicio: '2026-02-10', fin: '2026-04-10', avance: 0.8, grupo: 'a' }, { nombre: 'Desarrollo', inicio: '2026-04-01', fin: '2026-08-30', avance: 0.4, grupo: 'b' }, { nombre: 'Pruebas', inicio: '2026-08-01', fin: '2026-09-30', avance: 0, grupo: 'c' }], null, 1) },
   dSankey: [{ origen: 'Nación', destino: 'Salud', valor: 40 }, { origen: 'Nación', destino: 'Educación', valor: 30 }, { origen: 'Regalías', destino: 'Vías', valor: 35 }, { origen: 'Regalías', destino: 'Educación', valor: 15 }],
 };
 
@@ -39,7 +40,9 @@ const S = {
 function datos() {
   const t = S.tipo;
   if (CART.includes(t) || t === 'radar') return { categorias: [...S.dCart.categorias], series: S.dCart.series.map((s) => ({ nombre: s.nombre, valores: s.valores.map(Number) })) };
-  if (t === 'torta' || t === 'dona' || t === 'treemap') return S.dPartes.map((p) => ({ nombre: p.nombre, valor: Number(p.valor) }));
+  if (t === 'torta' || t === 'dona' || t === 'treemap' || t === 'embudo') return S.dPartes.map((p) => ({ nombre: p.nombre, valor: Number(p.valor) }));
+  if (t === 'calendario') return JSON.parse(S.dJson.calendario);
+  if (t === 'gantt') return JSON.parse(S.dJson.gantt);
   if (t === 'gauge') return { valor: Number(S.dGauge.valor), nombre: S.dGauge.nombre };
   if (t === 'mapa-calor') { const v = []; S.dHeat.m.forEach((fila, j) => fila.forEach((n, i) => v.push([i, j, Number(n)]))); return { x: [...S.dHeat.x], y: [...S.dHeat.y], valores: v }; }
   if (t === 'sankey') { const n = []; S.dSankey.forEach((e) => { for (const k of [e.origen, e.destino]) if (k && !n.includes(k)) n.push(k); }); return { nodos: n, enlaces: S.dSankey.map((e) => ({ origen: e.origen, destino: e.destino, valor: Number(e.valor) })) }; }
@@ -101,7 +104,7 @@ function shell() {
         <button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="barras">Barras</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="tendencia">Tendencia</button>
         <button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="dona">Dona</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="gauge">Indicador</button>
         <button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="radar">Radar</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="calor">Mapa de calor</button>
-        <button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="treemap">Presupuesto</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="sankey">Flujo</button></div></div>
+        <button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="treemap">Presupuesto</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="sankey">Flujo</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="embudo">Embudo</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="calendario">Calendario</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-preset="gantt">Gantt</button></div></div>
       <div class="st__vista" id="vistaBox" data-tema="claro"><gob-grafica id="vista"></gob-grafica></div>
       <p class="mg-help" id="evt" aria-live="polite" style="margin:.4rem 0 1rem;font-family:var(--mg-font-mono)">Haga clic en una barra, sector o punto para ver el evento <code class="inline">gob-grafica-click</code>…</p>
       <div class="mg-row" style="margin-bottom:1rem"><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="png">⬇ PNG</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="csvdl">⬇ CSV de los datos</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="print">🖨 Imprimir</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="link">🔗 Copiar enlace</button><button class="mg-btn mg-btn--ghost mg-btn--sm" data-acc="reset">Restablecer</button></div>
@@ -119,11 +122,12 @@ function editorDatos() {
       ${d.categorias.map((c, i) => `<tr><td><input class="mg-input" aria-label="Categoría ${i + 1}" data-cn="${i}" value="${esc(c)}"></td>${d.series.map((s, j) => `<td>${num2(`data-sv="${j},${i}" aria-label="${esc(s.nombre)}, ${esc(c)}"`, s.valores[i] ?? '')}</td>`).join('')}<td><button class="mg-btn mg-btn--ghost mg-btn--sm" data-delrow="${i}" aria-label="Quitar fila ${i + 1}">✕</button></td></tr>`).join('')}</tbody></table></div>
       <div class="mg-row"><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="addrow">+ Fila</button><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="addser">+ Serie</button>${d.series.length > 1 ? '<button class="mg-btn mg-btn--ghost mg-btn--sm" data-acc="delser">− Última serie</button>' : ''}</div>`;
   }
-  if (t === 'torta' || t === 'dona' || t === 'treemap') {
+  if (t === 'torta' || t === 'dona' || t === 'treemap' || t === 'embudo') {
     return `<div class="st-tabla"><table class="mg-table"><thead><tr><th>Nombre</th><th>Valor</th><th></th></tr></thead><tbody>${S.dPartes.map((p, i) => `<tr><td><input class="mg-input" aria-label="Nombre ${i + 1}" data-pn="${i}" value="${esc(p.nombre)}"></td><td>${num2(`data-pv="${i}" aria-label="Valor de ${esc(p.nombre)}"`, p.valor)}</td><td><button class="mg-btn mg-btn--ghost mg-btn--sm" data-delpart="${i}" aria-label="Quitar ${esc(p.nombre)}">✕</button></td></tr>`).join('')}</tbody></table></div><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="addpart">+ Fila</button>`;
   }
   if (t === 'gauge') return `<div class="st-grid">${num('min', 'Mínimo')}${num('max', 'Máximo')}</div><label class="st-f"><span>Valor</span>${num2('data-gv="valor"', S.dGauge.valor)}</label><label class="st-f"><span>Etiqueta</span><input class="mg-input" data-gv="nombre" value="${esc(S.dGauge.nombre)}"></label>`;
   if (t === 'mapa-calor') { const h = S.dHeat; return `<label class="st-f"><span>Columnas (separadas por coma)</span><input class="mg-input" data-hx="x" value="${esc(h.x.join(', '))}"></label><label class="st-f"><span>Filas (separadas por coma)</span><input class="mg-input" data-hx="y" value="${esc(h.y.join(', '))}"></label><div class="st-tabla"><table class="mg-table"><thead><tr><th></th>${h.x.map((x) => `<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>${h.y.map((y, j) => `<tr><td><b>${esc(y)}</b></td>${h.x.map((_, i) => `<td>${num2(`data-hm="${j},${i}" aria-label="${esc(y)}, ${esc(h.x[i])}"`, h.m[j]?.[i] ?? 0)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }
+  if (t === 'calendario' || t === 'gantt') return `<label class="st-f"><span>Datos (JSON) — ${t === 'gantt' ? '[{ nombre, inicio, fin, avance?, grupo? }]' : '[{ fecha: "2026-05-01", valor: 12 }]'}</span><textarea class="mg-textarea mg-input" rows="8" data-json="${t}" spellcheck="false" style="font-family:ui-monospace,monospace;font-size:.75rem">${esc(S.dJson[t])}</textarea></label>`;
   if (t === 'sankey') return `<div class="st-tabla"><table class="mg-table"><thead><tr><th>Origen</th><th>Destino</th><th>Valor</th><th></th></tr></thead><tbody>${S.dSankey.map((e, i) => `<tr><td><input class="mg-input" aria-label="Origen ${i + 1}" data-so="${i}" value="${esc(e.origen)}"></td><td><input class="mg-input" aria-label="Destino ${i + 1}" data-sd="${i}" value="${esc(e.destino)}"></td><td>${num2(`data-sv2="${i}" aria-label="Valor ${i + 1}"`, e.valor)}</td><td><button class="mg-btn mg-btn--ghost mg-btn--sm" data-delsk="${i}" aria-label="Quitar enlace ${i + 1}">✕</button></td></tr>`).join('')}</tbody></table></div><button class="mg-btn mg-btn--secondary mg-btn--sm" data-acc="addsk">+ Enlace</button>`;
   return '';
 }
@@ -185,6 +189,7 @@ function onCampo(e) {
   if (d.pn !== undefined) { S.dPartes[+d.pn].nombre = t.value; sync(); return; }
   if (d.pv !== undefined) { S.dPartes[+d.pv].valor = Number(t.value); sync(); return; }
   if (d.gv) { S.dGauge[d.gv] = d.gv === 'valor' ? Number(t.value) : t.value; sync(); return; }
+  if (d.json) { try { JSON.parse(t.value); S.dJson[d.json] = t.value; t.style.borderColor = ''; sync(); } catch { t.style.borderColor = '#F7003C'; } return; }
   if (d.hx) { S.dHeat[d.hx] = t.value.split(',').map((x) => x.trim()).filter(Boolean); S.dHeat.m = S.dHeat.y.map((_, j) => S.dHeat.x.map((__, i) => S.dHeat.m[j]?.[i] ?? 0)); if (cambio) panel(); sync(); return; }
   if (d.hm !== undefined) { const [j, i] = d.hm.split(',').map(Number); S.dHeat.m[j][i] = Number(t.value); sync(); return; }
   if (d.so !== undefined) { S.dSankey[+d.so].origen = t.value; sync(); return; }
@@ -242,5 +247,8 @@ function preset(n) {
   if (n === 'calor') { S.tipo = 'mapa-calor'; S.titulo = 'Atenciones por hora'; S.etiquetas = true; }
   if (n === 'treemap') { S.tipo = 'treemap'; S.titulo = 'Presupuesto 2026'; S.formato = 'compacto'; S.dPartes = [{ nombre: 'Infraestructura', valor: 520000000 }, { nombre: 'Salud', valor: 310000000 }, { nombre: 'Educación', valor: 280000000 }, { nombre: 'Agua', valor: 150000000 }]; }
   if (n === 'sankey') { S.tipo = 'sankey'; S.titulo = 'Flujo de recursos'; }
+  if (n === 'embudo') { S.tipo = 'embudo'; S.titulo = 'Embudo de trámites'; S.dPartes = [{ nombre: 'Visitas', valor: 5000 }, { nombre: 'Solicitudes', valor: 2400 }, { nombre: 'Radicados', valor: 1800 }, { nombre: 'Resueltos', valor: 1500 }]; }
+  if (n === 'calendario') { S.tipo = 'calendario'; S.titulo = 'Radicados por día'; }
+  if (n === 'gantt') { S.tipo = 'gantt'; S.titulo = 'Cronograma del proyecto'; }
   panel(); sync();
 }

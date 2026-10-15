@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angular, React, Next.js y Vue · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Cómo usar los componentes gob-* en Angular, React, Next.js y Vue: envoltorios, tipos y ejemplos completos.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792038172">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Angular, React, Next.js y Vue</h1><p>Cómo usar los componentes gob-* en Angular, React, Next.js y Vue: envoltorios, tipos y ejemplos completos.</p></div></section>
+<main class="pt-main">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<p class="pt-lead">Los componentes <code class="inline">gob-*</code> son estándares web: funcionan igual en <b>Angular, React, Next.js, Vue, Svelte</b> o HTML plano. Para que la experiencia sea cómoda se ofrecen <b>envoltorios listos</b> (cópielos a su proyecto) con carga automática de los estilos y los eventos tipados.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Descargas</h2><div class="mg-row"><a class="mg-btn" href="../cdn/v1/wrappers/gob-angular.ts" download>⬇ gob-angular.ts</a><a class="mg-btn" href="../cdn/v1/wrappers/react.jsx" download>⬇ react.jsx</a><a class="mg-btn mg-btn--secondary" href="../cdn/v1/wrappers/gob-jsx.d.ts" download>⬇ gob-jsx.d.ts</a><a class="mg-btn mg-btn--secondary" href="../dist/downloads/gob-cdn-v1.zip" download>⬇ Paquete autónomo (sin internet)</a></div>
+<p class="mg-help">Contenido: <code>cargarGob(base)</code> (inyecta <code>gob.css</code> y <code>gob.js</code> una sola vez), componentes React con <code>onEvento</code>, tipos de los eventos para Angular (<code>GobEventos</code>) y tipos JSX.</p></section>
+<section class="pt-section"><h2><span class="n">02.</span> Angular</h2><div class="code"><div class="code__bar"><span>Angular (standalone)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// src/main.ts — carga gob.css y gob.js una sola vez (alternativa: 2 etiquetas en index.html)
+import { cargarGob } from &#x27;./app/gob/gob-angular&#x27;;   // copie cdn/v1/wrappers/gob-angular.ts
+cargarGob(&#x27;https://manualdemarca.magdalena.gov.co/cdn/v1&#x27;);
+
+// src/app/mesa/mesa.component.ts
+import { Component } from &#x27;@angular/core&#x27;;
+import { GOB_SCHEMAS, GobEventos } from &#x27;../gob/gob-angular&#x27;;
+
+@Component({
+  selector: &#x27;app-mesa&#x27;, standalone: true, schemas: GOB_SCHEMAS,        // permite las etiquetas &lt;gob-*&gt;
+  template: `
+    &lt;gob-kpi etiqueta=&quot;Abiertos&quot; [valor]=&quot;abiertos&quot; icono=&quot;soporte&quot;&gt;&lt;/gob-kpi&gt;
+    &lt;gob-tabla [config]=&quot;cfg&quot; (gob-tabla-accion)=&quot;alAccion($any($event).detail)&quot;&gt;&lt;/gob-tabla&gt;
+    &lt;gob-kanban [columnas]=&quot;columnas&quot; [tarjetas]=&quot;tarjetas&quot; (gob-kanban-mover)=&quot;alMover($any($event).detail)&quot;&gt;&lt;/gob-kanban&gt;`,
+})
+export class MesaComponent {
+  abiertos = 7;
+  cfg = { llave: &#x27;id&#x27;, datos: [], columnas: [{ campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }] };
+  columnas = [{ id: &#x27;n&#x27;, titulo: &#x27;Nuevos&#x27; }, { id: &#x27;r&#x27;, titulo: &#x27;Resueltos&#x27; }];
+  tarjetas = [{ id: &#x27;1&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;No ingresa al sistema&#x27; }];
+  alAccion(d: GobEventos[&#x27;gob-tabla-accion&#x27;]) { console.log(d.accion, d.fila); }
+  alMover(d: GobEventos[&#x27;gob-kanban-mover&#x27;]) { /* guardar en su API */ }
+}</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> React</h2><div class="code"><div class="code__bar"><span>React / Next.js</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// 1) copie cdn/v1/wrappers/react.jsx → src/gob/index.jsx   (y gob-jsx.d.ts si usa TypeScript)
+// 2) src/main.jsx — una vez
+import { cargarGob } from &#x27;./gob&#x27;;
+cargarGob(&#x27;https://manualdemarca.magdalena.gov.co/cdn/v1&#x27;);
+
+// 3) cualquier componente (Next.js App Router: añada &#x27;use client&#x27; arriba)
+import { useState } from &#x27;react&#x27;;
+import { GobKpi, GobTabla, GobKanban, GobSelector, GobFecha } from &#x27;./gob&#x27;;
+
+export default function Mesa() {
+  const [tarjetas, setTarjetas] = useState([{ id: &#x27;1&#x27;, columna: &#x27;n&#x27;, titulo: &#x27;No ingresa al sistema&#x27; }]);
+  return (&lt;&gt;
+    &lt;GobKpi etiqueta=&quot;Abiertos&quot; valor={7} icono=&quot;soporte&quot; /&gt;
+    &lt;GobTabla config={{ llave: &#x27;id&#x27;, datos: [], columnas: [{ campo: &#x27;asunto&#x27;, titulo: &#x27;Asunto&#x27; }] }} onAccion={(d) =&gt; console.log(d.accion, d.fila)} /&gt;
+    &lt;GobKanban columnas={[{ id: &#x27;n&#x27;, titulo: &#x27;Nuevos&#x27; }, { id: &#x27;r&#x27;, titulo: &#x27;Resueltos&#x27; }]} tarjetas={tarjetas} onMover={(d) =&gt; setTarjetas(d.tarjetas)} /&gt;
+    &lt;GobSelector opciones={[&#x27;Santa Marta&#x27;, &#x27;Ciénaga&#x27;]} multiple onCambio={(d) =&gt; console.log(d.valor)} /&gt;
+  &lt;/&gt;);
+}</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">04.</span> Next.js</h2><div class="code"><div class="code__bar"><span>Next.js (layout)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// app/layout.tsx (Next.js) — si prefiere no usar cargarGob, ponga las etiquetas en &lt;head&gt;:
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;html lang=&quot;es&quot;&gt;
+      &lt;head&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css&quot; /&gt;
+        &lt;script type=&quot;module&quot; src=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.js&quot; /&gt;
+      &lt;/head&gt;
+      &lt;body className=&quot;mg-base&quot;&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+// Los componentes gob-* se registran en el navegador: úselos en archivos con &#x27;use client&#x27;
+// o impórtelos con next/dynamic({ ssr: false }) si necesita renderizarlos solo en cliente.</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">05.</span> Vue 3 / Nuxt</h2><div class="code"><div class="code__bar"><span>Vue 3 / Nuxt</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;!-- main.js — Vue 3: marque las etiquetas gob-* como elementos personalizados --&gt;
+// app.config.compilerOptions.isCustomElement = (tag) =&gt; tag.startsWith(&#x27;gob-&#x27;);
+// vite.config.js → vue({ template: { compilerOptions: { isCustomElement: (t) =&gt; t.startsWith(&#x27;gob-&#x27;) } } })
+
+&lt;!-- index.html --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css&quot;&gt;&lt;script type=&quot;module&quot; src=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Componente.vue --&gt;
+&lt;template&gt;
+  &lt;gob-tabla :config.prop=&quot;cfg&quot; @gob-tabla-accion=&quot;alAccion($event.detail)&quot; /&gt;
+  &lt;gob-kanban :columnas.prop=&quot;columnas&quot; :tarjetas.prop=&quot;tarjetas&quot; @gob-kanban-mover=&quot;tarjetas = $event.detail.tarjetas&quot; /&gt;
+&lt;/template&gt;</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">06.</span> Reglas que valen en todos</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Objetos y arreglos</b> (<code>config</code>, <code>columnas</code>, <code>datos</code>, <code>opciones</code>…) se pasan como <b>propiedades</b>, no como atributos: <code>[config]</code> en Angular, props del envoltorio en React, <code>:config.prop</code> en Vue.</li>
+<li><b>Eventos</b> son <code>CustomEvent</code>: los datos vienen en <code>event.detail</code>. En los envoltorios React llegan directo al manejador (<code>onAccion=&#123;(d) =&gt; …&#125;</code>).</li>
+<li><b>Estilos de PrimeNG / Material:</b> conviven; los <code>gob-*</code> usan sus propios estilos encapsulados y las variables <code>--gob-*</code>, así que se ven iguales en todos los proyectos.</li></ul></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792038172"></script>
+
+</body>
+</html>

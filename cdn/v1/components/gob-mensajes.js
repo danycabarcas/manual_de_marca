@@ -1,5 +1,5 @@
-import { a as d, i as p, A as a, b as r } from "../chunks/lit-element-B3qO7mJS.js";
-import { i as l } from "../chunks/icono-CX7ui34k.js";
+import { i as d, a as p, A as a, b as r } from "../chunks/lit-element-CZvHeOsZ.js";
+import { i as l } from "../chunks/icono-x0IYmMl5.js";
 const u = { info: "info", exito: "check-circulo", aviso: "alerta", peligro: "error", neutro: "info" }, c = {
   info: ["#00B7D9", "#E6F8FB", "#00566A"],
   exito: ["#69B75E", "#F1F8F0", "#2C5A26"],

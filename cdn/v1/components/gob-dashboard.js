@@ -1,7 +1,7 @@
-import { i as S, b as m, A as $, a as B } from "../chunks/lit-element-B3qO7mJS.js";
-import { i as y } from "../chunks/icono-CX7ui34k.js";
+import { a as S, b as m, A as $, i as B } from "../chunks/lit-element-CZvHeOsZ.js";
+import { i as y } from "../chunks/icono-x0IYmMl5.js";
 import "./gob-kpi.js";
-import "../chunks/gob-grafica-BQfc8u2Y.js";
+import "../chunks/gob-grafica-XivHy796.js";
 import "./gob-tabla.js";
 import "./gob-mapa-magdalena.js";
 import "./gob-mensajes.js";
