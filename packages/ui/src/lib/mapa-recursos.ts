@@ -73,6 +73,6 @@ export function claseDe(valor: number, clases: Clase[]): Clase | undefined {
 }
 export function formatoNumero(n: number, f?: string): string {
   if (!Number.isFinite(n)) return '—';
-  const o: Intl.NumberFormatOptions = f === 'cop' ? { style: 'currency', currency: 'COP', maximumFractionDigits: 0 } : f === 'porcentaje' ? { style: 'percent', maximumFractionDigits: 1 } : { maximumFractionDigits: 2 };
+  const o: Intl.NumberFormatOptions = f === 'compacto' ? { notation: 'compact', maximumFractionDigits: 1 } : f === 'cop' ? { style: 'currency', currency: 'COP', maximumFractionDigits: 0 } : f === 'porcentaje' ? { style: 'percent', maximumFractionDigits: 1 } : { maximumFractionDigits: 2 };
   return new Intl.NumberFormat('es-CO', o).format(n);
 }

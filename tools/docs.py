@@ -126,7 +126,7 @@ body { font-family: var(--mg-font-sans); margin: 0; }''')]),
     ['Los logos van en `src/assets/` (o `public/` en Angular 18+): copie `assets/logos/svg/*`.'])
 
 add('primeng', 'PrimeNG / PrimeVue', 'Angular',
-    'Preset de tema para PrimeNG 18+ y PrimeVue 4 (mismo preset). Incluye variante CSS pura y compatibilidad con PrimeNG ≤ 17.',
+    'Preset de tema para PrimeNG 18–21 y PrimeVue 4 (mismo preset; colores de severidad de la marca). ⚠ PrimeNG 22 y PrimeVue 5 usan la PrimeUI License (comercial): fije versiones MIT. Incluye variante CSS pura y compatibilidad con PrimeNG ≤ 17.',
     [('1. PrimeNG 20+ (Angular) — app.config.ts', [('ts', 'src/app/app.config.ts', '''import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';

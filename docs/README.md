@@ -8,7 +8,7 @@ Reemplace `https://TU-HOST/manual_de_marca` por la URL donde publique este repos
 - [Bootstrap 5 y 4](bootstrap.md) — Dos caminos: CSS precompilado (rápido) o Sass (recomendado si compilan Bootstrap).
 - [Tailwind CSS (v3 y v4)](tailwind.md) — Colores `mg-*` con escala 50–950, alias `primary`, degradados como utilidades `bg-mg-grad-*`, sombras y radios de marca.
 - [Angular Material](angular-material.md) — Tema Material 3 (v19+) y Material 2 (v15–18) con las paletas oficiales, probado compilando contra la librería real.
-- [PrimeNG / PrimeVue](primeng.md) — Preset de tema para PrimeNG 18+ y PrimeVue 4 (mismo preset). Incluye variante CSS pura y compatibilidad con PrimeNG ≤ 17.
+- [PrimeNG / PrimeVue](primeng.md) — Preset de tema para PrimeNG 18–21 y PrimeVue 4 (mismo preset; colores de severidad de la marca). ⚠ PrimeNG 22 y PrimeVue 5 usan la PrimeUI License (comercial): fije versiones MIT. Incluye variante CSS pura y compatibilidad con PrimeNG ≤ 17.
 - [Angular (general)](angular.md) — Sin librería de componentes: tokens + utilidades en `styles.scss`, o por URL en `index.html`.
 - [React / Next.js](react.md) — CSS directo, MUI o Tailwind. Los tokens están disponibles como JSON/ESM tipado.
 - [Vue / Nuxt](vue.md) — CSS directo, Vuetify 3 o PrimeVue.

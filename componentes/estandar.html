@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estándar de componentes · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Una sola fuente de tokens, presets para PrimeNG y otras librerías, y Web Components gob-* para lo que ellas no cubren. Guía de decisión, contrato y licencias.">
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../dist/css/magdalena.css">
+<link rel="stylesheet" href="../site/portal.css?v=1792032546">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html" aria-current="page">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html">Demos</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Estándar de componentes</h1><p>Una sola fuente de tokens, presets para PrimeNG y otras librerías, y Web Components gob-* para lo que ellas no cubren. Guía de decisión, contrato y licencias.</p></div></section>
+<main class="pt-main">
+
+<p class="pt-lead">Cómo se mantienen estándar los componentes cuando los proyectos usan PrimeNG, Material, MUI u otros: <b>una sola fuente de tokens</b>, el mismo preset generado para cada librería y una familia de Web Components <code class="inline">gob-*</code> solo para lo que esas librerías no cubren.</p>
+
+<section class="pt-section"><h2><span class="n">01.</span> Un origen, muchas salidas</h2><div class="flow" role="img" aria-label="Los tokens alimentan CSS, Tailwind, PrimeNG, Material, MUI, Vuetify y los Web Components">
+<div class="flow__src"><b>Tokens</b><span>tools/tokens.py<br>colores · tipografía · radios · sombras</span></div>
+<div class="flow__arrow">→</div>
+<div class="flow__out">
+<span>CSS <code>--mg-*</code> / <code>--gob-*</code></span><span>Tailwind v3 / v4</span><span>PrimeNG · PrimeVue (preset)</span><span>Angular Material (M2/M3)</span><span>MUI · Vuetify</span><span>Bootstrap · AdminLTE</span><span>Web Components <code>gob-*</code></span></div></div>
+<p class="pt-lead" style="margin-top:1rem">Cambiar un color o un radio en <code class="inline">tools/tokens.py</code> actualiza, con un solo comando, el CSS, Tailwind, los temas de PrimeNG/PrimeVue, Material, MUI y Vuetify, y los Web Components. Así «el azul institucional» es el mismo en todos los proyectos.</p></section>
+
+<section class="pt-section"><h2><span class="n">02.</span> Guía de decisión: qué usar y cuándo</h2><div class="tablewrap"><table class="mg-table"><thead><tr><th>Necesito…</th><th>Use</th><th>Por qué</th></tr></thead><tbody><tr><td>Maquetar, tipografía, botones, formularios en HTML plano, WordPress, PHP/Laravel, SSR</td><td><b>CSS <code>mg-*</code></b> (<code>dist/css/magdalena.min.css</code>)</td><td>Sin JavaScript ni build; mismo aspecto en cualquier stack.</td></tr><tr><td>Panel de administración en <b>Angular</b>: formularios, tablas, diálogos, menús</td><td><b>PrimeNG</b> (versión MIT) + <b>preset oficial</b></td><td>No reconstruimos lo que PrimeNG ya resuelve; el preset lo viste con la marca.</td></tr><tr><td>Panel en <b>Vue</b></td><td><b>PrimeVue 4</b> + preset, o Vuetify + tema</td><td>Mismo preset; verificado con PrimeVue 4.5.</td></tr><tr><td>Aplicación en <b>React / Next.js</b></td><td>MUI + tema, o CSS <code>mg-*</code> + Tailwind</td><td>Temas generados desde los mismos tokens.</td></tr><tr><td>Mapas, gráficas, indicadores, tableros — en <b>cualquier</b> framework o HTML plano</td><td><b>Web Components <code>gob-*</code></b> (<code>/cdn/v1/</code>)</td><td>PrimeNG no los trae con la marca ni con datos del Magdalena; funcionan igual en Angular, React, Vue o sin framework.</td></tr><tr><td>Algo exclusivo de un proyecto</td><td>Desarrollo local con los <b>tokens</b></td><td>No se promueve a librería hasta que lo usen 2 proyectos.</td></tr></tbody></table></div></section>
+
+<section class="pt-section"><h2><span class="n">03.</span> Evidencia: PrimeVue con el preset</h2>
+<p class="pt-lead">El mismo preset (<code class="inline">dist/primeng/magdalena-preset.mjs</code>) aplicado a componentes reales de <b>PrimeVue 4.5.5</b>: botones, formularios, tabla, etiquetas y mensajes toman la marca, incluidos los colores de estado. Un componente <code class="inline">mg-*</code> (abajo a la izquierda) convive sin conflicto. El preset es el mismo para <b>PrimeNG</b> (el import cambia según la versión; ver cabecera del archivo).</p>
+<figure style="margin:0"><img src="../assets/ejemplos/primevue-con-preset.jpg" alt="Captura de PrimeVue con el preset de la Gobernación: botones azules, formulario, etiquetas de estado y tabla" style="max-width:100%;border:1px solid var(--mg-border);border-radius:12px"><figcaption class="mg-help">PrimeVue 4.5.5 (MIT) + @primeuix/themes 2.0.3 (MIT) + preset de la Gobernación.</figcaption></figure></section>
+
+<section class="pt-section"><h2><span class="n">04.</span> Estados con el mismo nombre en todas partes</h2>
+<p class="pt-lead">Para que un «éxito» o un «peligro» signifique lo mismo en Angular, Vue, Bootstrap o HTML plano:</p><div class="tablewrap"><table class="mg-table"><thead><tr><th>Estado</th><th>Token</th><th>PrimeNG / PrimeVue</th><th>Bootstrap / AdminLTE</th><th>CSS <code>mg-*</code></th><th>Color de texto encima</th></tr></thead><tbody><tr><td>Primario</td><td><code>--mg-color-primary</code></td><td>primary</td><td>primary</td><td><code>mg-btn</code></td><td>blanco</td></tr><tr><td>Éxito</td><td><code>--mg-color-success</code></td><td>success</td><td>success</td><td><code>--success</code></td><td>blanco (tono 700)</td></tr><tr><td>Aviso</td><td><code>--mg-color-warning</code></td><td>warn</td><td>warning</td><td><code>--accent</code></td><td>oscuro</td></tr><tr><td>Peligro</td><td><code>--mg-color-danger</code></td><td>danger</td><td>danger</td><td><code>--danger</code></td><td>blanco (tono 600)</td></tr><tr><td>Información</td><td><code>--mg-color-info</code></td><td>info</td><td>info</td><td><code>--cyan</code></td><td>oscuro</td></tr><tr><td>Secundario</td><td><code>--mg-color-secondary</code></td><td>secondary</td><td>secondary</td><td><code>--secondary</code></td><td>gris 700</td></tr></tbody></table></div></section>
+
+<section class="pt-section"><h2><span class="n">05.</span> Contrato de un componente <code>gob-*</code></h2>
+<p class="pt-lead">Lista de verificación que debe cumplir todo componente nuevo antes de entrar a la librería.</p><ol class="contrato">
+<li><b>Nombre:</b> etiqueta <code>gob-&lt;nombre&gt;</code> en español, singular (<code>gob-mapa-magdalena</code>, <code>gob-grafica</code>).</li>
+<li><b>API:</b> propiedades en <code>camelCase</code> con atributo en <code>kebab-case</code>; los datos complejos entran por propiedad (JSON), nunca por HTML. Todo configurable con <code>el.config = {…}</code>.</li>
+<li><b>Eventos:</b> <code>gob-&lt;nombre&gt;-&lt;acción&gt;</code>, <code>bubbles + composed</code>, con <code>detail</code> documentado (el código DIVIPOLA es siempre la llave, nunca el nombre).</li>
+<li><b>Tema:</b> variables <code>--gob-&lt;componente&gt;-*</code> con valores por defecto de la marca, <code>::part()</code> para lo estructural, tema <code>claro/oscuro</code> y sin colores escritos a mano.</li>
+<li><b>Accesibilidad (WCAG 2.1 AA / NTC 5854):</b> teclado completo, roles ARIA, foco visible, alternativa en texto para lo gráfico, contraste ≥ 4.5:1, <code>prefers-reduced-motion</code>.</li>
+<li><b>Responsive e imprimible:</b> de 320 px a 4K (container queries), CSS de impresión.</li>
+<li><b>Peso:</b> bundle base &lt; 50 KB gzip; librerías pesadas (ECharts, MapLibre) se cargan solo bajo demanda.</li>
+<li><b>Documentación:</b> cuándo usar / cuándo no, demo en vivo, instalación (CDN, Angular, React/Next, Vue), propiedades, eventos, variables, accesibilidad e integración con la API NestJS.</li>
+<li><b>Calidad:</b> axe-core sin violaciones, versionado semántico y ruta inmutable por versión mayor (<code>/cdn/v1/</code>).</li></ol></section>
+
+<section class="pt-section"><h2><span class="n">06.</span> Licencias de las librerías de componentes</h2>
+<div class="mg-alert mg-alert--warning" style="margin-bottom:1rem"><div><p class="mg-alert__title">Atención con las versiones más recientes</p>PrimeNG 22 y PrimeVue 5 cambiaron a la <b>PrimeUI License</b>: exige clave de licencia y la modalidad gratuita aplica a organizaciones pequeñas (menos de 10 empleados y 5 desarrolladores, entre otros límites). Una entidad pública debería presupuestar la licencia comercial por desarrollador o <b>mantenerse en las versiones MIT</b>. Verificado en el <code>LICENSE.md</code> de cada paquete; confirme los términos vigentes en <code>primeui.dev/licenses</code>.</div></div><div class="tablewrap"><table class="mg-table"><thead><tr><th>Librería</th><th>Versiones y licencia (LICENSE.md de cada paquete, verificado 2026-10)</th><th>Recomendación</th></tr></thead><tbody><tr><td><b>PrimeNG</b></td><td>17: MIT · 18, 19, 20, 21: «Community versions» MIT · <b>22: PrimeUI License</b> (comercial; clave de licencia)</td><td>Fijar <b>PrimeNG 21</b> (o ≤ 21). Antes de pasar a 22, consultar a TIC/Compras.</td></tr><tr><td><b>PrimeVue</b></td><td>4.x: MIT · <b>5.x: PrimeUI License</b></td><td>Usar <b>PrimeVue 4.5.x</b>.</td></tr><tr><td><code>@primeuix/themes</code> (presets)</td><td>1.x y 2.x: MIT · <b>3.x: PrimeUI License</b></td><td>Fijar <code>^2</code> (PrimeNG 21 / PrimeVue 4) o <code>^1</code> (PrimeNG 20).</td></tr><tr><td>Angular Material, Bootstrap, AdminLTE, Tailwind, Vuetify, Lit, Vite</td><td>MIT / BSD / Apache-2.0</td><td>Sin restricciones para este uso.</td></tr><tr><td>MUI (core)</td><td>MIT; MUI X Pro/Premium son comerciales</td><td>Usar solo el núcleo.</td></tr></tbody></table></div>
+<p class="mg-help">Esta es una verificación técnica del texto de la licencia, no asesoría legal.</p></section>
+
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="../dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="../site/portal.js?v=1792032546"></script>
+
+</body>
+</html>

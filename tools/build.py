@@ -479,13 +479,24 @@ $mg-m2-warn:    {m2pal('red')};
 # ------------------------------------------------------------------ PrimeNG / PrimeVue / PrimeReact preset
 def build_prime():
     prim = {str(s): SCALES['primary'][s] for s in STEPS}
-    ts = f"""// PrimeNG 18+ / PrimeVue 4 / PrimeReact 11 — preset Gobernación del Magdalena 2026
-// PrimeNG 18-19:  npm i @primeng/themes     PrimeNG 20+ / PrimeVue 4 / PrimeReact:  npm i @primeuix/themes
-// Cambie la línea de import según la versión que use:
-import {{ definePreset }} from '@primeuix/themes';   // PrimeNG 18/19: '@primeng/themes'
-import Aura from '@primeuix/themes/aura';              // PrimeNG 18/19: '@primeng/themes/aura'
+    pal = lambda n: {str(s): SCALES[n][s] for s in STEPS}
+    paletas = {'red': pal('red'), 'green': pal('green'), 'orange': pal('yellow'), 'yellow': pal('yellow'), 'sky': pal('cyan'), 'cyan': pal('cyan'), 'purple': pal('purple')}
+    ts = f"""// Preset de tema PrimeNG / PrimeVue — Gobernación del Magdalena 2026 (generado desde los tokens)
+//
+// ⚠ LICENCIAS — elija versiones con licencia MIT (verificado en el LICENSE.md de cada paquete, 2026-10):
+//   PrimeNG 18–21 (no «-lts»)  +  imports de '@primeng/themes' (18/19) o '@primeuix/themes' ^1 (v20) / ^2 (v21)   → MIT
+//   PrimeVue 4.x               +  '@primeuix/themes' ^2                                                          → MIT
+//   PrimeNG 22, PrimeVue 5 y '@primeuix/themes' ≥ 3 usan la «PrimeUI License» (comercial; exige clave de licencia
+//   y la versión gratuita es solo para organizaciones pequeñas). Consulte con TIC/Compras antes de actualizar.
+//
+// Import según la versión:  PrimeNG 18/19 → '@primeng/themes' y '@primeng/themes/aura'
+//                           PrimeNG 20/21 y PrimeVue 4 → '@primeuix/themes' y '@primeuix/themes/aura'
+import {{ definePreset }} from '@primeuix/themes';
+import Aura from '@primeuix/themes/aura';
 
 export const MagdalenaPreset = definePreset(Aura, {{
+  // Los colores de severidad (éxito, peligro, aviso, info) salen de la paleta institucional
+  primitive: {json.dumps(paletas, indent=4)},
   semantic: {{
     primary: {json.dumps(prim, indent=6)},
     formField: {{ borderRadius: '{RADIUS['md']}', focusRing: {{ width: '3px', style: 'solid', color: '{BRAND['cyan'][0]}', offset: '1px' }} }},
@@ -503,7 +514,16 @@ export const MagdalenaPreset = definePreset(Aura, {{
     }},
   }},
   components: {{
-    button: {{ root: {{ borderRadius: '{RADIUS['md']}', label: {{ fontWeight: '600' }} }} }},
+    button: {{
+      root: {{ borderRadius: '{RADIUS['md']}', label: {{ fontWeight: '600' }} }},
+      // Contraste AA: texto blanco solo sobre tonos oscuros; texto oscuro sobre cian y amarillo
+      colorScheme: {{ light: {{ root: {{
+        success: {{ background: '{{green.700}}', hoverBackground: '{{green.800}}', activeBackground: '{{green.900}}', borderColor: '{{green.700}}', hoverBorderColor: '{{green.800}}', activeBorderColor: '{{green.900}}' }},
+        danger:  {{ background: '{{red.600}}', hoverBackground: '{{red.700}}', activeBackground: '{{red.800}}', borderColor: '{{red.600}}', hoverBorderColor: '{{red.700}}', activeBorderColor: '{{red.800}}' }},
+        info:    {{ color: '{{surface.900}}', hoverColor: '{{surface.900}}', activeColor: '{{surface.900}}' }},
+        warn:    {{ color: '{{surface.900}}', hoverColor: '{{surface.900}}', activeColor: '{{surface.900}}' }},
+      }} }} }},
+    }},
     card: {{ root: {{ borderRadius: '{RADIUS['lg']}' }} }},
     dialog: {{ root: {{ borderRadius: '{RADIUS['lg']}' }} }},
   }},

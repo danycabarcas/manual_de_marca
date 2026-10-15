@@ -383,7 +383,7 @@ def page_components(root):
         out += f'''<section class="pt-section" id="c{i}"><h2><span class="n">{i:02d}.</span> {t}</h2>{f'<p class="pt-lead">{d}</p>' if d else ''}
 <div class="demo"><div class="demo__view{" demo__view--white" if white else ""}">{h}</div>
 <details><summary>Ver código HTML</summary>{code("html", h)}</details></div></section>'''
-    body = '<p class="pt-lead"><b>Web Components:</b> <a href="componentes/gob-mapa-magdalena.html">&lt;gob-mapa-magdalena&gt;</a> (mapa del Magdalena por municipios, con documentación y generador en el <a href="estudio/mapas.html">Estudio</a>). Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
+    body = '<p class="pt-lead"><a href="componentes/estandar.html"><b>Estándar de componentes y guía de decisión (PrimeNG, licencias) →</b></a> · <b>Web Components:</b> <a href="componentes/gob-mapa-magdalena.html">&lt;gob-mapa-magdalena&gt;</a> y <a href="componentes/gob-grafica.html">&lt;gob-grafica&gt;</a>, con documentación y generadores en el <a href="estudio/index.html">Estudio</a>. Estilo corporativo sobrio: superficies blancas y azul-noche, color de marca solo en acentos y «la línea» como firma discreta. Todo se renderiza con <code class="inline">dist/css/magdalena.css</code> (prefijo <code class="inline">mg-</code>, sin dependencias).</p>' + out
     page(root, 'componentes.html', 'Componentes y utilidades', 'Botones, tarjetas, indicadores, formularios, navegación, cristal y las piezas del manual (carnet, tarjeta, post): estilo sobrio, listo para copiar y pegar.', body)
 
 
@@ -509,18 +509,22 @@ def page_studio(root):
     k = lambda h, ico, tt, d, est='': f'<a class="k" href="{h}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{ico}</svg></div><h3>{tt} {est}</h3><p>{d}</p></a>'
     soon = '<span class="mg-badge mg-badge--gray">Próximamente</span>'
     cards = (k('mapas.html', '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>', 'Estudio de mapas', 'Mapa del Magdalena con 30 municipios (código DIVIPOLA): coropleta, subregiones, categorías, marcadores, rutas animadas y efectos. Elija colores y copie el código.')
-             + '<div class="k" style="border-style:dashed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div><h3>Estudio de gráficas ' + soon + '</h3><p>Barras, líneas, torta, dona, radar, gauge, heatmap, treemap y sankey con la paleta institucional.</p></div>'
+             + k('graficas.html', '<path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>', 'Estudio de gráficas', 'Barras, líneas, áreas, torta, dona, radar, indicador, mapa de calor, treemap y sankey con la paleta institucional. Datos editables o pegados desde CSV.')
              + '<div class="k" style="border-style:dashed"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div><h3>Estudio de dashboards ' + soon + '</h3><p>Plantillas de tableros con widgets intercambiables y filtros globales.</p></div>')
     body = '<p class="pt-lead">Generadores visuales: configure, vea el resultado en vivo y copie el código listo para HTML, Angular o React. Todo usa los componentes <code class="inline">gob-*</code> del CDN <code class="inline">/cdn/v1/</code>, independientes del framework.</p><div class="cards-k">' + cards + '</div>'
     page(root, 'estudio/index.html', 'Estudio', 'Genere mapas, gráficas y tableros con la identidad visual: elija colores, datos y efectos y copie el código.', body)
     shell = '<p class="pt-lead">Configure el mapa a la izquierda; la vista previa y el código se actualizan al instante. El enlace de la barra del navegador guarda su configuración.</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
+    shell_g = '<p class="pt-lead">Elija el tipo de gráfica, sus colores y sus datos; la vista previa y el código se actualizan al instante. Las gráficas usan Apache ECharts, que se descarga solo cuando hay una gráfica en la página.</p><div id="app"><p class="mg-help">Cargando el estudio…</p></div>'
+    page(root, 'estudio/graficas.html', 'Estudio de gráficas', 'Gráficas con la identidad visual: tipo, colores, datos y código generado para HTML, Angular y React.', shell_g, scripts=f'<script type="module" src="graficas.js?v={BUILD}"></script>')
     page(root, 'estudio/mapas.html', 'Estudio de mapas', 'Mapa interactivo del Magdalena: colores, datos por municipio, marcadores, rutas animadas y efectos, con código generado.', shell, scripts=f'<script type="module" src="mapas.js?v={BUILD}"></script>')
 
 
 def build(root, dist, G):
     page_studio(root)
-    import site_mapa
+    import site_mapa, site_estandar, site_grafica
     site_mapa.build(root, page, code)
+    site_grafica.build(root, page, code)
+    site_estandar.build(root, page, code)
     page_demos(root)
     page_index(root); page_colors(root); page_logos(root); page_components(root); page_integration(root, G); page_apps(root)
     print('portal generado')

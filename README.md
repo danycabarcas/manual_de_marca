@@ -35,7 +35,8 @@ python tools/build.py  # portal, docs y dist/ (usar Python 3.10 con Pillow y PyM
 |---|---|
 | 0 · Tokens `--gob-*`, modo oscuro (beta), monorepo, CDN `/cdn/v1/` | ✅ base lista · pendiente Style Dictionary y pruebas Playwright |
 | 4 · Mapas | ✅ `<gob-mapa-magdalena>` (30 municipios, DIVIPOLA, subregiones, coropleta, categorías, marcadores, rutas animadas, efectos) + **Estudio de mapas** · ⏳ Santa Marta (comunas/barrios), veredas y PMTiles (faltan datos oficiales) |
-| 3 · Gráficas y dashboards | ⏳ siguiente |
+| 3 · Gráficas | ✅ `<gob-grafica>` (11 tipos, ECharts perezoso ≈ 284 KB gzip solo si hay gráfica) + **Estudio de gráficas** · ⏳ `<gob-dashboard>` y filtros globales |
+| Estándar | ✅ `componentes/estandar.html`: un origen de tokens, presets PrimeNG/PrimeVue verificados, guía de decisión, contrato `gob-*` y **licencias de PrimeNG 22 / PrimeVue 5 (PrimeUI License)** |
 | 2 · Tabla y datos · 1 · Fundaciones · 5 · Formularios de negocio | ⏳ |
 
 - Documentación del mapa: `componentes/gob-mapa-magdalena.html` · Generador: `estudio/mapas.html`.
