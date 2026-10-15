@@ -8,7 +8,7 @@ import time
 BUILD = int(time.time())
 NAV = [('index.html', 'Inicio'), ('colores.html', 'Colores y degradados'), ('logos.html', 'Logos y descargas'),
        ('componentes.html', 'Componentes'), ('estudio/index.html', 'Estudio'), ('integracion.html', 'Integración'), ('aplicaciones.html', 'Aplicaciones'),
-       ('demos/index.html', 'Demos')]
+       ('demos/index.html', 'Demos'), ('ia.html', 'Para IA')]
 
 
 def page(root, fname, title, lead, body, hero=False, active=None, scripts=''):
@@ -407,6 +407,11 @@ def page_integration(root, G):
             guides += f'<div class="mg-alert mg-alert--info"><div>{E(n).replace("`", "")}</div></div>'
         guides += f'<p style="margin:.75rem 0 0"><a href="docs/{g["id"]}.md">Ver en Markdown →</a></p></article>'
     files = [
+        ('cdn/v1/gob.css', 'Componentes gob-*: estilos (tipografía, tokens, mg-*, formularios nativos) — RECOMENDADO'),
+        ('cdn/v1/gob.js', 'Componentes gob-*: cargador (módulo ES; descarga solo lo que use la página)'),
+        ('cdn/v1/wrappers/react.jsx', 'Envoltorios React / Next.js'),
+        ('cdn/v1/wrappers/gob-angular.ts', 'Soporte Angular (esquemas, cargarGob, tipos de eventos)'),
+        ('dist/downloads/gob-cdn-v1.zip', 'Paquete autónomo del CDN (sin internet)'),
         ('dist/css/magdalena.min.css', 'Todo en uno (tokens + degradados + la línea + componentes)'),
         ('dist/css/magdalena-tokens.min.css', 'Solo variables CSS (--mg-*)'),
         ('dist/adminlte/magdalena-adminlte4.min.css', 'AdminLTE 4 / Bootstrap 5.3'),
@@ -427,15 +432,22 @@ def page_integration(root, G):
         ('dist/tokens/magdalena-tokens.json', 'Tokens JSON (hex, rgb, cmyk, degradados)'),
     ]
     rows = ''.join(f'<tr><td>{d}</td><td><code data-url="{p}">{p}</code></td><td style="white-space:nowrap"><button class="copy" data-copyurl="{p}">Copiar URL</button> <a class="copy" style="text-decoration:none" href="{p}" download>⬇</a></td></tr>' for p, d in files)
+    GL = chr(10)
+    inst_gob = code('html', '<link rel="stylesheet" href="__BASE__/cdn/v1/gob.css">' + GL + '<script type="module" src="__BASE__/cdn/v1/gob.js"></script>', 'Instalación', tpl=True)
     body = f'''
 <div class="baseurl"><b>URL base de este sitio:</b><input class="mg-input" id="baseInput" aria-label="URL base"><button class="mg-btn mg-btn--ghost mg-btn--sm" id="baseReset">Autodetectar</button>
 <span class="mg-help" style="width:100%;margin:0">Todos los ejemplos de código y la tabla usan esta URL. Si el sitio se publica en otro dominio, escríbalo aquí y copie.</span></div>
+<section class="pt-section" id="componentes"><h2><span class="n">00.</span> Componentes <code style="font-size:.6em">gob-*</code> (camino recomendado)</h2>
+<p class="pt-lead">Para pantallas nuevas use la <b>librería de componentes</b>: mapas, gráficas, tablas, dashboards, formularios, kanban, calendario y más, iguales en cualquier framework. Solo necesita dos líneas:</p>
+{inst_gob}
+<div class="mg-row"><a class="mg-btn" href="componentes.html">Ver los componentes</a><a class="mg-btn mg-btn--secondary" href="componentes/frameworks.html">Angular, React, Next.js, Vue</a><a class="mg-btn mg-btn--secondary" href="demos/index.html">Demos para copiar</a><a class="mg-btn mg-btn--secondary" href="ia.html">Para agentes de IA</a></div>
+<p class="mg-help">Las guías de la sección 02 aplican la marca (colores, tipografía, temas) a los frameworks de UI que un proyecto ya use (Bootstrap, Material, PrimeNG…). Con <code>gob.css</code> los elementos HTML nativos (<code>select</code>, <code>input</code>, <code>button</code>…) ya se ven de marca sin clases.</p></section>
 <section class="pt-section" id="urls"><h2><span class="n">01.</span> URLs directas de cada archivo</h2>
 <p class="pt-lead">Basta con un <code class="inline">&lt;link&gt;</code> a la URL del CSS para usar la marca. Cada archivo es autosuficiente (incluye sus variables).</p>
 <div class="tablewrap"><table class="urls"><thead><tr><th>Para</th><th>URL</th><th></th></tr></thead><tbody>{rows}</tbody></table></div></section>
 <section class="pt-section" id="guias"><h2><span class="n">02.</span> Guías por tecnología</h2>
 <div class="int"><nav class="int__nav" aria-label="Tecnologías">{nav}</nav><div>{guides}</div></div></section>'''
-    page(root, 'integracion.html', 'Integración por tecnología', 'AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel, Node, Java, WordPress y móvil: cómo aplicar la marca en cada uno.', body)
+    page(root, 'integracion.html', 'Integración por tecnología', 'Componentes gob-*, AdminLTE, Bootstrap, Tailwind, Angular Material, PrimeNG, React, Vue, Laravel, Node, Java, WordPress y móvil: cómo aplicar la marca en cada uno.', body)
 
 
 # =============================================================== APLICACIONES
@@ -541,5 +553,7 @@ def build(root, dist, G):
     site_grafica.build(root, page, code)
     site_estandar.build(root, page, code)
     page_demos(root)
+    import ia
+    ia.build(root, page)
     page_index(root); page_colors(root); page_logos(root); page_components(root); page_integration(root, G); page_apps(root)
     print('portal generado')

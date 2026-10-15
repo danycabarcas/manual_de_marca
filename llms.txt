@@ -1,0 +1,31 @@
+# Gobernación del Magdalena — sistema de diseño gob-*
+
+> Componentes web (Lit, estándar: funcionan en HTML, Angular, React, Next.js y Vue), estilos mg-*, mapas del Magdalena por municipio (DIVIPOLA), gráficas, tablas, dashboards y formularios. CDN versionado en https://manualdemarca.magdalena.gov.co/cdn/v1/.
+
+## Empezar aquí
+- [Guía completa para agentes de IA (Markdown)](https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md): instalación, reglas, catálogo y flujo de trabajo
+- [Skill instalable (SKILL.md)](https://manualdemarca.magdalena.gov.co/docs/ia/skill/gob-componentes/SKILL.md)
+- [AGENTS.md de ejemplo](https://manualdemarca.magdalena.gov.co/docs/ia/AGENTS.md)
+
+## Documentación de componentes
+- [gob-tabla](https://manualdemarca.magdalena.gov.co/componentes/gob-tabla.html): tablas avanzadas
+- [Alertas, modales, toasts](https://manualdemarca.magdalena.gov.co/componentes/gob-mensajes.html)
+- [Dashboard, KPI, pestañas](https://manualdemarca.magdalena.gov.co/componentes/gob-dashboard.html)
+- [gob-grafica](https://manualdemarca.magdalena.gov.co/componentes/gob-grafica.html): 14 tipos de gráfica
+- [gob-mapa-magdalena](https://manualdemarca.magdalena.gov.co/componentes/gob-mapa-magdalena.html)
+- [Línea de tiempo y pasos](https://manualdemarca.magdalena.gov.co/componentes/gob-flujo.html)
+- [Selector, fecha, archivos](https://manualdemarca.magdalena.gov.co/componentes/gob-campos.html)
+- [Avatar, árbol, kanban, menú, tooltip, paginador](https://manualdemarca.magdalena.gov.co/componentes/gob-contenido.html)
+- [Formularios nativos](https://manualdemarca.magdalena.gov.co/componentes/formularios.html)
+- [Íconos](https://manualdemarca.magdalena.gov.co/componentes/iconos.html)
+- [Angular, React, Next.js, Vue](https://manualdemarca.magdalena.gov.co/componentes/frameworks.html)
+- [Estándar y licencias](https://manualdemarca.magdalena.gov.co/componentes/estandar.html)
+
+## Demos (plantillas para copiar)
+- [Índice de demos](https://manualdemarca.magdalena.gov.co/demos/index.html): panel ejecutivo, gestión de trámites, analítica territorial, portal ciudadano, mesa de ayuda, acceso y formularios, plantilla base
+
+## Marca y tokens
+- [Colores y degradados](https://manualdemarca.magdalena.gov.co/colores.html) · [Logos](https://manualdemarca.magdalena.gov.co/logos.html) · [Integración por tecnología](https://manualdemarca.magdalena.gov.co/integracion.html)
+
+## Optional
+- [Estudios generadores de código](https://manualdemarca.magdalena.gov.co/estudio/index.html)

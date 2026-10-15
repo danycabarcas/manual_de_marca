@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para agentes de IA · Manual de marca Gobernación del Magdalena</title>
+<meta name="description" content="Instrucciones y skill para que cualquier agente de IA use los componentes gob-* sin explicaciones.">
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon/icon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="dist/css/magdalena.css">
+<link rel="stylesheet" href="site/portal.css?v=1792039225">
+</head>
+<body class="mg-base">
+<header class="pt-header"><div class="pt-header__in">
+  <a class="pt-brand" href="index.html"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
+  <button class="pt-burger" aria-label="Menú">☰</button>
+  <nav class="pt-nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="colores.html">Colores y degradados</a><a href="logos.html">Logos y descargas</a><a href="componentes.html">Componentes</a><a href="estudio/index.html">Estudio</a><a href="integracion.html">Integración</a><a href="aplicaciones.html">Aplicaciones</a><a href="demos/index.html">Demos</a><a href="ia.html" aria-current="page">Para IA</a></nav>
+</div></header>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Para agentes de IA</h1><p>Instrucciones y skill para que cualquier agente de IA use los componentes gob-* sin explicaciones.</p></div></section>
+<main class="pt-main">
+<p class="pt-lead">Para que cualquier agente de IA (Claude, ChatGPT, Copilot, Cursor, Gemini…) use estos componentes <b>sin que tenga que explicárselos</b>: un archivo Markdown con todo lo necesario (instalación, reglas, catálogo, flujo de trabajo) que el agente lee y aplica como si fuera una <i>skill</i>.</p>
+<section class="pt-section"><h2><span class="n">01.</span> Opción rápida: pegue esta instrucción</h2><p>Sirve en cualquier chat o agente con acceso a internet:</p>
+<div class="code"><div class="code__bar"><span>Instrucción</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>Lee https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md y úsalo como guía obligatoria para construir la interfaz: usa los componentes gob-* y las clases mg-*, y parte del demo más parecido de https://manualdemarca.magdalena.gov.co/demos/. Lo que necesito: …</code></pre></div></section>
+<section class="pt-section"><h2><span class="n">02.</span> Para que lo use siempre en su proyecto</h2>
+<ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Cualquier agente</b>: copie <a href="docs/ia/AGENTS.md">AGENTS.md</a> a la raíz del proyecto (también sirve como <code>CLAUDE.md</code>, <code>.cursorrules</code> o <code>.github/copilot-instructions.md</code>).</li>
+<li><b>Claude Code / Claude</b>: instale la skill — copie la carpeta <code>gob-componentes/</code> (contiene <code>SKILL.md</code>) a <code>~/.claude/skills/</code> (global) o a <code>.claude/skills/</code> del proyecto. Se activa sola cuando pidan pantallas para la Gobernación.</li>
+<li><b>Rastreadores y agentes web</b>: <a href="llms.txt">llms.txt</a> indexa toda la documentación en el formato estándar.</li></ul>
+<div class="mg-row"><a class="mg-btn" href="dist/downloads/gob-skill-ia.zip" download>⬇ Skill + AGENTS.md (.zip)</a><a class="mg-btn mg-btn--secondary" href="docs/ia/gob-componentes.md">Ver la guía (.md)</a><a class="mg-btn mg-btn--secondary" href="llms.txt">llms.txt</a></div></section>
+<section class="pt-section"><h2><span class="n">03.</span> Qué contiene la guía</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Las dos líneas de instalación y cómo autohospedar sin internet.</li><li>Reglas de oro (propiedades vs. atributos, eventos, mensajes, colores, licencias).</li><li>Catálogo de los componentes con sus atributos y eventos clave, y las especificaciones de los widgets del dashboard.</li><li>Formularios nativos y clases <code>mg-*</code>.</li><li>Flujo recomendado: partir de un demo, copiar el ejemplo más cercano, validar.</li><li>Errores frecuentes.</li></ul>
+<p class="mg-help">La guía se regenera con cada versión del sitio, así que siempre refleja los componentes publicados.</p></section>
+</main>
+<footer class="pt-footer"><div class="pt-footer__in">
+  <img src="assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
+  <div>Manual de Identidad Visual 2026 · Kit para desarrollo web · v1.0.0<br><span style="opacity:.7">Oficina de Tecnología de la Información · Gobernación del Magdalena</span></div>
+  <div><a href="dist/downloads/kit-desarrollo-css-y-temas.zip">⬇ Kit completo (.zip)</a></div>
+</div>
+  <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
+</footer>
+<script src="site/portal.js?v=1792039225"></script>
+
+</body>
+</html>
