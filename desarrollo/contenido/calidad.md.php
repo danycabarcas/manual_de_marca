@@ -29,6 +29,9 @@ Los resultados se verán en la sección **Calidad** del Panel TIC: cada desarrol
 
 ## Ejemplo de flujo de CI (GitHub Actions)
 
+El flujo completo y probado está en la plantilla oficial: `.github/workflows/calidad.yml` de
+[Gobmg/plantilla-nestjs-gob](https://github.com/Gobmg/plantilla-nestjs-gob). Versión resumida:
+
 ```yaml
 name: calidad
 on: [push, pull_request]
@@ -38,7 +41,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: gitleaks/gitleaks-action@v2
+      - name: Secretos (gitleaks CLI, MIT; la acción gitleaks-action exige licencia en organizaciones)
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks git --redact --exit-code 1 .
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
