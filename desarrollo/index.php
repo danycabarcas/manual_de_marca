@@ -15,6 +15,7 @@ const PAGINAS = [
     'backend'     => ['Backend NestJS', 'Estructura, configuración y buenas prácticas'],
     'datos'       => ['Datos y migraciones', 'PostgreSQL, Prisma y usuarios por aplicación'],
     'seguridad'   => ['Seguridad', 'OWASP Top 10 aplicado y lecciones propias'],
+    'secretos'    => ['Archivos .env y secretos', 'Dónde vive cada secreto, cómo protegerlo y qué hacer si se filtra'],
     'frontend'    => ['Frontend', 'Angular, React, Next.js y Vue con la marca'],
     'calidad'     => ['Calidad y análisis de código', 'Pruebas, análisis estático y revisión'],
     'despliegue'  => ['Despliegue y operación', 'Coolify, ambientes y servicios del Panel TIC'],

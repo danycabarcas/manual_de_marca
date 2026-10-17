@@ -30,6 +30,8 @@ fuera de servicio a todos los sistemas. Además, un volcado `database.sql` qued�
 
 ## Secretos
 
+> Guía completa: **[Archivos .env y secretos](./?p=secretos)** — dónde vive cada secreto, cómo protegerlo y qué hacer si se filtra.
+
 - **Nunca** en el código, en Git, en un `.env` publicado, en capturas de pantalla ni en chats.
 - Viven en las variables de entorno de Coolify (o del panel de Plesk).
 - El `.gitignore` de todo proyecto incluye como mínimo:
