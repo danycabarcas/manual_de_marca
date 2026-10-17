@@ -24,6 +24,7 @@ const PAGINAS = [
 $p = isset(PAGINAS[$_GET['p'] ?? '']) ? $_GET['p'] : 'inicio';
 $fuente = __DIR__ . '/contenido/' . $p . '.md.php';
 $md = is_file($fuente) ? preg_replace('/^<\?php[^\n]*\n/', '', (string) file_get_contents($fuente)) : "# En construcción\n";
+$md = (string) preg_replace('/^\s*# [^\n]*\n/', '', $md, 1);   // el título ya va en el encabezado de la página
 $pd = new Parsedown();
 $html = $pd->text($md);
 // tablas y bloques de código con el estilo del manual
