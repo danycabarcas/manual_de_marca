@@ -37,6 +37,16 @@ Cada regla enlaza a su fuente oficial: [NestJS](https://docs.nestjs.com), [Prism
 [Angular](https://angular.dev), [React](https://react.dev), [Next.js](https://nextjs.org/docs), [Vue](https://vuejs.org/guide/),
 y el marco legal colombiano: Ley 1581 de 2012 (datos personales), Ley 1712 de 2014 (transparencia) y NTC 5854 (accesibilidad web).
 
+## Plantillas oficiales
+
+| Plantilla | Repositorio | Estado |
+|---|---|---|
+| Backend NestJS + Prisma | [Gobmg/plantilla-nestjs-gob](https://github.com/Gobmg/plantilla-nestjs-gob) | Disponible |
+| Frontend Angular | — | Próximamente |
+| Frontend React + Vite | — | Próximamente |
+| Frontend Vue 3 | — | Próximamente |
+| Portal Next.js | — | Próximamente |
+
 ## Servicios de la Oficina TIC para desarrolladores
 
 En el **Panel TIC** (<https://magdalena.gov.co/acceso/>), con su cuenta de Google:

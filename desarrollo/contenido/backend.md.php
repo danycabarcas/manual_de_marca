@@ -1,7 +1,11 @@
 <?php exit; /* contenido privado */ ?>
 # Backend NestJS
 
-Fuente oficial: <https://docs.nestjs.com>. Versión mínima: NestJS 10 sobre Node.js LTS (20 o 22).
+Fuente oficial: <https://docs.nestjs.com>. Versión: NestJS 11 sobre Node.js 22 LTS.
+
+> **Empiece siempre desde la plantilla oficial:** [Gobmg/plantilla-nestjs-gob](https://github.com/Gobmg/plantilla-nestjs-gob)
+> (botón *Use this template*). Ya cumple todo lo de esta página: configuración validada, seguridad, login con Google,
+> roles, Prisma, paginación, health check, cliente de correo, pruebas (96 % de cobertura), CI y Dockerfile.
 
 ## Estructura del proyecto
 
