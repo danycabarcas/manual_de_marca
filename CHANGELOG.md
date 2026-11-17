@@ -1,6 +1,10 @@
 # Novedades del sistema de diseño gob-*
 
-Última versión: **0.6.0** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+Última versión: **0.6.1** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+
+## 0.6.1 — 2026-11-17
+
+- **Arreglo**: Íconos SVG sin tamaño en las pantallas de acceso (p. ej. la flecha de «Volver a iniciar sesión» se veía gigante): ahora todo ícono dentro de .mg-auth tiene un tamaño por defecto (1.15 rem). _Acción: Nada: llega con gob.css. Si copió el login, agregue svg { width: 1.15rem; height: 1.15rem } dentro de su contenedor o actualice gob.css._
 
 ## 0.6.0 — 2026-11-17
 

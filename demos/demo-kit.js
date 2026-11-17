@@ -1,6 +1,6 @@
 /* demo-kit.js — SOLO para las demos del manual (no copiar a producción).
    Muestra guías sobre cada sección [data-demo], permite copiar una sección o la página completa y descargar el .html. */
-const BASE = location.hostname === 'manualdemarca.magdalena.gov.co' ? 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0' : new URL('../', location.href).href.replace(/\/$/, '');   // en el dominio oficial se copia con la URL pública con CORS (jsDelivr)
+const BASE = location.hostname === 'manualdemarca.magdalena.gov.co' ? 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1' : new URL('../', location.href).href.replace(/\/$/, '');   // en el dominio oficial se copia con la URL pública con CORS (jsDelivr)
 const $ = (s, r = document) => r.querySelector(s);
 const limpiar = (h) => h.replace(/\sdata-(demo|nota)="[^"]*"/g, '').replace(/\sdata-dk-[a-z-]+(="[^"]*")?/g, '').replace(/\n{3,}/g, '\n\n');
 const absolutas = (h) => h.split('../cdn/v1/').join(BASE + '/cdn/v1/');

@@ -1,28 +1,22 @@
 {
   "nombre": "gob-*",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "fecha": "2026-11-17",
   "novedades": "https://manualdemarca.magdalena.gov.co/novedades.html",
   "changelog": "https://manualdemarca.magdalena.gov.co/CHANGELOG.md",
   "guiaIA": "https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md",
   "cambios": [
     {
-      "tipo": "nuevo",
-      "texto": "Sistemas de solicitudes y administración (8 pantallas): registrar solicitud con asignación por tarjetas, consultar con filtros y estados, dashboard de recepción y de control con KPI y semáforo, entrega de respuestas, bitácora con línea de eventos, usuarios y matriz de roles y permisos.",
-      "accion": "Use los demos Solicitudes y administración."
-    },
-    {
-      "tipo": "nuevo",
-      "texto": "Clases nuevas del panel: mg-kcard (KPI con ícono), mg-sem, mg-opt/mg-optlist (opciones tipo tarjeta), mg-matriz, mg-caso/mg-evento, mg-usr/mg-rol, mg-codigo, mg-st, mg-efec, mg-cnt, mg-perfil y títulos de grupo en el menú (mg-nav__grp).",
-      "accion": "Nada: llegan con gob.css."
-    },
-    {
-      "tipo": "cambio",
-      "texto": "El menú lateral admite grupos con color y una tarjeta de perfil; la barra superior acepta el nombre de cada aplicación.",
-      "accion": ""
+      "tipo": "arreglo",
+      "texto": "Íconos SVG sin tamaño en las pantallas de acceso (p. ej. la flecha de «Volver a iniciar sesión» se veía gigante): ahora todo ícono dentro de .mg-auth tiene un tamaño por defecto (1.15 rem).",
+      "accion": "Nada: llega con gob.css. Si copió el login, agregue svg { width: 1.15rem; height: 1.15rem } dentro de su contenedor o actualice gob.css."
     }
   ],
   "versiones": [
+    {
+      "version": "0.6.1",
+      "fecha": "2026-11-17"
+    },
     {
       "version": "0.6.0",
       "fecha": "2026-11-17"

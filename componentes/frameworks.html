@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="../dist/css/magdalena.css">
-<link rel="stylesheet" href="../site/portal.css?v=1794935820">
+<link rel="stylesheet" href="../site/portal.css?v=1794935930">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
@@ -25,7 +25,7 @@
 <p class="mg-help">Contenido: <code>cargarGob(base)</code> (inyecta <code>gob.css</code> y <code>gob.js</code> una sola vez), componentes React con <code>onEvento</code>, tipos de los eventos para Angular (<code>GobEventos</code>) y tipos JSX.</p></section>
 <section class="pt-section"><h2><span class="n">02.</span> Angular</h2><div class="code"><div class="code__bar"><span>Angular (standalone)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// src/main.ts — carga gob.css y gob.js una sola vez (alternativa: 2 etiquetas en index.html)
 import { cargarGob } from &#x27;./app/gob/gob-angular&#x27;;   // copie cdn/v1/wrappers/gob-angular.ts
-cargarGob(&#x27;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1&#x27;);
+cargarGob(&#x27;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1&#x27;);
 
 // src/app/mesa/mesa.component.ts
 import { Component } from &#x27;@angular/core&#x27;;
@@ -49,7 +49,7 @@ export class MesaComponent {
 <section class="pt-section"><h2><span class="n">03.</span> React</h2><div class="code"><div class="code__bar"><span>React / Next.js</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// 1) copie cdn/v1/wrappers/react.jsx → src/gob/index.jsx   (y gob-jsx.d.ts si usa TypeScript)
 // 2) src/main.jsx — una vez
 import { cargarGob } from &#x27;./gob&#x27;;
-cargarGob(&#x27;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1&#x27;);
+cargarGob(&#x27;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1&#x27;);
 
 // 3) cualquier componente (Next.js App Router: añada &#x27;use client&#x27; arriba)
 import { useState } from &#x27;react&#x27;;
@@ -69,8 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     &lt;html lang=&quot;es&quot;&gt;
       &lt;head&gt;
-        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.css&quot; /&gt;
-        &lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.js&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1/gob.css&quot; /&gt;
+        &lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1/gob.js&quot; /&gt;
       &lt;/head&gt;
       &lt;body className=&quot;mg-base&quot;&gt;{children}&lt;/body&gt;
     &lt;/html&gt;
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 // vite.config.js → vue({ template: { compilerOptions: { isCustomElement: (t) =&gt; t.startsWith(&#x27;gob-&#x27;) } } })
 
 &lt;!-- index.html --&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.css&quot;&gt;&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1/gob.css&quot;&gt;&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1/gob.js&quot;&gt;&lt;/script&gt;
 
 &lt;!-- Componente.vue --&gt;
 &lt;template&gt;
@@ -101,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="../site/portal.js?v=1794935820"></script>
+<script src="../site/portal.js?v=1794935930"></script>
 
 </body>
 </html>

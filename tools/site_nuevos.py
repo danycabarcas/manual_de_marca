@@ -137,7 +137,7 @@ def build(root, page, code):
 
 
 def frameworks(root, page, code):
-    B = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1'   # CDN con CORS
+    B = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1/cdn/v1'   # CDN con CORS
     ang = code('ts', """// src/main.ts — carga gob.css y gob.js una sola vez (alternativa: 2 etiquetas en index.html)
 import { cargarGob } from './app/gob/gob-angular';   // copie cdn/v1/wrappers/gob-angular.ts
 cargarGob('%s');

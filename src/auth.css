@@ -78,3 +78,8 @@
 .mg-tab:focus-visible { outline: 2px solid var(--mg-primary); outline-offset: -2px; border-radius: 8px; }
 
 .mg-btn svg { width: 1.1em; height: 1.1em; flex: none; }
+
+/* tamaño por defecto de los íconos SVG dentro de las pantallas de acceso (las reglas específicas lo sobrescriben) */
+:where(.mg-auth) svg { width: 1.15rem; height: 1.15rem; flex: none; }
+.mg-auth__msg svg { width: 1.1rem; height: 1.1rem; margin-top: .1rem; }
+.mg-auth__back svg { width: 1rem; height: 1rem; }

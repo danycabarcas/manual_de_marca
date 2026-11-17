@@ -2,12 +2,15 @@
 import json
 import os
 
-VERSION = '0.6.0'
+VERSION = '0.6.1'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.6.1', '2026-11-17', [
+        ('arreglo', 'Íconos SVG sin tamaño en las pantallas de acceso (p. ej. la flecha de «Volver a iniciar sesión» se veía gigante): ahora todo ícono dentro de <code>.mg-auth</code> tiene un tamaño por defecto (1.15 rem).', 'Nada: llega con <code>gob.css</code>. Si copió el login, agregue <code>svg { width: 1.15rem; height: 1.15rem }</code> dentro de su contenedor o actualice <code>gob.css</code>.'),
+    ]),
     ('0.6.0', '2026-11-17', [
         ('nuevo', '<b>Sistemas de solicitudes y administración</b> (8 pantallas): registrar solicitud con asignación por tarjetas, consultar con filtros y estados, dashboard de recepción y de control con KPI y semáforo, entrega de respuestas, bitácora con línea de eventos, usuarios y <b>matriz de roles y permisos</b>.', 'Use los demos <a href="demos/index.html#solicitudes">Solicitudes y administración</a>.'),
         ('nuevo', 'Clases nuevas del panel: <code>mg-kcard</code> (KPI con ícono), <code>mg-sem</code>, <code>mg-opt</code>/<code>mg-optlist</code> (opciones tipo tarjeta), <code>mg-matriz</code>, <code>mg-caso</code>/<code>mg-evento</code>, <code>mg-usr</code>/<code>mg-rol</code>, <code>mg-codigo</code>, <code>mg-st</code>, <code>mg-efec</code>, <code>mg-cnt</code>, <code>mg-perfil</code> y títulos de grupo en el menú (<code>mg-nav__grp</code>).', 'Nada: llegan con <code>gob.css</code>.'),

@@ -501,6 +501,11 @@
 
 .mg-btn svg { width: 1.1em; height: 1.1em; flex: none; }
 
+/* tamaño por defecto de los íconos SVG dentro de las pantallas de acceso (las reglas específicas lo sobrescriben) */
+:where(.mg-auth) svg { width: 1.15rem; height: 1.15rem; flex: none; }
+.mg-auth__msg svg { width: 1.1rem; height: 1.1rem; margin-top: .1rem; }
+.mg-auth__back svg { width: 1rem; height: 1rem; }
+
 /* ==========================================================================
    PANEL DE GESTIÓN  ·  mg-shell  ·  inspirado en el diseño «Convocatorias» de la Gobernación
    Barra superior blanca con «la línea», menú lateral claro y STICKY, tarjetas suaves, títulos en azul.
