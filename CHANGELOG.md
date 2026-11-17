@@ -4,7 +4,7 @@
 
 ## 0.7.0 — 2026-11-17
 
-- **Nuevo**: Franja institucional y pie de página para sitios públicos (borrador de política): franja superior morada con el logo en blanco, panel de accesibilidad (tamaño de texto, alto contraste, subrayar enlaces, espaciado, pausar animaciones, «Ir al contenido») y pie estándar corto. Un solo script sin dependencias (cdn/v1/franja/gob-franja.js, ≈7 KB comprimido) con configuración común. Ver Sitios públicos y el sitio de ejemplo. _Acción: Opcional: agregue el script a sus sitios públicos. En WordPress, plugin DC-Franja (borrador)._
+- **Nuevo**: Franja institucional y pie de página para los sitios nuevos de la Gobernación y aliados (borrador de política): franja superior morada con el logo en blanco, panel de accesibilidad (tamaño de texto, alto contraste, subrayar enlaces, espaciado, pausar animaciones, «Ir al contenido») y pie estándar corto. Un solo script sin dependencias (cdn/v1/franja/gob-franja.js, ≈7 KB comprimido) con configuración común. Ver Sitios públicos y el sitio de ejemplo. _Acción: Opcional: agregue el script a los sitios nuevos que construya. No aplica al portal institucional actual._
 
 ## 0.6.1 — 2026-11-17
 
