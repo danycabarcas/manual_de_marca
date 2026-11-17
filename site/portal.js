@@ -11,7 +11,7 @@
   }
   // URL base (dónde está publicado el repo): se detecta sola y se puede editar
   // En el dominio oficial el CDN propio aún no envía cabeceras CORS: el código copiado usa jsDelivr (con CORS) hasta que se habiliten.
-  const CDN_PUBLICO = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.0';
+  const CDN_PUBLICO = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1';
   const detected = location.hostname === 'manualdemarca.magdalena.gov.co' ? CDN_PUBLICO : new URL('.', location.href).href.replace(/\/$/, '');
   let BASE = detected;
   try { BASE = localStorage.getItem('mg-base') || detected; } catch (e) {}

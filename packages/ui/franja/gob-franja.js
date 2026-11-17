@@ -3,7 +3,7 @@
  * Un solo archivo, sin dependencias (JavaScript puro, Custom Elements + Shadow DOM). Funciona como <script> normal en cualquier sitio.
  *
  *   <script src="https://…/cdn/v1/franja/gob-franja.js" data-auto data-modo="ambos"
- *           data-config='{"enlaces":[{"t":"Transparencia","u":"/transparencia"}]}'></script>
+ *           data-config='{"pie":{"correo":"contacto@sitio.gov.co"}}'></script>
  *
  * o con etiquetas:   <gob-franja></gob-franja> … <gob-pie></gob-pie>
  * Configuración (de menor a mayor prioridad): valores por defecto < window.GOB_FRANJA < data-config del <script> < atributo/propiedad config del elemento.
@@ -19,8 +19,6 @@
 
   var DEF = {
     titulo: 'Gobernación del Magdalena', url: 'https://www.magdalena.gov.co', logo: '', color: '#5618BA',
-    texto: 'Sitio oficial',                       // micro-texto junto al logo ('' para ocultarlo)
-    enlaces: [],                                   // [{ t:'Transparencia', u:'/transparencia' }]
     accesibilidad: true,                           // panel de accesibilidad
     opciones: ['texto', 'contraste', 'enlaces', 'espaciado', 'animaciones'],
     contenido: 'main, #main, #content, [role=main]', // destino del enlace «Ir al contenido»
@@ -43,7 +41,7 @@
   function scriptCfg() {
     if (!SCRIPT) return {};
     var c = json(SCRIPT.getAttribute('data-config')) || {}, d = SCRIPT.dataset || {};
-    ['titulo', 'url', 'logo', 'color', 'texto', 'contenido', 'aplicarA'].forEach(function (k) { var a = k.replace(/[A-Z]/g, function (m) { return '-' + m.toLowerCase(); }); if (SCRIPT.hasAttribute('data-' + a)) c[k] = SCRIPT.getAttribute('data-' + a); });
+    ['titulo', 'url', 'logo', 'color', 'contenido', 'aplicarA'].forEach(function (k) { var a = k.replace(/[A-Z]/g, function (m) { return '-' + m.toLowerCase(); }); if (SCRIPT.hasAttribute('data-' + a)) c[k] = SCRIPT.getAttribute('data-' + a); });
     if (SCRIPT.hasAttribute('data-sticky')) c.sticky = SCRIPT.getAttribute('data-sticky') !== 'false';
     if (SCRIPT.hasAttribute('data-accesibilidad')) c.accesibilidad = SCRIPT.getAttribute('data-accesibilidad') !== 'false';
     return c;
@@ -85,8 +83,8 @@
   var CSS_F = ':host{display:block;position:relative;z-index:2147483000;font:500 12.5px/1.3 Montserrat,"Segoe UI",system-ui,-apple-system,Arial,sans-serif}:host([hidden]){display:none}*{box-sizing:border-box}' +
     '.skip{position:absolute;left:.5rem;top:-3rem;background:#fff;color:#2a0f66;padding:.5rem .9rem;border-radius:0 0 8px 8px;font-weight:700;text-decoration:none;z-index:2;transition:top .15s}.skip:focus{top:0;outline:3px solid #FEC800}' +
     '.bar{background:var(--c,#5618BA);color:#fff;border-bottom:1px solid rgba(255,255,255,.14)}.sticky{position:sticky;top:0}.in{display:flex;align-items:center;gap:1rem;min-height:36px;max-width:1280px;margin:0 auto;padding:0 1rem}' +
-    '.logo{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;min-width:0}.logo img{height:22px;width:auto;display:block}.logo span{font-weight:600;opacity:.9;border-left:1px solid rgba(255,255,255,.3);padding-left:.6rem;white-space:nowrap}' +
-    '.sp{flex:1}.links{display:flex;gap:.25rem;align-items:center}.links a{color:#fff;text-decoration:none;padding:.35rem .6rem;border-radius:6px;font-weight:500;white-space:nowrap}.links a:hover{background:rgba(255,255,255,.14)}' +
+    '.logo{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;min-width:0}.logo img{height:22px;width:auto;display:block}' +
+    '.sp{flex:1}' +
     'a:focus-visible,button:focus-visible{outline:2px solid #FEC800;outline-offset:2px}.btn{display:inline-flex;align-items:center;gap:.4rem;border:0;background:transparent;color:#fff;font:inherit;font-weight:600;padding:.35rem .6rem;border-radius:6px;cursor:pointer}.btn:hover,.btn[aria-expanded=true]{background:rgba(255,255,255,.16)}' +
     '.a11y{position:relative}.panel{position:absolute;right:0;top:calc(100% + 8px);width:min(19rem,calc(100vw - 1.5rem));background:#fff;color:#161A22;border-radius:14px;box-shadow:0 18px 50px rgba(8,26,44,.35);padding:1rem;z-index:3}.panel[hidden]{display:none}' +
     '.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}.ph b{font-size:13px;color:#2a0f66}.x{border:0;background:#F1F4F8;color:#161A22;border-radius:8px;width:1.9rem;height:1.9rem;display:grid;place-items:center;cursor:pointer}.x:hover{background:#E3E8EF}' +
@@ -94,7 +92,7 @@
     '.sz{display:inline-flex;gap:.25rem;align-items:center}.sz button{border:1px solid #CBD2DC;background:#fff;color:#161A22;border-radius:8px;min-width:2.1rem;height:2.1rem;font-weight:700;font-size:12px;font-family:inherit;cursor:pointer}.sz button:hover{background:#F4F6FA}.sz output{min-width:2.8rem;text-align:center;font-weight:700;font-size:12px;color:#5618BA}' +
     '.sw{width:2.5rem;height:1.45rem;border-radius:99px;border:0;background:#B6BEC9;position:relative;cursor:pointer;flex:none;transition:background .15s}.sw::after{content:"";position:absolute;left:.2rem;top:.2rem;width:1.05rem;height:1.05rem;border-radius:50%;background:#fff;transition:transform .15s}.sw[aria-checked=true]{background:#5618BA}.sw[aria-checked=true]::after{transform:translateX(1.05rem)}' +
     '.rs{margin-top:.5rem;width:100%;border:1px solid #CBD2DC;background:#fff;color:#161A22;border-radius:8px;padding:.55rem;font-weight:600;font-size:12px;font-family:inherit;cursor:pointer}.rs:hover{background:#F4F6FA}.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}' +
-    '@media(max-width:720px){.links{display:none}.logo span{display:none}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}';
+    '@media(prefers-reduced-motion:reduce){*{transition:none!important}}';
 
   function logoUrl(c) { return c.logo || (BASE ? BASE + 'logo-blanco.png' : ''); }
   var OPT = { texto: 1, contraste: 1, enlaces: 1, espaciado: 1, animaciones: 1 };
@@ -113,7 +111,7 @@
   };
   Franja.prototype.render = function () {
     var self = this, c = this._c = config(this), r = this._r, ops = (c.opciones || []).filter(function (o) { return OPT[o]; });
-    var lg = logoUrl(c), ln = (c.enlaces || []).map(function (l) { return '<a href="' + esc(safeUrl(l.u)) + '">' + esc(l.t) + '</a>'; }).join('');
+    var lg = logoUrl(c);
     var panel = '';
     if (c.accesibilidad && ops.length) {
       var rows = '';
@@ -125,7 +123,7 @@
         '<div class="panel" id="p" role="dialog" aria-label="Opciones de accesibilidad" hidden><div class="ph"><b>Accesibilidad</b><button type="button" class="x" data-close aria-label="Cerrar">' + svg('cerrar', 14) + '</button></div>' + rows + '<button type="button" class="rs" data-reset>Restablecer valores</button><div class="vh" role="status" aria-live="polite"></div></div></div>';
     }
     r.innerHTML = '<style>' + CSS_F + '</style><a class="skip" href="#contenido" data-skip>Ir al contenido principal</a><div class="bar' + (c.sticky ? ' sticky' : '') + '" style="--c:' + esc(c.color) + '" role="region" aria-label="Franja institucional">' +
-      '<div class="in"><a class="logo" href="' + esc(safeUrl(c.url)) + '" aria-label="' + esc(c.titulo) + ', sitio oficial">' + (lg ? '<img src="' + esc(lg) + '" alt="" height="22">' : '<b>' + esc(c.titulo) + '</b>') + (c.texto ? '<span>' + esc(c.texto) + '</span>' : '') + '</a><span class="sp"></span><nav class="links" aria-label="Enlaces institucionales">' + ln + '</nav>' + panel + '</div></div>';
+      '<div class="in"><a class="logo" href="' + esc(safeUrl(c.url)) + '" aria-label="' + esc(c.titulo) + ', sitio oficial">' + (lg ? '<img src="' + esc(lg) + '" alt="" height="22">' : '<b>' + esc(c.titulo) + '</b>') + '</a><span class="sp"></span>' + panel + '</div></div>';
     this._sync();
     var skip = r.querySelector('[data-skip]');
     skip.addEventListener('click', function (e) { var t = null; try { t = document.querySelector(c.contenido); } catch (x) {} if (!t) return; e.preventDefault(); if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1'); t.focus(); t.scrollIntoView(); });

@@ -48,7 +48,7 @@ def hub(root, page, code):
     ca = ''.join(card(*x) for x in acceso)
     cb = ''.join(card(*x) for x in apps)
 
-    esqueleto = code('html', """<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.0/cdn/v1/gob.css">
+    esqueleto = code('html', """<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/gob.css">
 
 <div class="mg-auth">
   <main class="mg-auth__main">

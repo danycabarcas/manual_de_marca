@@ -2,12 +2,16 @@
 import json
 import os
 
-VERSION = '0.7.0'
+VERSION = '0.7.1'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.7.1', '2026-11-17', [
+        ('cambio', '<b>Franja institucional simplificada</b>: solo el logo blanco a la izquierda y el botón «Accesibilidad» a la derecha. Se eliminaron el texto «Sitio oficial» y los enlaces (Transparencia, PQRSD…): el menú es del propio sitio. Las opciones <code>texto</code> y <code>enlaces</code> ya no existen.', 'Si las usaba, quítelas de <code>data-config</code>; no producen error.'),
+        ('cambio', 'El <a href="demos/sitio-publico.html">sitio de ejemplo</a> se rediseñó como una sede normal: franja morada arriba y debajo el encabezado de la entidad (logo en color y menú a la derecha).', ''),
+    ]),
     ('0.7.0', '2026-11-17', [
         ('nuevo', '<b>Franja institucional y pie de página para los sitios nuevos de la Gobernación y aliados</b> (borrador de política): franja superior morada con el logo en blanco, <b>panel de accesibilidad</b> (tamaño de texto, alto contraste, subrayar enlaces, espaciado, pausar animaciones, «Ir al contenido») y pie estándar corto. Un solo script sin dependencias (<code>cdn/v1/franja/gob-franja.js</code>, ≈7 KB comprimido) con configuración común. Ver <a href="sitios-publicos.html">Sitios públicos</a> y el <a href="demos/sitio-publico.html">sitio de ejemplo</a>.', 'Opcional: agregue el script a los sitios nuevos que construya. No aplica al portal institucional actual.'),
     ]),

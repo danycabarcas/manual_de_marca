@@ -1,6 +1,11 @@
 # Novedades del sistema de diseño gob-*
 
-Última versión: **0.7.0** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+Última versión: **0.7.1** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+
+## 0.7.1 — 2026-11-17
+
+- **Cambio**: Franja institucional simplificada: solo el logo blanco a la izquierda y el botón «Accesibilidad» a la derecha. Se eliminaron el texto «Sitio oficial» y los enlaces (Transparencia, PQRSD…): el menú es del propio sitio. Las opciones texto y enlaces ya no existen. _Acción: Si las usaba, quítelas de data-config; no producen error._
+- **Cambio**: El sitio de ejemplo se rediseñó como una sede normal: franja morada arriba y debajo el encabezado de la entidad (logo en color y menú a la derecha).
 
 ## 0.7.0 — 2026-11-17
 
