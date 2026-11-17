@@ -2,12 +2,15 @@
 import json
 import os
 
-VERSION = '0.6.1'
+VERSION = '0.7.0'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.7.0', '2026-11-17', [
+        ('nuevo', '<b>Franja institucional y pie de página para sitios públicos</b> (borrador de política): franja superior morada con el logo en blanco, <b>panel de accesibilidad</b> (tamaño de texto, alto contraste, subrayar enlaces, espaciado, pausar animaciones, «Ir al contenido») y pie estándar corto. Un solo script sin dependencias (<code>cdn/v1/franja/gob-franja.js</code>, ≈7 KB comprimido) con configuración común. Ver <a href="sitios-publicos.html">Sitios públicos</a> y el <a href="demos/sitio-publico.html">sitio de ejemplo</a>.', 'Opcional: agregue el script a sus sitios públicos. En WordPress, plugin DC-Franja (borrador).'),
+    ]),
     ('0.6.1', '2026-11-17', [
         ('arreglo', 'Íconos SVG sin tamaño en las pantallas de acceso (p. ej. la flecha de «Volver a iniciar sesión» se veía gigante): ahora todo ícono dentro de <code>.mg-auth</code> tiene un tamaño por defecto (1.15 rem).', 'Nada: llega con <code>gob.css</code>. Si copió el login, agregue <code>svg { width: 1.15rem; height: 1.15rem }</code> dentro de su contenedor o actualice <code>gob.css</code>.'),
     ]),

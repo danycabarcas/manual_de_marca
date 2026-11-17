@@ -8,7 +8,7 @@ import time
 BUILD = int(time.time())
 NAV = [('index.html', 'Inicio'), ('colores.html', 'Colores y degradados'), ('logos.html', 'Logos y descargas'),
        ('componentes.html', 'Componentes'), ('estudio/index.html', 'Estudio'), ('integracion.html', 'Integración'), ('aplicaciones.html', 'Aplicaciones'),
-       ('demos/index.html', 'Demos'), ('novedades.html', 'Novedades'), ('ia.html', 'Para IA')]
+       ('demos/index.html', 'Demos'), ('sitios-publicos.html', 'Sitios públicos'), ('novedades.html', 'Novedades'), ('ia.html', 'Para IA')]
 
 
 def page(root, fname, title, lead, body, hero=False, active=None, scripts=''):
@@ -544,7 +544,8 @@ def build(root, dist, G):
     site_grafica.build(root, page, code)
     site_estandar.build(root, page, code)
     page_demos(root)
-    import ia, novedades
+    import ia, novedades, site_franja
+    site_franja.build(root, page, code)
     novedades.build(root, page, code)
     ia.build(root, page)
     page_index(root); page_colors(root); page_logos(root); page_components(root); page_integration(root, G); page_apps(root)

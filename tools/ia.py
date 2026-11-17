@@ -3,7 +3,7 @@ import os
 import zipfile
 
 BASE = 'https://manualdemarca.magdalena.gov.co'
-CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1'   # misma estructura /cdn/v1/ pero con CORS
+CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.0'   # misma estructura /cdn/v1/ pero con CORS
 
 GUIA = r'''# Guía para agentes: usar el sistema de diseño `gob-*` de la Gobernación del Magdalena
 
@@ -112,6 +112,10 @@ Cada widget: `tipo` (`kpi | grafica | mapa | tabla | texto | alerta`), `titulo`,
 </script></body></html>
 ```
 
+## 3d. Sitios públicos: franja institucional y pie (política de la Gobernación)
+Todo sitio público de la Gobernación o de un aliado lleva la **franja superior morada con accesibilidad** y el **pie estándar**. Es un solo script sin dependencias, independiente de `gob.js`:
+`<script src="__CDN__/cdn/v1/franja/gob-franja.js" data-auto data-modo="ambos" data-config='{"enlaces":[{"t":"Transparencia","u":"/transparencia"}],"pie":{"correo":"…","columnas":[{"titulo":"Ciudadanía","enlaces":[{"t":"PQRSD","u":"/pqrsd"}]}]}}'></script>` (o las etiquetas `<gob-franja>` / `<gob-pie>`). No cambies el color ni la altura; solo el contenido. Opciones y política: `__BASE__/sitios-publicos.html`. En WordPress usa el plugin DC-Franja.
+
 ## 4. Formularios con elementos HTML normales
 Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`, `textarea`, `button`, casillas, radios, `role="switch"`, rango, archivo, `progress`, `fieldset`, `label`, tablas sin clase, `details`, `dialog`) ya se ven de marca, con foco, hover, deshabilitado y validación (`:user-invalid`, `aria-invalid`). Para botones con variantes usa `mg-btn` (`mg-btn--secondary|outline|ghost|danger|sm|lg`). Campos con clase: `mg-input`, `mg-select`, `mg-textarea`, `mg-label`, `mg-field`, `mg-error`, `mg-help`. Una clase propia o de otro framework siempre gana (especificidad cero); excluir uno: `class="mg-nativo-off"`.
 
@@ -190,6 +194,7 @@ Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.m
 - [Selector, fecha, archivos]({BASE}/componentes/gob-campos.html)
 - [Avatar, árbol, kanban, menú, tooltip, paginador]({BASE}/componentes/gob-contenido.html)
 - [Formularios nativos]({BASE}/componentes/formularios.html)
+- [Sitios públicos: franja institucional, accesibilidad y pie]({BASE}/sitios-publicos.html): política (borrador) y un solo script para todos los sitios
 - [Íconos]({BASE}/componentes/iconos.html)
 - [Angular, React, Next.js, Vue]({BASE}/componentes/frameworks.html)
 - [Estándar y licencias]({BASE}/componentes/estandar.html)

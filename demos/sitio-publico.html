@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sitio público de ejemplo · Franja institucional</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<style>
+  body { margin: 0; font-family: Montserrat, system-ui, sans-serif; color: #161A22; background: #fff; }
+  main { display: block; }
+  .hero { background: linear-gradient(135deg, #0B2239, #12395C); color: #fff; padding: clamp(2.5rem, 7vw, 5rem) 1.25rem; }
+  .w { max-width: 1100px; margin: 0 auto; } .hero h1 { margin: 0 0 .75rem; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -.02em; } .hero p { margin: 0 0 1.25rem; max-width: 52ch; color: #C9D4E3; font-size: 1.05rem; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); padding: 2.5rem 1.25rem; } .card { border: 1px solid #E3E8EF; border-radius: 14px; padding: 1.25rem; } .card h2 { margin: 0 0 .4rem; font-size: 1.05rem; color: #0071BB; } .card p { margin: 0; color: #4F5866; font-size: .92rem; }
+  a.btn { display: inline-block; background: #0071BB; color: #fff; padding: .7rem 1.2rem; border-radius: 10px; font-weight: 700; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ★ LA FRANJA Y EL PIE: una sola línea. data-auto inserta la franja arriba y el pie al final. -->
+<script src="../cdn/v1/franja/gob-franja.js" data-auto data-modo="ambos" data-config='{"enlaces": [{"t": "Transparencia", "u": "#transparencia"}, {"t": "PQRSD", "u": "#pqrsd"}, {"t": "Trámites y servicios", "u": "#tramites"}], "pie": {"direccion": "Carrera 1C N° 16-15, Palacio Tayrona · Santa Marta, Magdalena", "correo": "contactenos@magdalena.gov.co", "telefono": "(+57) 000 000 0000 · reemplazar", "columnas": [{"titulo": "Ciudadanía", "enlaces": [{"t": "PQRSD", "u": "#pqrsd"}, {"t": "Trámites y servicios", "u": "#tramites"}, {"t": "Atención presencial", "u": "#atencion"}]}, {"titulo": "Transparencia", "enlaces": [{"t": "Ley 1712 de 2014", "u": "#ley1712"}, {"t": "Contratación", "u": "#contratacion"}, {"t": "Plan de acción", "u": "#plan"}]}], "redes": [{"n": "facebook", "t": "Facebook", "u": "#facebook"}, {"n": "instagram", "t": "Instagram", "u": "#instagram"}, {"n": "x", "t": "X", "u": "#x"}, {"n": "youtube", "t": "YouTube", "u": "#youtube"}], "legal": [{"t": "Política de privacidad", "u": "#privacidad"}, {"t": "Términos de uso", "u": "#terminos"}, {"t": "Declaración de accesibilidad", "u": "#accesibilidad"}]}}'></script>
+
+<main id="contenido">
+  <section class="hero"><div class="w"><h1>Secretaría de Turismo del Magdalena</h1><p>Sitio de ejemplo de un aliado: la franja superior morada y el pie de página son idénticos en todos los sitios de la Gobernación.</p><a class="btn" href="#tramites">Ver servicios</a></div></section>
+  <section class="w cards" id="tramites" aria-label="Servicios"><article class="card"><h2>Rutas turísticas</h2><p>Consulte destinos, prestadores certificados y eventos de la temporada.</p></article><article class="card"><h2>Registro Nacional de Turismo</h2><p>Inscriba o renueve su establecimiento en línea.</p></article><article class="card"><h2>Quejas y sugerencias</h2><p>Radique su PQRSD y haga seguimiento con su número de radicado.</p></article></section>
+  <section class="w" style="padding:0 1.25rem 3rem"><h2>Prueba la accesibilidad</h2><p style="max-width:62ch;color:#4F5866">Abra <b>Accesibilidad</b> en la franja superior: aumente el texto, active el alto contraste, subraye los enlaces, aumente el espaciado o pause las animaciones. Sus preferencias se recuerdan en este navegador. Pulse <kbd>Tab</kbd> al cargar la página para ver «Ir al contenido principal».</p></section>
+</main>
+
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

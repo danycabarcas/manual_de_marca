@@ -3,7 +3,7 @@ export const $ = (s, r = document) => r.querySelector(s);
 export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const CDN = new URL('../cdn/v1/', location.href).href;
-export const DETECTADA = location.hostname === 'manualdemarca.magdalena.gov.co' ? 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.1' : new URL('../', location.href).href.replace(/\/$/, '');   // jsDelivr: el CDN propio aún no envía CORS
+export const DETECTADA = location.hostname === 'manualdemarca.magdalena.gov.co' ? 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.0' : new URL('../', location.href).href.replace(/\/$/, '');   // jsDelivr: el CDN propio aún no envía CORS
 export const base = () => { try { return localStorage.getItem('mg-base') || DETECTADA; } catch { return DETECTADA; } };
 export const json = (v, i = 2) => JSON.stringify(v, null, i);
 export const sangria = (t, n) => t.split('\n').map((l, i) => (i ? ' '.repeat(n) : '') + l).join('\n');
