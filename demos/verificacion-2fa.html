@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verificación en dos pasos · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Código OTP de 6 dígitos (autoavance, pegar, reenvío). Código de prueba: 123456</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card"  data-demo="Tarjeta de acceso: Verificación en dos pasos" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div class="mg-auth__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h1 class="mg-auth__title">Verificación en dos pasos</h1>
+      <p class="mg-auth__sub">Ingresa el código de 6 dígitos enviado a <b>a•••@magdalena.gov.co</b></p>
+      <form class="mg-auth__form" id="f" novalidate>
+        <div class="mg-auth__msg mg-auth__msg--error" id="msg" role="alert" hidden></div>
+        <div class="mg-otp" id="otp" role="group" aria-label="Código de verificación">
+          <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Dígito 1"><input inputmode="numeric" maxlength="1" aria-label="Dígito 2"><input inputmode="numeric" maxlength="1" aria-label="Dígito 3">
+          <input inputmode="numeric" maxlength="1" aria-label="Dígito 4"><input inputmode="numeric" maxlength="1" aria-label="Dígito 5"><input inputmode="numeric" maxlength="1" aria-label="Dígito 6">
+        </div>
+        <button class="mg-btn mg-btn--lg mg-btn--block" id="verificar">Verificar</button>
+      </form>
+      <p class="mg-auth__hint" style="margin-top:1rem">¿No lo recibiste? <button type="button" id="reenviar" style="border:0;background:none;color:var(--mg-primary);font:700 .8rem var(--mg-font-sans);cursor:pointer;padding:0" disabled>Reenviar (<span id="seg">45</span> s)</button></p>
+      <a class="mg-auth__back" href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7M19 12H5"/></svg> Volver a iniciar sesión</a>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  const cajas = [...document.querySelectorAll('#otp input')];
+  const codigo = () => cajas.map((c) => c.value).join('');
+  cajas.forEach((c, i) => {
+    c.addEventListener('input', () => { c.value = c.value.replace(/\D/g, '').slice(-1); if (c.value && cajas[i + 1]) cajas[i + 1].focus(); if (codigo().length === 6) $('f').requestSubmit(); });
+    c.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && !c.value && cajas[i - 1]) { cajas[i - 1].focus(); cajas[i - 1].value = ''; } if (e.key === 'ArrowLeft' && cajas[i - 1]) cajas[i - 1].focus(); if (e.key === 'ArrowRight' && cajas[i + 1]) cajas[i + 1].focus(); });
+    c.addEventListener('paste', (e) => { const d = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6); if (!d) return; e.preventDefault(); d.split('').forEach((x, k) => (cajas[k].value = x)); cajas[Math.min(d.length, 5)].focus(); if (d.length === 6) $('f').requestSubmit(); });
+  });
+  let s = 45; const t = setInterval(() => { s--; $('reenviar').innerHTML = s > 0 ? 'Reenviar (' + s + ' s)' : 'Reenviar código'; if (s <= 0) { clearInterval(t); $('reenviar').disabled = false; } }, 1000);
+  $('reenviar').onclick = () => { gob.toast({ tipo: 'exito', titulo: 'Código reenviado' }); cajas.forEach((c) => (c.value = '')); cajas[0].focus(); };
+  $('f').addEventListener('submit', async (e) => {
+    e.preventDefault(); const m = $('msg'); m.hidden = true; $('otp').classList.remove('is-invalid');
+    if (codigo().length < 6) { m.textContent = 'Escriba los 6 dígitos del código.'; m.hidden = false; return; }
+    cargando($('verificar'), true); await espera(800);                           // ← await fetch('/api/auth/2fa', { body: { codigo } })
+    cargando($('verificar'), false);
+    if (codigo() === '123456') return gob.toast({ tipo: 'exito', titulo: 'Verificado', mensaje: 'En producción redirige al panel.' });
+    $('otp').classList.add('is-invalid'); m.textContent = 'Código incorrecto o vencido. Inténtelo de nuevo.'; m.hidden = false; cajas.forEach((c) => (c.value = '')); cajas[0].focus();
+  });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

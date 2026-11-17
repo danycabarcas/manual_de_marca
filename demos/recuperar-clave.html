@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recuperar contraseña · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Paso 1: correo · Paso 2: «revisa tu correo» con reenvío a los 60 s</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card"  data-demo="Tarjeta de acceso: Recuperar contraseña" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div id="p1">
+        <div class="mg-auth__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></div>
+        <h1 class="mg-auth__title">Recuperar contraseña</h1>
+        <p class="mg-auth__sub">Te enviaremos un enlace para crear una nueva</p>
+        <form class="mg-auth__form" id="f" novalidate>
+          <div><div class="mg-fl" id="w-mail"><input id="mail" name="mail" type="email" placeholder=" " autocomplete="username"  inputmode="email" aria-describedby="e-mail"><label for="mail">Correo institucional</label></div><p class="mg-fl-msg is-error" id="e-mail" role="alert" hidden></p></div>
+          <button class="mg-btn mg-btn--lg mg-btn--block" id="enviar">Enviar enlace</button>
+        </form>
+        <a class="mg-auth__back" href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7M19 12H5"/></svg> Volver a iniciar sesión</a>
+      </div>
+      <div id="p2" hidden>
+        <div class="mg-auth__icon-big mg-auth__icon-big--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <h1 class="mg-auth__title">Revisa tu correo</h1>
+        <p class="mg-auth__sub">Si <b id="dest"></b> está registrado, recibirás un enlace válido por 30 minutos.</p>
+        <div class="mg-auth__msg mg-auth__msg--info" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></svg><span>¿No llega? Revisa la carpeta de spam. El enlace se envía solo si la cuenta existe.</span></div>
+        <button class="mg-btn mg-btn--secondary mg-btn--block" id="reenviar" style="margin-top:1rem" disabled>Reenviar enlace (<span id="seg">60</span> s)</button>
+        <a class="mg-auth__back" href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7M19 12H5"/></svg> Volver a iniciar sesión</a>
+      </div>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  let t;
+  function cuenta() { let s = 60; $('reenviar').disabled = true; clearInterval(t); t = setInterval(() => { s--; $('reenviar').innerHTML = s > 0 ? 'Reenviar enlace (' + s + ' s)' : 'Reenviar enlace'; if (s <= 0) { clearInterval(t); $('reenviar').disabled = false; } }, 1000); }
+  $('f').addEventListener('submit', async (e) => {
+    e.preventDefault(); if (!error('mail', esMail($('mail').value.trim()) ? '' : 'Escriba un correo válido')) return $('mail').focus();
+    cargando($('enviar'), true); await espera(900);                              // ← await fetch('/api/auth/recuperar', { method:'POST', body: … })
+    cargando($('enviar'), false); $('dest').textContent = $('mail').value.trim(); $('p1').hidden = true; $('p2').hidden = false; cuenta();
+  });
+  $('reenviar').onclick = async () => { gob.toast({ tipo: 'exito', titulo: 'Enlace reenviado' }); cuenta(); };
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

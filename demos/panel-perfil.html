@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi perfil profesional · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Secciones con estado + formulario por sección</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Convocatorias</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2>
+      <nav aria-label="Principal"><ul class="mg-nav"><li><a href="panel-inicio.html"><gob-icono nombre="inicio" tam="18"></gob-icono>Inicio</a></li><li><a href="panel-perfil.html" aria-current="page"><gob-icono nombre="usuario" tam="18"></gob-icono>Mi hoja de vida</a></li><li><a href="panel-listado.html"><gob-icono nombre="archivo" tam="18"></gob-icono>Convocatorias</a></li><li><a href="panel-detalle.html"><gob-icono nombre="tareas" tam="18"></gob-icono>Formularios</a></li></ul><div class="mg-nav__sep">Administración</div><ul class="mg-nav"><li><a href="panel-listado.html#usuarios"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="panel-listado.html#ubicaciones"><gob-icono nombre="ubicacion" tam="18"></gob-icono>Ubicaciones</a></li><li><a href="panel-configuracion.html"><gob-icono nombre="ajustes" tam="18"></gob-icono>Configuración</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page"><div><span class="mg-pill">Mi hoja de vida</span><h1>Mi perfil profesional</h1><p>Completa cada sección, se utilizará automáticamente en todas tus postulaciones.</p></div></div>
+      <div style="display:grid;grid-template-columns:18rem minmax(0,1fr);gap:1.25rem;align-items:start" class="dos-col">
+        <section class="mg-panel" aria-label="Secciones del perfil" data-demo="Lista de secciones con estado" data-nota="mg-checklist: cada botón muestra su sección; check verde = completa">
+          <ul class="mg-checklist" id="secciones"></ul></section>
+        <section class="mg-panel mg-forms" id="seccion" aria-live="polite" data-demo="Formulario de sección" data-nota="mg-panel + mg-fgrid (rejilla de 2 columnas) + mg-lab (etiqueta con asterisco)"></section>
+      </div>
+      <style>@media (max-width: 900px) { .dos-col { grid-template-columns: 1fr !important; } }</style>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+  const S = [
+    { id: 'per', t: 'Información personal', i: 'usuario', sub: 'Datos básicos que te identifican', ok: true, c: [['Tipo de documento', 'sel:Cédula de ciudadanía,Cédula de extranjería,Pasaporte'], ['Número de documento', 'text'], ['Nombres', 'text'], ['Apellidos', 'text'], ['Fecha de nacimiento', 'date'], ['Género', 'sel:Femenino,Masculino,Otro']] },
+    { id: 'con', t: 'Información de contacto', i: 'correo', sub: 'Completa tu perfil una vez y úsalo en todas tus postulaciones', ok: true, c: [['Correo electrónico', 'email'], ['Teléfono', 'tel'], ['Facebook', 'text*'], ['Instagram', 'text*'], ['Sitio web', 'text*full']] },
+    { id: 'res', t: 'Dirección de residencia', i: 'ubicacion', sub: 'Escribe la dirección del lugar donde vives', ok: true, c: [['Departamento', 'sel:Magdalena,Atlántico,Bolívar'], ['Municipio', 'sel:Santa Marta,Ciénaga,Fundación'], ['Tipo de zona', 'sel:Urbana,Rural'], ['Dirección', 'text*full']] },
+    { id: 'for', t: 'Formación académica', i: 'escuela', sub: 'Tus estudios formales', ok: true, c: [['Nivel de estudio', 'sel:Técnico,Tecnólogo,Pregrado,Posgrado'], ['Institución', 'text'], ['Título obtenido', 'text full'], ['Fecha de grado', 'date']] },
+    { id: 'exp', t: 'Experiencia laboral', i: 'maletin', sub: 'Cargos y funciones desempeñadas', ok: true, c: [['Empresa', 'text'], ['Cargo', 'text'], ['Fecha de inicio', 'date'], ['Fecha de fin', 'date*']] },
+    { id: 'cer', t: 'Certificaciones', i: 'verificado', sub: 'Cursos, diplomas y certificaciones complementarias', ok: false, vacio: 'Aún no has agregado certificaciones' },
+    { id: 'doc', t: 'Documentos soporte', i: 'archivo', sub: 'Adjunta tus documentos, se reutilizarán en cada postulación', ok: false, docs: true },
+  ];
+  let actual = 0;
+  const campo = ([l, t], k) => { const opc = t.startsWith('sel:') ? t.slice(4).split(',') : null, req = !t.includes('*'), full = t.includes('full'), tipo = t.replace(/\*|full/g, '').trim(), id = 'c' + k;
+    const ctl = opc ? `<select id="${id}"><option value="">Seleccione…</option>${opc.map((o) => `<option>${o}</option>`).join('')}</select>` : `<input id="${id}" type="${tipo === 'text' ? 'text' : tipo}">`;
+    return `<div class="${full ? 'full' : ''}"><label class="mg-lab" for="${id}">${l}${req ? '<span class="req">*</span>' : ' <small>(opcional)</small>'}</label>${ctl}</div>`; };
+  function lista() {
+    $('secciones').innerHTML = S.map((s, i) => `<li><button type="button" data-i="${i}" aria-current="${i === actual}"><gob-icono nombre="${s.i}" tam="16"></gob-icono>${s.t}${s.ok ? '<span class="ok" aria-label="Completa"><gob-icono nombre="check-circulo" tam="16"></gob-icono></span>' : '<span class="pend" aria-label="Pendiente"></span>'}</button></li>`).join('');
+    $('secciones').querySelectorAll('button').forEach((b) => (b.onclick = () => { actual = +b.dataset.i; lista(); ver(); }));
+  }
+  function ver() {
+    const s = S[actual]; let cuerpo;
+    if (s.vacio) cuerpo = `<div class="mg-empty"><span class="ic"><gob-icono nombre="check-circulo" tam="22"></gob-icono></span><h3>${s.vacio}</h3><p>Agrega tus certificaciones y cursos complementarios</p></div>`;
+    else if (s.docs) cuerpo = ['Tarjeta profesional', 'Cédula de ciudadanía'].map((d, i) => `<div style="display:flex;align-items:center;gap:.75rem;padding:.75rem 0;border-bottom:1px solid #F1F4F8"><gob-icono nombre="archivo" tam="18"></gob-icono><div style="flex:1"><b style="font-size:.9rem">${d}</b><small style="display:block;color:var(--mg-text-muted);font-size:.74rem">PDF o PNG, máximo 2 MB</small>${i ? '<span class="mg-chip mg-chip--rojo" style="margin-top:.3rem">Obligatorio</span>' : ''}</div><span class="mg-chip mg-chip--gris">Pendiente</span><button type="button" class="mg-btn mg-btn--secondary mg-btn--sm" data-cargar>Cargar</button></div>`).join('');
+    else cuerpo = `<form id="form" novalidate><div class="mg-forms mg-fgrid">${s.c.map(campo).join('')}</div><div class="mg-formfoot"><button class="mg-btn mg-btn--sm" type="submit"><gob-icono nombre="check" tam="14"></gob-icono> Guardar cambios</button></div></form>`;
+    $('seccion').innerHTML = `<div class="mg-panel__head"><gob-icono nombre="${s.i}" tam="20"></gob-icono><div><h2>${s.t}</h2><small>${s.sub}</small></div>${s.vacio ? '<button type="button" class="mg-btn mg-btn--sm" data-agregar><gob-icono nombre="agregar" tam="14"></gob-icono> Agregar</button>' : ''}</div>${cuerpo}`;
+    $('seccion').querySelector('#form')?.addEventListener('submit', (e) => { e.preventDefault(); s.ok = true; lista(); gob.toast({ tipo: 'exito', titulo: 'Sección guardada', mensaje: s.t }); });
+    $('seccion').querySelectorAll('[data-cargar]').forEach((b) => (b.onclick = () => gob.toast({ tipo: 'info', titulo: 'Cargar documento', mensaje: 'Aquí abre el selector (gob-archivos).' })));
+    $('seccion').querySelector('[data-agregar]')?.addEventListener('click', () => gob.toast({ tipo: 'info', titulo: 'Agregar', mensaje: 'Aquí abre el formulario de certificación.' }));
+  }
+  lista(); ver();
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

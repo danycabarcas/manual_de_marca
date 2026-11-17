@@ -6,6 +6,7 @@
 - [Guía completa para agentes de IA (Markdown)](https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md): instalación, reglas, catálogo y flujo de trabajo
 - [Skill instalable (SKILL.md)](https://manualdemarca.magdalena.gov.co/docs/ia/skill/gob-componentes/SKILL.md)
 - [AGENTS.md de ejemplo](https://manualdemarca.magdalena.gov.co/docs/ia/AGENTS.md)
+- [Novedades y cómo actualizar](https://manualdemarca.magdalena.gov.co/novedades.html): versión vigente, cambios y acciones ([CHANGELOG.md](https://manualdemarca.magdalena.gov.co/CHANGELOG.md), [version.json](https://manualdemarca.magdalena.gov.co/cdn/v1/version.json))
 
 ## Documentación de componentes
 - [gob-tabla](https://manualdemarca.magdalena.gov.co/componentes/gob-tabla.html): tablas avanzadas

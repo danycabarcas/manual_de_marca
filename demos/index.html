@@ -4,22 +4,98 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demos y plantillas · Manual de marca Gobernación del Magdalena</title>
-<meta name="description" content="Páginas completas listas para copiar y usar como tema, con los componentes avanzados.">
+<meta name="description" content="Páginas completas para copiar: login y casos de acceso, panel, trámites, territorio, mesa de ayuda, portal y catálogo de UI.">
 <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="../dist/css/magdalena.css">
-<link rel="stylesheet" href="../site/portal.css?v=1792039844">
+<link rel="stylesheet" href="../site/portal.css?v=1794934096">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
   <a class="pt-brand" href="../index.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
   <button class="pt-burger" aria-label="Menú">☰</button>
-  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html" aria-current="page">Demos</a><a href="../ia.html">Para IA</a></nav>
+  <nav class="pt-nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../colores.html">Colores y degradados</a><a href="../logos.html">Logos y descargas</a><a href="../componentes.html">Componentes</a><a href="../estudio/index.html">Estudio</a><a href="../integracion.html">Integración</a><a href="../aplicaciones.html">Aplicaciones</a><a href="../demos/index.html" aria-current="page">Demos</a><a href="../novedades.html">Novedades</a><a href="../ia.html">Para IA</a></nav>
 </div></header>
-<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Demos y plantillas</h1><p>Páginas completas listas para copiar y usar como tema, con los componentes avanzados.</p></div></section>
+<section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Demos y plantillas</h1><p>Páginas completas para copiar: login y casos de acceso, panel, trámites, territorio, mesa de ayuda, portal y catálogo de UI.</p></div></section>
 <main class="pt-main">
-<p class="pt-lead">Plantillas completas hechas solo con los componentes <code class="inline">gob-*</code> y las clases <code class="inline">mg-*</code> (sin AdminLTE ni Bootstrap). En cada una active <b>«Guías de código»</b> para ver y copiar cada sección, o copie la página entera. Los datos son ficticios.</p><div class="cards-k"><a class="k" href="panel-ejecutivo.html"><h3>Panel ejecutivo</h3><p>Dashboard declarativo (KPI, gráficas, mapa), tabla y alertas en pestañas.</p></a><a class="k" href="gestion-tramites.html"><h3>Gestión de trámites</h3><p>CRUD completo: tabla con selección y acciones, modales con validación, detalle y confirmaciones.</p></a><a class="k" href="analitica-territorial.html"><h3>Analítica territorial</h3><p>Mapa coroplético, ranking, marcadores con efectos y rutas animadas.</p></a><a class="k" href="portal-ciudadano.html"><h3>Portal ciudadano</h3><p>Página pública: hero, servicios, cifras, mapa con modal, FAQ, noticias y pie.</p></a><a class="k" href="mesa-ayuda.html"><h3>Mesa de ayuda</h3><p>Tickets en kanban y lista, alta por pasos, detalle con línea de tiempo y centro de ayuda.</p></a><a class="k" href="acceso-formularios.html"><h3>Acceso y formularios</h3><p>Login, registro y formulario por pasos con validación accesible.</p></a><a class="k" href="plantilla-base.html"><h3>Plantilla base</h3><p>Punto de partida mínimo, comentado paso a paso, con todas las dependencias.</p></a></div>
+<p class="pt-lead">Plantillas completas hechas con los componentes <code class="inline">gob-*</code> y las clases <code class="inline">mg-*</code> (sin AdminLTE ni Bootstrap). En cada demo active <b>«Guías de código»</b> para ver y copiar cada sección, o copie la página entera. Los datos son ficticios.</p>
+<section class="pt-section" id="como"><h2><span class="n">01.</span> Cómo usar un demo</h2>
+<ol style="line-height:1.9;color:var(--mg-gray-700)"><li>Abra el demo y pulse <b>‹/› Guías de código</b> (abajo a la derecha): cada sección se enmarca con su nombre y un botón <b>Copiar sección</b>.</li><li>O use <b>⧉ Copiar página</b> / <b>⬇ .html</b>: las rutas se vuelven absolutas y funciona pegado en cualquier sitio.</li><li>Todo requiere solo <code>gob.css</code> (y <code>gob.js</code> si usa componentes <code>gob-*</code> o toasts). Sin internet: <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>.</li><li>En Angular/React/Next use el mismo HTML dentro de su plantilla (ver <a href="../componentes/frameworks.html">frameworks</a>): las clases no dependen del framework.</li></ol></section>
+<section class="pt-section" id="acceso"><h2><span class="n">02.</span> Acceso: login y todos sus casos</h2>
+<p class="pt-lead">Así deben verse <b>todos los accesos</b> de los sistemas de la Gobernación: panel de marca a la izquierda (logo, nombre del sistema, lema y descripción) y tarjeta con «la línea» a la derecha, con inicio con Google y con correo/contraseña. Cámbiele solo el nombre, el lema y la descripción.</p>
+<div class="cards-k"><a class="k" href="login.html"><h3>Iniciar sesión</h3><p>Google + correo y contraseña, mostrar/ocultar clave, error genérico, bloqueo tras 3 intentos y estado de carga.</p></a><a class="k" href="recuperar-clave.html"><h3>Recuperar contraseña</h3><p>Correo → «revisa tu correo» con reenvío temporizado. No revela si la cuenta existe.</p></a><a class="k" href="restablecer-clave.html"><h3>Nueva contraseña</h3><p>Pantalla del enlace del correo: medidor de fortaleza, requisitos en vivo y confirmación.</p></a><a class="k" href="verificacion-2fa.html"><h3>Verificación en dos pasos</h3><p>Código de 6 dígitos con autoavance, pegado y reenvío (código de prueba 123456).</p></a><a class="k" href="registro.html"><h3>Crear cuenta</h3><p>Solicitud de acceso en dos columnas: documento, dependencia, contraseña y política de datos.</p></a><a class="k" href="estados-acceso.html"><h3>Estados de acceso</h3><p>Sesión expirada, cuenta bloqueada, sin permiso y mantenimiento.</p></a></div>
+<h3 style="margin-top:2rem">Qué caso usar</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Caso</th><th>Página</th><th>Cuándo se muestra</th><th>Respuesta del servidor</th></tr></thead><tbody><tr><td>Ingreso</td><td><a href="login.html">login.html</a></td><td>Entrada al sistema</td><td>200 / 401 / 423 / 429</td></tr><tr><td>Olvidó su contraseña</td><td><a href="recuperar-clave.html">recuperar-clave.html</a></td><td>Enlace «¿Olvidaste tu contraseña?»</td><td>200 siempre (no revela si existe)</td></tr><tr><td>Nueva contraseña</td><td><a href="restablecer-clave.html">restablecer-clave.html</a></td><td>Enlace del correo con token (30 min)</td><td>200 / 400 token vencido</td></tr><tr><td>Segundo factor</td><td><a href="verificacion-2fa.html">verificacion-2fa.html</a></td><td>Después de la clave, si el usuario tiene 2FA</td><td>200 / 401 código inválido</td></tr><tr><td>Registro</td><td><a href="registro.html">registro.html</a></td><td>Solicitud de cuenta (aprobación manual)</td><td>201 / 409 ya existe</td></tr><tr><td>Sesión expirada</td><td><a href="estados-acceso.html">estados-acceso.html</a> (Expirada)</td><td>Token vencido o inactividad</td><td>401 en cualquier llamada</td></tr><tr><td>Cuenta bloqueada</td><td>idem (Bloqueada)</td><td>Intentos fallidos o desactivada</td><td>423</td></tr><tr><td>Sin permiso</td><td>idem (Sin permiso)</td><td>Rol sin acceso al módulo</td><td>403</td></tr><tr><td>Mantenimiento</td><td>idem (Mantenimiento)</td><td>Ventana de despliegue</td><td>503</td></tr></tbody></table></div>
+<h3 style="margin-top:2rem">Esqueleto del login (copiar y pegar)</h3><div class="code"><div class="code__bar"><span>Esqueleto del login (HTML + CSS)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css&quot;&gt;
+
+&lt;div class=&quot;mg-auth&quot;&gt;
+  &lt;main class=&quot;mg-auth__main&quot;&gt;
+    &lt;aside class=&quot;mg-auth__brand&quot;&gt;                                   &lt;!-- Panel de marca (se oculta la descripción en móvil) --&gt;
+      &lt;img class=&quot;mg-auth__logo&quot; src=&quot;logo-horizontal-color.svg&quot; alt=&quot;Gobernación del Magdalena&quot;&gt;
+      &lt;h2 class=&quot;mg-auth__name&quot;&gt;SIGA&lt;/h2&gt;                          &lt;!-- nombre corto de su sistema --&gt;
+      &lt;p class=&quot;mg-auth__tag&quot;&gt;Sistema Integrado de Gestión Administrativa&lt;/p&gt;
+      &lt;div class=&quot;mg-auth__rule&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;mg-auth__desc&quot;&gt;Descripción corta del sistema.&lt;/p&gt;
+    &lt;/aside&gt;
+
+    &lt;section class=&quot;mg-auth__card&quot;&gt;                                  &lt;!-- la línea de color la pone el ::before --&gt;
+      &lt;div class=&quot;mg-auth__badge&quot;&gt;&lt;svg&gt;…ícono usuario…&lt;/svg&gt;&lt;/div&gt;
+      &lt;h1 class=&quot;mg-auth__title&quot;&gt;Iniciar sesión&lt;/h1&gt;
+      &lt;p class=&quot;mg-auth__sub&quot;&gt;Ingresa con tu cuenta institucional&lt;/p&gt;
+
+      &lt;button type=&quot;button&quot; class=&quot;mg-social&quot;&gt;&lt;svg&gt;…G…&lt;/svg&gt; Ingresar con Google&lt;/button&gt;
+      &lt;div class=&quot;mg-auth__sep&quot;&gt;o con correo y contraseña&lt;/div&gt;
+
+      &lt;form class=&quot;mg-auth__form&quot; novalidate&gt;
+        &lt;div class=&quot;mg-auth__msg mg-auth__msg--error&quot; role=&quot;alert&quot; hidden&gt;&lt;/div&gt;   &lt;!-- error general --&gt;
+        &lt;div&gt;
+          &lt;div class=&quot;mg-fl&quot; id=&quot;w-mail&quot;&gt;                            &lt;!-- etiqueta flotante: placeholder=&quot; &quot; obligatorio --&gt;
+            &lt;input id=&quot;mail&quot; type=&quot;email&quot; placeholder=&quot; &quot; autocomplete=&quot;username&quot;&gt;
+            &lt;label for=&quot;mail&quot;&gt;Correo electrónico&lt;/label&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;mg-fl-msg is-error&quot; id=&quot;e-mail&quot; role=&quot;alert&quot; hidden&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;div class=&quot;mg-fl&quot; id=&quot;w-pw&quot;&gt;
+            &lt;input id=&quot;pw&quot; type=&quot;password&quot; class=&quot;has-eye&quot; placeholder=&quot; &quot; autocomplete=&quot;current-password&quot;&gt;
+            &lt;label for=&quot;pw&quot;&gt;Contraseña&lt;/label&gt;
+            &lt;button type=&quot;button&quot; class=&quot;mg-fl__eye&quot; aria-label=&quot;Mostrar contraseña&quot; aria-pressed=&quot;false&quot;&gt;&lt;svg&gt;…ojo…&lt;/svg&gt;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;p class=&quot;mg-fl-msg is-error&quot; id=&quot;e-pw&quot; role=&quot;alert&quot; hidden&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mg-auth__row&quot;&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; class=&quot;mg-check&quot;&gt; Mantener la sesión&lt;/label&gt;&lt;a href=&quot;/recuperar&quot;&gt;¿Olvidaste tu contraseña?&lt;/a&gt;&lt;/div&gt;
+        &lt;button class=&quot;mg-btn mg-btn--lg mg-btn--block&quot;&gt;Ingresar al sistema&lt;/button&gt;   &lt;!-- + clase is-loading mientras espera --&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class=&quot;mg-auth__foot&quot;&gt;&lt;span&gt;Gobernación del Magdalena · República de Colombia&lt;/span&gt;&lt;span&gt;© 2026 Todos los derechos reservados&lt;/span&gt;&lt;/footer&gt;
+&lt;/div&gt;</code></pre></div>
+<h3 style="margin-top:2rem">Clases del módulo de acceso</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Clase</th><th>Para qué</th></tr></thead><tbody><tr><td><code>mg-auth</code></td><td>Página completa: dos columnas (marca | tarjeta), pie y adaptación a móvil.</td></tr><tr><td><code>mg-auth__brand</code> · <code>__logo</code> · <code>__name</code> · <code>__tag</code> · <code>__rule</code> · <code>__desc</code></td><td>Panel de marca: logo, nombre del sistema en grande, lema, línea amarilla y descripción.</td></tr><tr><td><code>mg-auth__card</code> · <code>__badge</code> · <code>__title</code> · <code>__sub</code></td><td>Tarjeta con «la línea» arriba, insignia circular con ícono, título y subtítulo.</td></tr><tr><td><code>mg-social</code></td><td>Botón de acceso con proveedor (Google, Microsoft…).</td></tr><tr><td><code>mg-fl</code> · <code>mg-fl__eye</code> · <code>mg-fl-msg</code></td><td>Campo con etiqueta flotante, botón mostrar/ocultar y mensaje de ayuda/error. Estados: <code>is-invalid</code>, <code>is-valid</code>.</td></tr><tr><td><code>mg-auth__msg--error|ok|info|warn</code></td><td>Mensaje general del formulario (usar <code>role="alert"</code>).</td></tr><tr><td><code>mg-auth__icon-big--ok|err|warn|info</code></td><td>Ícono grande de confirmación/estado (éxito, error, aviso).</td></tr><tr><td><code>mg-otp</code> · <code>mg-fuerza</code> · <code>mg-reqs</code></td><td>Código de 6 dígitos; medidor de fortaleza y lista de requisitos de contraseña.</td></tr><tr><td><code>mg-btn.is-loading</code></td><td>Botón con indicador de carga (evita doble envío).</td></tr></tbody></table></div>
+<h3 style="margin-top:2rem">Conectarlo con el backend</h3><div class="code"><div class="code__bar"><span>Conectar con su backend</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// Mapa de respuestas del servidor → estado de la interfaz (use los mismos textos genéricos en todo el sistema)
+async function ingresar(correo: string, clave: string) {
+  const r = await fetch(&#x27;/api/auth/login&#x27;, { method: &#x27;POST&#x27;, headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; }, credentials: &#x27;include&#x27;, body: JSON.stringify({ correo, clave }) });
+  if (r.ok) {
+    const { requiere2fa } = await r.json();
+    return location.href = requiere2fa ? &#x27;/verificacion-2fa&#x27; : &#x27;/panel&#x27;;          // 200 → panel (o paso 2)
+  }
+  switch (r.status) {
+    case 401: return mostrar(&#x27;error&#x27;, &#x27;Correo o contraseña incorrectos.&#x27;);         // genérico: no diga cuál falló
+    case 423: return location.href = &#x27;/acceso/bloqueada&#x27;;                           // cuenta bloqueada → estados-acceso (Bloqueada)
+    case 429: return mostrar(&#x27;warn&#x27;, &#x27;Demasiados intentos. Espere unos minutos.&#x27;);  // límite de tasa
+    case 403: return location.href = &#x27;/acceso/sin-permiso&#x27;;                         // sin permiso
+    case 503: return location.href = &#x27;/acceso/mantenimiento&#x27;;                       // mantenimiento
+    default:  return mostrar(&#x27;error&#x27;, &#x27;No pudimos procesar la solicitud. Intente de nuevo.&#x27;);
+  }
+}
+// mostrar(tipo, texto): asigne texto a .mg-auth__msg, cambie la clase mg-auth__msg--&lt;tipo&gt; y quite [hidden].</code></pre></div>
+<h3 style="margin-top:2rem">Seguridad y buenas prácticas</h3><ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Mensajes genéricos</b>: «correo o contraseña incorrectos» y, en recuperación, la misma respuesta exista o no la cuenta (evita enumerar usuarios).</li>
+<li><b>Autocompletado correcto</b>: <code>autocomplete="username"</code>, <code>current-password</code>, <code>new-password</code>, <code>one-time-code</code> para que los gestores de contraseñas funcionen.</li>
+<li><b>Límite de intentos y bloqueo</b> siempre en el <b>servidor</b>; la interfaz solo lo refleja (los demos lo simulan en el cliente).</li>
+<li><b>Tokens y códigos</b>: enlace de restablecimiento de un solo uso y corta vida (30 min); OTP de 5–10 min; HTTPS y cookies <code>HttpOnly; Secure; SameSite</code>.</li>
+<li><b>Accesibilidad</b>: etiquetas visibles, <code>role="alert"</code> en errores, foco al primer campo con error, botón de ojo con <code>aria-pressed</code>. Probado con axe (WCAG 2.1 AA).</li>
+<li><b>Datos de prueba</b> de los demos: <code>demo@magdalena.gov.co</code> / <code>Demo1234</code> (login) y <code>123456</code> (2FA). Son ficticios y solo existen en el navegador.</li></ul></section>
+<section class="pt-section" id="panel"><h2><span class="n">03.</span> Panel de gestión (diseño «Convocatorias»)</h2><p class="pt-lead">Estructura de las aplicaciones internas según el diseño del equipo: barra superior con «la línea», <b>menú lateral claro y fijo (sticky)</b>, píldora de sección, títulos en azul, tarjetas suaves, filtros, tablas con estados y diálogos. Tipografía Montserrat en todo.</p><div class="cards-k"><a class="k" href="panel-inicio.html"><h3>Panel · Inicio</h3><p>Progreso del perfil, accesos rápidos de colores y estado vacío.</p></a><a class="k" href="panel-perfil.html"><h3>Panel · Mi perfil</h3><p>Lista de secciones con check + formulario por sección, documentos y vacíos.</p></a><a class="k" href="panel-listado.html"><h3>Panel · Listados</h3><p>Filtros, tarjetas de convocatoria (favorita, chips, estado), tabla de usuarios con paginación y ubicaciones.</p></a><a class="k" href="panel-detalle.html"><h3>Panel · Detalle de formulario</h3><p>Cabecera con acciones, pestañas subrayadas, interruptor, banner y pasos laterales.</p></a><a class="k" href="panel-configuracion.html"><h3>Panel · Configuración</h3><p>Datos de cuenta, cambio de contraseña y diálogo «Sin permisos».</p></a><a class="k" href="crear-cuenta.html"><h3>Registro público (Crea tu cuenta)</h3><p>Tarjeta con dos logos y formulario de dos columnas.</p></a></div></section>
+<section class="pt-section" id="apps"><h2><span class="n">04.</span> Otras aplicaciones y catálogo de UI</h2><div class="cards-k"><a class="k" href="panel-ejecutivo.html"><h3>Panel ejecutivo</h3><p>Dashboard declarativo (KPI, gráficas, mapa), tabla y alertas en pestañas.</p></a><a class="k" href="gestion-tramites.html"><h3>Gestión de trámites</h3><p>CRUD: tabla con selección y acciones, modales con validación, detalle y confirmaciones.</p></a><a class="k" href="analitica-territorial.html"><h3>Analítica territorial</h3><p>Mapa coroplético, ranking, marcadores con efectos y rutas animadas.</p></a><a class="k" href="mesa-ayuda.html"><h3>Mesa de ayuda</h3><p>Tickets en kanban y lista, alta por pasos, detalle con línea de tiempo y centro de ayuda.</p></a><a class="k" href="portal-ciudadano.html"><h3>Portal ciudadano</h3><p>Página pública: hero, servicios, cifras, mapa con modal, FAQ, noticias y pie.</p></a><a class="k" href="acceso-formularios.html"><h3>Acceso y formularios (versión con pestañas)</h3><p>Ingreso/registro en pestañas y PQRS por pasos con gob-pasos.</p></a><a class="k" href="ui-componentes.html"><h3>Catálogo de UI</h3><p>Acordeones, pestañas (línea, píldora, segmentado, vertical), formularios con etiqueta flotante, pasos y línea de tiempo.</p></a><a class="k" href="plantilla-base.html"><h3>Plantilla base</h3><p>Mínimo comentado paso a paso, con todas las dependencias.</p></a></div></section>
 </main>
 <footer class="pt-footer"><div class="pt-footer__in">
   <img src="../assets/logos/svg/logo-horizontal-blanco.svg" alt="Gobernación del Magdalena">
@@ -28,7 +104,7 @@
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="../site/portal.js?v=1792039844"></script>
+<script src="../site/portal.js?v=1794934096"></script>
 
 </body>
 </html>

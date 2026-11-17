@@ -9,13 +9,13 @@
 <link rel="icon" type="image/png" href="assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="dist/css/magdalena.css">
-<link rel="stylesheet" href="site/portal.css?v=1792039844">
+<link rel="stylesheet" href="site/portal.css?v=1794934096">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
   <a class="pt-brand" href="index.html"><img src="assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"></a>
   <button class="pt-burger" aria-label="Menú">☰</button>
-  <nav class="pt-nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="colores.html">Colores y degradados</a><a href="logos.html">Logos y descargas</a><a href="componentes.html">Componentes</a><a href="estudio/index.html">Estudio</a><a href="integracion.html">Integración</a><a href="aplicaciones.html">Aplicaciones</a><a href="demos/index.html">Demos</a><a href="ia.html" aria-current="page">Para IA</a></nav>
+  <nav class="pt-nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="colores.html">Colores y degradados</a><a href="logos.html">Logos y descargas</a><a href="componentes.html">Componentes</a><a href="estudio/index.html">Estudio</a><a href="integracion.html">Integración</a><a href="aplicaciones.html">Aplicaciones</a><a href="demos/index.html">Demos</a><a href="novedades.html">Novedades</a><a href="ia.html" aria-current="page">Para IA</a></nav>
 </div></header>
 <section class="pt-pagehead"><div class="pt-pagehead__in"><h1>Para agentes de IA</h1><p>Instrucciones y skill para que cualquier agente de IA use los componentes gob-* sin explicaciones.</p></div></section>
 <main class="pt-main">
@@ -27,7 +27,11 @@
 <li><b>Claude Code / Claude</b>: instale la skill — copie la carpeta <code>gob-componentes/</code> (contiene <code>SKILL.md</code>) a <code>~/.claude/skills/</code> (global) o a <code>.claude/skills/</code> del proyecto. Se activa sola cuando pidan pantallas para la Gobernación.</li>
 <li><b>Rastreadores y agentes web</b>: <a href="llms.txt">llms.txt</a> indexa toda la documentación en el formato estándar.</li></ul>
 <div class="mg-row"><a class="mg-btn" href="dist/downloads/gob-skill-ia.zip" download>⬇ Skill + AGENTS.md (.zip)</a><a class="mg-btn mg-btn--secondary" href="docs/ia/gob-componentes.md">Ver la guía (.md)</a><a class="mg-btn mg-btn--secondary" href="llms.txt">llms.txt</a></div></section>
-<section class="pt-section"><h2><span class="n">03.</span> Qué contiene la guía</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Las dos líneas de instalación y cómo autohospedar sin internet.</li><li>Reglas de oro (propiedades vs. atributos, eventos, mensajes, colores, licencias).</li><li>Catálogo de los componentes con sus atributos y eventos clave, y las especificaciones de los widgets del dashboard.</li><li>Formularios nativos y clases <code>mg-*</code>.</li><li>Flujo recomendado: partir de un demo, copiar el ejemplo más cercano, validar.</li><li>Errores frecuentes.</li></ul>
+<section class="pt-section"><h2><span class="n">03.</span> Cómo implementar las actualizaciones</h2>
+<p>Cada versión se publica en <a href="novedades.html">Novedades</a> con <b>qué cambió</b> y <b>qué debe hacer cada proyecto</b>. Para que un agente actualice un proyecto basta decirle:</p>
+<div class="code"><div class="code__bar"><span>Instrucción</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>Lee https://manualdemarca.magdalena.gov.co/novedades.html y actualiza este proyecto a la última versión del sistema de diseño gob-*, aplicando las acciones indicadas.</code></pre></div>
+<ul style="line-height:1.9;color:var(--mg-gray-700);margin-top:1rem"><li><b>CDN</b>: se actualiza solo (versión 1 compatible hacia atrás).</li><li><b>Copia local</b>: reemplazar la carpeta <code>cdn/v1</code> con el <a href="dist/downloads/gob-cdn-v1.zip">zip</a> nuevo.</li><li><b>Plantillas copiadas</b> (login, panel): comparar con el demo vigente y reemplazar los bloques que cambiaron.</li><li>La guía de IA incluye la sección «Actualizaciones» con estos pasos y <code>version.json</code> es la fuente para máquinas.</li></ul></section>
+<section class="pt-section"><h2><span class="n">04.</span> Qué contiene la guía</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Las dos líneas de instalación y cómo autohospedar sin internet.</li><li>Reglas de oro (propiedades vs. atributos, eventos, mensajes, colores, licencias).</li><li>Catálogo de los componentes con sus atributos y eventos clave, y las especificaciones de los widgets del dashboard.</li><li>Formularios nativos y clases <code>mg-*</code>.</li><li>Flujo recomendado: partir de un demo, copiar el ejemplo más cercano, validar.</li><li>Errores frecuentes.</li></ul>
 <p class="mg-help">La guía se regenera con cada versión del sitio, así que siempre refleja los componentes publicados.</p></section>
 </main>
 <footer class="pt-footer"><div class="pt-footer__in">
@@ -37,7 +41,7 @@
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="site/portal.js?v=1792039844"></script>
+<script src="site/portal.js?v=1794934096"></script>
 
 </body>
 </html>

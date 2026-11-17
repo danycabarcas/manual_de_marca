@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crea tu cuenta · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; background: #F6F7FA; font-family: var(--mg-font-sans); } .wrap { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem 3rem; }
+  .logos { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; } .logos img { height: 48px; } .logos b { font: 800 1.4rem var(--mg-font-display); color: var(--mg-primary); padding-left: 1rem; border-left: 2px solid var(--mg-yellow); }
+  h1 { text-align: center; margin: 0; font: 800 1.9rem var(--mg-font-display); color: var(--mg-primary); letter-spacing: -.02em; } .lead { text-align: center; color: var(--mg-gray-600); font-size: .9rem; margin: .4rem 0 1.5rem; } .help { font-size: .76rem; color: var(--mg-text-muted); margin: .5rem 0 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY--><div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;text-align:center"><a href="index.html" style="color:#fff;text-decoration:underline">‹ Todos los demos</a> · Registro público de ciudadanos (formulario largo de una columna doble)</div><!--/DEMO-ONLY-->
+<main class="wrap" id="contenido">
+  <div class="mg-panel" style="padding:2rem" data-demo="Tarjeta de registro público" data-nota="Dos logos + título + formulario de dos columnas (mg-fgrid) + botón de ancho completo">
+    <div class="logos"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><b>Convocatorias</b></div>
+    <h1>Crea tu cuenta</h1><p class="lead">Datos básicos para identificarse.<br>(El proceso toma menos de dos minutos)</p>
+    <form id="f" class="mg-forms" novalidate>
+      <div class="mg-fgrid">
+        <div><label class="mg-lab" for="td">Tipo de documento<span class="req">*</span></label><select id="td"><option>Cédula de ciudadanía</option><option>Cédula de extranjería</option><option>Pasaporte</option></select></div>
+        <div><label class="mg-lab" for="nd">Número de documento<span class="req">*</span></label><input id="nd" inputmode="numeric" autocomplete="off"></div>
+        <div><label class="mg-lab" for="no">Nombres<span class="req">*</span></label><input id="no" autocomplete="given-name"></div>
+        <div><label class="mg-lab" for="ap">Apellidos<span class="req">*</span></label><input id="ap" autocomplete="family-name"></div>
+        <div><label class="mg-lab" for="fn">Fecha de nacimiento<span class="req">*</span></label><input id="fn" type="date"></div>
+        <div><label class="mg-lab" for="ge">Género<span class="req">*</span></label><select id="ge"><option value="">Seleccione…</option><option>Femenino</option><option>Masculino</option><option>Otro</option></select></div>
+        <div><label class="mg-lab" for="co">Correo electrónico<span class="req">*</span></label><input id="co" type="email" autocomplete="email"></div>
+        <div><label class="mg-lab" for="te">Teléfono<span class="req">*</span></label><input id="te" type="tel" autocomplete="tel"></div>
+        <div><label class="mg-lab" for="c1">Crear una clave<span class="req">*</span></label><input id="c1" type="password" autocomplete="new-password"></div>
+        <div><label class="mg-lab" for="c2">Repite tu clave<span class="req">*</span></label><input id="c2" type="password" autocomplete="new-password"></div>
+      </div>
+      <p class="help">Mínimo 6 letras o números, ejemplo: Profe2024</p>
+      <p id="err" role="alert" hidden style="color:#C4002F;font-size:.82rem;font-weight:600;margin:.75rem 0 0"></p>
+      <button class="mg-btn mg-btn--block" style="margin-top:1.25rem" type="submit">Crear cuenta</button>
+    </form>
+  </div>
+</main>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('f').addEventListener('submit', (e) => { e.preventDefault();
+    const faltan = ['nd', 'no', 'ap', 'fn', 'ge', 'co', 'te', 'c1', 'c2'].filter((i) => !$(i).value.trim());
+    const msg = faltan.length ? 'Complete los campos obligatorios (*).' : $('c1').value.length < 6 ? 'La clave debe tener al menos 6 caracteres.' : $('c1').value !== $('c2').value ? 'Las claves no coinciden.' : '';
+    $('err').textContent = msg; $('err').hidden = !msg; faltan.forEach((i) => $(i).setAttribute('aria-invalid', 'true')); if (!msg) { gob.toast({ tipo: 'exito', titulo: 'Cuenta creada', mensaje: 'En producción redirige al inicio de sesión.' }); } });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

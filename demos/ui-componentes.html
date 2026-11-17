@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo de UI · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0;background:var(--mg-bg-app);font-family:var(--mg-font-sans);color:var(--mg-text)">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Acordeones, pestañas, formularios, pasos y línea de tiempo</span>
+</div>
+<!--/DEMO-ONLY-->
+<main style="max-width:1000px;margin:0 auto;padding:2rem 1.25rem 4rem;display:grid;gap:2.5rem" id="contenido">
+<header><h1 style="margin:0 0 .35rem;font:800 2rem var(--mg-font-display);color:var(--mg-heading)">Catálogo de UI: acordeones, pestañas y formularios</h1><p style="margin:0;color:var(--mg-text-muted)">Variantes listas para copiar. Solo requieren <code>gob.css</code>; la interactividad es JavaScript mínimo incluido en cada bloque.</p></header>
+
+<section data-demo="Acordeones" data-nota="mg-acordeon sobre &lt;details&gt; nativos (accesibles sin JS): base, con íconos, tarjetas y sin bordes (flush)">
+  <h2 style="font:700 1.25rem var(--mg-font-display);margin:0 0 .25rem">Acordeones</h2><p style="color:var(--mg-text-muted);margin:0 0 1rem">Usan <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>: funcionan con teclado y lector de pantalla sin JavaScript.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem;align-items:start">
+    <div><h3 style="font-size:.85rem;color:var(--mg-text-muted);margin:0 0 .5rem">Base</h3><div class="mg-acordeon"><details open><summary>¿Cómo radico una petición?</summary><div class="cuerpo">Complete el formulario en tres pasos y reciba su radicado por correo.</div></details><details><summary>¿Cuánto tarda la respuesta?</summary><div class="cuerpo">15 días hábiles, según el tipo de solicitud.</div></details><details><summary>¿Dónde consulto el estado?</summary><div class="cuerpo">Con su número de radicado en «Consulta de trámites».</div></details></div></div>
+    <div><h3 style="font-size:.85rem;color:var(--mg-text-muted);margin:0 0 .5rem">Con íconos y tarjetas</h3><div class="mg-acordeon mg-acordeon--cards"><details open><summary><span><span class="mg-acordeon__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>Cuenta y acceso</span></summary><div class="cuerpo">Restablezca su clave o actualice sus datos.</div></details><details><summary><span><span class="mg-acordeon__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>Seguridad</span></summary><div class="cuerpo">Active la verificación en dos pasos.</div></details></div></div>
+    <div><h3 style="font-size:.85rem;color:var(--mg-text-muted);margin:0 0 .5rem">Sin bordes (flush)</h3><div class="mg-acordeon mg-acordeon--flush"><details><summary>Requisitos</summary><div class="cuerpo">Documento de identidad y formulario.</div></details><details open><summary>Costos</summary><div class="cuerpo">Sin costo para trámites ciudadanos.</div></details><details><summary>Soporte</summary><div class="cuerpo">Mesa de ayuda, ext. 1144.</div></details></div></div>
+  </div>
+  <p class="mg-help">Acordeón exclusivo (uno abierto a la vez): agregue <code>name="faq"</code> a todos los <code>&lt;details&gt;</code> del grupo.</p>
+</section>
+
+<section data-demo="Pestañas" data-nota="mg-tabs (línea), mg-tabs--pill, mg-tabs--seg (segmentado) y mg-tabs--vertical; roles ARIA y teclado con flechas">
+  <h2 style="font:700 1.25rem var(--mg-font-display);margin:0 0 .25rem">Pestañas</h2><p style="color:var(--mg-text-muted);margin:0 0 1rem">Cuatro variantes con las mismas clases base. Flechas ←/→ para moverse; el script de abajo es todo lo que necesitan.</p>
+  <div style="display:grid;gap:1.5rem">
+    <div class="mg-card tabs-demo" style="padding:1rem"><div class="mg-tabs" role="tablist" aria-label="Línea"><button role="tab" class="mg-tab is-active" aria-selected="true" data-p="a1">General</button><button role="tab" class="mg-tab" aria-selected="false" data-p="a2">Documentos</button><button role="tab" class="mg-tab" aria-selected="false" data-p="a3">Historial</button></div>
+      <div style="padding:1rem 0" data-panel="a1">Datos generales del trámite.</div><div style="padding:1rem 0" data-panel="a2" hidden>Lista de documentos adjuntos.</div><div style="padding:1rem 0" data-panel="a3" hidden>Línea de tiempo del caso.</div></div>
+    <div class="mg-card tabs-demo" style="padding:1rem"><div class="mg-tabs mg-tabs--pill" role="tablist" aria-label="Píldora"><button role="tab" class="mg-tab is-active" aria-selected="true" data-p="b1">Todos</button><button role="tab" class="mg-tab" aria-selected="false" data-p="b2">Abiertos</button><button role="tab" class="mg-tab" aria-selected="false" data-p="b3">Cerrados</button></div>
+      <div style="padding:1rem 0" data-panel="b1">Todos los tickets.</div><div style="padding:1rem 0" data-panel="b2" hidden>Tickets abiertos.</div><div style="padding:1rem 0" data-panel="b3" hidden>Tickets cerrados.</div></div>
+    <div class="mg-card tabs-demo" style="padding:1rem"><div class="mg-tabs mg-tabs--seg" role="tablist" aria-label="Segmentado"><button role="tab" class="mg-tab is-active" aria-selected="true" data-p="c1">Día</button><button role="tab" class="mg-tab" aria-selected="false" data-p="c2">Semana</button><button role="tab" class="mg-tab" aria-selected="false" data-p="c3">Mes</button></div>
+      <div style="padding:1rem 0" data-panel="c1">Vista diaria.</div><div style="padding:1rem 0" data-panel="c2" hidden>Vista semanal.</div><div style="padding:1rem 0" data-panel="c3" hidden>Vista mensual.</div></div>
+    <div class="mg-card tabs-demo" style="padding:1rem;display:flex;gap:1.25rem"><div class="mg-tabs mg-tabs--vertical" role="tablist" aria-orientation="vertical" aria-label="Vertical"><button role="tab" class="mg-tab is-active" aria-selected="true" data-p="d1">Perfil</button><button role="tab" class="mg-tab" aria-selected="false" data-p="d2">Seguridad</button><button role="tab" class="mg-tab" aria-selected="false" data-p="d3">Notificaciones</button></div>
+      <div style="flex:1;padding:.25rem 0"><div data-panel="d1">Ajustes de perfil.</div><div data-panel="d2" hidden>Ajustes de seguridad.</div><div data-panel="d3" hidden>Preferencias de notificación.</div></div></div>
+  </div>
+</section>
+
+<section data-demo="Formularios con etiqueta flotante" data-nota="mg-fl: la etiqueta sube al enfocar o al escribir; estados de error/válido; sin JavaScript para el efecto">
+  <h2 style="font:700 1.25rem var(--mg-font-display);margin:0 0 .25rem">Formularios</h2><p style="color:var(--mg-text-muted);margin:0 0 1rem">Campos con etiqueta flotante (<code>.mg-fl</code>): requieren <code>placeholder=" "</code> (un espacio) para detectar si hay texto. Validación accesible con <code>role="alert"</code>.</p>
+  <form class="mg-card" style="padding:1.5rem;display:grid;gap:1rem;max-width:620px" id="ff" novalidate>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" class="dos">
+      <div><div class="mg-fl" id="w-n"><input id="n" placeholder=" " autocomplete="name" aria-describedby="e-n"><label for="n">Nombre completo</label></div><p class="mg-fl-msg is-error" id="e-n" role="alert" hidden></p></div>
+      <div><div class="mg-fl" id="w-c"><input id="c" type="email" placeholder=" " autocomplete="email" aria-describedby="e-c"><label for="c">Correo</label></div><p class="mg-fl-msg is-error" id="e-c" role="alert" hidden></p></div>
+    </div>
+    <div class="mg-fl"><select id="m"><option>Santa Marta</option><option>Ciénaga</option><option>Fundación</option></select><label for="m">Municipio</label></div>
+    <div class="mg-fl"><textarea id="t" placeholder=" "></textarea><label for="t">Mensaje</label></div>
+    <div class="mg-fl is-valid"><input id="v" value="Campo válido" placeholder=" "><label for="v">Estado válido</label></div>
+    <div class="mg-fl"><input id="d" value="Deshabilitado" placeholder=" " disabled><label for="d">Estado deshabilitado</label></div>
+    <div style="display:flex;gap:1.25rem;flex-wrap:wrap"><label style="display:inline-flex;gap:.5rem;align-items:center"><input type="checkbox" class="mg-check" checked> Recibir avisos</label><label style="display:inline-flex;gap:.5rem;align-items:center"><input type="radio" class="mg-check" name="r" checked> Persona</label><label style="display:inline-flex;gap:.5rem;align-items:center"><input type="radio" class="mg-check" name="r"> Empresa</label></div>
+    <div style="display:flex;gap:.6rem"><button class="mg-btn">Enviar</button><button type="reset" class="mg-btn mg-btn--secondary">Limpiar</button></div>
+  </form>
+  <style>@media (max-width: 520px) { .dos { grid-template-columns: 1fr !important; } }</style>
+</section>
+
+<section data-demo="Pasos y línea de tiempo" data-nota="mg-stepper (pasos) y mg-timeline (historial): HTML + CSS puros">
+  <h2 style="font:700 1.25rem var(--mg-font-display);margin:0 0 1rem">Pasos y línea de tiempo (solo CSS)</h2>
+  <div class="mg-card" style="padding:1.5rem;display:grid;gap:1.5rem"><ol class="mg-stepper" aria-label="Progreso"><li class="is-done"><span>Datos</span></li><li class="is-current" aria-current="step"><span>Solicitud</span></li><li><span>Confirmar</span></li></ol>
+    <ol class="mg-timeline"><li><time>12 oct</time><strong>Radicado</strong> por el solicitante</li><li><time>13 oct</time><strong>Asignado</strong> a la dependencia</li><li><time>15 oct</time><strong>En revisión</strong></li></ol></div>
+</section>
+</main>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Pestañas (todas las variantes): roles ARIA + flechas
+  document.querySelectorAll('.tabs-demo').forEach((g) => {
+    const tabs = [...g.querySelectorAll('[role=tab]')];
+    const ir = (t) => { tabs.forEach((x) => { const on = x === t; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; g.querySelector('[data-panel="' + x.dataset.p + '"]').hidden = !on; }); t.focus(); };
+    tabs.forEach((t, i) => { t.tabIndex = i ? -1 : 0; t.addEventListener('click', () => ir(t)); t.addEventListener('keydown', (e) => { const k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]; if (k) { e.preventDefault(); ir(tabs[(i + k + tabs.length) % tabs.length]); } }); });
+  });
+  // Validación del formulario
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id); w.classList.toggle('is-invalid', !!msg); m.textContent = msg || ''; m.hidden = !msg; return !msg; }
+  $('ff').addEventListener('submit', (e) => { e.preventDefault(); const a = error('n', $('n').value.trim() ? '' : 'Escriba su nombre'), b = error('c', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('c').value) ? '' : 'Escriba un correo válido'); if (a && b) gob.toast({ tipo: 'exito', titulo: 'Formulario válido' }); });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

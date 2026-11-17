@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio del panel · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Inicio: progreso del perfil, accesos rápidos y estado vacío</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Convocatorias</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2>
+      <nav aria-label="Principal"><ul class="mg-nav"><li><a href="panel-inicio.html" aria-current="page"><gob-icono nombre="inicio" tam="18"></gob-icono>Inicio</a></li><li><a href="panel-perfil.html"><gob-icono nombre="usuario" tam="18"></gob-icono>Mi hoja de vida</a></li><li><a href="panel-listado.html"><gob-icono nombre="archivo" tam="18"></gob-icono>Convocatorias</a></li><li><a href="panel-detalle.html"><gob-icono nombre="tareas" tam="18"></gob-icono>Formularios</a></li></ul><div class="mg-nav__sep">Administración</div><ul class="mg-nav"><li><a href="panel-listado.html#usuarios"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="panel-listado.html#ubicaciones"><gob-icono nombre="ubicacion" tam="18"></gob-icono>Ubicaciones</a></li><li><a href="panel-configuracion.html"><gob-icono nombre="ajustes" tam="18"></gob-icono>Configuración</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page" data-demo="Encabezado de página" data-nota="Píldora de sección + título azul + subtítulo (clases mg-pill y mg-page)"><div><span class="mg-pill">Inicio</span><h1>Gestión de Convocatorias</h1><p>Administra, crea y mantiene actualizadas las convocatorias del sistema.</p></div></div>
+
+      <section class="mg-panel" style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap" data-demo="Tarjeta de progreso" data-nota="mg-panel + mg-progress: invita a completar el perfil">
+        <div style="flex:1;min-width:16rem"><span class="mg-chip mg-chip--azul">Te falta poco</span><h2 style="margin:.4rem 0 .6rem;font:800 1.5rem var(--mg-font-display);color:var(--mg-primary)">Termina de crear tu perfil</h2>
+          <div class="mg-progress" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="3" aria-label="Pasos completados"><i style="width:33%"></i></div><small style="font-size:.74rem;color:var(--mg-text-muted)">1 de 3 pasos completados</small></div>
+        <a class="mg-btn" href="panel-perfil.html">Continuar con mi perfil <gob-icono nombre="flecha-derecha" tam="16"></gob-icono></a>
+      </section>
+
+      <section class="mg-quick" aria-label="Accesos rápidos" data-demo="Accesos rápidos" data-nota="mg-quick: tarjetas de acción con ícono de color (azul, amarillo, lila, verde)">
+        <a href="panel-listado.html"><span class="ic"><gob-icono nombre="archivo" tam="18"></gob-icono></span><b>Administrar convocatorias</b><small>Consulta, edita o cierra convocatorias</small></a>
+        <a class="amarillo" href="panel-listado.html"><span class="ic"><gob-icono nombre="agregar" tam="18"></gob-icono></span><b>Crear convocatoria</b><small>Registra una nueva convocatoria</small></a>
+        <a class="lila" href="panel-configuracion.html"><span class="ic"><gob-icono nombre="ajustes" tam="18"></gob-icono></span><b>Configuración de perfil</b><small>Configura tu perfil</small></a>
+      </section>
+
+      <section class="mg-panel" data-demo="Panel con estado vacío" data-nota="mg-panel__head + mg-empty: mensaje amable cuando aún no hay datos">
+        <div class="mg-panel__head"><gob-icono nombre="archivo" tam="18"></gob-icono><div><h2>Convocatorias abiertas</h2><small>Conoce y comparte las convocatorias disponibles</small></div></div>
+        <div class="mg-empty"><span class="ic"><gob-icono nombre="check-circulo" tam="22"></gob-icono></span><h3>No hay convocatorias registradas</h3><p>Actualmente no existen convocatorias disponibles en el sistema. Las nuevas convocatorias que se creen aparecerán en este espacio.</p></div>
+      </section>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

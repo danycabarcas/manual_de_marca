@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estados de acceso · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Sesión expirada, cuenta bloqueada, sin permiso y mantenimiento</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card"  data-demo="Tarjeta de acceso: Estados de acceso" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div role="tablist" aria-label="Estados de acceso" class="mg-tabs mg-tabs--seg" style="width:100%;display:flex;margin-bottom:1.5rem" id="est">
+        <button role="tab" class="mg-tab is-active" aria-selected="true" data-e="exp" style="flex:1">Expirada</button><button role="tab" class="mg-tab" aria-selected="false" data-e="blo" style="flex:1">Bloqueada</button><button role="tab" class="mg-tab" aria-selected="false" data-e="per" style="flex:1">Sin permiso</button><button role="tab" class="mg-tab" aria-selected="false" data-e="man" style="flex:1">Mantenimiento</button>
+      </div>
+      <div id="cuerpo" role="tabpanel" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  const E = {
+    exp: { ic: 'clock', tipo: 'warn', t: 'Tu sesión expiró', s: 'Por seguridad cerramos la sesión tras 20 minutos de inactividad.', b: ['Iniciar sesión de nuevo', 'login.html'] },
+    blo: { ic: 'lock', tipo: 'err', t: 'Cuenta bloqueada', s: 'Superaste el número de intentos permitidos. Podrás volver a intentar en 15 minutos o puedes recuperar tu contraseña.', b: ['Recuperar contraseña', 'recuperar-clave.html'] },
+    per: { ic: 'ban', tipo: 'err', t: 'No tienes permiso', s: 'Tu usuario no tiene acceso a este módulo. Solicítalo al administrador del sistema.', b: ['Volver al inicio', 'login.html'] },
+    man: { ic: 'wrench', tipo: 'info', t: 'Sistema en mantenimiento', s: 'Estamos actualizando la plataforma. Volveremos a estar disponibles hoy a las 6:00 p. m.', b: ['Reintentar', 'login.html'] },
+  };
+  const IC = {
+    clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>', lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', ban: '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>', wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>',
+  };
+  function ver(k) {
+    const d = E[k]; $('cuerpo').innerHTML = '<div class="mg-auth__icon-big mg-auth__icon-big--' + d.tipo + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[d.ic] + '</svg></div><h1 class="mg-auth__title" style="color:var(--mg-heading)">' + d.t + '</h1><p class="mg-auth__sub">' + d.s + '</p><a class="mg-btn mg-btn--lg mg-btn--block" href="' + d.b[1] + '">' + d.b[0] + '</a>';
+    document.querySelectorAll('#est .mg-tab').forEach((b) => { const on = b.dataset.e === k; b.classList.toggle('is-active', on); b.setAttribute('aria-selected', on); });
+  }
+  document.querySelectorAll('#est .mg-tab').forEach((b) => b.addEventListener('click', () => ver(b.dataset.e))); ver('exp');
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

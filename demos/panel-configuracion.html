@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configuración · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Cuenta, cambio de contraseña y diálogo «Sin permisos»</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Convocatorias</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2>
+      <nav aria-label="Principal"><ul class="mg-nav"><li><a href="panel-inicio.html"><gob-icono nombre="inicio" tam="18"></gob-icono>Inicio</a></li><li><a href="panel-perfil.html"><gob-icono nombre="usuario" tam="18"></gob-icono>Mi hoja de vida</a></li><li><a href="panel-listado.html"><gob-icono nombre="archivo" tam="18"></gob-icono>Convocatorias</a></li><li><a href="panel-detalle.html"><gob-icono nombre="tareas" tam="18"></gob-icono>Formularios</a></li></ul><div class="mg-nav__sep">Administración</div><ul class="mg-nav"><li><a href="panel-listado.html#usuarios"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="panel-listado.html#ubicaciones"><gob-icono nombre="ubicacion" tam="18"></gob-icono>Ubicaciones</a></li><li><a href="panel-configuracion.html" aria-current="page"><gob-icono nombre="ajustes" tam="18"></gob-icono>Configuración</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page"><div><span class="mg-pill">Cuenta</span><h1>Configuración</h1><p>Administra tu cuenta y tus preferencias de notificación.</p></div></div>
+      <section class="mg-panel" data-demo="Datos de la cuenta" data-nota="Avatar + correo no editable + nombre y botón guardar"><div class="mg-panel__head"><gob-icono nombre="usuario" tam="20"></gob-icono><div><h2>Datos de la cuenta</h2></div></div>
+        <div style="display:flex;align-items:center;gap:.9rem;padding-bottom:1rem;border-bottom:1px solid #F1F4F8;margin-bottom:1rem"><gob-avatar nombre="José Caballero" tam="46"></gob-avatar><div><b style="font-size:.9rem">jcaballero@pruebas.local</b><small style="display:block;color:var(--mg-text-muted);font-size:.78rem">Correo electrónico (no editable)</small></div></div>
+        <form class="mg-forms mg-fgrid" style="grid-template-columns:minmax(0,1fr) auto;align-items:end" id="f1"><div><label class="mg-lab" for="nom">Nombre completo</label><input id="nom" value="José Caballero"></div><button class="mg-btn mg-btn--sm" type="submit"><gob-icono nombre="check" tam="14"></gob-icono> Guardar cambios</button></form></section>
+      <section class="mg-panel" data-demo="Cambiar contraseña" data-nota="Tres campos en fila, validación accesible y mensaje de error"><div class="mg-panel__head"><gob-icono nombre="candado" tam="20"></gob-icono><div><h2>Cambiar contraseña</h2></div></div>
+        <form id="f2" novalidate><div class="mg-forms mg-fgrid" style="grid-template-columns:repeat(3,minmax(0,1fr))" id="g3"><div><label class="mg-lab" for="a">Contraseña actual</label><input id="a" type="password" autocomplete="current-password"></div><div><label class="mg-lab" for="n1">Nueva contraseña</label><input id="n1" type="password" autocomplete="new-password"></div><div><label class="mg-lab" for="n2">Confirmar contraseña</label><input id="n2" type="password" autocomplete="new-password"></div></div>
+          <p id="err" role="alert" hidden style="color:#C4002F;font-size:.8rem;font-weight:600;margin:.6rem 0 0"></p><div class="mg-formfoot" style="justify-content:flex-start"><button class="mg-btn mg-btn--sm" type="submit"><gob-icono nombre="llave" tam="14"></gob-icono> Actualizar contraseña</button></div></form></section>
+      <section class="mg-panel" data-demo="Diálogo «Sin permisos»" data-nota="gob-modal tipo peligro: el botón de aceptar usa el azul de marca (no el naranja)"><div class="mg-panel__head"><gob-icono nombre="escudo" tam="20"></gob-icono><div><h2>Diálogos de estado</h2><small>Así se ve el aviso cuando una acción no está permitida</small></div></div>
+        <button class="mg-btn mg-btn--secondary mg-btn--sm" type="button" id="perm">Probar «Sin permisos»</button></section>
+      <gob-modal id="mPerm" titulo="Sin permisos" tipo="peligro" tam="sm"><p style="margin:0;color:var(--mg-gray-600)">No tienes permisos para realizar esta acción.</p><button slot="pie" class="mg-btn mg-btn--block" type="button" onclick="document.getElementById('mPerm').cerrar()">Aceptar</button></gob-modal>
+      <style>@media (max-width: 760px) { #g3 { grid-template-columns: 1fr !important; } #f1 { grid-template-columns: 1fr !important; } }</style>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+  $('f1').addEventListener('submit', (e) => { e.preventDefault(); gob.toast({ tipo: 'exito', titulo: 'Datos guardados' }); });
+  $('f2').addEventListener('submit', (e) => { e.preventDefault(); const m = $('err'); const msg = !$('a').value ? 'Escriba su contraseña actual.' : $('n1').value.length < 10 ? 'La nueva contraseña debe tener al menos 10 caracteres.' : $('n1').value !== $('n2').value ? 'Las contraseñas no coinciden.' : '';
+    m.textContent = msg; m.hidden = !msg; if (!msg) { gob.toast({ tipo: 'exito', titulo: 'Contraseña actualizada' }); e.target.reset(); } });
+  $('perm').addEventListener('click', () => $('mPerm').abrir());
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

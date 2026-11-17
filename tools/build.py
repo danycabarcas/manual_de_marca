@@ -53,6 +53,10 @@ def src(name):
     if name == 'components.css':
         with open(os.path.join(ROOT, 'src', 'formularios.css'), encoding='utf-8') as f:
             ft = f.read()
+        with open(os.path.join(ROOT, 'src', 'auth.css'), encoding='utf-8') as f:
+            t += f.read()
+        with open(os.path.join(ROOT, 'src', 'panel.css'), encoding='utf-8') as f:
+            t += f.read()
         t += ft.replace('{X}', FORM_EXCL) + form_alta(ft)
     return t
 

@@ -132,7 +132,10 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 - En Next.js renderizar `gob-*` en el servidor: usa `'use client'` o `next/dynamic({ ssr:false })`.
 - Mapas: los códigos de municipio son DIVIPOLA de 5 dígitos como texto (`'47001'` = Santa Marta). Subregiones: `sm, no, ri, ce, su` (sin validar oficialmente).
 
-## 8. Licencias (resumen)
+## 8. Actualizaciones
+La versión vigente y los cambios están en `__BASE__/novedades.html`, `__BASE__/CHANGELOG.md` y `__BASE__/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
+
+## 9. Licencias (resumen)
 Montserrat OFL · ECharts Apache-2.0 · Lit BSD-3 · Lucide ISC · geometría DANE MGN 2024. Detalle: `LICENSES.md` del repositorio.
 '''
 
@@ -160,7 +163,8 @@ Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.m
 - Carga siempre `{BASE}/cdn/v1/gob.css` y `{BASE}/cdn/v1/gob.js` (o la copia autohospedada).
 - Usa los componentes `<gob-*>` y clases `mg-*`; no instales AdminLTE, Bootstrap ni PrimeNG 22.
 - Objetos/arreglos por propiedad JS; eventos `gob-*` con datos en `event.detail`.
-- Parte de un demo de {BASE}/demos/ y adáptalo.
+- Parte de un demo de {BASE}/demos/ y adáptalo (logins y casos de acceso: {BASE}/demos/index.html#acceso; panel de gestión: #panel).
+- Para actualizar el sistema de diseño en este proyecto: lee {BASE}/novedades.html y aplica las acciones de la última versión.
 '''
     with open(os.path.join(d, 'AGENTS.md'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(agents)
@@ -172,6 +176,7 @@ Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.m
 - [Guía completa para agentes de IA (Markdown)]({BASE}/docs/ia/gob-componentes.md): instalación, reglas, catálogo y flujo de trabajo
 - [Skill instalable (SKILL.md)]({BASE}/docs/ia/skill/gob-componentes/SKILL.md)
 - [AGENTS.md de ejemplo]({BASE}/docs/ia/AGENTS.md)
+- [Novedades y cómo actualizar]({BASE}/novedades.html): versión vigente, cambios y acciones ([CHANGELOG.md]({BASE}/CHANGELOG.md), [version.json]({BASE}/cdn/v1/version.json))
 
 ## Documentación de componentes
 - [gob-tabla]({BASE}/componentes/gob-tabla.html): tablas avanzadas
@@ -216,6 +221,10 @@ Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.m
 <li><b>Claude Code / Claude</b>: instale la skill — copie la carpeta <code>gob-componentes/</code> (contiene <code>SKILL.md</code>) a <code>~/.claude/skills/</code> (global) o a <code>.claude/skills/</code> del proyecto. Se activa sola cuando pidan pantallas para la Gobernación.</li>
 <li><b>Rastreadores y agentes web</b>: <a href="llms.txt">llms.txt</a> indexa toda la documentación en el formato estándar.</li></ul>
 <div class="mg-row"><a class="mg-btn" href="dist/downloads/gob-skill-ia.zip" download>⬇ Skill + AGENTS.md (.zip)</a><a class="mg-btn mg-btn--secondary" href="docs/ia/gob-componentes.md">Ver la guía (.md)</a><a class="mg-btn mg-btn--secondary" href="llms.txt">llms.txt</a></div></section>
-<section class="pt-section"><h2><span class="n">03.</span> Qué contiene la guía</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Las dos líneas de instalación y cómo autohospedar sin internet.</li><li>Reglas de oro (propiedades vs. atributos, eventos, mensajes, colores, licencias).</li><li>Catálogo de los componentes con sus atributos y eventos clave, y las especificaciones de los widgets del dashboard.</li><li>Formularios nativos y clases <code>mg-*</code>.</li><li>Flujo recomendado: partir de un demo, copiar el ejemplo más cercano, validar.</li><li>Errores frecuentes.</li></ul>
+<section class="pt-section"><h2><span class="n">03.</span> Cómo implementar las actualizaciones</h2>
+<p>Cada versión se publica en <a href="novedades.html">Novedades</a> con <b>qué cambió</b> y <b>qué debe hacer cada proyecto</b>. Para que un agente actualice un proyecto basta decirle:</p>
+<div class="code"><div class="code__bar"><span>Instrucción</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>{E('Lee ' + BASE + '/novedades.html y actualiza este proyecto a la última versión del sistema de diseño gob-*, aplicando las acciones indicadas.')}</code></pre></div>
+<ul style="line-height:1.9;color:var(--mg-gray-700);margin-top:1rem"><li><b>CDN</b>: se actualiza solo (versión 1 compatible hacia atrás).</li><li><b>Copia local</b>: reemplazar la carpeta <code>cdn/v1</code> con el <a href="dist/downloads/gob-cdn-v1.zip">zip</a> nuevo.</li><li><b>Plantillas copiadas</b> (login, panel): comparar con el demo vigente y reemplazar los bloques que cambiaron.</li><li>La guía de IA incluye la sección «Actualizaciones» con estos pasos y <code>version.json</code> es la fuente para máquinas.</li></ul></section>
+<section class="pt-section"><h2><span class="n">04.</span> Qué contiene la guía</h2><ul style="line-height:1.9;color:var(--mg-gray-700)"><li>Las dos líneas de instalación y cómo autohospedar sin internet.</li><li>Reglas de oro (propiedades vs. atributos, eventos, mensajes, colores, licencias).</li><li>Catálogo de los componentes con sus atributos y eventos clave, y las especificaciones de los widgets del dashboard.</li><li>Formularios nativos y clases <code>mg-*</code>.</li><li>Flujo recomendado: partir de un demo, copiar el ejemplo más cercano, validar.</li><li>Errores frecuentes.</li></ul>
 <p class="mg-help">La guía se regenera con cada versión del sitio, así que siempre refleja los componentes publicados.</p></section>'''
     page(root, 'ia.html', 'Para agentes de IA', 'Instrucciones y skill para que cualquier agente de IA use los componentes gob-* sin explicaciones.', body, active='ia.html')

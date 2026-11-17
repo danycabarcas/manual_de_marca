@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crear cuenta · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Solicitud de acceso con validación y fortaleza de contraseña</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card" style="max-width:34rem" data-demo="Tarjeta de acceso: Crear cuenta" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div id="p1">
+        <div class="mg-auth__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+        <h1 class="mg-auth__title">Crear cuenta</h1>
+        <p class="mg-auth__sub">Solicita acceso con tus datos institucionales</p>
+        <form class="mg-auth__form" id="f" novalidate>
+          <div class="mg-auth__msg mg-auth__msg--error" id="msg" role="alert" hidden></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" class="dos"><div><div class="mg-fl" id="w-nom"><input id="nom" name="nom" type="text" placeholder=" " autocomplete="given-name"   aria-describedby="e-nom"><label for="nom">Nombres</label></div><p class="mg-fl-msg is-error" id="e-nom" role="alert" hidden></p></div><div><div class="mg-fl" id="w-ape"><input id="ape" name="ape" type="text" placeholder=" " autocomplete="family-name"   aria-describedby="e-ape"><label for="ape">Apellidos</label></div><p class="mg-fl-msg is-error" id="e-ape" role="alert" hidden></p></div></div>
+          <div><div class="mg-fl" id="w-mail"><input id="mail" name="mail" type="email" placeholder=" " autocomplete="email"  inputmode="email" aria-describedby="e-mail"><label for="mail">Correo institucional</label></div><p class="mg-fl-msg is-error" id="e-mail" role="alert" hidden></p></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" class="dos">
+            <div><div class="mg-fl" id="w-tipo"><select id="tipo" name="tipo" autocomplete="off"><option>Cédula de ciudadanía</option><option>Cédula de extranjería</option><option>Pasaporte</option></select><label for="tipo">Tipo de documento</label></div></div>
+            <div><div class="mg-fl" id="w-doc"><input id="doc" name="doc" type="text" placeholder=" " autocomplete="off"  inputmode="numeric" aria-describedby="e-doc"><label for="doc">Número de documento</label></div><p class="mg-fl-msg is-error" id="e-doc" role="alert" hidden></p></div>
+          </div>
+          <div class="mg-fl" id="w-dep"><select id="dep" name="dep"><option value="">Seleccione…</option><option>Secretaría General</option><option>Hacienda</option><option>Salud</option><option>Educación</option><option>Planeación</option><option>Oficina TIC</option></select><label for="dep">Dependencia</label></div>
+          <div><div><div class="mg-fl" id="w-pw"><input id="pw" name="pw" type="password" placeholder=" " autocomplete="new-password" class="has-eye"  aria-describedby="e-pw"><label for="pw">Contraseña</label><button type="button" class="mg-fl__eye" data-eye="pw" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></button></div></div><div class="mg-fuerza" id="fuerza" data-n="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div><p class="mg-fl-msg is-error" id="e-pw" role="alert" hidden></p></div>
+          <label style="display:flex;gap:.55rem;align-items:flex-start;font-size:.85rem;cursor:pointer"><input type="checkbox" class="mg-check" id="ok" style="margin-top:.2rem"> <span>Acepto la <a href="#" style="color:var(--mg-primary);font-weight:700">política de tratamiento de datos personales</a>.</span></label><p class="mg-fl-msg is-error" id="e-ok" role="alert" hidden></p>
+          <button class="mg-btn mg-btn--lg mg-btn--block" id="crear">Solicitar acceso</button>
+        </form>
+        <p class="mg-auth__hint" style="margin-top:1rem">¿Ya tienes cuenta? <a href="login.html" style="color:var(--mg-primary);font-weight:700;text-decoration:none">Inicia sesión</a></p>
+      </div>
+      <div id="p2" hidden>
+        <div class="mg-auth__icon-big mg-auth__icon-big--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h1 class="mg-auth__title">Solicitud enviada</h1>
+        <p class="mg-auth__sub">Validaremos tus datos y te avisaremos por correo cuando tu cuenta esté activa.</p>
+        <a class="mg-btn mg-btn--lg mg-btn--block" href="login.html">Volver a iniciar sesión</a>
+      </div>
+      <style>@media (max-width: 480px) { .dos { grid-template-columns: 1fr !important; } }</style>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  $('pw').addEventListener('input', () => { const v = $('pw').value; const n = [v.length >= 10, /[a-z]/.test(v) && /[A-Z]/.test(v), /\d/.test(v), /[^A-Za-z0-9]/.test(v)].filter(Boolean).length; $('fuerza').dataset.n = v ? n : 0; });
+  $('f').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const r = [error('nom', $('nom').value.trim() ? '' : 'Escriba sus nombres'), error('ape', $('ape').value.trim() ? '' : 'Escriba sus apellidos'), error('mail', esMail($('mail').value.trim()) ? '' : 'Escriba un correo válido'),
+      error('doc', /^\d{5,12}$/.test($('doc').value) ? '' : 'Entre 5 y 12 dígitos'), error('pw', $('pw').value.length >= 10 ? '' : 'Mínimo 10 caracteres')];
+    $('e-ok').hidden = $('ok').checked; $('e-ok').textContent = $('ok').checked ? '' : 'Debe aceptar la política para continuar';
+    if (r.includes(false) || !$('ok').checked) return;
+    cargando($('crear'), true); await espera(1000);                              // ← await fetch('/api/auth/registro', …)
+    $('p1').hidden = true; $('p2').hidden = false;
+  });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

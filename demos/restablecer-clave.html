@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nueva contraseña · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Pantalla del enlace del correo: fortaleza, requisitos y confirmación</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card"  data-demo="Tarjeta de acceso: Nueva contraseña" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div id="p1">
+        <div class="mg-auth__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h1 class="mg-auth__title">Nueva contraseña</h1>
+        <p class="mg-auth__sub">Crea una contraseña segura para tu cuenta</p>
+        <form class="mg-auth__form" id="f" novalidate>
+          <div class="mg-auth__msg mg-auth__msg--error" id="msg" role="alert" hidden></div>
+          <div><div><div class="mg-fl" id="w-pw"><input id="pw" name="pw" type="password" placeholder=" " autocomplete="new-password" class="has-eye"  aria-describedby="e-pw"><label for="pw">Nueva contraseña</label><button type="button" class="mg-fl__eye" data-eye="pw" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+            <div class="mg-fuerza" id="fuerza" data-n="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <ul class="mg-reqs" id="reqs" aria-label="Requisitos de la contraseña"><li data-r="len">Mínimo 10 caracteres</li><li data-r="may">Una mayúscula y una minúscula</li><li data-r="num">Un número</li><li data-r="esp">Un símbolo (!@#$…)</li></ul></div>
+          <div><div class="mg-fl" id="w-pw2"><input id="pw2" name="pw2" type="password" placeholder=" " autocomplete="new-password" class="has-eye"  aria-describedby="e-pw2"><label for="pw2">Confirmar contraseña</label><button type="button" class="mg-fl__eye" data-eye="pw2" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></button></div><p class="mg-fl-msg is-error" id="e-pw2" role="alert" hidden></p></div>
+          <button class="mg-btn mg-btn--lg mg-btn--block" id="guardar">Guardar contraseña</button>
+        </form>
+      </div>
+      <div id="p2" hidden>
+        <div class="mg-auth__icon-big mg-auth__icon-big--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h1 class="mg-auth__title">Contraseña actualizada</h1>
+        <p class="mg-auth__sub">Ya puedes iniciar sesión con tu nueva contraseña.</p>
+        <a class="mg-btn mg-btn--lg mg-btn--block" href="login.html">Ir a iniciar sesión</a>
+      </div>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  const reglas = { len: (v) => v.length >= 10, may: (v) => /[a-z]/.test(v) && /[A-Z]/.test(v), num: (v) => /\d/.test(v), esp: (v) => /[^A-Za-z0-9]/.test(v) };
+  function evaluar() {
+    const v = $('pw').value; let n = 0;
+    document.querySelectorAll('#reqs li').forEach((li) => { const ok = reglas[li.dataset.r](v); li.classList.toggle('ok', ok); if (ok) n++; });
+    $('fuerza').dataset.n = v ? n : 0; return n === 4;
+  }
+  $('pw').addEventListener('input', evaluar);
+  $('f').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const a = error('pw', evaluar() ? '' : ''), b = error('pw2', $('pw2').value === $('pw').value && $('pw2').value ? '' : 'Las contraseñas no coinciden');
+    if (!evaluar()) { $('msg').className = 'mg-auth__msg mg-auth__msg--error'; $('msg').textContent = 'La contraseña no cumple todos los requisitos.'; $('msg').hidden = false; return $('pw').focus(); }
+    $('msg').hidden = true; if (!b) return $('pw2').focus();
+    cargando($('guardar'), true); await espera(900);                             // ← await fetch('/api/auth/restablecer', { body: { token, clave } })
+    $('p1').hidden = true; $('p2').hidden = false;
+  });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

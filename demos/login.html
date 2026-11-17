@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iniciar sesión · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (estilos mg-auth, mg-fl, mg-social…) y gob.js (solo para toasts; opcional en un login puro) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+</head>
+<body style="margin:0">
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.55rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:5">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Login con Google y correo/contraseña, validación, bloqueo a los 3 intentos</span><span style="background:rgba(255,255,255,.12);padding:.15rem .55rem;border-radius:99px">Prueba: demo@magdalena.gov.co · Demo1234</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-auth">
+  <main class="mg-auth__main" id="contenido">
+    <aside class="mg-auth__brand" data-demo="Panel de marca" data-nota="Logo oficial + nombre del sistema + descripción (cámbielos por los de su aplicación)">
+        <img class="mg-auth__logo" src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena">
+        <h2 class="mg-auth__name">SIGA</h2>
+        <p class="mg-auth__tag">Sistema Integrado de Gestión Administrativa</p>
+        <div class="mg-auth__rule" aria-hidden="true"></div>
+        <p class="mg-auth__desc">Sistema institucional para la gestión segura de los procesos y trámites de la Gobernación del Magdalena.</p>
+      </aside>
+    <section class="mg-auth__card"  data-demo="Tarjeta de acceso: Iniciar sesión" data-nota="Tarjeta con la línea de marca, insignia circular, título y formulario">
+      <div class="mg-auth__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h1 class="mg-auth__title">Iniciar sesión</h1>
+      <p class="mg-auth__sub">Ingresa con tu cuenta institucional</p>
+      <button type="button" class="mg-social" id="google"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.9 2.4 30.4 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg> Ingresar con Google</button>
+      <p class="mg-auth__hint">Use su cuenta de correo institucional.</p>
+      <div class="mg-auth__sep">o con correo y contraseña</div>
+      <form class="mg-auth__form" id="f" novalidate>
+        <div class="mg-auth__msg mg-auth__msg--error" id="msg" role="alert" hidden></div>
+        <div><div class="mg-fl" id="w-mail"><input id="mail" name="mail" type="email" placeholder=" " autocomplete="username"  inputmode="email" aria-describedby="e-mail"><label for="mail">Correo electrónico</label></div><p class="mg-fl-msg is-error" id="e-mail" role="alert" hidden></p></div>
+        <div><div class="mg-fl" id="w-pw"><input id="pw" name="pw" type="password" placeholder=" " autocomplete="current-password" class="has-eye"  aria-describedby="e-pw"><label for="pw">Contraseña</label><button type="button" class="mg-fl__eye" data-eye="pw" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></button></div><p class="mg-fl-msg is-error" id="e-pw" role="alert" hidden></p></div>
+        <div class="mg-auth__row"><label style="display:inline-flex;gap:.5rem;align-items:center;cursor:pointer"><input type="checkbox" class="mg-check" id="recordar"> Mantener la sesión</label><a href="recuperar-clave.html">¿Olvidaste tu contraseña?</a></div>
+        <button class="mg-btn mg-btn--lg mg-btn--block" id="entrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg> Ingresar al sistema</button>
+      </form>
+    </section>
+  </main>
+  <footer class="mg-auth__foot"><span>Gobernación del Magdalena · República de Colombia</span><span>© 2026 Todos los derechos reservados</span></footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  // Mostrar/ocultar contraseña (botón con aria-pressed)
+  document.querySelectorAll('[data-eye]').forEach((b) => b.addEventListener('click', () => {
+    const i = $(b.dataset.eye), ver = i.type === 'password'; i.type = ver ? 'text' : 'password';
+    b.setAttribute('aria-pressed', ver); b.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  }));
+  // Marca un campo con error (o lo limpia): error('mail', 'Escriba un correo válido')
+  function error(id, msg) { const w = $('w-' + id), m = $('e-' + id), i = $(id); w.classList.toggle('is-invalid', !!msg); i.setAttribute('aria-invalid', !!msg); if (m) { m.textContent = msg || ''; m.hidden = !msg; } return !msg; }
+  const esMail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+  // Estado de carga del botón principal
+  function cargando(btn, on) { btn.classList.toggle('is-loading', on); btn.disabled = on; }
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  let intentos = 0;
+  const msg = (t, tipo = 'error') => { const m = $('msg'); m.className = 'mg-auth__msg mg-auth__msg--' + tipo; m.textContent = t; m.hidden = !t; };
+  $('google').onclick = () => gob.toast({ tipo: 'info', titulo: 'Google', mensaje: 'Aquí inicia su flujo OAuth/OIDC (redirección a accounts.google.com).' });
+  $('f').addEventListener('submit', async (e) => {
+    e.preventDefault(); msg('');
+    const okM = error('mail', esMail($('mail').value.trim()) ? '' : 'Escriba un correo válido'), okP = error('pw', $('pw').value ? '' : 'Escriba su contraseña');
+    if (!okM || !okP) { (okM ? $('pw') : $('mail')).focus(); return; }
+    cargando($('entrar'), true); await espera(900);                              // ← aquí va su llamada: await fetch('/api/auth/login', …)
+    const bien = $('mail').value.trim().toLowerCase() === 'demo@magdalena.gov.co' && $('pw').value === 'Demo1234';
+    cargando($('entrar'), false);
+    if (bien) { msg('Ingreso correcto. Redirigiendo…', 'ok'); gob.toast({ tipo: 'exito', titulo: 'Bienvenido', mensaje: 'En producción redirige al panel.' }); return; }
+    intentos++;
+    if (intentos >= 3) { msg('Cuenta bloqueada temporalmente por intentos fallidos. Intente de nuevo en 15 minutos o recupere su contraseña.', 'warn'); $('entrar').disabled = true; return; }
+    msg('Correo o contraseña incorrectos. Le quedan ' + (3 - intentos) + ' intento(s).');   // mensaje genérico: no revele cuál falló
+    $('pw').value = ''; $('pw').focus();
+  });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

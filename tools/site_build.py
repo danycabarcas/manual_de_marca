@@ -8,7 +8,7 @@ import time
 BUILD = int(time.time())
 NAV = [('index.html', 'Inicio'), ('colores.html', 'Colores y degradados'), ('logos.html', 'Logos y descargas'),
        ('componentes.html', 'Componentes'), ('estudio/index.html', 'Estudio'), ('integracion.html', 'Integración'), ('aplicaciones.html', 'Aplicaciones'),
-       ('demos/index.html', 'Demos'), ('ia.html', 'Para IA')]
+       ('demos/index.html', 'Demos'), ('novedades.html', 'Novedades'), ('ia.html', 'Para IA')]
 
 
 def page(root, fname, title, lead, body, hero=False, active=None, scripts=''):
@@ -509,18 +509,9 @@ def page_index(root):
 
 
 def page_demos(root):
-    import site_demos
+    import site_demos, site_demos_index
     site_demos.build(root)
-    items = [('panel-ejecutivo.html', 'Panel ejecutivo', 'Dashboard declarativo (KPI, gráficas, mapa), tabla y alertas en pestañas.'),
-             ('gestion-tramites.html', 'Gestión de trámites', 'CRUD completo: tabla con selección y acciones, modales con validación, detalle y confirmaciones.'),
-             ('analitica-territorial.html', 'Analítica territorial', 'Mapa coroplético, ranking, marcadores con efectos y rutas animadas.'),
-             ('portal-ciudadano.html', 'Portal ciudadano', 'Página pública: hero, servicios, cifras, mapa con modal, FAQ, noticias y pie.'),
-             ('mesa-ayuda.html', 'Mesa de ayuda', 'Tickets en kanban y lista, alta por pasos, detalle con línea de tiempo y centro de ayuda.'),
-             ('acceso-formularios.html', 'Acceso y formularios', 'Login, registro y formulario por pasos con validación accesible.'),
-             ('plantilla-base.html', 'Plantilla base', 'Punto de partida mínimo, comentado paso a paso, con todas las dependencias.')]
-    ck = ''.join(f'<a class="k" href="{h}"><h3>{t}</h3><p>{d}</p></a>' for h, t, d in items)
-    body = '<p class="pt-lead">Plantillas completas hechas solo con los componentes <code class="inline">gob-*</code> y las clases <code class="inline">mg-*</code> (sin AdminLTE ni Bootstrap). En cada una active <b>«Guías de código»</b> para ver y copiar cada sección, o copie la página entera. Los datos son ficticios.</p><div class="cards-k">' + ck + '</div>'
-    page(root, 'demos/index.html', 'Demos y plantillas', 'Páginas completas listas para copiar y usar como tema, con los componentes avanzados.', body)
+    site_demos_index.hub(root, page, code)
 
 
 def page_studio(root):
@@ -553,7 +544,8 @@ def build(root, dist, G):
     site_grafica.build(root, page, code)
     site_estandar.build(root, page, code)
     page_demos(root)
-    import ia
+    import ia, novedades
+    novedades.build(root, page, code)
     ia.build(root, page)
     page_index(root); page_colors(root); page_logos(root); page_components(root); page_integration(root, G); page_apps(root)
     print('portal generado')

@@ -5,4 +5,5 @@ Antes de crear cualquier pantalla, lee y sigue: https://manualdemarca.magdalena.
 - Carga siempre `https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css` y `https://manualdemarca.magdalena.gov.co/cdn/v1/gob.js` (o la copia autohospedada).
 - Usa los componentes `<gob-*>` y clases `mg-*`; no instales AdminLTE, Bootstrap ni PrimeNG 22.
 - Objetos/arreglos por propiedad JS; eventos `gob-*` con datos en `event.detail`.
-- Parte de un demo de https://manualdemarca.magdalena.gov.co/demos/ y adáptalo.
+- Parte de un demo de https://manualdemarca.magdalena.gov.co/demos/ y adáptalo (logins y casos de acceso: https://manualdemarca.magdalena.gov.co/demos/index.html#acceso; panel de gestión: #panel).
+- Para actualizar el sistema de diseño en este proyecto: lee https://manualdemarca.magdalena.gov.co/novedades.html y aplica las acciones de la última versión.

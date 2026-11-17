@@ -126,5 +126,8 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 - En Next.js renderizar `gob-*` en el servidor: usa `'use client'` o `next/dynamic({ ssr:false })`.
 - Mapas: los códigos de municipio son DIVIPOLA de 5 dígitos como texto (`'47001'` = Santa Marta). Subregiones: `sm, no, ri, ce, su` (sin validar oficialmente).
 
-## 8. Licencias (resumen)
+## 8. Actualizaciones
+La versión vigente y los cambios están en `https://manualdemarca.magdalena.gov.co/novedades.html`, `https://manualdemarca.magdalena.gov.co/CHANGELOG.md` y `https://manualdemarca.magdalena.gov.co/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
+
+## 9. Licencias (resumen)
 Montserrat OFL · ECharts Apache-2.0 · Lit BSD-3 · Lucide ISC · geometría DANE MGN 2024. Detalle: `LICENSES.md` del repositorio.
