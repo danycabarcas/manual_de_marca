@@ -7,22 +7,22 @@ description: Construir interfaces con el sistema de diseño de la Gobernación d
 
 Eres un agente que construye interfaces para la **Gobernación del Magdalena**. Usa SIEMPRE estos componentes y estilos en lugar de escribir los tuyos o instalar otra librería de UI. Esta guía es suficiente para empezar; para detalles abre la página de documentación indicada (cada una trae ejemplos con código completo).
 
-- Sitio y CDN: `https://manualdemarca.magdalena.gov.co` (el CDN versionado vive en `https://manualdemarca.magdalena.gov.co/cdn/v1/`).
+- Sitio y documentación: `https://manualdemarca.magdalena.gov.co`. **CDN para usar en proyectos: `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/`** (jsDelivr, con CORS). El mismo contenido en `https://manualdemarca.magdalena.gov.co/cdn/v1/` solo sirve para abrir archivos desde el propio sitio: otros orígenes (localhost:4200, otras apps) son bloqueados por CORS.
 - Documentación legible por máquinas: `https://manualdemarca.magdalena.gov.co/llms.txt` (índice) y este archivo (`https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md`).
 - Idioma de la interfaz y de los nombres de atributos: **español** (`etiqueta`, `valor`, `columnas`, `opciones`…).
 
 ## 1. Instalación (siempre estas dos líneas, una vez por página)
 
 ```html
-<link rel="stylesheet" href="https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css">
-<script type="module" src="https://manualdemarca.magdalena.gov.co/cdn/v1/gob.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.js"></script>
 ```
 
 - `gob.css`: tipografía Montserrat (autohospedada), tokens `--gob-*`/`--mg-*`, clases `mg-*` y estilo de los controles HTML nativos.
 - `gob.js`: cargador perezoso; detecta las etiquetas `<gob-*>` de la página (y las que se añadan luego) y descarga solo esos componentes. Expone `window.gob = { cargar, toast, confirmar, version }`.
 - Poner `class="mg-base"` en `<body>` activa la tipografía, el fondo y el estilo de los formularios nativos. Para solo una zona: `class="mg-forms"`.
-- Sin internet / intranet: descargar `https://manualdemarca.magdalena.gov.co/dist/downloads/gob-cdn-v1.zip`, publicarlo en el servidor propio y cambiar `https://manualdemarca.magdalena.gov.co/cdn/v1` por la ruta local. **No** uses Google Fonts ni otros CDN.
-- Frameworks: Angular → `schemas: [CUSTOM_ELEMENTS_SCHEMA]` (ver `https://manualdemarca.magdalena.gov.co/cdn/v1/wrappers/gob-angular.ts`); React/Next → `https://manualdemarca.magdalena.gov.co/cdn/v1/wrappers/react.jsx` (componentes con `onEvento`; en Next marcar `'use client'`); Vue → `isCustomElement: (t) => t.startsWith('gob-')` y `:config.prop="…"`. Guía: `https://manualdemarca.magdalena.gov.co/componentes/frameworks.html`.
+- Sin internet / intranet: descargar `https://manualdemarca.magdalena.gov.co/dist/downloads/gob-cdn-v1.zip`, publicarlo en el servidor propio y cambiar `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1` por la ruta local. **No** uses Google Fonts ni otros CDN.
+- Frameworks: Angular → `schemas: [CUSTOM_ELEMENTS_SCHEMA]` (ver `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/wrappers/gob-angular.ts`); React/Next → `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/wrappers/react.jsx` (componentes con `onEvento`; en Next marcar `'use client'`); Vue → `isCustomElement: (t) => t.startsWith('gob-')` y `:config.prop="…"`. Guía: `https://manualdemarca.magdalena.gov.co/componentes/frameworks.html`.
 
 ## 2. Reglas de oro
 
@@ -82,7 +82,7 @@ Cada widget: `tipo` (`kpi | grafica | mapa | tabla | texto | alerta`), `titulo`,
 
 ```html
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seguimiento</title>
-<link rel="stylesheet" href="https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css"><script type="module" src="https://manualdemarca.magdalena.gov.co/cdn/v1/gob.js"></script></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.css"><script type="module" src="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.js"></script></head>
 <body class="mg-base" style="padding:1.5rem;display:grid;gap:1rem;max-width:1100px;margin:auto">
   <gob-selector id="mun" multiple etiqueta="Municipios" placeholder="Filtrar por municipio"></gob-selector>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem"><gob-kpi id="k1" etiqueta="Trámites" icono="archivo"></gob-kpi><gob-kpi id="k2" etiqueta="Vencidos" icono="alerta" color="rojo"></gob-kpi></div>
@@ -90,7 +90,7 @@ Cada widget: `tipo` (`kpi | grafica | mapa | tabla | texto | alerta`), `titulo`,
   <gob-tabla id="tabla" titulo="Trámites" filtros-columna tamano-pagina="8"></gob-tabla>
   <gob-modal id="modal" titulo="Detalle"><div id="cuerpo"></div><button slot="pie" onclick="modal.cerrar()">Cerrar</button></gob-modal>
 <script type="module">
-  const todos = await fetch('https://manualdemarca.magdalena.gov.co/cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  const todos = await fetch('https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
   mun.opciones = [...new Set(todos.map((t) => t.municipio))].sort();
   tabla.config = { llave: 'id', columnas: [
     { campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'municipio', titulo: 'Municipio' },
@@ -125,6 +125,7 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 
 ## 7. Errores frecuentes
 - Pasar JSON como atributo con comillas mal escapadas → usa la propiedad (`el.opciones = [...]`).
+- Error `blocked by CORS policy` al cargar `gob.js`, fuentes o datos: estás usando `https://manualdemarca.magdalena.gov.co/cdn/v1/` desde otro origen; cambia a `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/` o autohospeda.
 - Olvidar `gob.js` o servir `gob.css` desde otra ruta que `fonts/` → la tipografía no carga (las fuentes están en `cdn/v1/fonts/`).
 - Usar `<gob-tabla>` con `datos` antes de definir `columnas` y `llave` → asigna ambos (mejor con `config`).
 - Crear gráficas en contenedores sin altura: usa el atributo `altura` (px).
@@ -132,7 +133,7 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 - Mapas: los códigos de municipio son DIVIPOLA de 5 dígitos como texto (`'47001'` = Santa Marta). Subregiones: `sm, no, ri, ce, su` (sin validar oficialmente).
 
 ## 8. Actualizaciones
-La versión vigente y los cambios están en `https://manualdemarca.magdalena.gov.co/novedades.html`, `https://manualdemarca.magdalena.gov.co/CHANGELOG.md` y `https://manualdemarca.magdalena.gov.co/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
+La versión vigente y los cambios están en `https://manualdemarca.magdalena.gov.co/novedades.html`, `https://manualdemarca.magdalena.gov.co/CHANGELOG.md` y `https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
 
 ## 9. Licencias (resumen)
 Montserrat OFL · ECharts Apache-2.0 · Lit BSD-3 · Lucide ISC · geometría DANE MGN 2024. Detalle: `LICENSES.md` del repositorio.

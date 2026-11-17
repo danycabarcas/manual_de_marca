@@ -2,12 +2,15 @@
 import json
 import os
 
-VERSION = '0.5.0'
+VERSION = '0.5.1'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.5.1', '2026-11-17', [
+        ('arreglo', '<b>CDN desde otros sitios (CORS)</b>: cargar <code>gob.js</code>, las fuentes o los datos desde otro origen (p. ej. <code>localhost:4200</code> o una app en otro dominio) fallaba porque el servidor oficial no envía <code>Access-Control-Allow-Origin</code>. El código que genera el manual ahora usa la URL pública con CORS de jsDelivr: <code>https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/</code>.', 'Cambie en sus proyectos la base <code>https://manualdemarca.magdalena.gov.co/cdn/v1/</code> por la de jsDelivr (o use la copia local). Ver <a href="componentes/compatibilidad.html#cors">CORS</a>.'),
+    ]),
     ('0.5.0', '2026-11-17', [
         ('nuevo', '<b>Módulo de acceso</b>: login con el modelo GEDIS (panel de marca + tarjeta con «la línea»), recuperar contraseña, nueva contraseña con fortaleza, verificación en dos pasos (OTP), registro y estados de acceso. Clases <code>mg-auth*</code>, <code>mg-social</code>, <code>mg-fl</code>, <code>mg-otp</code>, <code>mg-fuerza</code>.', 'Reemplace sus logins por el esqueleto de <a href="demos/index.html#acceso">Demos → Acceso</a>.'),
         ('nuevo', '<b>Panel de gestión</b> (diseño «Convocatorias»): barra superior con la línea, menú lateral claro y <b>sticky</b>, píldora de sección, tarjetas, listados, tablas con estados, pestañas y formularios. Clases <code>mg-shell*</code>, <code>mg-panel*</code>, <code>mg-nav</code>, <code>mg-conv</code>, <code>mg-tbl</code>, <code>mg-chip</code>, <code>mg-dot</code>…', 'Use los demos <a href="demos/index.html#panel">Panel</a> como estructura de las aplicaciones internas.'),
@@ -47,7 +50,7 @@ Lo nuevo:
 • Acordeones, pestañas y formularios con etiqueta flotante.
 
 Qué debe hacer cada uno:
-1) Si usa el CDN ({BASE}/cdn/v1/): nada; ya recibe los cambios. Si algo se ve en caché, refresque con Ctrl+F5 o agregue ?v={VERSION} al enlace de gob.css.
+1) Si usa el CDN: use la URL con CORS https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v{VERSION}/cdn/v1/ (el dominio {BASE} aún no permite cargarlo desde otros sitios). Cambie @v{VERSION} cuando quiera subir de versión.
 2) Si tiene copia local (zip): descargue {BASE}/dist/downloads/gob-cdn-v1.zip y reemplace su carpeta cdn/v1.
 3) Si copió envoltorios o plantillas: revise la sección «Cómo actualizar» en la página de novedades.
 Para los logins nuevos use el esqueleto de {BASE}/demos/index.html#acceso
@@ -80,13 +83,13 @@ def build(root, page, code):
         hist += f'<section class="pt-section" id="v{v.replace(".", "-")}"><h2><span class="n">v{v}</span> {f}</h2><ul style="list-style:none;padding:0;line-height:1.65">{filas}</ul></section>'
     a_texto = anuncio().replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
     check = code('js', """// ¿Su proyecto tiene la última versión? (opcional, para desarrollo)
-import('%s/cdn/v1/gob.js').then(async () => {
+import('https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@main/cdn/v1/gob.js').then(async () => {
   const actual = window.gob?.version;                      // versión que está cargando su página
-  const ult = await fetch('%s/cdn/v1/version.json', { cache: 'no-store' }).then((r) => r.json());
+  const ult = await fetch('https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@main/cdn/v1/version.json', { cache: 'no-store' }).then((r) => r.json());
   if (actual !== ult.version) console.warn(`gob-* ${actual} → disponible ${ult.version}: ${ult.novedades}`);
-});""" % (BASE, BASE), 'Comprobar versión')
+});""", 'Comprobar versión')
     modos = f'''<table class="mg-table" style="margin:0"><thead><tr><th>Cómo lo usa</th><th>Qué hacer para actualizar</th><th>Cómo verificar</th></tr></thead><tbody>
-<tr><td><b>CDN</b> <code>{BASE}/cdn/v1/</code> (recomendado)</td><td>Nada: la versión 1 es compatible hacia atrás y recibe los cambios sola. Para forzar el navegador: <code>gob.css?v={VERSION}</code> o Ctrl+F5. Los componentes <code>gob-*</code> usan archivos con nombre único, no necesitan caché-bust.</td><td><code>gob.version</code> en la consola → <code>{VERSION}</code></td></tr>
+<tr><td><b>CDN con CORS</b> <code>https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v{VERSION}/cdn/v1/</code> (recomendado)</td><td>Cambie el número de versión de la URL (<code>@v{VERSION}</code>) en <code>gob.css</code> y <code>gob.js</code>; la versión 1 es compatible hacia atrás. Con <code>@main</code> se recibe lo último, pero jsDelivr lo guarda hasta 12 h.</td><td><code>gob.version</code> en la consola → <code>{VERSION}</code></td></tr>
 <tr><td><b>Copia local</b> (<code>gob-cdn-v1.zip</code>)</td><td>Descargue el zip nuevo, <b>reemplace completa</b> la carpeta <code>cdn/v1</code> (los archivos cambian de nombre; no mezcle versiones) y mantenga la misma ruta.</td><td><code>cdn/v1/version.json</code></td></tr>
 <tr><td><b>Envoltorios</b> React/Angular copiados</td><td>Solo si el changelog lo indica: vuelva a copiar <code>react.jsx</code> / <code>gob-angular.ts</code> desde <code>cdn/v1/wrappers/</code>.</td><td>El proyecto compila y los eventos siguen llegando</td></tr>
 <tr><td><b>Plantillas copiadas de los demos</b> (login, panel…)</td><td>Los demos no se actualizan solos: compare su pantalla con el demo nuevo (<b>Guías de código → Copiar sección</b>) y reemplace los bloques cambiados. Las clases <code>mg-*</code> nuevas llegan con <code>gob.css</code>.</td><td>Revise la pantalla en móvil y con teclado</td></tr>

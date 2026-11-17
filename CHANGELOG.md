@@ -1,6 +1,10 @@
 # Novedades del sistema de diseño gob-*
 
-Última versión: **0.5.0** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+Última versión: **0.5.1** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+
+## 0.5.1 — 2026-11-17
+
+- **Arreglo**: CDN desde otros sitios (CORS): cargar gob.js, las fuentes o los datos desde otro origen (p. ej. localhost:4200 o una app en otro dominio) fallaba porque el servidor oficial no envía Access-Control-Allow-Origin. El código que genera el manual ahora usa la URL pública con CORS de jsDelivr: https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/. _Acción: Cambie en sus proyectos la base https://manualdemarca.magdalena.gov.co/cdn/v1/ por la de jsDelivr (o use la copia local). Ver CORS._
 
 ## 0.5.0 — 2026-11-17
 

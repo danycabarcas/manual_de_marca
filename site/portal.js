@@ -10,7 +10,9 @@
     if (btn) { const o = btn.textContent; btn.classList.add('ok'); btn.textContent = '✔ Copiado'; setTimeout(() => { btn.classList.remove('ok'); btn.textContent = o; }, 1400); }
   }
   // URL base (dónde está publicado el repo): se detecta sola y se puede editar
-  const detected = new URL('.', location.href).href.replace(/\/$/, '');
+  // En el dominio oficial el CDN propio aún no envía cabeceras CORS: el código copiado usa jsDelivr (con CORS) hasta que se habiliten.
+  const CDN_PUBLICO = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1';
+  const detected = location.hostname === 'manualdemarca.magdalena.gov.co' ? CDN_PUBLICO : new URL('.', location.href).href.replace(/\/$/, '');
   let BASE = detected;
   try { BASE = localStorage.getItem('mg-base') || detected; } catch (e) {}
   function applyBase() {

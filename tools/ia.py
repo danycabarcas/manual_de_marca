@@ -3,27 +3,28 @@ import os
 import zipfile
 
 BASE = 'https://manualdemarca.magdalena.gov.co'
+CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1'   # misma estructura /cdn/v1/ pero con CORS
 
 GUIA = r'''# Guía para agentes: usar el sistema de diseño `gob-*` de la Gobernación del Magdalena
 
 Eres un agente que construye interfaces para la **Gobernación del Magdalena**. Usa SIEMPRE estos componentes y estilos en lugar de escribir los tuyos o instalar otra librería de UI. Esta guía es suficiente para empezar; para detalles abre la página de documentación indicada (cada una trae ejemplos con código completo).
 
-- Sitio y CDN: `__BASE__` (el CDN versionado vive en `__BASE__/cdn/v1/`).
+- Sitio y documentación: `__BASE__`. **CDN para usar en proyectos: `__CDN__/cdn/v1/`** (jsDelivr, con CORS). El mismo contenido en `__BASE__/cdn/v1/` solo sirve para abrir archivos desde el propio sitio: otros orígenes (localhost:4200, otras apps) son bloqueados por CORS.
 - Documentación legible por máquinas: `__BASE__/llms.txt` (índice) y este archivo (`__BASE__/docs/ia/gob-componentes.md`).
 - Idioma de la interfaz y de los nombres de atributos: **español** (`etiqueta`, `valor`, `columnas`, `opciones`…).
 
 ## 1. Instalación (siempre estas dos líneas, una vez por página)
 
 ```html
-<link rel="stylesheet" href="__BASE__/cdn/v1/gob.css">
-<script type="module" src="__BASE__/cdn/v1/gob.js"></script>
+<link rel="stylesheet" href="__CDN__/cdn/v1/gob.css">
+<script type="module" src="__CDN__/cdn/v1/gob.js"></script>
 ```
 
 - `gob.css`: tipografía Montserrat (autohospedada), tokens `--gob-*`/`--mg-*`, clases `mg-*` y estilo de los controles HTML nativos.
 - `gob.js`: cargador perezoso; detecta las etiquetas `<gob-*>` de la página (y las que se añadan luego) y descarga solo esos componentes. Expone `window.gob = { cargar, toast, confirmar, version }`.
 - Poner `class="mg-base"` en `<body>` activa la tipografía, el fondo y el estilo de los formularios nativos. Para solo una zona: `class="mg-forms"`.
-- Sin internet / intranet: descargar `__BASE__/dist/downloads/gob-cdn-v1.zip`, publicarlo en el servidor propio y cambiar `__BASE__/cdn/v1` por la ruta local. **No** uses Google Fonts ni otros CDN.
-- Frameworks: Angular → `schemas: [CUSTOM_ELEMENTS_SCHEMA]` (ver `__BASE__/cdn/v1/wrappers/gob-angular.ts`); React/Next → `__BASE__/cdn/v1/wrappers/react.jsx` (componentes con `onEvento`; en Next marcar `'use client'`); Vue → `isCustomElement: (t) => t.startsWith('gob-')` y `:config.prop="…"`. Guía: `__BASE__/componentes/frameworks.html`.
+- Sin internet / intranet: descargar `__BASE__/dist/downloads/gob-cdn-v1.zip`, publicarlo en el servidor propio y cambiar `__CDN__/cdn/v1` por la ruta local. **No** uses Google Fonts ni otros CDN.
+- Frameworks: Angular → `schemas: [CUSTOM_ELEMENTS_SCHEMA]` (ver `__CDN__/cdn/v1/wrappers/gob-angular.ts`); React/Next → `__CDN__/cdn/v1/wrappers/react.jsx` (componentes con `onEvento`; en Next marcar `'use client'`); Vue → `isCustomElement: (t) => t.startsWith('gob-')` y `:config.prop="…"`. Guía: `__BASE__/componentes/frameworks.html`.
 
 ## 2. Reglas de oro
 
@@ -83,7 +84,7 @@ Cada widget: `tipo` (`kpi | grafica | mapa | tabla | texto | alerta`), `titulo`,
 
 ```html
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Seguimiento</title>
-<link rel="stylesheet" href="__BASE__/cdn/v1/gob.css"><script type="module" src="__BASE__/cdn/v1/gob.js"></script></head>
+<link rel="stylesheet" href="__CDN__/cdn/v1/gob.css"><script type="module" src="__CDN__/cdn/v1/gob.js"></script></head>
 <body class="mg-base" style="padding:1.5rem;display:grid;gap:1rem;max-width:1100px;margin:auto">
   <gob-selector id="mun" multiple etiqueta="Municipios" placeholder="Filtrar por municipio"></gob-selector>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem"><gob-kpi id="k1" etiqueta="Trámites" icono="archivo"></gob-kpi><gob-kpi id="k2" etiqueta="Vencidos" icono="alerta" color="rojo"></gob-kpi></div>
@@ -91,7 +92,7 @@ Cada widget: `tipo` (`kpi | grafica | mapa | tabla | texto | alerta`), `titulo`,
   <gob-tabla id="tabla" titulo="Trámites" filtros-columna tamano-pagina="8"></gob-tabla>
   <gob-modal id="modal" titulo="Detalle"><div id="cuerpo"></div><button slot="pie" onclick="modal.cerrar()">Cerrar</button></gob-modal>
 <script type="module">
-  const todos = await fetch('__BASE__/cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
+  const todos = await fetch('__CDN__/cdn/v1/datos/ejemplo-tramites.json').then((r) => r.json());
   mun.opciones = [...new Set(todos.map((t) => t.municipio))].sort();
   tabla.config = { llave: 'id', columnas: [
     { campo: 'radicado', titulo: 'Radicado', nowrap: true }, { campo: 'asunto', titulo: 'Asunto' }, { campo: 'municipio', titulo: 'Municipio' },
@@ -126,6 +127,7 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 
 ## 7. Errores frecuentes
 - Pasar JSON como atributo con comillas mal escapadas → usa la propiedad (`el.opciones = [...]`).
+- Error `blocked by CORS policy` al cargar `gob.js`, fuentes o datos: estás usando `__BASE__/cdn/v1/` desde otro origen; cambia a `__CDN__/cdn/v1/` o autohospeda.
 - Olvidar `gob.js` o servir `gob.css` desde otra ruta que `fonts/` → la tipografía no carga (las fuentes están en `cdn/v1/fonts/`).
 - Usar `<gob-tabla>` con `datos` antes de definir `columnas` y `llave` → asigna ambos (mejor con `config`).
 - Crear gráficas en contenedores sin altura: usa el atributo `altura` (px).
@@ -133,7 +135,7 @@ Dentro de `.mg-base`/`.mg-forms` los controles **sin clase** (`input`, `select`,
 - Mapas: los códigos de municipio son DIVIPOLA de 5 dígitos como texto (`'47001'` = Santa Marta). Subregiones: `sm, no, ri, ce, su` (sin validar oficialmente).
 
 ## 8. Actualizaciones
-La versión vigente y los cambios están en `__BASE__/novedades.html`, `__BASE__/CHANGELOG.md` y `__BASE__/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
+La versión vigente y los cambios están en `__BASE__/novedades.html`, `__BASE__/CHANGELOG.md` y `__CDN__/cdn/v1/version.json` (campos `version`, `cambios[]` con `accion`). Al **actualizar un proyecto**: (1) lee la última versión y las acciones; (2) si usa el CDN, no cambies nada salvo forzar caché con `?v=<versión>`; (3) si usa copia local, reemplaza la carpeta `cdn/v1` completa con `gob-cdn-v1.zip`; (4) si copió envoltorios o demos (login, panel), compara con el demo vigente y reemplaza solo los bloques cambiados; (5) verifica en el navegador (consola sin errores, teclado, móvil). Muestra al usuario un resumen de lo que cambiaste.
 
 ## 9. Licencias (resumen)
 Montserrat OFL · ECharts Apache-2.0 · Lit BSD-3 · Lucide ISC · geometría DANE MGN 2024. Detalle: `LICENSES.md` del repositorio.
@@ -148,7 +150,7 @@ description: Construir interfaces con el sistema de diseño de la Gobernación d
 
 
 def build(root, page):
-    guia = GUIA.replace('__BASE__', BASE)
+    guia = GUIA.replace('__BASE__', BASE).replace('__CDN__', CDN)
     d = os.path.join(root, 'docs', 'ia')
     sk = os.path.join(d, 'skill', 'gob-componentes')
     os.makedirs(sk, exist_ok=True)
@@ -160,7 +162,7 @@ def build(root, page):
 
 Este proyecto usa el sistema de diseño **gob-*** de la Gobernación del Magdalena.
 Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.md
-- Carga siempre `{BASE}/cdn/v1/gob.css` y `{BASE}/cdn/v1/gob.js` (o la copia autohospedada).
+- Carga siempre `{CDN}/cdn/v1/gob.css` y `{CDN}/cdn/v1/gob.js` (o la copia autohospedada). No uses `{BASE}/cdn/v1/` desde otros orígenes: falla por CORS.
 - Usa los componentes `<gob-*>` y clases `mg-*`; no instales AdminLTE, Bootstrap ni PrimeNG 22.
 - Objetos/arreglos por propiedad JS; eventos `gob-*` con datos en `event.detail`.
 - Parte de un demo de {BASE}/demos/ y adáptalo (logins y casos de acceso: {BASE}/demos/index.html#acceso; panel de gestión: #panel).
@@ -170,7 +172,7 @@ Antes de crear cualquier pantalla, lee y sigue: {BASE}/docs/ia/gob-componentes.m
         f.write(agents)
     llms = f'''# Gobernación del Magdalena — sistema de diseño gob-*
 
-> Componentes web (Lit, estándar: funcionan en HTML, Angular, React, Next.js y Vue), estilos mg-*, mapas del Magdalena por municipio (DIVIPOLA), gráficas, tablas, dashboards y formularios. CDN versionado en {BASE}/cdn/v1/.
+> Componentes web (Lit, estándar: funcionan en HTML, Angular, React, Next.js y Vue), estilos mg-*, mapas del Magdalena por municipio (DIVIPOLA), gráficas, tablas, dashboards y formularios. CDN con CORS: {CDN}/cdn/v1/.
 
 ## Empezar aquí
 - [Guía completa para agentes de IA (Markdown)]({BASE}/docs/ia/gob-componentes.md): instalación, reglas, catálogo y flujo de trabajo

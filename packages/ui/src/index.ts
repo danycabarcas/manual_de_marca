@@ -3,7 +3,7 @@
  * Una sola etiqueta <script type="module"> basta: detecta qué componentes hay en la página (y los que se agreguen después)
  * y descarga SOLO esos. Para importar uno concreto: import '/cdn/v1/components/gob-tabla.js'.
  */
-export const version = '0.5.0';
+export const version = '0.5.1';
 const REG: Record<string, () => Promise<unknown>> = {
   'gob-mapa-magdalena': () => import('./gob-mapa-magdalena.js'),
   'gob-grafica': () => import('./gob-grafica.js'),

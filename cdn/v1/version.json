@@ -1,53 +1,22 @@
 {
   "nombre": "gob-*",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "fecha": "2026-11-17",
   "novedades": "https://manualdemarca.magdalena.gov.co/novedades.html",
   "changelog": "https://manualdemarca.magdalena.gov.co/CHANGELOG.md",
   "guiaIA": "https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md",
   "cambios": [
     {
-      "tipo": "nuevo",
-      "texto": "Módulo de acceso: login con el modelo GEDIS (panel de marca + tarjeta con «la línea»), recuperar contraseña, nueva contraseña con fortaleza, verificación en dos pasos (OTP), registro y estados de acceso. Clases mg-auth*, mg-social, mg-fl, mg-otp, mg-fuerza.",
-      "accion": "Reemplace sus logins por el esqueleto de Demos → Acceso."
-    },
-    {
-      "tipo": "nuevo",
-      "texto": "Panel de gestión (diseño «Convocatorias»): barra superior con la línea, menú lateral claro y sticky, píldora de sección, tarjetas, listados, tablas con estados, pestañas y formularios. Clases mg-shell*, mg-panel*, mg-nav, mg-conv, mg-tbl, mg-chip, mg-dot…",
-      "accion": "Use los demos Panel como estructura de las aplicaciones internas."
-    },
-    {
-      "tipo": "nuevo",
-      "texto": "Catálogo de UI: acordeones (base, tarjetas, flush), pestañas (línea, píldora, segmentada, vertical) y formularios con etiqueta flotante.",
-      "accion": ""
-    },
-    {
-      "tipo": "nuevo",
-      "texto": "Demos de acceso y panel: 6 casos de acceso + 6 pantallas del panel, con la guía de cómo conectar el login al backend (401/423/429…).",
-      "accion": ""
-    },
-    {
-      "tipo": "cambio",
-      "texto": "El diálogo «Sin permisos» usa el azul de marca en su botón (antes naranja). Tipografía Montserrat en toda la interfaz.",
-      "accion": "Si tenía un botón naranja de aceptar, use mg-btn (azul)."
-    },
-    {
-      "tipo": "cambio",
-      "texto": "Compatibilidad: los estilos de base (.mg-base) pasaron a especificidad cero; los controles sin clase vencen al «preflight» de Tailwind; nuevo gob.layer.css para Tailwind v4 / PrimeNG con capas.",
-      "accion": "Con Tailwind v4 cargue gob.layer.css primero. Ver compatibilidad."
-    },
-    {
-      "tipo": "cambio",
-      "texto": "Etiquetas del menú lateral oscuro (mg-sidebar__label) con mayor contraste (accesibilidad AA).",
-      "accion": ""
-    },
-    {
-      "tipo": "docs",
-      "texto": "Nueva guía para agentes de IA, página de compatibilidad, y esta página de novedades con version.json.",
-      "accion": ""
+      "tipo": "arreglo",
+      "texto": "CDN desde otros sitios (CORS): cargar gob.js, las fuentes o los datos desde otro origen (p. ej. localhost:4200 o una app en otro dominio) fallaba porque el servidor oficial no envía Access-Control-Allow-Origin. El código que genera el manual ahora usa la URL pública con CORS de jsDelivr: https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/.",
+      "accion": "Cambie en sus proyectos la base https://manualdemarca.magdalena.gov.co/cdn/v1/ por la de jsDelivr (o use la copia local). Ver CORS."
     }
   ],
   "versiones": [
+    {
+      "version": "0.5.1",
+      "fecha": "2026-11-17"
+    },
     {
       "version": "0.5.0",
       "fecha": "2026-11-17"

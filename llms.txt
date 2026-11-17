@@ -1,6 +1,6 @@
 # Gobernación del Magdalena — sistema de diseño gob-*
 
-> Componentes web (Lit, estándar: funcionan en HTML, Angular, React, Next.js y Vue), estilos mg-*, mapas del Magdalena por municipio (DIVIPOLA), gráficas, tablas, dashboards y formularios. CDN versionado en https://manualdemarca.magdalena.gov.co/cdn/v1/.
+> Componentes web (Lit, estándar: funcionan en HTML, Angular, React, Next.js y Vue), estilos mg-*, mapas del Magdalena por municipio (DIVIPOLA), gráficas, tablas, dashboards y formularios. CDN con CORS: https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/.
 
 ## Empezar aquí
 - [Guía completa para agentes de IA (Markdown)](https://manualdemarca.magdalena.gov.co/docs/ia/gob-componentes.md): instalación, reglas, catálogo y flujo de trabajo

@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="../dist/css/magdalena.css">
-<link rel="stylesheet" href="../site/portal.css?v=1794934096">
+<link rel="stylesheet" href="../site/portal.css?v=1794935475">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
@@ -26,7 +26,7 @@
 <p class="pt-lead">Así deben verse <b>todos los accesos</b> de los sistemas de la Gobernación: panel de marca a la izquierda (logo, nombre del sistema, lema y descripción) y tarjeta con «la línea» a la derecha, con inicio con Google y con correo/contraseña. Cámbiele solo el nombre, el lema y la descripción.</p>
 <div class="cards-k"><a class="k" href="login.html"><h3>Iniciar sesión</h3><p>Google + correo y contraseña, mostrar/ocultar clave, error genérico, bloqueo tras 3 intentos y estado de carga.</p></a><a class="k" href="recuperar-clave.html"><h3>Recuperar contraseña</h3><p>Correo → «revisa tu correo» con reenvío temporizado. No revela si la cuenta existe.</p></a><a class="k" href="restablecer-clave.html"><h3>Nueva contraseña</h3><p>Pantalla del enlace del correo: medidor de fortaleza, requisitos en vivo y confirmación.</p></a><a class="k" href="verificacion-2fa.html"><h3>Verificación en dos pasos</h3><p>Código de 6 dígitos con autoavance, pegado y reenvío (código de prueba 123456).</p></a><a class="k" href="registro.html"><h3>Crear cuenta</h3><p>Solicitud de acceso en dos columnas: documento, dependencia, contraseña y política de datos.</p></a><a class="k" href="estados-acceso.html"><h3>Estados de acceso</h3><p>Sesión expirada, cuenta bloqueada, sin permiso y mantenimiento.</p></a></div>
 <h3 style="margin-top:2rem">Qué caso usar</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Caso</th><th>Página</th><th>Cuándo se muestra</th><th>Respuesta del servidor</th></tr></thead><tbody><tr><td>Ingreso</td><td><a href="login.html">login.html</a></td><td>Entrada al sistema</td><td>200 / 401 / 423 / 429</td></tr><tr><td>Olvidó su contraseña</td><td><a href="recuperar-clave.html">recuperar-clave.html</a></td><td>Enlace «¿Olvidaste tu contraseña?»</td><td>200 siempre (no revela si existe)</td></tr><tr><td>Nueva contraseña</td><td><a href="restablecer-clave.html">restablecer-clave.html</a></td><td>Enlace del correo con token (30 min)</td><td>200 / 400 token vencido</td></tr><tr><td>Segundo factor</td><td><a href="verificacion-2fa.html">verificacion-2fa.html</a></td><td>Después de la clave, si el usuario tiene 2FA</td><td>200 / 401 código inválido</td></tr><tr><td>Registro</td><td><a href="registro.html">registro.html</a></td><td>Solicitud de cuenta (aprobación manual)</td><td>201 / 409 ya existe</td></tr><tr><td>Sesión expirada</td><td><a href="estados-acceso.html">estados-acceso.html</a> (Expirada)</td><td>Token vencido o inactividad</td><td>401 en cualquier llamada</td></tr><tr><td>Cuenta bloqueada</td><td>idem (Bloqueada)</td><td>Intentos fallidos o desactivada</td><td>423</td></tr><tr><td>Sin permiso</td><td>idem (Sin permiso)</td><td>Rol sin acceso al módulo</td><td>403</td></tr><tr><td>Mantenimiento</td><td>idem (Mantenimiento)</td><td>Ventana de despliegue</td><td>503</td></tr></tbody></table></div>
-<h3 style="margin-top:2rem">Esqueleto del login (copiar y pegar)</h3><div class="code"><div class="code__bar"><span>Esqueleto del login (HTML + CSS)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://manualdemarca.magdalena.gov.co/cdn/v1/gob.css&quot;&gt;
+<h3 style="margin-top:2rem">Esqueleto del login (copiar y pegar)</h3><div class="code"><div class="code__bar"><span>Esqueleto del login (HTML + CSS)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.css&quot;&gt;
 
 &lt;div class=&quot;mg-auth&quot;&gt;
   &lt;main class=&quot;mg-auth__main&quot;&gt;
@@ -104,7 +104,7 @@ async function ingresar(correo: string, clave: string) {
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="../site/portal.js?v=1794934096"></script>
+<script src="../site/portal.js?v=1794935475"></script>
 
 </body>
 </html>

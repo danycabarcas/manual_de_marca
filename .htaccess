@@ -1,13 +1,11 @@
-# CORS de solo lectura para el CDN gob-* y los recursos públicos del manual.
-# Sin estas cabeceras, otro sitio (p. ej. localhost:4200 o una app .gov.co) no puede cargar gob.js (módulo ES),
-# las fuentes Montserrat, los íconos ni los datos JSON desde este dominio.
+# Cabeceras CORS para los recursos públicos del manual.
+# OJO: en este servidor nginx sirve los archivos estáticos directamente, así que estas cabeceras de Apache
+# NO llegan en las respuestas GET (solo se ven en HEAD). Para CORS real use las directivas nginx de
+# componentes/compatibilidad.html#cors o el CDN con CORS (jsDelivr). Se deja por si algún día se desactiva
+# «Servir archivos estáticos directamente por nginx» en Plesk.
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|mjs|css|json|svg|woff2?|ttf|png|jpe?g|webp|ico|md|txt|ts|jsx|csv|zip)$">
     Header set Access-Control-Allow-Origin "*"
     Header set Cross-Origin-Resource-Policy "cross-origin"
   </FilesMatch>
-</IfModule>
-<IfModule mod_mime.c>
-  AddType application/javascript .js .mjs
-  AddType font/woff2 .woff2
 </IfModule>
