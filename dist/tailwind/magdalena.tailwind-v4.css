@@ -152,11 +152,11 @@
 @utility bg-mg-grad-sky-h { background-image: linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%); }
 @utility bg-mg-grad-aqua { background-image: linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%); }
 @utility bg-mg-grad-mist { background-image: linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%); }
-@utility bg-mg-grad-deep { background-image: linear-gradient(180deg, #081A2C 0%, #051220 100%); }
-@utility bg-mg-grad-night { background-image: linear-gradient(135deg, #0B2239 0%, #051220 100%); }
-@utility bg-mg-grad-steel { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
-@utility bg-mg-grad-action { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
-@utility bg-mg-grad-action-aa { background-image: linear-gradient(180deg, #147CC0 0%, #0071BB 100%); }
+@utility bg-mg-grad-deep { background-image: linear-gradient(180deg, #0B2239 0%, #081A2C 100%); }
+@utility bg-mg-grad-night { background-image: linear-gradient(135deg, #0E2D49 0%, #081A2C 100%); }
+@utility bg-mg-grad-steel { background-image: linear-gradient(180deg, #126CA8 0%, #0061A1 100%); }
+@utility bg-mg-grad-action { background-image: linear-gradient(180deg, #126CA8 0%, #0061A1 100%); }
+@utility bg-mg-grad-action-aa { background-image: linear-gradient(180deg, #126CA8 0%, #0061A1 100%); }
 @utility bg-mg-grad-tropical { background-image: linear-gradient(135deg, #00B7D9 0%, #69B75E 100%); }
 @utility bg-mg-grad-sun { background-image: linear-gradient(135deg, #FEC800 0%, #DAAC00 100%); }
 @utility bg-mg-grad-heat { background-image: linear-gradient(135deg, #F7003C 0%, #AD002A 100%); }

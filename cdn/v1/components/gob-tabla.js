@@ -2,10 +2,10 @@ import { j as q, E as N, a as z, b as n, A as p, i as D } from "../chunks/lit-el
 import { e as M, i as P, t as T, o as I } from "../chunks/unsafe-html-BbuUcIkg.js";
 import { i as u } from "../chunks/icono-x0IYmMl5.js";
 import { f as C } from "../chunks/mapa-recursos-DvOcbc8o.js";
-const { I: O } = q, E = (l) => l, j = () => document.createComment(""), y = (l, t, i) => {
+const { I: O } = q, E = (l) => l, A = () => document.createComment(""), y = (l, t, i) => {
   const e = l._$AA.parentNode, s = t === void 0 ? l._$AB : t._$AA;
   if (i === void 0) {
-    const r = e.insertBefore(j(), s), o = e.insertBefore(j(), s);
+    const r = e.insertBefore(A(), s), o = e.insertBefore(A(), s);
     i = new O(r, o, l, l.options);
   } else {
     const r = i._$AB.nextSibling, o = i._$AM, a = o !== l;
@@ -25,7 +25,7 @@ const { I: O } = q, E = (l) => l, j = () => document.createComment(""), y = (l, 
 }, v = (l, t, i = l) => (l._$AI(t, i), l), L = {}, U = (l, t = L) => l._$AH = t, R = (l) => l._$AH, w = (l) => {
   l._$AR(), l._$AA.remove();
 };
-const A = (l, t, i) => {
+const j = (l, t, i) => {
   const e = /* @__PURE__ */ new Map();
   for (let s = t; s <= i; s++) e.set(l[s], s);
   return e;
@@ -55,7 +55,7 @@ const A = (l, t, i) => {
     else if (a[b] === o[g]) c[g] = v(s[b], r[g]), b--, g--;
     else if (a[h] === o[g]) c[g] = v(s[h], r[g]), y(l, c[g + 1], s[h]), h++, g--;
     else if (a[b] === o[d]) c[d] = v(s[b], r[d]), y(l, s[h], s[b]), b--, d++;
-    else if (m === void 0 && (m = A(o, d, g), F = A(a, h, b)), m.has(a[h])) if (m.has(a[b])) {
+    else if (m === void 0 && (m = j(o, d, g), F = j(a, h, b)), m.has(a[h])) if (m.has(a[b])) {
       const f = F.get(o[d]), k = f !== void 0 ? s[f] : null;
       if (k === null) {
         const S = y(l, s[h]);
@@ -458,7 +458,7 @@ class H extends z {
     .w { background: var(--bg); border: 1px solid var(--b); border-radius: 12px; overflow: visible; box-shadow: 0 1px 2px rgba(8,26,44,.06); } svg { display: block; } button, input, select { font: inherit; color: inherit; }
     .tb, .ms, .pg { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: .65rem .85rem; } .tb { border-bottom: 1px solid var(--b); } .sp { flex: 1; }
     .q { display: flex; align-items: center; gap: .4rem; border: 1px solid #CBD2DC; border-radius: 8px; padding: 0 .6rem; background: var(--bg); min-width: 14rem; } .q:focus-within { border-color: var(--ac); box-shadow: 0 0 0 3px rgba(0,113,187,.2); } .q input { border: 0; outline: 0; background: none; padding: .5rem 0; width: 100%; font-size: .875rem; }
-    .bt { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #CBD2DC; background: var(--bg); border-radius: 8px; padding: .45rem .75rem; font-size: .8125rem; font-weight: 600; cursor: pointer; } .bt:hover { background: var(--ho); } .bt.on { background: #D6E8F4; border-color: var(--ac); color: #004F82; } .bt.pri { background: #0071BB; color: #fff; border-color: #0071BB; } .bt.pel { color: #B20028; border-color: #F2A3B5; }
+    .bt { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #CBD2DC; background: var(--bg); border-radius: 8px; padding: .45rem .75rem; font-size: .8125rem; font-weight: 600; cursor: pointer; } .bt:hover { background: var(--ho); } .bt.on { background: #D6E8F4; border-color: var(--ac); color: #004F82; } .bt.pri { background: #0061A1; color: #fff; border-color: #0071BB; } .bt.pel { color: #B20028; border-color: #F2A3B5; }
     .bt:focus-visible, .ib:focus-visible, .pn:focus-visible, .so:focus-visible, .ln:focus-visible, .sc:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
     .mn { position: relative; } .pop { position: absolute; z-index: 20; top: calc(100% + 4px); right: 0; min-width: 11rem; background: var(--bg); border: 1px solid var(--b); border-radius: 10px; box-shadow: 0 12px 28px rgba(8,26,44,.18); padding: .35rem; display: grid; gap: 1px; } .pop.der { right: 0; }
     .pop label, .pop button { display: flex; align-items: center; gap: .5rem; padding: .45rem .6rem; border: 0; background: none; border-radius: 6px; font-size: .8125rem; cursor: pointer; text-align: left; } .pop label:hover, .pop button:hover { background: var(--ho); } .pop .pel { color: #B20028; }

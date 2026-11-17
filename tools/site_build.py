@@ -151,6 +151,7 @@ def page_colors(root):
              ('Blanco sobre Ocre', '#FFFFFF', BRAND['olive'][0], 'Texto grande/negrita'),
              ('Blanco sobre Violeta', '#FFFFFF', BRAND['purple'][0], ''),
              ('Gris institucional sobre Blanco', NEUTRALS['gray'], '#FFFFFF', 'Texto secundario'),
+             ('Blanco sobre azul de interfaz (600)', '#FFFFFF', SCALES['primary'][600], 'Fondos con texto blanco'),
              ('Blanco sobre extremo del degradado «action»', '#FFFFFF', ACTION_END, 'Mínimo 3:1'),
              ('Blanco sobre extremo del degradado «primary» (cian)', '#FFFFFF', BRAND['cyan'][0], 'Solo decorativo / títulos enormes')]
     rows = ''
@@ -160,22 +161,48 @@ def page_colors(root):
         cls = 'green' if r >= 4.5 else 'yellow' if r >= 3 else 'red'
         rows += f'<tr><td><span class="smp" aria-hidden="true" data-t="Aa" style="display:inline-block;width:70px;padding:.2rem .4rem;border-radius:6px;background:{bg};color:{fg};font-weight:800;text-align:center"></span></td><td>{n}</td><td><b>{r:.2f}:1</b></td><td><span class="mg-badge mg-badge--{cls}">{lvl}</span></td><td>{note}</td></tr>'
 
+    def _sw(nombre, hexa, nota):
+        r = contrast('#FFFFFF', hexa)
+        ok = r >= 7 and ('Cómodo para casi todos' or True)
+        etq = 'Muy cómodo' if r >= 7 else 'Cómodo' if r >= 4.5 else 'Solo para detalles' if r >= 3 else 'Evitar con texto blanco'
+        col = '#2E7D32' if r >= 4.5 else '#8A6A00' if r >= 3 else '#C4002F'
+        return f'<div style="border:1px solid var(--mg-border);border-radius:12px;overflow:hidden;background:#fff"><svg role="img" aria-label="Muestra: texto blanco sobre {hexa}, contraste {r:.1f} a 1" viewBox="0 0 200 68" style="display:block;width:100%;background:{hexa}"><text x="16" y="30" fill="#fff" font-family="Montserrat,sans-serif" font-weight="700" font-size="17">Texto blanco</text><text x="16" y="52" fill="#fff" font-family="Montserrat,sans-serif" font-size="12">{hexa}</text></svg><div style="padding:.6rem 1rem .8rem;font-size:.8rem"><b>{nombre}</b><br><span style="color:{col};font-weight:700">{r:.1f}:1 · {etq}</span><br><span style="color:var(--mg-gray-500)">{nota}</span></div></div>'
+    swatches = ''.join(_sw(*x) for x in [
+        ('Azul 500 · institucional', SCALES['primary'][500], 'Texto e íconos sobre blanco'),
+        ('Azul 600 · de interfaz', SCALES['primary'][600], 'Recomendado para fondos'),
+        ('Azul 700', SCALES['primary'][700], 'Para estados «presionado»'),
+        ('Azul-noche 800', SCALES['navy'][800], 'Menús y pies, en dosis pequeñas'),
+        ('Cian 500', SCALES['cyan'][500], 'Acento; no con texto blanco'),
+        ('Celeste 500', SCALES['sky'][500], 'Fondos suaves; texto oscuro')])
     body = f'''
-<section class="pt-section"><h2><span class="n">00.</span> Criterio de uso: sobrio</h2>
-<p class="pt-lead">La paleta oficial es amplia y vistosa, pero una interfaz profesional no debe usarla toda a la vez. Regla práctica de proporción por pantalla:</p>
+<section class="pt-section"><h2><span class="n">00.</span> Cómo usar los colores</h2>
+<p class="pt-lead">Nuestra paleta es amplia y alegre. Para que cada pantalla se vea limpia y se lea con comodidad, conviene repartir los colores más o menos así:</p>
 <div class="demo"><div class="demo__view demo__view--white">
-<div style="display:flex;height:46px;border-radius:8px;overflow:hidden;font:600 .78rem var(--mg-font-sans);color:#fff">
-<div style="flex:70;background:var(--mg-gray-100);color:var(--mg-gray-600);display:grid;place-items:center">70% · Neutros (blanco, grises)</div>
-<div style="flex:15;background:var(--mg-navy-900);display:grid;place-items:center">15% · Azul-noche</div>
-<div style="flex:10;background:var(--mg-primary);display:grid;place-items:center">10% · Azul</div>
-<div style="flex:5;background:var(--mg-cyan);color:var(--mg-ink);display:grid;place-items:center">5%</div></div>
-<ul style="margin:1rem 0 0;padding-left:1.1rem;color:var(--mg-gray-600);font-size:.9rem;line-height:1.7">
-<li><b>Una sola acción principal</b> por pantalla, en azul institucional.</li>
-<li><b>Verde, amarillo y rojo</b> solo para estados (aprobado, pendiente, error), en tonos suaves.</li>
-<li><b>Ocre y violeta</b> solo en la línea del logotipo y piezas impresas; no en componentes.</li>
-<li><b>La línea multicolor</b> como firma fina (3 px) en pie de página y portada; nunca como borde de todo.</li>
-<li><b>Degradados vivos</b> (azul → cian) en portadas e ilustraciones, no en botones, tablas ni tarjetas.</li>
-</ul></div></div></section>
+<div style="display:flex;height:50px;border-radius:10px;overflow:hidden;font:600 .78rem var(--mg-font-sans);color:#fff">
+<div style="flex:70;background:var(--mg-gray-100);color:var(--mg-gray-600);display:grid;place-items:center">70% · Blancos y grises</div>
+<div style="flex:10;background:var(--mg-navy-800);display:grid;place-items:center">10% · Azul-noche</div>
+<div style="flex:12;background:var(--mg-primary-600);display:grid;place-items:center">12% · Azul</div>
+<div style="flex:5;background:var(--mg-cyan);color:var(--mg-ink);display:grid;place-items:center">5%</div>
+<div style="flex:3;display:flex" title="Acentos (3%)"><i style="flex:1;background:var(--mg-sky)"></i><i style="flex:1;background:var(--mg-purple)"></i><i style="flex:1;background:var(--mg-olive)"></i><i style="flex:1;background:var(--mg-yellow)"></i><i style="flex:1;background:var(--mg-red)"></i><i style="flex:1;background:var(--mg-green)"></i></div></div>
+<p style="margin:.6rem 0 0;font-size:.82rem;color:var(--mg-gray-500)">El tramo cian es el 5 % y el 3 % restante son los acentos: celeste, violeta, ocre, amarillo, rojo y verde, en pequeñas dosis.</p>
+<ul style="margin:1rem 0 0;padding-left:1.1rem;color:var(--mg-gray-600);font-size:.92rem;line-height:1.75">
+<li><b>Una acción principal por pantalla</b>, en azul: así cada persona sabe por dónde seguir.</li>
+<li><b>Verde, amarillo y rojo</b> cuentan cómo va algo (aprobado, pendiente, error). Los usamos en tonos suaves.</li>
+<li><b>Ocre y violeta</b> acompañan al logotipo y a las piezas impresas; en pantalla quedan como un detalle.</li>
+<li><b>La línea multicolor</b> es nuestra firma: una franja fina (3 px) en el pie de página y en la portada.</li>
+<li><b>Los degradados</b> (azul → cian) lucen en portadas e ilustraciones; en botones, tablas y tarjetas preferimos el color plano.</li>
+<li><b>Las variantes</b> más claras y más oscuras que el 500 (de la 50 a la 400 y de la 600 a la 950) son de apoyo: fondos de tarjetas y segundas series de gráficas. El protagonista siempre es el 500.</li>
+<li><b>El azul-noche es un color fuerte</b>, así que lo usamos en dosis pequeñas (un menú, un pie de página) y dejamos que los blancos y grises respiren.</li>
+</ul></div></div>
+<h3 style="margin:2rem 0 .5rem">Pensando en la lectura: cuál azul poner detrás del texto blanco</h3>
+<p style="color:var(--mg-gray-600);max-width:70ch">Hay colores que se ven preciosos pero cansan la vista cuando llevan texto blanco encima, sobre todo a personas con baja visión. Estas son nuestras recomendaciones (el número es la relación de contraste con el blanco; entre más alto, más fácil de leer):</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin:1rem 0">{swatches}</div>
+<ul style="margin:0;padding-left:1.1rem;color:var(--mg-gray-600);font-size:.92rem;line-height:1.75">
+<li><b>Fondos con texto blanco</b> (barras, botones, filas activas, píldoras): usamos el <b>azul 600</b>, un poco más profundo que el azul institucional.</li>
+<li><b>El azul institucional (500)</b> se queda para texto e íconos sobre fondo blanco y para los detalles de marca.</li>
+<li><b>El cian y el celeste</b> acompañan: íconos, gráficas, detalles, o sobre azul-noche. Con texto blanco encima se leen mal, así que ahí no.</li>
+<li><b>En los paneles de control</b> manda el azul 600 con un azul-noche suave; en los sitios públicos el azul institucional y los degradados brillan más, sobre todo en portadas.</li>
+</ul></section>
 
 <section class="pt-section"><h2><span class="n">01.</span> Paleta oficial</h2>
 <p class="pt-lead">Los 8 colores de la página «Paleta cromática» del manual. Los cuatro primarios definen la identidad (en la web dominan el <b>azul → cian → celeste</b>); el resto se usa como acento en objetos. Clic en un color para copiar su HEX.</p>

@@ -2,12 +2,17 @@
 import json
 import os
 
-VERSION = '0.7.1'
+VERSION = '0.8.0'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.8.0', '2026-11-17', [
+        ('cambio', '<b>Colores más cómodos de leer</b>: los fondos con texto blanco (botones, barras, píldoras, pestañas activas, paso actual, día seleccionado) pasan al <b>azul 600 <code>#0061A1</code></b> (contraste 6.5:1). El azul institucional <code>#0071BB</code> queda para texto e íconos sobre blanco y detalles de marca. El cian y el celeste no llevan texto blanco.', 'Nada si usa <code>gob.css</code>. Si tiene botones propios con fondo <code>#0071BB</code> y texto blanco, cámbielos por <code>var(--mg-primary-600)</code>.'),
+        ('cambio', '<b>Azul-noche más suave</b>: sidebar, pies y superficies oscuras usan un tono un escalón más claro (<code>navy-800</code>), y se emplea en dosis pequeñas.', ''),
+        ('cambio', 'La guía de colores se reescribió con una distribución sugerida (70 % blancos y grises, 10 % azul-noche, 12 % azul, 5 % cian, 3 % acentos), el uso de las variantes claras y oscuras como apoyo y una tabla de contraste del azul con texto blanco, en un tono más cercano.', ''),
+    ]),
     ('0.7.1', '2026-11-17', [
         ('cambio', '<b>Franja institucional simplificada</b>: solo el logo blanco a la izquierda y el botón «Accesibilidad» a la derecha. Se eliminaron el texto «Sitio oficial» y los enlaces (Transparencia, PQRSD…): el menú es del propio sitio. Las opciones <code>texto</code> y <code>enlaces</code> ya no existen.', 'Si las usaba, quítelas de <code>data-config</code>; no producen error.'),
         ('cambio', 'El <a href="demos/sitio-publico.html">sitio de ejemplo</a> se rediseñó como una sede normal: franja morada arriba y debajo el encabezado de la entidad (logo en color y menú a la derecha).', ''),

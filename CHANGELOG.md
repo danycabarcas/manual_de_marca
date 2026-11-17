@@ -1,6 +1,12 @@
 # Novedades del sistema de diseño gob-*
 
-Última versión: **0.7.1** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+Última versión: **0.8.0** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+
+## 0.8.0 — 2026-11-17
+
+- **Cambio**: Colores más cómodos de leer: los fondos con texto blanco (botones, barras, píldoras, pestañas activas, paso actual, día seleccionado) pasan al azul 600 #0061A1 (contraste 6.5:1). El azul institucional #0071BB queda para texto e íconos sobre blanco y detalles de marca. El cian y el celeste no llevan texto blanco. _Acción: Nada si usa gob.css. Si tiene botones propios con fondo #0071BB y texto blanco, cámbielos por var(--mg-primary-600)._
+- **Cambio**: Azul-noche más suave: sidebar, pies y superficies oscuras usan un tono un escalón más claro (navy-800), y se emplea en dosis pequeñas.
+- **Cambio**: La guía de colores se reescribió con una distribución sugerida (70 % blancos y grises, 10 % azul-noche, 12 % azul, 5 % cian, 3 % acentos), el uso de las variantes claras y oscuras como apoyo y una tabla de contraste del azul con texto blanco, en un tono más cercano.
 
 ## 0.7.1 — 2026-11-17
 

@@ -3,7 +3,7 @@ import os
 import zipfile
 
 BASE = 'https://manualdemarca.magdalena.gov.co'
-CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1'   # misma estructura /cdn/v1/ pero con CORS
+CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0'   # misma estructura /cdn/v1/ pero con CORS
 
 GUIA = r'''# Guía para agentes: usar el sistema de diseño `gob-*` de la Gobernación del Magdalena
 

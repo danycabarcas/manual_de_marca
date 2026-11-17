@@ -96,6 +96,7 @@ ACTION_END_AA = _action_end(4.5)     # límite 4.5:1 (texto normal)
 
 # --- Degradados -------------------------------------------------------------------
 P, C, S = BRAND['primary'][0], BRAND['cyan'][0], BRAND['sky'][0]
+AZUL_UI = SCALES['primary'][600]   # azul de interfaz: fondos con texto blanco (contraste ≥ 6.5:1)
 
 
 def _stripe(direction='90deg'):
@@ -117,13 +118,13 @@ GRADIENTS = {
     'aqua':         f'linear-gradient(135deg, {C} 0%, {S} 100%)',
     'mist':         f'linear-gradient(180deg, {S} 0%, #EAF6FA 100%)',
     # Superficies oscuras sobrias (sidebar, hero, pie): azul-noche, sin colores vivos
-    'deep':         f'linear-gradient(180deg, {NAVY[900]} 0%, {NAVY[950]} 100%)',
-    'night':        f'linear-gradient(135deg, {NAVY[800]} 0%, {NAVY[950]} 100%)',
+    'deep':         f'linear-gradient(180deg, {NAVY[800]} 0%, {NAVY[900]} 100%)',
+    'night':        f'linear-gradient(135deg, {NAVY[700]} 0%, {NAVY[900]} 100%)',
     # Degradado tonal (mismo azul, solo cambia el brillo): botones y acentos discretos
-    'steel':        f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
+    'steel':        f'linear-gradient(180deg, {mix(AZUL_UI, "#FFFFFF", .07)} 0%, {AZUL_UI} 100%)',
     # Botones: tonal (azul con un leve brillo vertical). Texto blanco = contraste 5:1
-    'action':       f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
-    'action-aa':    f'linear-gradient(180deg, {mix(P, "#FFFFFF", .08)} 0%, {P} 100%)',
+    'action':       f'linear-gradient(180deg, {mix(AZUL_UI, "#FFFFFF", .07)} 0%, {AZUL_UI} 100%)',
+    'action-aa':    f'linear-gradient(180deg, {mix(AZUL_UI, "#FFFFFF", .07)} 0%, {AZUL_UI} 100%)',
     # Acentos (usar con moderación, solo en objetos)
     'tropical':     f'linear-gradient(135deg, {C} 0%, {BRAND["green"][0]} 100%)',
     'sun':          f'linear-gradient(135deg, {BRAND["yellow"][0]} 0%, {SCALES["yellow"][600]} 100%)',

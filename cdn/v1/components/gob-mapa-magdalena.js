@@ -1,14 +1,14 @@
 import { a as w, A as p, w as d, b as u, i as S } from "../chunks/lit-element-CZvHeOsZ.js";
 import { o as B } from "../chunks/unsafe-html-BbuUcIkg.js";
 import { R as v, I as k, c as C, a as z, f as y, t as M } from "../chunks/mapa-recursos-DvOcbc8o.js";
-const $ = /* @__PURE__ */ new Map(), E = new URL("../datos/", import.meta.url).href, f = (g) => String(g ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]), j = { fromAttribute: (g) => g ? g.split(/[\s,]+/).filter(Boolean) : [], toAttribute: (g) => g.join(",") }, _ = { fromAttribute: (g) => {
+const $ = /* @__PURE__ */ new Map(), E = new URL("../datos/", import.meta.url).href, f = (g) => String(g ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[t]), A = { fromAttribute: (g) => g ? g.split(/[\s,]+/).filter(Boolean) : [], toAttribute: (g) => g.join(",") }, _ = { fromAttribute: (g) => {
   try {
     return g ? JSON.parse(g) : void 0;
   } catch {
     return;
   }
 }, toAttribute: (g) => JSON.stringify(g) };
-class A extends w {
+class j extends w {
   constructor() {
     if (super(), this._pointers = /* @__PURE__ */ new Map(), this._drag = null, this._pinch0 = null, this._anim = 0, this.detalle = "medio", this.modo = "subregiones", this.rampa = "azul", this.clases = 5, this.escala = "lineal", this.etiquetas = "ninguna", this.etiquetasAuto = !0, this.leyenda = !0, this.leyendaTitulo = "", this.tooltip = !0, this.tooltipFormato = "<strong>{nombre}</strong><br><span>{subregion}</span><br>{valor}", this.seleccion = "", this.multiple = !1, this.clic = "seleccionar", this.enlace = "", this.efectos = ["entrada"], this.tema = "claro", this.zoom = !0, this.zoomRueda = !1, this.controles = !0, this.titulo = "Mapa del departamento del Magdalena", this.descripcion = "", this.formato = "numero", this.unidad = "", this.srcDatos = "", this.filtroSubregion = "", this.mostrarContorno = !0, this._geo = null, this._tf = { k: 1, x: 0, y: 0 }, this._hover = null, this._tip = null, this._ppu = 0.5, this._error = "", Object.prototype.hasOwnProperty.call(this, "config")) {
       const t = this.config;
@@ -38,7 +38,7 @@ class A extends w {
       enlace: { type: String },
       marcadores: { converter: _ },
       lineas: { converter: _ },
-      efectos: { converter: j },
+      efectos: { converter: A },
       tema: { type: String, reflect: !0 },
       zoom: { type: Boolean },
       zoomRueda: { attribute: "zoom-rueda", type: Boolean },
@@ -457,7 +457,7 @@ class A extends w {
     .ctl { position: absolute; top: .5rem; right: .5rem; display: grid; gap: 2px; }
     .ctl button { width: 2rem; height: 2rem; border: 1px solid var(--gob-mapa-panel-borde); background: var(--gob-mapa-panel); color: var(--gob-mapa-panel-fg); font: 700 1rem/1 inherit; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
     .ctl button:first-child { border-radius: 8px 8px 0 0; } .ctl button:last-child { border-radius: 0 0 8px 8px; }
-    .ctl button:hover { background: #0071BB; color: #fff; } .ctl button:focus-visible { outline: 2px solid #00B7D9; outline-offset: 1px; }
+    .ctl button:hover { background: #0061A1; color: #fff; } .ctl button:focus-visible { outline: 2px solid #00B7D9; outline-offset: 1px; }
     .tip { position: absolute; z-index: 5; transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; background: var(--gob-mapa-tip-bg); color: var(--gob-mapa-tip-fg); padding: .5rem .7rem; border-radius: 8px; font-size: .78rem; line-height: 1.4; white-space: nowrap; box-shadow: 0 8px 24px rgba(8,26,44,.28); }
     .tip span { opacity: .72; } .tip strong { font-weight: 700; }
     .leyenda { position: absolute; left: .6rem; bottom: .6rem; max-width: 46%; padding: .55rem .7rem; border: 1px solid var(--gob-mapa-panel-borde); border-radius: 10px; background: var(--gob-mapa-panel); color: var(--gob-mapa-panel-fg); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-size: .72rem; }
@@ -475,7 +475,7 @@ class A extends w {
   `;
   }
 }
-customElements.get("gob-mapa-magdalena") || customElements.define("gob-mapa-magdalena", A);
+customElements.get("gob-mapa-magdalena") || customElements.define("gob-mapa-magdalena", j);
 export {
-  A as GobMapaMagdalena
+  j as GobMapaMagdalena
 };

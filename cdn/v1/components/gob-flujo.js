@@ -63,10 +63,10 @@ class f extends p {
   static {
     this.styles = [m, l`
     .p { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; gap: .5rem; counter-reset: x; } .s { flex: 1; position: relative; min-width: 0; }
-    .s::after { content: ''; position: absolute; top: 1.05rem; left: calc(2.1rem + .6rem); right: -.4rem; height: 2px; background: #E3E8EF; } .s:last-child::after { display: none; } .s.ok::after { background: #0071BB; }
+    .s::after { content: ''; position: absolute; top: 1.05rem; left: calc(2.1rem + .6rem); right: -.4rem; height: 2px; background: #E3E8EF; } .s:last-child::after { display: none; } .s.ok::after { background: #0061A1; }
     button, .b { display: flex; align-items: flex-start; gap: .6rem; width: 100%; border: 0; background: none; padding: 0; font: inherit; color: inherit; text-align: left; cursor: default; } button { cursor: pointer; } button:focus-visible { outline: 2px solid #0071BB; outline-offset: 3px; border-radius: 8px; }
     .n { flex: none; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 2px solid #CBD2DC; background: #fff; color: #4F5866; font-weight: 700; font-size: .85rem; z-index: 1; }
-    .on .n { border-color: #0071BB; background: #0071BB; color: #fff; box-shadow: 0 0 0 4px rgba(0,113,187,.18); } .ok .n { border-color: #0071BB; background: #E5F1F9; color: #0071BB; } .err .n { border-color: #C4002F; background: #FFE8EE; color: #C4002F; }
+    .on .n { border-color: #0061A1; background: #0061A1; color: #fff; box-shadow: 0 0 0 4px rgba(0,113,187,.18); } .ok .n { border-color: #0071BB; background: #E5F1F9; color: #0071BB; } .err .n { border-color: #C4002F; background: #FFE8EE; color: #C4002F; }
     .t { display: grid; padding-top: .2rem; min-width: 0; background: #fff; padding-right: .5rem; z-index: 1; } b { font-size: .84rem; font-weight: 600; color: #4F5866; } .on b, .ok b { color: #161A22; } small { font-size: .74rem; color: #5B6575; }
     @media (max-width: 560px) { :host(:not([vertical])) .t { display: none; } :host(:not([vertical])) .on .t { display: grid; position: absolute; left: 0; top: 2.5rem; } :host(:not([vertical])) .p { margin-bottom: 2.6rem; } }
     :host([vertical]) .p { flex-direction: column; gap: 0; } :host([vertical]) .s { padding-bottom: 1.2rem; } :host([vertical]) .s::after { top: 2.1rem; left: 1.05rem; right: auto; bottom: 0; width: 2px; height: auto; }

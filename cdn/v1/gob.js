@@ -1,4 +1,4 @@
-const s = "0.7.1", r = {
+const s = "0.8.0", r = {
   "gob-mapa-magdalena": () => import("./components/gob-mapa-magdalena.js"),
   "gob-grafica": () => import("./components/gob-grafica.js"),
   "gob-tabla": () => import("./components/gob-tabla.js"),

@@ -27,7 +27,7 @@ export class GobPestanas extends LitElement {
     .t { display: inline-flex; align-items: center; gap: .45rem; padding: .7rem 1rem; border: 0; background: none; cursor: pointer; font-family: inherit; font-weight: 600; font-size: .875rem; color: #4F5866; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; border-radius: 0; }
     .t:hover:not(:disabled) { color: #161A22; } .t.on { color: #0071BB; border-bottom-color: #0071BB; } .t:disabled { opacity: .4; cursor: not-allowed; } .t:focus-visible, .p:focus-visible { outline: 2px solid #0071BB; outline-offset: -2px; border-radius: 6px; }
     em { font-style: normal; font-size: .72rem; font-weight: 700; background: #F1F4F8; color: #3A424F; border-radius: 99px; padding: .05rem .5rem; } .t.on em { background: #D6E8F4; color: #004F82; }
-    :host([variante='pildora']) .l { border: 0; gap: .4rem; } :host([variante='pildora']) .t { border: 1px solid #E3E8EF; border-radius: 99px; margin: 0; padding: .45rem .95rem; } :host([variante='pildora']) .t.on { background: #0071BB; color: #fff; border-color: #0071BB; } :host([variante='pildora']) .t.on em { background: rgba(255,255,255,.22); color: #fff; }
+    :host([variante='pildora']) .l { border: 0; gap: .4rem; } :host([variante='pildora']) .t { border: 1px solid #E3E8EF; border-radius: 99px; margin: 0; padding: .45rem .95rem; } :host([variante='pildora']) .t.on { background: #0061A1; color: #fff; border-color: #0071BB; } :host([variante='pildora']) .t.on em { background: rgba(255,255,255,.22); color: #fff; }
     .p { padding: 1rem 0; } svg { display: block; }`;
 }
 if (!customElements.get('gob-pestanas')) customElements.define('gob-pestanas', GobPestanas);

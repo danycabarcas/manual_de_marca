@@ -3,7 +3,7 @@ import json
 import os
 from site_mapa import tabla
 
-CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1'
+CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1'
 
 CONFIG_DEMO = {
     'pie': {

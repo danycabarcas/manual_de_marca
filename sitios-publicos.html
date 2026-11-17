@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="dist/css/magdalena.css">
-<link rel="stylesheet" href="site/portal.css?v=1794954485">
+<link rel="stylesheet" href="site/portal.css?v=1794955562">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
@@ -40,9 +40,9 @@ instagram | https://instagram.com/</textarea></label></fieldset>
   <div style="display:grid;gap:.75rem;min-width:0"><div id="vista" style="border:1px solid var(--mg-border);border-radius:14px;overflow:hidden;background:#fff"><div id="vf"></div><div style="padding:1.5rem 1.25rem;min-height:5rem"><h3 style="margin:0 0 .3rem">Vista previa del sitio</h3><p style="margin:0;color:#4F5866">Contenido de ejemplo. <a href="#">Un enlace</a>. Pruebe «Accesibilidad» arriba a la derecha.</p></div><div id="vp"></div></div>
   <div id="codigo"></div></div></div></section>
 <section class="pt-section"><h2><span class="n">03.</span> Instalación</h2><p>Sirve en cualquier tecnología: es un <code>&lt;script&gt;</code> normal. Use la URL del CDN con CORS (o la copia local de <a href="dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a>).</p><div class="code"><div class="code__bar"><span>HTML / cualquier tecnología</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;!-- Una sola línea antes de &lt;/body&gt; (o al inicio del &lt;body&gt;) --&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/franja/gob-franja.js&quot; data-auto data-modo=&quot;ambos&quot;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1/franja/gob-franja.js&quot; data-auto data-modo=&quot;ambos&quot;
         data-config=&#x27;{&quot;pie&quot;: {&quot;correo&quot;: &quot;contacto@sitio.gov.co&quot;}}&#x27;&gt;&lt;/script&gt;</code></pre></div><div class="code"><div class="code__bar"><span>Con etiquetas y propiedades</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;!-- Con etiquetas, para controlar el lugar exacto --&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/franja/gob-franja.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1/franja/gob-franja.js&quot;&gt;&lt;/script&gt;
 
 &lt;gob-franja&gt;&lt;/gob-franja&gt;      &lt;!-- primera cosa dentro de &lt;body&gt; --&gt;
 …el contenido del sitio…
@@ -50,17 +50,17 @@ instagram | https://instagram.com/</textarea></label></fieldset>
 
 &lt;script&gt;
   document.querySelector(&#x27;gob-pie&#x27;).config = { pie: { correo: &#x27;contacto@aliado.gov.co&#x27; } };
-&lt;/script&gt;</code></pre></div><div class="code"><div class="code__bar"><span>Angular · React · Next.js</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// Angular: angular.json → &quot;scripts&quot;: [&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/franja/gob-franja.js&quot;]  (o &lt;script&gt; en index.html)
+&lt;/script&gt;</code></pre></div><div class="code"><div class="code__bar"><span>Angular · React · Next.js</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>// Angular: angular.json → &quot;scripts&quot;: [&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1/franja/gob-franja.js&quot;]  (o &lt;script&gt; en index.html)
 // app.component.ts  (standalone)
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#x27;@angular/core&#x27;;
 @Component({ selector: &#x27;app-root&#x27;, standalone: true, schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `&lt;gob-franja&gt;&lt;/gob-franja&gt;&lt;router-outlet&gt;&lt;/router-outlet&gt;&lt;gob-pie&gt;&lt;/gob-pie&gt;` })
 export class AppComponent {}
 
-// React / Next.js: &lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/franja/gob-franja.js&quot; /&gt; en index.html (o next/script), y en JSX:
+// React / Next.js: &lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1/franja/gob-franja.js&quot; /&gt; en index.html (o next/script), y en JSX:
 // &lt;gob-franja /&gt; … &lt;gob-pie /&gt;</code></pre></div><div class="code"><div class="code__bar"><span>Laravel · PHP · cualquier plataforma</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code>&lt;?php // Laravel (resources/views/layouts/app.blade.php) · PHP plano: igual que HTML
 ?&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1/franja/gob-franja.js&quot; data-auto data-modo=&quot;ambos&quot; data-config=&#x27;{{ json_encode(config(&#x27;gob.franja&#x27;)) }}&#x27;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1/franja/gob-franja.js&quot; data-auto data-modo=&quot;ambos&quot; data-config=&#x27;{{ json_encode(config(&#x27;gob.franja&#x27;)) }}&#x27;&gt;&lt;/script&gt;
 
 // Cualquier CMS o plataforma: pegue el mismo &lt;script&gt; en la plantilla base.</code></pre></div></section>
 <section class="pt-section"><h2><span class="n">04.</span> Opciones de configuración</h2><div class="tablewrap"><table class="mg-table"><thead><tr><th>Opción</th><th>Por defecto</th><th>Descripción</th></tr></thead><tbody><tr><td><code>titulo</code> · <code>url</code></td><td>Gobernación del Magdalena · magdalena.gov.co</td><td>Nombre y enlace del logo de la franja.</td></tr><tr><td><code>color</code></td><td>#5618BA (morado)</td><td>Color de la franja. <b>Política: no modificar</b> (solo pruebas).</td></tr><tr><td><code>logo</code></td><td>logo blanco oficial</td><td>URL de otro logo (debe ser blanco). Por defecto el oficial, junto al script.</td></tr><tr><td><code>accesibilidad</code></td><td>true</td><td>Muestra el botón y el panel de accesibilidad.</td></tr><tr><td><code>opciones</code></td><td>texto, contraste, enlaces, espaciado, animaciones</td><td>Opciones del panel (puede dejar solo algunas).</td></tr><tr><td><code>contenido</code></td><td>main, #main, #content, [role=main]</td><td>Selector del destino de «Ir al contenido principal».</td></tr><tr><td><code>sticky</code></td><td>false</td><td>Mantiene la franja visible al desplazarse.</td></tr><tr><td><code>aplicarA</code></td><td>html</td><td>Elemento sobre el que se aplican las preferencias (casi siempre <code>html</code>).</td></tr><tr><td><code>despuesDe</code></td><td>""</td><td>Selector de un elemento (p. ej. la franja GOV.CO de MinTIC): la franja se inserta <b>después</b> de él en lugar de al inicio de la página.</td></tr><tr><td><code>pasos</code></td><td>90, 100, 112, 125, 150</td><td>Tamaños de texto disponibles (%).</td></tr><tr><td><code>pie</code></td><td>null</td><td>Objeto del pie (tabla siguiente). Con <code>data-modo="ambos"</code> o <code>&lt;gob-pie&gt;</code>.</td></tr></tbody></table></div><h3 style="margin-top:1.5rem">Pie de página</h3><div class="tablewrap"><table class="mg-table"><thead><tr><th>Campo del pie</th><th>Descripción</th></tr></thead><tbody><tr><td><code>direccion</code> · <code>telefono</code> · <code>correo</code> · <code>horario</code></td><td>Datos de contacto (los vacíos no se muestran).</td></tr><tr><td><code>columnas</code></td><td>Hasta 3: <code>[{ "titulo": "Ciudadanía", "enlaces": [{ "t": "PQRSD", "u": "/pqrsd" }] }]</code>.</td></tr><tr><td><code>redes</code></td><td><code>[{ "n": "facebook", "t": "Facebook", "u": "https://…" }]</code>. Íconos: facebook, instagram, x, youtube, whatsapp, linkedin, tiktok, web.</td></tr><tr><td><code>legal</code></td><td>Enlaces de la barra inferior (privacidad, términos, accesibilidad…).</td></tr><tr><td><code>texto</code></td><td>Texto de derechos (por defecto «© año Gobernación del Magdalena · República de Colombia»).</td></tr><tr><td><code>logo</code> · <code>titulo</code></td><td>Logo y nombre del pie.</td></tr></tbody></table></div><p class="mg-help"><b>Orden de prioridad</b>: valores por defecto &lt; <code>window.GOB_FRANJA</code> &lt; <code>data-config</code> del script &lt; atributo/propiedad <code>config</code> del elemento. <b>Eventos y API</b>: <code>gob-franja-cambio</code> (detail = preferencias), <code>GobFranja.preferencias()</code>, <code>.aplicar({t:125,c:1})</code>, <code>.restablecer()</code>.</p></section>
@@ -70,7 +70,7 @@ export class AppComponent {}
 <script src="cdn/v1/franja/gob-franja.js"></script>
 <script>
 (function () {
-  var $ = function (i) { return document.getElementById(i); }; var CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.7.1/cdn/v1';
+  var $ = function (i) { return document.getElementById(i); }; var CDN = 'https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.8.0/cdn/v1';
   var lineas = function (t) { return t.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); };
   function par(l) { var p = l.split('|'); return { t: (p[0] || '').trim(), u: (p[1] || '#').trim() }; }
   function cfg() {
@@ -100,7 +100,7 @@ export class AppComponent {}
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="site/portal.js?v=1794954485"></script>
+<script src="site/portal.js?v=1794955562"></script>
 
 </body>
 </html>

@@ -180,11 +180,11 @@ module.exports = {
         "mg-grad-sky-h": "linear-gradient(90deg, #0071BB 0%, #00B7D9 55%, #9FD7E5 100%)",
         "mg-grad-aqua": "linear-gradient(135deg, #00B7D9 0%, #9FD7E5 100%)",
         "mg-grad-mist": "linear-gradient(180deg, #9FD7E5 0%, #EAF6FA 100%)",
-        "mg-grad-deep": "linear-gradient(180deg, #081A2C 0%, #051220 100%)",
-        "mg-grad-night": "linear-gradient(135deg, #0B2239 0%, #051220 100%)",
-        "mg-grad-steel": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
-        "mg-grad-action": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
-        "mg-grad-action-aa": "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)",
+        "mg-grad-deep": "linear-gradient(180deg, #0B2239 0%, #081A2C 100%)",
+        "mg-grad-night": "linear-gradient(135deg, #0E2D49 0%, #081A2C 100%)",
+        "mg-grad-steel": "linear-gradient(180deg, #126CA8 0%, #0061A1 100%)",
+        "mg-grad-action": "linear-gradient(180deg, #126CA8 0%, #0061A1 100%)",
+        "mg-grad-action-aa": "linear-gradient(180deg, #126CA8 0%, #0061A1 100%)",
         "mg-grad-tropical": "linear-gradient(135deg, #00B7D9 0%, #69B75E 100%)",
         "mg-grad-sun": "linear-gradient(135deg, #FEC800 0%, #DAAC00 100%)",
         "mg-grad-heat": "linear-gradient(135deg, #F7003C 0%, #AD002A 100%)",
@@ -217,7 +217,7 @@ module.exports = {
         '.mg-text-gradient': { backgroundImage: "linear-gradient(135deg, #0071BB 0%, #00B7D9 100%)", '-webkit-background-clip': 'text', backgroundClip: 'text', color: 'transparent' },
       });
       addComponents({
-        '.mg-btn': { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', padding: '.7rem 1.4rem', borderRadius: '8px', fontWeight: '600', color: '#fff', backgroundImage: "linear-gradient(180deg, #147CC0 0%, #0071BB 100%)", transition: 'filter .2s', '&:hover': { filter: 'brightness(.94)' } },
+        '.mg-btn': { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', padding: '.7rem 1.4rem', borderRadius: '8px', fontWeight: '600', color: '#fff', backgroundImage: "linear-gradient(180deg, #126CA8 0%, #0061A1 100%)", transition: 'filter .2s', '&:hover': { filter: 'brightness(.94)' } },
       });
     }),
   ],

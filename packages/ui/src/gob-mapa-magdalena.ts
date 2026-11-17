@@ -435,7 +435,7 @@ export class GobMapaMagdalena extends LitElement {
     .ctl { position: absolute; top: .5rem; right: .5rem; display: grid; gap: 2px; }
     .ctl button { width: 2rem; height: 2rem; border: 1px solid var(--gob-mapa-panel-borde); background: var(--gob-mapa-panel); color: var(--gob-mapa-panel-fg); font: 700 1rem/1 inherit; cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
     .ctl button:first-child { border-radius: 8px 8px 0 0; } .ctl button:last-child { border-radius: 0 0 8px 8px; }
-    .ctl button:hover { background: #0071BB; color: #fff; } .ctl button:focus-visible { outline: 2px solid #00B7D9; outline-offset: 1px; }
+    .ctl button:hover { background: #0061A1; color: #fff; } .ctl button:focus-visible { outline: 2px solid #00B7D9; outline-offset: 1px; }
     .tip { position: absolute; z-index: 5; transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; background: var(--gob-mapa-tip-bg); color: var(--gob-mapa-tip-fg); padding: .5rem .7rem; border-radius: 8px; font-size: .78rem; line-height: 1.4; white-space: nowrap; box-shadow: 0 8px 24px rgba(8,26,44,.28); }
     .tip span { opacity: .72; } .tip strong { font-weight: 700; }
     .leyenda { position: absolute; left: .6rem; bottom: .6rem; max-width: 46%; padding: .55rem .7rem; border: 1px solid var(--gob-mapa-panel-borde); border-radius: 10px; background: var(--gob-mapa-panel); color: var(--gob-mapa-panel-fg); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-size: .72rem; }
