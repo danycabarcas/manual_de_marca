@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard de recepción · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Tarjetas KPI y lista por clasificar</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Solicitudes</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2><div class="mg-perfil" role="group" aria-label="Perfil actual"><gob-icono nombre="usuario" tam="16"></gob-icono><div><b>Tu perfil actual</b><span>Receptor</span></div><span class="cfg" aria-hidden="true"></span></div><nav aria-label="Principal"><div class="mg-nav__grp mg-nav__grp--azul">Ventanilla</div><ul class="mg-nav"><li><a href="sol-registrar.html"><gob-icono nombre="agregar" tam="18"></gob-icono>Registrar solicitud</a></li><li><a href="sol-consultar.html"><gob-icono nombre="buscar" tam="18"></gob-icono>Consultar solicitudes</a></li><li><a href="sol-recepcion.html" aria-current="page"><gob-icono nombre="panel" tam="18"></gob-icono>Dashboard de recepción</a></li><li><a href="sol-entregas.html"><gob-icono nombre="enlace-externo" tam="18"></gob-icono>Entregar respuestas</a></li></ul><div class="mg-nav__grp mg-nav__grp--azul">Supervisión del área</div><ul class="mg-nav"><li><a href="sol-bitacora.html"><gob-icono nombre="historial" tam="18"></gob-icono>Bitácora</a></li><li><a href="sol-control.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono>Dashboard de control</a></li></ul><div class="mg-nav__grp mg-nav__grp--dorado">Administración</div><ul class="mg-nav"><li><a href="admin-usuarios.html"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="admin-roles.html"><gob-icono nombre="escudo" tam="18"></gob-icono>Roles y permisos</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page" data-demo="Encabezado" data-nota="Varias píldoras (mg-pill + mg-pill--out), título azul y botón de regreso"><div><div class="mg-tags"><span class="mg-pill">Ventanilla de entrada</span><span class="mg-pill mg-pill--out">Oficina de Tecnologías de la Información</span></div><h1>Dashboard de recepción</h1><p>Monitorea el flujo diario de solicitudes recibidas, audita el historial cronológico y vigila la carga procesal de los abogados de la secretaría.</p></div></div>
+      <section class="mg-kcards" aria-label="Indicadores" data-demo="Tarjetas KPI" data-nota="mg-kcard: ícono redondo, título, número grande y chip; variantes azul, dorado, lila (defecto), verde y rojo">
+        <div class="mg-kcard mg-kcard--azul"><div class="mg-kcard__top"><span class="mg-kcard__ic"><gob-icono nombre="mensaje" tam="20"></gob-icono></span><h3>Solicitudes recibidas hoy</h3></div><div class="num">4<span class="mg-chip mg-chip--verde">+4 al día</span></div><small>Ingresadas durante el día</small></div>
+        <div class="mg-kcard mg-kcard--dorado"><div class="mg-kcard__top"><span class="mg-kcard__ic"><gob-icono nombre="archivo" tam="20"></gob-icono></span><h3>Nuevas por revisar</h3></div><div class="num">8<span class="mg-chip mg-chip--amarillo">Por clasificar</span></div><small>Requieren clasificación</small></div>
+        <div class="mg-kcard mg-kcard--"><div class="mg-kcard__top"><span class="mg-kcard__ic"><gob-icono nombre="reloj" tam="20"></gob-icono></span><h3>En trámite</h3></div><div class="num">40<span class="mg-chip">56% del total</span></div><small>En trámite activo</small></div>
+        <div class="mg-kcard mg-kcard--verde"><div class="mg-kcard__top"><span class="mg-kcard__ic"><gob-icono nombre="check-circulo" tam="20"></gob-icono></span><h3>Finalizadas</h3></div><div class="num">40<span class="mg-chip mg-chip--verde">44% del total</span></div><small>Respuestas enviadas</small></div>
+      </section>
+      <section class="mg-panel" data-demo="Panel con acción principal" data-nota="Panel con cabecera y botón de acción"><div class="mg-panel__head"><gob-icono nombre="tareas" tam="20"></gob-icono><div><h2>Solicitudes por clasificar</h2><small>Las más recientes que aún no tienen tipo de ley asignado</small></div><a class="mg-btn mg-btn--sm" href="sol-consultar.html">Ver todas <gob-icono nombre="flecha-derecha" tam="14"></gob-icono></a></div>
+        <div class="mg-tbl-wrap"><table class="mg-tbl"><thead><tr><th>Código</th><th>Solicitante</th><th>Recibida</th><th>Estado</th></tr></thead><tbody>
+        <tr><td><span class="mg-codigo">PET-2026-0120</span></td><td><b>Asociación de Vendedores</b><small>NIT 900222111</small></td><td>Hoy 08:15</td><td><span class="mg-chip mg-chip--azul">Sin clasificar</span></td></tr>
+        <tr><td><span class="mg-codigo">PET-2026-0121</span></td><td><b>María Fernanda Ruiz</b><small>C.C. 1082445566</small></td><td>Hoy 09:40</td><td><span class="mg-chip mg-chip--azul">Sin clasificar</span></td></tr></tbody></table></div></section>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

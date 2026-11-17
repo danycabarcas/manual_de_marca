@@ -593,5 +593,5 @@ def build(root):
     for n, h in pages.items():
         with open(os.path.join(d, n), 'w', encoding='utf-8', newline='\n') as f:
             f.write(h)
-    import site_demos_auth, site_demos_panel
-    return list(pages) + site_demos_auth.build(root) + site_demos_panel.build(root)
+    import site_demos_auth, site_demos_panel, site_demos_sol
+    return list(pages) + site_demos_auth.build(root) + site_demos_panel.build(root) + site_demos_sol.build(root)

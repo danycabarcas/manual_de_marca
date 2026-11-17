@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitácora del trámite · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Lista de casos y línea de eventos</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Solicitudes</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2><div class="mg-perfil" role="group" aria-label="Perfil actual"><gob-icono nombre="usuario" tam="16"></gob-icono><div><b>Tu perfil actual</b><span>Receptor</span></div><span class="cfg" aria-hidden="true"></span></div><nav aria-label="Principal"><div class="mg-nav__grp mg-nav__grp--azul">Ventanilla</div><ul class="mg-nav"><li><a href="sol-registrar.html"><gob-icono nombre="agregar" tam="18"></gob-icono>Registrar solicitud</a></li><li><a href="sol-consultar.html"><gob-icono nombre="buscar" tam="18"></gob-icono>Consultar solicitudes</a></li><li><a href="sol-recepcion.html"><gob-icono nombre="panel" tam="18"></gob-icono>Dashboard de recepción</a></li><li><a href="sol-entregas.html"><gob-icono nombre="enlace-externo" tam="18"></gob-icono>Entregar respuestas</a></li></ul><div class="mg-nav__grp mg-nav__grp--azul">Supervisión del área</div><ul class="mg-nav"><li><a href="sol-bitacora.html" aria-current="page"><gob-icono nombre="historial" tam="18"></gob-icono>Bitácora</a></li><li><a href="sol-control.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono>Dashboard de control</a></li></ul><div class="mg-nav__grp mg-nav__grp--dorado">Administración</div><ul class="mg-nav"><li><a href="admin-usuarios.html"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="admin-roles.html"><gob-icono nombre="escudo" tam="18"></gob-icono>Roles y permisos</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page" data-demo="Encabezado" data-nota="Varias píldoras (mg-pill + mg-pill--out), título azul y botón de regreso"><div><div class="mg-tags"><span class="mg-pill">Historial y trazabilidad</span><span class="mg-pill mg-pill--out">62 solicitudes</span><span class="mg-pill mg-pill--out">Ley 1755 de 2015</span></div><h1>Bitácora del trámite</h1><p>Consulta la cronología inmutable de movimientos, aclaraciones, prórrogas y revisiones en las solicitudes de tu dependencia.</p></div><a class="mg-btn mg-btn--sm" href="sol-recepcion.html"><gob-icono nombre="flecha-izquierda" tam="14"></gob-icono> Volver al Dashboard</a></div>
+      <div class="mg-bita">
+        <section class="mg-panel mg-forms" aria-label="Casos" data-demo="Lista de casos seleccionables" data-nota="mg-caso: tarjeta-botón con código, estado, nombre y responsable; aria-current marca el activo"><div class="mg-buscar" style="margin-bottom:.75rem"><gob-icono nombre="buscar" tam="16"></gob-icono><input class="in-b" class="in-b" type="search" id="q" placeholder="Buscar por código…" aria-label="Buscar caso"></div>
+          <div class="mg-ptabs" role="tablist" aria-label="Filtro de casos" style="margin-bottom:.75rem"><button role="tab" aria-selected="true">Todas (62)</button><button role="tab" aria-selected="false">Activas (0)</button><button role="tab" aria-selected="false">Finalizadas (6)</button></div><div id="lista"><button type="button" class="mg-caso" aria-current="true" data-c="PET-2026-0119"><span class="fila"><span class="mg-codigo">PET-2026-0119</span><span class="mg-chip mg-chip--verde">Finalizada</span></span><b>Cooperativa de Transporte del Norte</b><span class="meta"><span><gob-icono nombre="usuario" tam="12"></gob-icono> Diego Gómez</span><span><gob-icono nombre="calendario" tam="12"></gob-icono> Cierre: 06 Nov 2026</span></span></button><button type="button" class="mg-caso" aria-current="false" data-c="PET-2026-0118"><span class="fila"><span class="mg-codigo">PET-2026-0118</span><span class="mg-chip mg-chip--rojo">Vencida</span></span><b>Luis Fernando Arrieta</b><span class="meta"><span><gob-icono nombre="usuario" tam="12"></gob-icono> Diego Gómez</span><span><gob-icono nombre="calendario" tam="12"></gob-icono> Cierre: 06 Nov 2026</span></span></button><button type="button" class="mg-caso" aria-current="false" data-c="PET-2026-0117"><span class="fila"><span class="mg-codigo">PET-2026-0117</span><span class="mg-chip mg-chip--gris">Descartada</span></span><b>Gobernación del Magdalena</b><span class="meta"><span><gob-icono nombre="usuario" tam="12"></gob-icono> Diego Gómez</span><span><gob-icono nombre="calendario" tam="12"></gob-icono> Cierre: 06 Nov 2026</span></span></button><button type="button" class="mg-caso" aria-current="false" data-c="PET-2026-0116"><span class="fila"><span class="mg-codigo">PET-2026-0116</span><span class="mg-chip mg-chip--verde">Finalizada</span></span><b>Dr. José Caballero</b><span class="meta"><span><gob-icono nombre="usuario" tam="12"></gob-icono> Diego Gómez</span><span><gob-icono nombre="calendario" tam="12"></gob-icono> Cierre: 06 Nov 2026</span></span></button></div></section>
+        <section class="mg-panel" aria-live="polite" data-demo="Detalle con línea de eventos" data-nota="mg-eventos + mg-evento: ícono de color, título, descripción y etiquetas de autor y fecha">
+          <h2 id="dt" style="margin:0 0 .4rem;font:800 1.05rem var(--mg-font-display);color:var(--mg-primary)">Cooperativa de Transporte del Norte</h2><div class="mg-tags" style="margin-bottom:.75rem"><span class="mg-codigo">PET-2026-0119</span><span class="mg-chip mg-chip--verde" id="de">Finalizada</span><span class="mg-chip mg-chip--azul">Recepción: 06 de sept de 2026</span></div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem"><button class="mg-btn mg-btn--secondary mg-btn--sm" type="button"><gob-icono nombre="carpeta" tam="14"></gob-icono> Consultar expediente</button><button class="mg-btn mg-btn--sm" type="button"><gob-icono nombre="enlace-externo" tam="14"></gob-icono> Habilitar entrega</button></div>
+          <div class="mg-utabs" role="tablist" aria-label="Eventos" style="margin-bottom:1rem"><button role="tab" aria-selected="true">Todas (3)</button><button role="tab" aria-selected="false">Activas (0)</button><button role="tab" aria-selected="false">Finalizadas (3)</button></div>
+          <ul class="mg-eventos"><li class="mg-evento"><span class="ic"><gob-icono nombre="archivo" tam="16"></gob-icono></span><div><b>Solicitud registrada en ventanilla</b><p>Registrada en ventanilla tras su recepción en el correo institucional.</p><div class="tags"><span>Realizado por Receptor Ventanilla Jurídica 1</span><span class="mg-chip mg-chip--gris">10 de sept de 2026, 05:00 a. m.</span></div></div></li><li class="mg-evento mg-evento--verde"><span class="ic"><gob-icono nombre="check-circulo" tam="16"></gob-icono></span><div><b>Plazos de ley iniciados</b><p>Clasificada como Copias y Documentos (10 días).</p><div class="tags"><span>Realizado por Diego Gómez</span><span class="mg-chip mg-chip--gris">10 de sept de 2026, 05:00 a. m.</span></div></div></li><li class="mg-evento mg-evento--lila"><span class="ic"><gob-icono nombre="check-circulo" tam="16"></gob-icono></span><div><b>Revisión del equipo jurídico</b><p>El equipo revisó la documentación aportada.</p><div class="tags"><span>Realizado por Marta Quintero</span><span class="mg-chip mg-chip--gris">12 de sept de 2026, 10:30 a. m.</span></div></div></li></ul></section>
+      </div>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+  document.querySelectorAll('.mg-caso').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('.mg-caso').forEach((x) => x.setAttribute('aria-current', x === b)); $('dt').textContent = b.querySelector('b').textContent; $('de').textContent = b.querySelector('.mg-chip').textContent; }));
+  $('q').addEventListener('input', () => { const t = $('q').value.toLowerCase(); document.querySelectorAll('.mg-caso').forEach((c) => (c.hidden = !c.textContent.toLowerCase().includes(t))); });
+  document.querySelectorAll('.mg-ptabs button, .mg-utabs button').forEach((b) => b.addEventListener('click', () => b.parentElement.querySelectorAll('button').forEach((x) => x.setAttribute('aria-selected', x === b))));
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

@@ -1,6 +1,12 @@
 # Novedades del sistema de diseño gob-*
 
-Última versión: **0.5.1** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+Última versión: **0.6.0** (2026-11-17) · https://manualdemarca.magdalena.gov.co/novedades.html
+
+## 0.6.0 — 2026-11-17
+
+- **Nuevo**: Sistemas de solicitudes y administración (8 pantallas): registrar solicitud con asignación por tarjetas, consultar con filtros y estados, dashboard de recepción y de control con KPI y semáforo, entrega de respuestas, bitácora con línea de eventos, usuarios y matriz de roles y permisos. _Acción: Use los demos Solicitudes y administración._
+- **Nuevo**: Clases nuevas del panel: mg-kcard (KPI con ícono), mg-sem, mg-opt/mg-optlist (opciones tipo tarjeta), mg-matriz, mg-caso/mg-evento, mg-usr/mg-rol, mg-codigo, mg-st, mg-efec, mg-cnt, mg-perfil y títulos de grupo en el menú (mg-nav__grp). _Acción: Nada: llegan con gob.css._
+- **Cambio**: El menú lateral admite grupos con color y una tarjeta de perfil; la barra superior acepta el nombre de cada aplicación.
 
 ## 0.5.1 — 2026-11-17
 

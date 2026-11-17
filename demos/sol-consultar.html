@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultar solicitudes · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Filtros avanzados, resultados y tabla con estados y plazos</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Solicitudes</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2><div class="mg-perfil" role="group" aria-label="Perfil actual"><gob-icono nombre="usuario" tam="16"></gob-icono><div><b>Tu perfil actual</b><span>Receptor</span></div><span class="cfg" aria-hidden="true"></span></div><nav aria-label="Principal"><div class="mg-nav__grp mg-nav__grp--azul">Ventanilla</div><ul class="mg-nav"><li><a href="sol-registrar.html"><gob-icono nombre="agregar" tam="18"></gob-icono>Registrar solicitud</a></li><li><a href="sol-consultar.html" aria-current="page"><gob-icono nombre="buscar" tam="18"></gob-icono>Consultar solicitudes</a></li><li><a href="sol-recepcion.html"><gob-icono nombre="panel" tam="18"></gob-icono>Dashboard de recepción</a></li><li><a href="sol-entregas.html"><gob-icono nombre="enlace-externo" tam="18"></gob-icono>Entregar respuestas</a></li></ul><div class="mg-nav__grp mg-nav__grp--azul">Supervisión del área</div><ul class="mg-nav"><li><a href="sol-bitacora.html"><gob-icono nombre="historial" tam="18"></gob-icono>Bitácora</a></li><li><a href="sol-control.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono>Dashboard de control</a></li></ul><div class="mg-nav__grp mg-nav__grp--dorado">Administración</div><ul class="mg-nav"><li><a href="admin-usuarios.html"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="admin-roles.html"><gob-icono nombre="escudo" tam="18"></gob-icono>Roles y permisos</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page" data-demo="Encabezado" data-nota="Varias píldoras (mg-pill + mg-pill--out), título azul y botón de regreso"><div><div class="mg-tags"><span class="mg-pill">Ventanilla de correspondencia</span><span class="mg-pill mg-pill--out">Consulta bajo demanda</span></div><h1>Consultar solicitudes</h1><p>Explora, filtra y consulta de forma avanzada las solicitudes ciudadanas registradas en la oficina.</p></div><a class="mg-btn mg-btn--sm" href="sol-recepcion.html"><gob-icono nombre="flecha-izquierda" tam="14"></gob-icono> Volver al Dashboard</a></div>
+      <section class="mg-panel mg-forms" data-demo="Filtros avanzados + resultados" data-nota="Búsqueda, selects con etiqueta (mg-sel), conteo (mg-resultados), tabla con códigos (mg-codigo) y estados con subetiqueta (mg-st)">
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap"><div class="mg-buscar" style="flex:1;min-width:14rem"><gob-icono nombre="buscar" tam="16"></gob-icono><input class="in-b" class="in-b" type="search" id="q" placeholder="Buscar por código…" aria-label="Buscar por código"></div><select aria-label="Orden" style="width:auto"><option>Más reciente primero</option><option>Más antigua primero</option></select><button class="mg-btn mg-btn--sm" type="button" id="consultar"><gob-icono nombre="buscar" tam="14"></gob-icono> Consultar</button></div>
+        <div class="mg-forms mg-fgrid" style="grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));margin-top:1rem"><div class="mg-sel"><label class="mg-lab" for="est">Estado de la solicitud</label><select id="est"><option>Todos los estados</option><option>En trámite</option><option>Finalizada</option><option>Vencida</option></select></div><div class="mg-sel"><label class="mg-lab" for="resp">Responsable</label><select id="resp"><option>Todos los abogados</option><option>Diego Gómez</option><option>Julián Peña</option><option>Marta Quintero</option></select></div><div class="mg-sel"><label class="mg-lab" for="pl">Alerta de plazo (semáforo)</label><select id="pl"><option>Cualquier plazo</option><option>A tiempo</option><option>Por vencer</option><option>Vencida</option></select></div><div class="mg-sel"><label class="mg-lab" for="fe">Fecha de recepción</label><select id="fe"><option>Cualquier fecha</option><option>Últimos 7 días</option><option>Este mes</option></select></div></div>
+        <p class="mg-resultados" id="res">Resultados de la consulta: 6 solicitudes</p>
+        <div class="mg-tbl-wrap"><table class="mg-tbl"><thead><tr><th>Código</th><th>Nombre del solicitante</th><th>Fecha de recepción</th><th>Responsable</th><th>Estado y plazo</th><th>Acción</th></tr></thead><tbody id="tb"><tr data-est="Finalizada"><td><span class="mg-codigo">PET-2026-0119</span></td><td><b>Luis Fernando Ceballos</b><small>C.C. / NIT 10282402</small></td><td>2026-09-10<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Diego Gómez</span></td><td><span class="mg-st mg-st--verde">Finalizada<span class="mg-chip mg-chip--verde">Tarde finalizada</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0119" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr><tr data-est="Vencida"><td><span class="mg-codigo">PET-2026-0118</span></td><td><b>Cooperativa de Transporte del Norte</b><small>NIT 800123456</small></td><td>2026-09-10<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Julián Peña</span></td><td><span class="mg-st mg-st--rojo">Vencida<span class="mg-chip mg-chip--rojo">Término vencido</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0118" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr><tr data-est="En trámite"><td><span class="mg-codigo">PET-2026-0117</span></td><td><b>Gobernación del Magdalena</b><small>NIT 800103920</small></td><td>2026-09-08<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Marta Quintero</span></td><td><span class="mg-st mg-st--dorado">En trámite<span class="mg-chip mg-chip--amarillo">11 d. hábiles restantes</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0117" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr><tr data-est="Finalizada"><td><span class="mg-codigo">PET-2026-0116</span></td><td><b>Dr. José Caballero</b><small>C.C. 1082950121</small></td><td>2026-09-05<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Diego Gómez</span></td><td><span class="mg-st mg-st--verde">Finalizada<span class="mg-chip mg-chip--verde">A tiempo</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0116" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr><tr data-est="En trámite"><td><span class="mg-codigo">PET-2026-0115</span></td><td><b>Comité Cívico de Ciénaga</b><small>NIT 900456789</small></td><td>2026-09-03<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Julián Peña</span></td><td><span class="mg-st mg-st--dorado">En trámite<span class="mg-chip mg-chip--amarillo">4 d. hábiles restantes</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0115" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr><tr data-est="Vencida"><td><span class="mg-codigo">PET-2026-0114</span></td><td><b>Ana María Torres</b><small>C.C. 55123987</small></td><td>2026-09-01<small>Recepción correo</small></td><td><span class="mg-rol"><gob-icono nombre="usuario" tam="15"></gob-icono>Marta Quintero</span></td><td><span class="mg-st mg-st--rojo">Vencida<span class="mg-chip mg-chip--rojo">Término vencido</span></span></td><td><button class="mg-iconbtn mg-iconbtn--gris mg-iconbtn--sm" type="button" aria-label="Ver PET-2026-0114" data-ver><gob-icono nombre="ojo" tam="16"></gob-icono></button></td></tr></tbody></table></div><div class="mg-pager"><span>Mostrando <b>6</b> solicitudes (de 62 de despacho)</span><span class="b">Filas por página <select aria-label="Filas por página"><option>10</option><option>25</option></select> &nbsp; Página 1 de 1 &nbsp;<button type="button" disabled aria-label="Anterior">‹</button><button type="button" disabled aria-label="Siguiente">›</button></span></div>
+      </section>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+  function filtrar() { const e = $('est').value, q = $('q').value.toLowerCase(); let n = 0;
+    document.querySelectorAll('#tb tr').forEach((r) => { const ok = (e.startsWith('Todos') || r.dataset.est === e) && r.textContent.toLowerCase().includes(q); r.hidden = !ok; if (ok) n++; });
+    $('res').textContent = 'Resultados de la consulta: ' + n + ' solicitud' + (n === 1 ? '' : 'es'); }
+  ['est', 'q'].forEach((i) => $(i).addEventListener('input', filtrar)); $('consultar').onclick = filtrar;
+  document.querySelectorAll('[data-ver]').forEach((b) => b.addEventListener('click', () => (location.href = 'sol-bitacora.html')));
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

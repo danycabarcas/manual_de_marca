@@ -2,12 +2,17 @@
 import json
 import os
 
-VERSION = '0.5.1'
+VERSION = '0.6.0'
 FECHA = '2026-11-17'
 BASE = 'https://manualdemarca.magdalena.gov.co'
 
 # Cada versión: (versión, fecha, [(tipo, texto, acción requerida)]) — tipos: nuevo | cambio | arreglo | docs
 VERSIONES = [
+    ('0.6.0', '2026-11-17', [
+        ('nuevo', '<b>Sistemas de solicitudes y administración</b> (8 pantallas): registrar solicitud con asignación por tarjetas, consultar con filtros y estados, dashboard de recepción y de control con KPI y semáforo, entrega de respuestas, bitácora con línea de eventos, usuarios y <b>matriz de roles y permisos</b>.', 'Use los demos <a href="demos/index.html#solicitudes">Solicitudes y administración</a>.'),
+        ('nuevo', 'Clases nuevas del panel: <code>mg-kcard</code> (KPI con ícono), <code>mg-sem</code>, <code>mg-opt</code>/<code>mg-optlist</code> (opciones tipo tarjeta), <code>mg-matriz</code>, <code>mg-caso</code>/<code>mg-evento</code>, <code>mg-usr</code>/<code>mg-rol</code>, <code>mg-codigo</code>, <code>mg-st</code>, <code>mg-efec</code>, <code>mg-cnt</code>, <code>mg-perfil</code> y títulos de grupo en el menú (<code>mg-nav__grp</code>).', 'Nada: llegan con <code>gob.css</code>.'),
+        ('cambio', 'El menú lateral admite <b>grupos con color</b> y una <b>tarjeta de perfil</b>; la barra superior acepta el nombre de cada aplicación.', ''),
+    ]),
     ('0.5.1', '2026-11-17', [
         ('arreglo', '<b>CDN desde otros sitios (CORS)</b>: cargar <code>gob.js</code>, las fuentes o los datos desde otro origen (p. ej. <code>localhost:4200</code> o una app en otro dominio) fallaba porque el servidor oficial no envía <code>Access-Control-Allow-Origin</code>. El código que genera el manual ahora usa la URL pública con CORS de jsDelivr: <code>https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/</code>.', 'Cambie en sus proyectos la base <code>https://manualdemarca.magdalena.gov.co/cdn/v1/</code> por la de jsDelivr (o use la copia local). Ver <a href="componentes/compatibilidad.html#cors">CORS</a>.'),
     ]),

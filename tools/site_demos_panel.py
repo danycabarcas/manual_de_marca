@@ -26,7 +26,7 @@ TIRA = '''<!--DEMO-ONLY-->
 <!--/DEMO-ONLY-->'''
 
 
-def shell(archivo, titulo, nota, cuerpo, script='', activo=None):
+def shell(archivo, titulo, nota, cuerpo, script='', activo=None, app='Convocatorias', side=None):
     activo = activo or archivo
     cuerpo = cuerpo.replace('class="mg-fgrid', 'class="mg-forms mg-fgrid').replace('class="mg-filtros', 'class="mg-forms mg-filtros').replace('type="search"', 'class="in-b" type="search"').replace('<section class="mg-panel" id="seccion"', '<section class="mg-panel mg-forms" id="seccion"').replace('<label style="display:inline-flex;align-items:center;font-size:.82rem', '<label class="mg-forms" style="display:inline-flex;align-items:center;font-size:.82rem')
     def li(h, t, i):
@@ -34,12 +34,13 @@ def shell(archivo, titulo, nota, cuerpo, script='', activo=None):
         return f'<li><a href="{h}"{cur}><gob-icono nombre="{i}" tam="18"></gob-icono>{t}</a></li>'
     nav = ''.join(li(*x) for x in NAV)
     nav2 = ''.join(li(*x) for x in NAV_ADMIN)
+    lado = side if side else ('<h2>Menú</h2><nav aria-label="Principal"><ul class="mg-nav">' + nav + '</ul><div class="mg-nav__sep">Administración</div><ul class="mg-nav">' + nav2 + '</ul></nav>')
     return (HEAD.replace('%TITULO%', titulo) + f'''<body>
 {TIRA.replace("%NOTA%", nota)}
 <div class="mg-shell" id="shell">
   <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
     <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
-    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Convocatorias</b></span></a>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>{app}</b></span></a>
     <span class="mg-shell__sp"></span>
     <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
     <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
@@ -49,8 +50,7 @@ def shell(archivo, titulo, nota, cuerpo, script='', activo=None):
   </header>
   <div class="mg-shell__body">
     <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
-      <h2>Menú</h2>
-      <nav aria-label="Principal"><ul class="mg-nav">{nav}</ul><div class="mg-nav__sep">Administración</div><ul class="mg-nav">{nav2}</ul></nav>
+      {lado}
     </aside>
     <div class="mg-shell__veil" id="veil"></div>
     <main class="mg-shell__main" id="contenido">

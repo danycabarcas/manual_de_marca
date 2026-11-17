@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usuarios · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Usuarios con avatar, rol con ícono y estado</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Solicitudes</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2><div class="mg-perfil" role="group" aria-label="Perfil actual"><gob-icono nombre="usuario" tam="16"></gob-icono><div><b>Tu perfil actual</b><span>Receptor</span></div><span class="cfg" aria-hidden="true"></span></div><nav aria-label="Principal"><div class="mg-nav__grp mg-nav__grp--azul">Ventanilla</div><ul class="mg-nav"><li><a href="sol-registrar.html"><gob-icono nombre="agregar" tam="18"></gob-icono>Registrar solicitud</a></li><li><a href="sol-consultar.html"><gob-icono nombre="buscar" tam="18"></gob-icono>Consultar solicitudes</a></li><li><a href="sol-recepcion.html"><gob-icono nombre="panel" tam="18"></gob-icono>Dashboard de recepción</a></li><li><a href="sol-entregas.html"><gob-icono nombre="enlace-externo" tam="18"></gob-icono>Entregar respuestas</a></li></ul><div class="mg-nav__grp mg-nav__grp--azul">Supervisión del área</div><ul class="mg-nav"><li><a href="sol-bitacora.html"><gob-icono nombre="historial" tam="18"></gob-icono>Bitácora</a></li><li><a href="sol-control.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono>Dashboard de control</a></li></ul><div class="mg-nav__grp mg-nav__grp--dorado">Administración</div><ul class="mg-nav"><li><a href="admin-usuarios.html" aria-current="page"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="admin-roles.html"><gob-icono nombre="escudo" tam="18"></gob-icono>Roles y permisos</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page"><div><span class="mg-pill">Administración</span><h1>Usuarios</h1><p>Cuentas de acceso al sistema y su rol.</p></div></div>
+      <section class="mg-panel mg-forms" data-demo="Usuarios con rol" data-nota="mg-usr (avatar + correo), mg-rol (ícono + subtítulo), mg-dot (estado) y paginación simple"><div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem"><div class="mg-buscar" style="flex:1;min-width:14rem"><gob-icono nombre="buscar" tam="16"></gob-icono><input class="in-b" class="in-b" type="search" placeholder="Buscar por nombre, correo o documento" aria-label="Buscar usuario"></div><select aria-label="Rol" style="width:auto"><option>Todos los roles</option><option>Abogado</option><option>Supervisor</option></select><select aria-label="Estado" style="width:auto"><option>Activos</option><option>Bloqueados</option><option>Inactivos</option></select></div>
+        <div class="mg-tbl-wrap"><table class="mg-tbl"><thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Último ingreso</th></tr></thead><tbody><tr><td><div class="mg-usr"><span class="mg-av">LA</span><div><b>Laura Abogada (prueba)</b><small>abogada@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="maletin" tam="18"></gob-icono><div><b>Abogado</b><small>Contratista</small></div></div></td><td><span class="mg-dot">Activo</span></td><td>9 de nov de 2026</td></tr><tr><td><div class="mg-usr"><span class="mg-av">AA</span><div><b>Alberto Abogado</b><small>abogado@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="maletin" tam="18"></gob-icono><div><b>Abogado</b><small>Profesional</small></div></div></td><td><span class="mg-dot mg-dot--rojo">Bloqueado</span></td><td>9 de nov de 2026</td></tr><tr><td><div class="mg-usr"><span class="mg-av">LA</span><div><b>Laura Abogada (prueba)</b><small>abogada@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="enlace" tam="18"></gob-icono><div><b>Enlace</b><small>Coordinación</small></div></div></td><td><span class="mg-dot mg-dot--amarillo">Inactivo</span></td><td>9 de nov de 2026</td></tr><tr><td><div class="mg-usr"><span class="mg-av">LA</span><div><b>Laura Abogada (prueba)</b><small>abogada@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="verificado" tam="18"></gob-icono><div><b>Supervisor</b><small>Dirección</small></div></div></td><td><span class="mg-dot">Activo</span></td><td>9 de nov de 2026</td></tr><tr><td><div class="mg-usr"><span class="mg-av">LA</span><div><b>Laura Abogada (prueba)</b><small>abogada@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="escudo" tam="18"></gob-icono><div><b>Administrador</b><small>Sistema</small></div></div></td><td><span class="mg-dot">Activo</span></td><td>9 de nov de 2026</td></tr><tr><td><div class="mg-usr"><span class="mg-av">LA</span><div><b>Laura Abogada (prueba)</b><small>abogada@pruebas.local</small></div></div></td><td><div class="mg-rol"><gob-icono nombre="escudo-check" tam="18"></gob-icono><div><b>Superadministrador</b><small>Sistema</small></div></div></td><td><span class="mg-dot">Activo</span></td><td>9 de nov de 2026</td></tr></tbody></table></div>
+        <div class="mg-pager mg-pager--simple"><span>1–6 de 6</span><span class="b"><span class="dis">‹ Anterior</span>&nbsp; 1 de 1 &nbsp;<span class="dis">Siguiente ›</span></span></div></section>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>

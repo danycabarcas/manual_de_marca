@@ -33,11 +33,22 @@ def hub(root, page, code):
         ('panel-configuracion.html', 'Panel · Configuración', 'Datos de cuenta, cambio de contraseña y diálogo «Sin permisos».'),
         ('crear-cuenta.html', 'Registro público (Crea tu cuenta)', 'Tarjeta con dos logos y formulario de dos columnas.'),
     ]
+    sol = [
+        ('sol-registrar.html', 'Solicitudes · Registrar', 'Formulario de recepción con ayudas bajo cada campo y asignación del responsable con tarjetas de carga.'),
+        ('sol-consultar.html', 'Solicitudes · Consultar', 'Filtros avanzados con etiqueta, conteo de resultados y tabla con códigos, estados y plazos.'),
+        ('sol-recepcion.html', 'Solicitudes · Dashboard de recepción', 'Tarjetas KPI (ícono, título, número y chip) y lista por clasificar.'),
+        ('sol-entregas.html', 'Solicitudes · Entregar respuestas', 'Pestañas con contador, búsqueda y estados vacíos «Al día».'),
+        ('sol-bitacora.html', 'Solicitudes · Bitácora', 'Lista de casos seleccionables y detalle con línea de eventos.'),
+        ('sol-control.html', 'Solicitudes · Dashboard de control', 'KPI con semáforo y tabla de efectividad por responsable.'),
+        ('admin-usuarios.html', 'Administración · Usuarios', 'Usuarios con avatar, rol con ícono, estado y paginación.'),
+        ('admin-roles.html', 'Administración · Roles y permisos', 'Matriz de permisos por rol, agrupada por módulo.'),
+    ]
+    cs = ''.join(card(*x) for x in sol)
     cp = ''.join(card(*x) for x in panel)
     ca = ''.join(card(*x) for x in acceso)
     cb = ''.join(card(*x) for x in apps)
 
-    esqueleto = code('html', """<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.css">
+    esqueleto = code('html', """<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.css">
 
 <div class="mg-auth">
   <main class="mg-auth__main">
@@ -138,5 +149,6 @@ async function ingresar(correo: string, clave: string) {
 <h3 style="margin-top:2rem">Conectarlo con el backend</h3>{conectar}
 <h3 style="margin-top:2rem">Seguridad y buenas prácticas</h3>{seg}</section>
 <section class="pt-section" id="panel"><h2><span class="n">03.</span> Panel de gestión (diseño «Convocatorias»)</h2><p class="pt-lead">Estructura de las aplicaciones internas según el diseño del equipo: barra superior con «la línea», <b>menú lateral claro y fijo (sticky)</b>, píldora de sección, títulos en azul, tarjetas suaves, filtros, tablas con estados y diálogos. Tipografía Montserrat en todo.</p><div class="cards-k">{cp}</div></section>
-<section class="pt-section" id="apps"><h2><span class="n">04.</span> Otras aplicaciones y catálogo de UI</h2><div class="cards-k">{cb}</div></section>'''
+<section class="pt-section" id="solicitudes"><h2><span class="n">04.</span> Sistemas de solicitudes y administración</h2><p class="pt-lead">Pantallas de trabajo de los sistemas de seguimiento: recepción, consulta, dashboards con KPI, bitácora, usuarios y matriz de roles. Mismo marco que el panel (menú lateral sticky con grupos y tarjeta de perfil).</p><div class="cards-k">{cs}</div></section>
+<section class="pt-section" id="apps"><h2><span class="n">05.</span> Otras aplicaciones y catálogo de UI</h2><div class="cards-k">{cb}</div></section>'''
     page(root, 'demos/index.html', 'Demos y plantillas', 'Páginas completas para copiar: login y casos de acceso, panel, trámites, territorio, mesa de ayuda, portal y catálogo de UI.', body)

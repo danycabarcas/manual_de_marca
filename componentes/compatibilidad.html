@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="../assets/favicon/icon-32.png">
 <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
 <link rel="stylesheet" href="../dist/css/magdalena.css">
-<link rel="stylesheet" href="../site/portal.css?v=1794935475">
+<link rel="stylesheet" href="../site/portal.css?v=1794935820">
 </head>
 <body class="mg-base">
 <header class="pt-header"><div class="pt-header__in">
@@ -50,7 +50,7 @@ providePrimeNG({ theme: { preset: MagdalenaPreset, options: { cssLayer: { name: 
 <li><b>Capas de z-index</b>: los menús, selectores y calendarios de gob flotan en <code>z-index: 1000</code>; los overlays de Prime usan su propio z-index base (también ~1000). Si una pantalla mezcla ambos y se solapan, ajuste el <code>zIndex</code> de Prime en su configuración (las ventanas modales de gob usan la capa superior del navegador y no se solapan).</li></ul></section>
 <section class="pt-section" id="cors"><h2><span class="n">06.</span> CORS: usar el CDN desde otro sitio</h2>
 <p>Si abre <code>http://localhost:4200</code> (o cualquier otra aplicación) y la consola dice <code>Access to script … has been blocked by CORS policy</code> al cargar <code>gob.js</code>, las fuentes o los datos, es porque el navegador exige la cabecera <code>Access-Control-Allow-Origin</code> a los <b>módulos ES</b>, las <b>fuentes</b> y los <b>fetch</b> de otro origen.</p>
-<ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Hoy, use el CDN con CORS</b>: <code>https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.5.1/cdn/v1/gob.css</code> y <code>…/gob.js</code>. Es lo que genera el manual por defecto.</li><li><b>Copia local</b>: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a> y sírvalo desde su propio dominio (sin CORS).</li><li><b>Dominio oficial</b>: el servidor de <code>manualdemarca.magdalena.gov.co</code> sirve los estáticos con nginx y todavía no envía la cabecera. Para habilitarla, un administrador agrega en Plesk → <i>Apache y nginx</i> → <i>Directivas nginx adicionales</i>:</li></ul>
+<ul style="line-height:1.9;color:var(--mg-gray-700)"><li><b>Hoy, use el CDN con CORS</b>: <code>https://cdn.jsdelivr.net/gh/danycabarcas/manual_de_marca@v0.6.0/cdn/v1/gob.css</code> y <code>…/gob.js</code>. Es lo que genera el manual por defecto.</li><li><b>Copia local</b>: descargue <a href="../dist/downloads/gob-cdn-v1.zip">gob-cdn-v1.zip</a> y sírvalo desde su propio dominio (sin CORS).</li><li><b>Dominio oficial</b>: el servidor de <code>manualdemarca.magdalena.gov.co</code> sirve los estáticos con nginx y todavía no envía la cabecera. Para habilitarla, un administrador agrega en Plesk → <i>Apache y nginx</i> → <i>Directivas nginx adicionales</i>:</li></ul>
 <div class="code"><div class="code__bar"><span>Directivas nginx (administrador)</span><button data-codecopy>Copiar</button></div><pre tabindex="0"><code># CORS de solo lectura para los recursos públicos del manual (CDN, descargas, documentos)
 location ~ ^/(cdn|dist|docs|assets)/ {
     add_header Access-Control-Allow-Origin &quot;*&quot; always;
@@ -66,7 +66,7 @@ location ~ ^/(cdn|dist|docs|assets)/ {
 </div>
   <div class="pt-credit">Dev. Ing. Daniel Cabarcas · 2026</div>
 </footer>
-<script src="../site/portal.js?v=1794935475"></script>
+<script src="../site/portal.js?v=1794935820"></script>
 
 </body>
 </html>

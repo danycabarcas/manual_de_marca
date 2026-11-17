@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registrar solicitud · Demo Gobernación del Magdalena</title>
+<link rel="icon" href="../assets/favicon/favicon.ico">
+<!-- ① DEPENDENCIAS: gob.css (Montserrat, mg-shell, mg-panel…) y gob.js (íconos gob-icono, toasts, modal) -->
+<link rel="stylesheet" href="../cdn/v1/gob.css">
+<script type="module" src="../cdn/v1/gob.js"></script>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!--DEMO-ONLY-->
+<div style="background:#081A2C;color:#C9D4E3;font:600 .78rem Montserrat,system-ui,sans-serif;padding:.5rem 1rem;display:flex;gap:.5rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:center">
+  <a href="index.html" style="color:#fff;text-decoration:none">‹ Todos los demos</a><span>Formulario de recepción + asignación por tarjetas con confirmación</span>
+</div>
+<!--/DEMO-ONLY-->
+<div class="mg-shell" id="shell">
+  <header class="mg-shell__top" data-demo="Barra superior" data-nota="Barra blanca con «la línea», logo + aplicación, usuario y botones redondos (notificaciones, perfil, salir, ayuda)">
+    <button class="mg-iconbtn mg-iconbtn--gris mg-shell__burger" type="button" id="menu" aria-label="Abrir menú"><gob-icono nombre="menu" tam="20"></gob-icono></button>
+    <a class="mg-shell__brand" href="panel-inicio.html"><img src="../assets/logos/svg/logo-horizontal-color.svg" alt="Gobernación del Magdalena"><span class="mg-shell__app"><b>Solicitudes</b></span></a>
+    <span class="mg-shell__sp"></span>
+    <span class="mg-shell__user">José Caballero - <b>Administrador</b></span>
+    <button class="mg-iconbtn mg-iconbtn--rojo" type="button" id="campana" aria-label="Notificaciones, 2 nuevas"><gob-icono nombre="campana" tam="18"></gob-icono><span class="n" aria-hidden="true">2</span></button>
+    <a class="mg-iconbtn mg-iconbtn--lila" href="panel-perfil.html" aria-label="Mi perfil">JC</a>
+    <a class="mg-iconbtn mg-iconbtn--rojo" href="login.html" aria-label="Cerrar sesión"><gob-icono nombre="salir" tam="18"></gob-icono></a>
+    <button class="mg-iconbtn mg-iconbtn--gris" type="button" id="ayuda" aria-label="Ayuda">?</button>
+  </header>
+  <div class="mg-shell__body">
+    <aside class="mg-shell__side" data-demo="Menú lateral (sticky)" data-nota="Menú claro que se queda fijo al hacer scroll; ítem activo en lila con aria-current=page">
+      <h2>Menú</h2><div class="mg-perfil" role="group" aria-label="Perfil actual"><gob-icono nombre="usuario" tam="16"></gob-icono><div><b>Tu perfil actual</b><span>Receptor</span></div><span class="cfg" aria-hidden="true"></span></div><nav aria-label="Principal"><div class="mg-nav__grp mg-nav__grp--azul">Ventanilla</div><ul class="mg-nav"><li><a href="sol-registrar.html" aria-current="page"><gob-icono nombre="agregar" tam="18"></gob-icono>Registrar solicitud</a></li><li><a href="sol-consultar.html"><gob-icono nombre="buscar" tam="18"></gob-icono>Consultar solicitudes</a></li><li><a href="sol-recepcion.html"><gob-icono nombre="panel" tam="18"></gob-icono>Dashboard de recepción</a></li><li><a href="sol-entregas.html"><gob-icono nombre="enlace-externo" tam="18"></gob-icono>Entregar respuestas</a></li></ul><div class="mg-nav__grp mg-nav__grp--azul">Supervisión del área</div><ul class="mg-nav"><li><a href="sol-bitacora.html"><gob-icono nombre="historial" tam="18"></gob-icono>Bitácora</a></li><li><a href="sol-control.html"><gob-icono nombre="grafica-barras" tam="18"></gob-icono>Dashboard de control</a></li></ul><div class="mg-nav__grp mg-nav__grp--dorado">Administración</div><ul class="mg-nav"><li><a href="admin-usuarios.html"><gob-icono nombre="usuarios" tam="18"></gob-icono>Usuarios</a></li><li><a href="admin-roles.html"><gob-icono nombre="escudo" tam="18"></gob-icono>Roles y permisos</a></li></ul></nav>
+    </aside>
+    <div class="mg-shell__veil" id="veil"></div>
+    <main class="mg-shell__main" id="contenido">
+      <div class="mg-page" data-demo="Encabezado" data-nota="Varias píldoras (mg-pill + mg-pill--out), título azul y botón de regreso"><div><div class="mg-tags"><span class="mg-pill">Ventanilla de Entrada</span><span class="mg-pill mg-pill--out">Oficina de Tecnologías de la Información</span></div><h1>Registrar nueva solicitud</h1><p>Ingresa formalmente la solicitud ciudadana, certifica la fecha de recepción en el correo institucional y asigna el responsable.</p></div><a class="mg-btn mg-btn--sm" href="sol-recepcion.html"><gob-icono nombre="flecha-izquierda" tam="14"></gob-icono> Volver al Dashboard</a></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:1.25rem;align-items:start" class="dos-col">
+        <form class="mg-panel mg-forms" id="f" novalidate data-demo="Formulario de recepción" data-nota="mg-panel + mg-fgrid; ayudas bajo cada campo (.mg-help) y aviso con ícono">
+          <div class="mg-panel__head"><gob-icono nombre="archivo" tam="20"></gob-icono><div><h2>Datos de recepción y del solicitante</h2><small>Certifica la fecha de recepción en el correo institucional y los datos oficiales de contacto.</small></div></div>
+          <p style="margin:0 0 1rem;font-size:.74rem;color:var(--mg-text-muted)">Campo obligatorio <span style="color:var(--mg-red)">*</span></p>
+          <div class="mg-forms mg-fgrid"><div class="full"><label class="mg-lab" for="fr">Fecha de recepción en el correo institucional<span class="req">*</span></label><input id="fr" type="date"></div>
+            <div class="full"><p class="mg-aviso" style="font-size:.76rem;color:var(--mg-gray-600);margin:0;display:flex;gap:.5rem"><gob-icono nombre="info" tam="16"></gob-icono><span>El cómputo de días hábiles de ley inicia a partir de esta fecha de recepción, no del día en que se registra en el sistema.</span></p></div></div>
+          <h3 style="margin:1.25rem 0 .75rem;font:800 .95rem var(--mg-font-display);color:var(--mg-primary)"><gob-icono nombre="usuario" tam="16"></gob-icono> Información del solicitante</h3>
+          <div class="mg-forms mg-fgrid"><div><label class="mg-lab" for="nom">Nombre del solicitante<span class="req">*</span></label><input id="nom" autocomplete="name"><p class="mg-help">Mínimo 3 caracteres (persona natural o entidad).</p></div><div><label class="mg-lab" for="doc">Cédula / NIT / Documento<span class="req">*</span></label><input id="doc" inputmode="numeric"><p class="mg-help">Mínimo 5 caracteres, sin espacios.</p></div>
+            <div><label class="mg-lab" for="cor">Correo electrónico de notificaciones<span class="req">*</span></label><input id="cor" type="email"><p class="mg-help">Formato esperado: nombre@correo.com</p></div><div><label class="mg-lab" for="tel">Teléfono o celular <small>(opcional)</small></label><input id="tel" type="tel"><p class="mg-help">Máximo 20 caracteres si se registra.</p></div>
+            <div class="full"><label class="mg-lab" for="dir">Dirección física de notificación <small>(opcional)</small></label><input id="dir"><p class="mg-help">Incluye barrio o municipio si aplica.</p></div></div>
+        </form>
+        <div style="display:grid;gap:1rem">
+          <section class="mg-panel" data-demo="Asignación por tarjetas" data-nota="mg-optlist + mg-opt: radios con avatar y chip de carga; mg-conf confirma la selección"><div class="mg-panel__head"><gob-icono nombre="usuarios" tam="20"></gob-icono><div><h2>Asignación de abogado</h2><small>Equipo disponible (3 abogados)</small></div></div>
+            <div class="mg-optlist" role="radiogroup" aria-label="Abogado responsable"><label class="mg-opt mg-forms"><input type="radio" name="abogado" value="Julián Peña" data-av="JP" checked><span class="mg-av">JP</span><span class="grow"><b>Julián Peña</b><small>3 solicitudes en trámite</small></span><span class="mg-chip mg-chip--verde">Menor carga</span></label><label class="mg-opt mg-forms"><input type="radio" name="abogado" value="Marta Quintero" data-av="MQ"><span class="mg-av">MQ</span><span class="grow"><b>Marta Quintero</b><small>10 solicitudes en gestión</small></span><span class="mg-chip mg-chip--amarillo">Carga alta</span></label><label class="mg-opt mg-forms"><input type="radio" name="abogado" value="Diego Gómez" data-av="DG"><span class="mg-av">DG</span><span class="grow"><b>Diego Gómez</b><small>5 solicitudes en curso</small></span><span class="mg-chip mg-chip--verde">Menor carga</span></label></div><p style="font-size:.7rem;color:var(--mg-text-muted);margin:.6rem 0">Ordenados de menor a mayor carga activa. Elige manualmente al responsable.</p>
+            <div class="mg-conf" aria-live="polite"><span class="mg-av" id="cav" style="background:#fff">JP</span><span><small>Asignación seleccionada</small><b id="cnom">Julián Peña</b></span><span class="mg-chip mg-chip--verde"><gob-icono nombre="check-circulo" tam="12"></gob-icono> Confirmado</span></div></section>
+          <section class="mg-panel"><button class="mg-btn mg-submit" type="submit" form="f" id="reg">Registrar solicitud y asignar <gob-icono nombre="flecha-derecha" tam="16"></gob-icono></button><p class="mg-note">Al registrar, la solicitud queda formalmente ingresada y asignada al abogado responsable para su gestión inicial.</p></section>
+        </div>
+      </div>
+      <style>@media (max-width: 960px) { .dos-col { grid-template-columns: 1fr !important; } }</style>
+    </main>
+  </div>
+  <footer class="mg-shell__foot">Gobernación del Magdalena · Oficina TIC · Demostración del sistema de diseño</footer>
+</div>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  $('menu').onclick = () => $('shell').classList.toggle('mg-shell--menu'); $('veil').onclick = () => $('shell').classList.remove('mg-shell--menu');
+  $('campana').onclick = () => gob.toast({ tipo: 'info', titulo: '2 notificaciones', mensaje: 'Tienes 2 postulaciones nuevas por revisar.' });
+  $('ayuda').onclick = () => gob.toast({ tipo: 'info', titulo: 'Ayuda', mensaje: 'Aquí abre su centro de ayuda o la mesa de soporte.' });
+  document.querySelectorAll('input[name=abogado]').forEach((r) => r.addEventListener('change', () => { $('cnom').textContent = r.value; $('cav').textContent = r.dataset.av; }));
+  $('f').addEventListener('submit', (e) => { e.preventDefault();
+    const falta = ['fr', 'nom', 'doc', 'cor'].filter((i) => !$(i).value.trim()); ['fr', 'nom', 'doc', 'cor'].forEach((i) => $(i).setAttribute('aria-invalid', falta.includes(i)));
+    if (falta.length) { gob.toast({ tipo: 'aviso', titulo: 'Faltan campos obligatorios', mensaje: 'Complete los campos marcados con *.' }); $(falta[0]).focus(); return; }
+    gob.toast({ tipo: 'exito', titulo: 'Solicitud registrada', mensaje: 'Asignada a ' + $('cnom').textContent + '. Radicado PET-2026-0120.' }); e.target.reset(); });
+</script>
+<!--DEMO-ONLY--><script type="module" src="demo-kit.js"></script><!--/DEMO-ONLY-->
+</body>
+</html>
